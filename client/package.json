@@ -1,0 +1,41 @@
+{
+  "name": "bazaar-web-app",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "dev": "webpack serve --env NODE_ENV=development",
+    "start": "webpack --env NODE_ENV=production",
+    "lint": "eslint '*/**/*.{js}' --quiet --fix"
+  },
+  "dependencies": {
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "webpack": "^5.11.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/preset-react": "^7.14.5",
+    "@testing-library/jest-dom": "^5.11.8",
+    "@testing-library/react": "^11.2.2",
+    "@testing-library/react-hooks": "^3.7.0",
+    "@testing-library/user-event": "^12.6.0",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.0.1",
+    "eslint": "^7.17.0",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react": "^7.22.0",
+    "file-loader": "^6.2.0",
+    "fork-ts-checker-webpack-plugin": "^6.0.8",
+    "html-webpack-plugin": "^4.5.1",
+    "jest": "^26.6.3",
+    "jest-css-modules": "^2.1.0",
+    "prettier": "^2.2.1",
+    "react-test-renderer": "^17.0.1",
+    "style-loader": "^2.0.0",
+    "webpack-cli": "^4.3.1",
+    "webpack-dev-server": "^3.11.1",
+    "webpack-merge": "^5.7.3"
+  }
+}
