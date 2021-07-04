@@ -1,0 +1,15 @@
+{
+  "env": {
+    "node": true
+  },
+  "extends": ["airbnb-base", "prettier", "plugin:node/recommended"],
+  "parserOptions": {
+    "ecmaVersion": 2020
+  },
+  "rules": {
+    "global-require": "off",
+    "no-use-before-define": "off",
+    "max-classes-per-file": "off",
+    "no-restricted-syntax": "off"
+  }
+}
