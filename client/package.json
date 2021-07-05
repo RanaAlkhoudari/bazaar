@@ -9,7 +9,9 @@
     "lint": "eslint '*/**/*.{js}' --quiet --fix"
   },
   "dependencies": {
+    "bootstrap": "^5.0.2",
     "react": "^17.0.1",
+    "react-bootstrap": "^1.6.1",
     "react-dom": "^17.0.1",
     "webpack": "^5.11.1"
   },
