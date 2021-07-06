@@ -59,7 +59,7 @@ export const NavBtn = styled.nav`
 
 export const NavBtnLink = styled(Link)`
   border-radius: 4px;
-  background: #256ce1;
+  background: #008080;
   padding: 10px 22px;
   color: #fff;
   outline: none;
@@ -75,16 +75,21 @@ export const NavBtnLink = styled(Link)`
   }
 `;
 
-export const CartDropdownContainer = styled.div`
+export const DropdownContainer = styled.div`
   position: absolute;
-  width: 240px;
-  height: 340px;
+  height: auto;
   display: flex;
   flex-direction: column;
   padding: 20px;
   border: 1px solid black;
-  background-color: white;
-  top: 90px;
-  right: 40px;
+  background-color: black;
+  top: 60px;
+  margin-right: 50%;
   z-index: 5;
+`;
+
+export const ItemsContainer = styled.div`
+  height: auto;
+  display: flex;
+  flex-direction: column;
 `;

@@ -1,5 +1,32 @@
 import React, { useState } from 'react';
-import { Nav, NavLink, Bars, NavMenu, NavBtn, NavBtnLink, DropdownLink } from './Header.styles';
+import { Link } from 'react-router-dom';
+import { FaAngleDown } from 'react-icons/fa';
+import {
+  Nav,
+  NavLink,
+  Bars,
+  NavMenu,
+  NavBtn,
+  NavBtnLink,
+  DropdownLink,
+  ItemsContainer,
+  DropdownContainer,
+} from './Header.styles';
+
+const items = [
+  {
+    id: 1,
+    name: 'Clothing',
+  },
+  {
+    id: 2,
+    name: 'Gardening',
+  },
+  {
+    id: 3,
+    name: 'Training',
+  },
+];
 
 const Header = () => {
   const [showCategories, setShowCategories] = useState(false);
@@ -11,25 +38,26 @@ const Header = () => {
   return (
     <div>
       <Nav>
-        <NavLink to="/">LOGO</NavLink>
+        <NavLink to="/">
+          <img src="https://i.ibb.co/VB0vCY6/bazaar1.png" alt="bazaar1" width="35%" />
+        </NavLink>
         <Bars />
         <NavMenu>
           <NavLink to="categories" onClick={handleClick}>
-            Categories
+            Categories <FaAngleDown />
           </NavLink>
           {showCategories && (
-            <div>
-              <ul>
-                <NavLink to="categoryId"> category 1</NavLink>
-                <NavLink
-                  to="
-                  categoryId"
-                >
-                  category 3
-                </NavLink>
-                <NavLink to="categoryId"> category 2</NavLink>
-              </ul>
-            </div>
+            <DropdownContainer>
+              {items.map((item) => {
+                return (
+                  <ItemsContainer>
+                    <NavMenu key={item.id}>
+                      <Link to="./categoryId">{item.name}</Link>
+                    </NavMenu>
+                  </ItemsContainer>
+                );
+              })}
+            </DropdownContainer>
           )}
           <NavLink to="/sign-up">Sign Up | Register</NavLink>
           <NavBtnLink to="/sign-in">Sign In</NavBtnLink>
