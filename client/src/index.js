@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
-import Header from './components/Header';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Header from './components/Header/Header';
 
 import './styles/variables.css';
 import './styles/normalize.css';
@@ -10,9 +11,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (el) {
     render(
-      <div>
+      <Router>
         <Header />
-      </div>,
+        <Switch>
+          {/* <Route path="/" exact component={Home} />
+          <Route path="/productList" exact component={ProductList} /> */}
+        </Switch>
+      </Router>,
       el,
     );
   }
