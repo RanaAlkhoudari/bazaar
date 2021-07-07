@@ -13,6 +13,7 @@ module.exports = {
   output: {
     publicPath: `/`,
   },
+  
   devtool: 'eval-cheap-module-source-map',
   plugins: [new webpack.HotModuleReplacementPlugin()],
 };

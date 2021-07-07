@@ -4,12 +4,14 @@
   },
   "extends": ["airbnb-base", "prettier", "plugin:node/recommended"],
   "parserOptions": {
-    "ecmaVersion": 2020
+    "ecmaVersion": 2020,
+    "sourceType": "module"
   },
   "rules": {
     "global-require": "off",
     "no-use-before-define": "off",
     "max-classes-per-file": "off",
-    "no-restricted-syntax": "off"
+    "no-restricted-syntax": "off",
+    "node/no-unsupported-features/es-syntax": ["error", { "ignores": ["modules"] }]
   }
 }
