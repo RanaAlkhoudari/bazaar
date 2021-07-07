@@ -21,7 +21,7 @@ function SimilarCategory({ category }) {
       {similarProducts.map((similarProduct) => {
         return (
           <>
-            <ProductList product={similarProduct} />
+            <ProductList products={similarProduct} />
           </>
         );
       })}
