@@ -1,0 +1,23 @@
+.title {
+  text-align: center;
+}
+.container {
+  height: 200px; /* height given for illustration */
+  display: flex;
+  flex-flow: row wrap;
+  position: relative;
+  margin: 2rem;
+  line-height: 10%;
+}
+.item {
+  border: 1px solid black;
+  margin: 4px;
+  flex: 0 1 calc(20% - 8px); /* <-- adjusting for margin */
+}
+img {
+  width: 100%;
+  height: auto;
+}
+.item p {
+  padding-left: 5%;
+}
