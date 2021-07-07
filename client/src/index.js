@@ -1,7 +1,9 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/Header/Header';
+import Default from './components/Default';
 
 import './styles/variables.css';
 import './styles/normalize.css';
@@ -14,8 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <Router>
         <Header />
         <Switch>
-          {/* <Route path="/" exact component={Home} />
-          <Route path="/productList" exact component={ProductList} /> */}
+          <Route component={Default} />
         </Switch>
       </Router>,
       el,

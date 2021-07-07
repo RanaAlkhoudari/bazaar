@@ -6,9 +6,7 @@ import {
   NavLink,
   Bars,
   NavMenu,
-  NavBtn,
   NavBtnLink,
-  DropdownLink,
   ItemsContainer,
   DropdownContainer,
 } from './Header.styles';
@@ -50,9 +48,11 @@ const Header = () => {
             <DropdownContainer>
               {items.map((item) => {
                 return (
-                  <ItemsContainer>
-                    <NavMenu key={item.id}>
-                      <Link to="./categoryId">{item.name}</Link>
+                  <ItemsContainer key={item.id}>
+                    <NavMenu>
+                      <Link className="subLinks" to="./categoryId">
+                        {item.name}
+                      </Link>
                     </NavMenu>
                   </ItemsContainer>
                 );
