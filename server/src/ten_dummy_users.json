@@ -1,0 +1,385 @@
+[
+  {
+    "first_name": "Leonieke",
+    "last_name": "Sharif",
+    "email": "dsd2rbqghpu@temporary-mail.net",
+    "phone": "0686211005",
+    "password": "123456",
+    "role": "user",
+    "active": "false",
+    "avatar": "dkk7.jpg",
+    "order": [],
+    "address": {
+      "first_name": "Elsie",
+      "last_name": "Trent",
+      "street_name": "Lakeland Park Drive",
+      "building_number": "4743",
+      "extension": "",
+      "post_code": "30201",
+      "city": "Alpharetta",
+      "country": "Georgia",
+      "comment": ""
+    },
+    "favorite": [],
+    "products": [
+      {
+        "title": "Vauxhall Corsa",
+        "description": "Vauxhall Corsa1.4L petrol.12 months MOT.2 keys.engine and gearbox in great condition.central locking.electric windows.power steering.CD player.",
+        "price": 10000.0,
+        "created_at": "2020-12-13T01:22:49.052+00:00",
+        "condition": "new",
+        "image": ["aaa.jpg", "ggg.jpg"],
+        "category": {
+          "name": "Vehicles"
+        },
+        "video": ["aaa.avi", "ggg.avi"]
+      }
+    ]
+  },
+  {
+    "first_name": "Wytse",
+    "last_name": "Waterman",
+    "email": "ebnmbcmwye@temporary-mail.net",
+    "phone": "06-97730137",
+    "password": "11111",
+    "role": "user",
+    "active": "true",
+    "avatar": "ddd1.jpg",
+    "order": [],
+    "address": {
+      "first_name": "Wytse",
+      "last_name": "Waterman",
+      "street_name": "Imkersdreef",
+      "building_number": "195",
+      "extension": "A",
+      "post_code": "7328 CS",
+      "city": "Apeldoorn",
+      "country": "Netherlands",
+      "comment": ""
+    },
+    "favorite": ["60e48f10657868d53975da1c", "60e48f10657868d53975da1d"],
+    "products": {
+      "title": "Ford Ka",
+      "description": "I have for sale my Ford Ka 2 edge, 2014, Mot May 2022,44k, 2 keys V5. I’ve Pretty much parked this car up for the last 18months",
+      "price": 6000.0,
+      "condition": "used",
+      "image": [
+        "img1.jpg",
+        "img2.jpg",
+        "img3.jpg",
+        "img4.jpg",
+        "img5.jpg",
+        "img6.jpg",
+        "img7.jpg"
+      ],
+      "category": {
+        "name": "Clothing"
+      },
+      "video": ["video1.avi"]
+    }
+  },
+  {
+    "first_name": "Rianne",
+    "last_name": "Harmsen",
+    "email": "467nam1hwgd@temporary-mail.net",
+    "phone": "0488 27 78118",
+    "password": "sghaksla",
+    "role": "user",
+    "active": "false",
+    "avatar": "ddd8.jpg",
+    "order": [],
+    "address": {
+      "first_name": "Rianne",
+      "last_name": "Harmsen",
+      "street_name": "Willem van der Maststraat",
+      "building_number": "179",
+      "extension": "",
+      "post_code": "4751 RK",
+      "city": "Oud Gastel",
+      "country": "Netherlands",
+      "comment": "call me before coming"
+    },
+    "favorite": ["60e48f10657868d53975da1a"],
+    "products": {
+      "title": "Dune Heeled Sandals",
+      "description": "A classic pair of Dune heels. Comfortable and easy to wear, in size 38 EU",
+      "price": 38.0,
+      "created_at": "2021-10-13T01:22:49.052+00:00",
+      "condition": "used",
+      "image": [
+        "img1.jpg",
+        "img2.jpg",
+        "img3.jpg",
+        "img4.jpg",
+        "img5.jpg",
+        "img6.jpg",
+        "img7.jpg"
+      ],
+      "category": {
+        "name": "Electronics"
+      },
+      "video": ["video1.avi", "video2.avi", "video3.avi", "video4.avi"]
+    }
+  },
+  {
+    "first_name": "Brian",
+    "last_name": "Wijngaard",
+    "email": "bzroiq3psx@temporary-mail.net",
+    "phone": "0488 59 96142",
+    "password": "sghaksla",
+    "role": "user",
+    "active": "false",
+    "avatar": "ddd7.jpg",
+    "order": [],
+    "address": {
+      "first_name": "Rabiye",
+      "last_name": "Asch",
+      "street_name": "Ringvaartweg",
+      "building_number": "1022",
+      "extention": "B",
+      "post_code": "3065 AE",
+      "city": "Rotterdam",
+      "country": "Netherlands",
+      "comment": "monday please"
+    },
+    "favorite": [
+      "60e48f10657868d53975da1d",
+      "60e48f10657868d53975da1a",
+      "60e48f10657868d53975da1b"
+    ],
+    "products": {
+      "title": "Bridal and Wedding Wear Original hand make",
+      "description": "",
+      "price": 1.0,
+      "condition": "used",
+      "image": ["img1.jpg"],
+      "category": {
+        "name": "Entertainment"
+      },
+      "video": []
+    }
+  },
+  {
+    "first_name": "Seyhan",
+    "last_name": "Erkelens",
+    "email": "w9svkf6cijc@temporary-mail.net",
+    "phone": "06-49576068",
+    "password": "pijhh89gb",
+    "role": "admin",
+    "active": "true",
+    "avatar": "ddd6.jpg",
+    "order": [],
+    "address": {
+      "first_name": "Seyhan",
+      "last_name": "Erkelens",
+      "street_name": "Valeriusrondeel",
+      "building_number": "1111",
+      "extension": "C56",
+      "post_code": "2902 CS",
+      "city": "Capelle aan den IJssel",
+      "country": "Netherlands",
+      "comment": ""
+    },
+    "favorite": [],
+    "products": {
+      "title": "Record Player",
+      "description": "Bush record player in great condition",
+      "price": "30.00",
+      "created_at": "2021-03-13T01:20:49.052+00:00",
+      "condition": "used",
+      "image": [],
+      "category": {
+        "name": "Garden and outdoors"
+      },
+      "video": []
+    }
+  },
+  {
+    "first_name": "Saima",
+    "last_name": "Fikkert",
+    "email": "cojzzqxyvks@temporary-mail.net",
+    "phone": "06-63633671",
+    "password": "oijknjh",
+    "role": "user",
+    "active": "true",
+    "avatar": "ddd5.jpg",
+    "order": [],
+    "address": {
+      "first_name": "Saima",
+      "last_name": "Fikkert",
+      "street_name": "Duinroos",
+      "building_number": "125",
+      "extention": "",
+      "post_code": "2202 DA",
+      "city": "Noordwijk",
+      "country": "Netherlands",
+      "comment": ""
+    },
+    "favorite": [],
+    "products": {
+      "title": "dr martens pascal boots",
+      "description": "Dr Martens 1460 purple boots",
+      "price": 9.0,
+      "condition": "used",
+      "image": [
+        "img1.jpg",
+        "img2.jpg",
+        "img3.jpg",
+        "img4.jpg",
+        "img5.jpg",
+        "img6.jpg",
+        "img7.jpg"
+      ],
+      "category": {
+        "name": "Hobbies"
+      },
+      "video": ["video1.avi", "video2.avi", "video3.avi", "video4.avi"]
+    }
+  },
+  {
+    "first_name": "İlknur",
+    "last_name": "Penninga",
+    "email": "au66vxhnqm@temporary-mail.net",
+    "phone": "06-42251120",
+    "password": "09ijn,hmn",
+    "role": "user",
+    "active": "false",
+    "avatar": "ddd4.jpg",
+    "order": [],
+    "address": {
+      "first_name": "İlknur",
+      "last_name": "Penninga",
+      "street_name": "Oranjerie",
+      "building_number": "1135",
+      "extension": "",
+      "post_code": "9753 CC",
+      "city": "Haren",
+      "country": "Netherlands",
+      "comment": ""
+    },
+    "favorite": [],
+    "products": {
+      "title": "Girls dress",
+      "description": "New unwanted gift. Beautiful yellow dress from Ted Baker.",
+      "price": 19.0,
+      "condition": "new",
+      "image": [
+        "img1.jpg",
+        "img2.jpg",
+        "img3.jpg",
+        "img4.jpg",
+        "img5.jpg",
+        "img6.jpg",
+        "img7.jpg",
+        "img8.jpg",
+        "img9.jpg"
+      ],
+      "category": {
+        "name": "Home goods"
+      },
+      "video": ["video1.avi", "video2.avi", "video3.avi"]
+    }
+  },
+  {
+    "first_name": "Shayne",
+    "last_name": "Heijst",
+    "email": "4eks1ru3jsx@temporary-mail.net",
+    "phone": "06-75953375",
+    "password": "ljb,hgiuhb",
+    "role": "user",
+    "active": "false",
+    "avatar": "ddd3.jpg",
+    "order": [],
+    "address": {
+      "first_name": "Nander",
+      "last_name": "Spit",
+      "street_name": "Aven Ackers",
+      "building_number": "452",
+      "extension": "",
+      "post_code": "6830",
+      "city": "Bouillon",
+      "country": "Belgium",
+      "comment": ""
+    },
+    "favorite": [],
+    "products": {
+      "title": "Flip flops",
+      "description": "",
+      "price": 10.0,
+      "condition": "new",
+      "image": ["img1.jpg", "img2.jpg", "img3.jpg"],
+      "category": {
+        "name": "Musical instruments"
+      },
+      "video": ["video1.avi"]
+    }
+  },
+  {
+    "first_name": "Nander",
+    "last_name": "Spit",
+    "email": "t0ep1yloste@temporary-mail.net",
+    "phone": "06-12521329",
+    "password": ";knjs8skajsh",
+    "role": "user",
+    "active": "false",
+    "avatar": "dkk8.jpg",
+    "order": [],
+    "address": {
+      "first_name": "Nander",
+      "last_name": "Spit",
+      "street_name": "Aven Ackers",
+      "building_number": "452",
+      "extension": "",
+      "post_code": "6830",
+      "city": "Bouillon",
+      "country": "Belgium",
+      "comment": ""
+    },
+    "favorite": [],
+    "products": {
+      "title": "Nike sneakers",
+      "description": "In good condition, not been warn much.",
+      "price": 20.0,
+      "condition": "used",
+      "image": ["img1.jpg", "img2.jpg", "img3.jpg"],
+      "category": {
+        "name": "Sporting goods"
+      },
+      "video": ["video1.avi"]
+    }
+  },
+  {
+    "first_name": "Leonieke",
+    "last_name": "Sharif",
+    "email": "dsd2rbqghpu@temporary-mail.net",
+    "phone": "06-86211005",
+    "password": "9sjlkjsha",
+    "role": "user",
+    "active": "false",
+    "avatar": "dkk7.jpg",
+    "order": [],
+    "address": {
+      "first_name": "Leonieke",
+      "last_name": "Sharif",
+      "street_name": "Eikstraat",
+      "building_number": "356",
+      "extension": "",
+      "post_code": "6834",
+      "city": "Bellevaux",
+      "country": "Belgium",
+      "comment": ""
+    },
+    "favorite": [],
+    "products": {
+      "title": "Open cardigan style soft material abaya.",
+      "description": "FREE SHIPPING to your door Available in 4 colours. Swipe to see other colours. Brand new with tag on. very soft & smooth. Very comfortable in summer.Size - XXL",
+      "price": 80.0,
+      "condition": "used",
+      "image": ["img1.jpg", "img2.jpg", "img3.jpg"],
+      "category": {
+        "name": "Clothing"
+      },
+      "video": ["video1.avi"]
+    }
+  }
+]
