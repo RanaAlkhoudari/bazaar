@@ -1,6 +1,6 @@
-const express = require('express');
-
 import Product from '../models/products.model';
+
+const express = require('express');
 
 const router = express.Router();
 
@@ -11,7 +11,8 @@ router.get('/products/:id', (req, res) => {
 });
 
 router.get('/products', (req, res) => {
-  Product.find(req.query)
+  const { category } = req.query;
+  Product.find({ category })
     .then((product) => res.json(product))
     .catch((err) => res.status(400).json(`Error :  ${err}`));
 });
