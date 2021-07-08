@@ -50,9 +50,9 @@ const Header = () => {
                 return (
                   <ItemsContainer key={item.id}>
                     <NavMenu>
-                      <Link className="subLinks" to="./categoryId">
+                      <NavLink className="subLinks" to="./categoryId">
                         {item.name}
-                      </Link>
+                      </NavLink>
                     </NavMenu>
                   </ItemsContainer>
                 );

@@ -12,7 +12,7 @@ export const Nav = styled.nav`
 `;
 
 export const NavLink = styled(Link)`
-  color: var(--main);
+  color: var(--color-main);
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -20,7 +20,7 @@ export const NavLink = styled(Link)`
   height: 100%;
   cursor: pointer;
   &.active {
-    color: var(--main);
+    color: var(--color-main);
     opacity: 0.8;
     text-decoration: none;
   }
@@ -28,7 +28,7 @@ export const NavLink = styled(Link)`
 
 export const Bars = styled(FaBars)`
   display: none;
-  color: var(--light);
+  color: var(--color-light);
   @media screen and (max-width: 768px) {
     display: block;
     position: absolute;
@@ -61,19 +61,18 @@ export const NavBtn = styled.nav`
 
 export const NavBtnLink = styled(Link)`
   border-radius: 4px;
-  background: var(--main);
+  background: var(--color-main);
   padding: 10px 22px;
-  color: var(--light);
+  color: var(--color-light);
   outline: none;
   border: none;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: background 0.4s ease-in-out;
   text-decoration: none;
   margin-left: 24px;
   &:hover {
-    transition: all 0.2s ease-in-out;
-    background: var(--light);
-    color: var(--main);
+    background: var(--color-light);
+    color: var(--color-main);
   }
 `;
 
@@ -84,7 +83,7 @@ export const DropdownContainer = styled.div`
   flex-direction: column;
   padding: 10px;
   border: 1px solid teal;
-  background-color: var(--main);
+  background-color: var(--color-light);
   top: 60px;
   margin-right: 50%;
   z-index: 5;

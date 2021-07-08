@@ -1,5 +1,5 @@
 import React from 'react';
-const Default = () => {
+const NotFoundPage = () => {
   return (
     <div className="container">
       <div className="row">
@@ -14,4 +14,4 @@ const Default = () => {
   );
 };
 
-export default Default;
+export default NotFoundPage;
