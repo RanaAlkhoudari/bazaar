@@ -3,7 +3,7 @@ import productsInfo from './mock-data';
 import Products from './Products';
 
 function Homepage() {
-  productsInfo.sort(function sortedProductsByDateDesc(a, b) {
+  productsInfo.sort(function sortProductsByDateDesc(a, b) {
     const dateA = new Date(a.date),
       dateB = new Date(b.date);
     return dateB - dateA;
@@ -11,6 +11,7 @@ function Homepage() {
   const sortedProductsByDate = productsInfo.slice(0, 10);
   return (
     <div>
+      <h1>See What's New</h1>
       <Products products={sortedProductsByDate} />
     </div>
   );

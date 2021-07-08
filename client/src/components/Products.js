@@ -1,10 +1,10 @@
 import React from 'react';
 import productList from '../styles/product_list.css';
+
 function Products(props) {
   const sortedProducts = props.products;
   return (
     <>
-      <h1 className={productList.title}>See What's New</h1>
       <div className={productList.container}>
         {sortedProducts.map((product) => {
           return (
@@ -21,4 +21,5 @@ function Products(props) {
     </>
   );
 }
+
 export default Products;

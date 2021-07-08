@@ -92,7 +92,7 @@ const ProductsInfo = [
     image: image,
   },
   {
-    title: 'Tblet',
+    title: 'Tablet',
     description: 'for woman',
     price: 100,
     condition: 'used',

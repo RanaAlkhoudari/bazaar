@@ -7,6 +7,7 @@
   flex-flow: row wrap;
   position: relative;
   margin: 2rem;
+  margin-bottom: 12rem;
   line-height: 10%;
 }
 .item {
