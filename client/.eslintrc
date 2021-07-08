@@ -15,14 +15,11 @@
       "version": "detect"
     }
   },
-  "extends": [
-    "plugin:react/recommended",
-    "plugin:prettier/recommended"
-  ],
+  "extends": ["plugin:react/recommended", "plugin:prettier/recommended"],
   "rules": {
     // this two lines are necessary to avoit warnings related to "missing React import"
     // you can find here more info about new jsx transform https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html
     "react/jsx-uses-react": "off",
-    "react/react-in-jsx-scope": "off",
+    "react/react-in-jsx-scope": "off"
   }
 }
