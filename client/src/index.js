@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import Products from './components/homepage';
+import Homepage from './components/Homepage';
 import './styles/variables.css';
 import './styles/normalize.css';
 document.addEventListener('DOMContentLoaded', () => {
@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (el) {
     render(
       <div>
-        <Products />
+        <Homepage />
       </div>,
       el
     );

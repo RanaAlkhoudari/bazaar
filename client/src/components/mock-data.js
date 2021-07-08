@@ -7,7 +7,7 @@ const ProductsInfo = [
     price: 150,
     condition: 'used',
     category: 'electronics',
-    date: '03/25/2021',
+    date: '03/25/2024',
     image: image,
   },
   {
@@ -16,7 +16,7 @@ const ProductsInfo = [
     price: 200,
     condition: 'like new',
     category: 'furniture',
-    date: '03/25/2016',
+    date: '03/25/2026',
     image: image,
   },
   {
