@@ -11,11 +11,12 @@ function ProductPage() {
   }, []);
 
   async function fetchData() {
-    await axios.get(`http://localhost:3000/api/v1/products/${id}`).then((res) => {
-      setProduct(res).catch((error) => {
-        console.log(error);
-      });
-    });
+    try {
+      const response = await axios.get(`http://localhost:3000/api/v1/products/${id}`);
+      setProduct(response);
+    } catch (error) {
+      console.log(error);
+    }
   }
   return (
     <>

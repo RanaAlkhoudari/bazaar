@@ -11,6 +11,7 @@ function ProductDetails({ product }) {
         <p>{product.description}</p>
         <p>€{product.price}</p>
         <button>Buy</button>
+        <i className="fas fa-star"></i>
       </div>
     </div>
   );

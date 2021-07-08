@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ProductList from './ProductList';
 
-function SimilarCategory({ category }) {
+function SimilarProducts({ category }) {
   const [similarProducts, setSimilarProducts] = useState([]);
 
   useEffect(() => {
@@ -9,11 +9,12 @@ function SimilarCategory({ category }) {
   }, []);
 
   async function fetchCategory() {
-    await axios.get(`http://localhost:3000/api/v1/products/?category=${category}`).then((res) => {
-      setSimilarProducts(res).catch((error) => {
-        console.log(error);
-      });
-    });
+    try {
+      const res = await axios.get(`http://localhost:3000/api/v1/products/?category=${category}`);
+      setSimilarProducts(res);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -29,4 +30,4 @@ function SimilarCategory({ category }) {
   );
 }
 
-export default SimilarCategory;
+export default SimilarProducts;
