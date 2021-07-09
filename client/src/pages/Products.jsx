@@ -8,7 +8,7 @@ import Category from './components/Category';
 import '../styles/Products.css';
 
 const Products = () => {
-  const [products, SetProducts] = useState([]);
+  const [products, setProducts] = useState([]);
 
   const { categoryName } = useContext(GlobalContext);
 
@@ -16,7 +16,7 @@ const Products = () => {
     axios
       .get(`http://localhost:5000/products/` + categoryName)
       .then((response) => response.data)
-      .then((data) => SetProducts(data))
+      .then((data) => setProducts(data))
       .catch((error) => {
         console.log(error);
       });
