@@ -1,5 +1,5 @@
-import React from "react";
-import {DropdownButton, Form, Button} from 'react-bootstrap'
+import React from 'react';
+import { DropdownButton, Dropdown, Row, Col, Form, Button } from 'react-bootstrap';
 
 const handleRefresh = (e) => {
   // do refresh
@@ -20,7 +20,7 @@ const Filters = () => {
             <Col>
               <Button variant="info" onClick={handleRefresh()}>
                 Refresh
-              </Button>{" "}
+              </Button>
             </Col>
           </Row>
         </Form>

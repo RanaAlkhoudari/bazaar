@@ -40,14 +40,16 @@ const Products = () => {
         ) : (
           products.map((product) => {
             return (
-              <Link to={`${product.title}/details`}>
-                <Product
-                  productImg={product.image}
-                  title={product.title}
-                  description={product.description}
-                  price={product.price}
-                />
-              </Link>
+              <div key={product.id}>
+                <Link to={`${product.title}/details`}>
+                  <Product
+                    image={product.image}
+                    title={product.title}
+                    description={product.description}
+                    price={product.price}
+                  />
+                </Link>
+              </div>
             );
           })
         )}
