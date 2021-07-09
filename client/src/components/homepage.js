@@ -1,6 +1,6 @@
 import React from 'react';
 import productsInfo from './mock-data';
-import Products from './Products';
+import Products from './Product-List';
 
 function Homepage() {
   productsInfo.sort(function sortProductsByDateDesc(a, b) {
