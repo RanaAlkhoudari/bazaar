@@ -19,6 +19,7 @@ async function run() {
 
   // Route middlewares
   app.use('/api/v1/users', userRouter);
+  app.use('/api/v1/users/products', require('./products/router')(express.Router()));
   // handleErrors must be the last middleware
   app.use(handleErrors);
 
