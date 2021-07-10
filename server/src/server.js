@@ -2,7 +2,7 @@ const express = require('express');
 const { loadDb } = require('./utils/db');
 const { loadRepositories } = require('./middlewares/repositories');
 const { handleErrors } = require('./middlewares/errors');
-// const userRouter = require('./users/router');
+const userRouter = require('./users/router');
 
 const app = express();
 
