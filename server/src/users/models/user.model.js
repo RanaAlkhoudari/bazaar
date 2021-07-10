@@ -10,8 +10,8 @@ const bcrypt = require('bcrypt');
 
 const { Schema } = mongoose;
 
-const productSchema = require('./products.model');
-const addressSchema = require('./address.model');
+const productSchema = require('../../products/models/products.model');
+const addressSchema = require('../../address/address.model');
 
 const userSchema = new Schema(
   {
