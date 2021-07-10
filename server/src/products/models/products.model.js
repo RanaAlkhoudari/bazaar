@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const categorySchema = require('./category.model');
+const categorySchema = require('../../category/category.model');
 
 const { Schema } = mongoose;
 
