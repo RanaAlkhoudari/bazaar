@@ -1,0 +1,34 @@
+.container {
+  display: grid;
+  grid-template-columns: 0.6fr 1.5fr 1fr;
+  grid-template-rows: 0.5fr 0.5fr 1.5fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "Header Header Header"
+    "Filters Filters Filters"
+    "Categories Products Products"
+    "Categories Products Products";
+}
+
+.Header {
+  grid-area: Header;
+}
+
+.Filters {
+  grid-area: Filters;
+}
+
+.Categories {
+  grid-area: Categories;
+}
+
+.Products {
+  grid-area: Products;
+}
+
+.product-items {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
