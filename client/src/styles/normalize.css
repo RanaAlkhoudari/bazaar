@@ -80,6 +80,13 @@ pre {
 
 a {
   background-color: transparent;
+  color: #fff;
+  text-decoration: none;
+}
+
+a:hover {
+  color: teal;
+  opacity: 0.9;
 }
 
 /**
