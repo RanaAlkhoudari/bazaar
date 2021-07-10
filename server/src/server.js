@@ -2,11 +2,11 @@ const express = require('express');
 const { loadDb } = require('./utils/db');
 const { loadRepositories } = require('./middlewares/repositories');
 const { handleErrors } = require('./middlewares/errors');
-const userRouter = require('./users/router');
+const userRouter = require('./users/routers/UserRouter');
 
 const app = express();
 
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
 
@@ -18,7 +18,7 @@ async function run() {
   app.use(express.json());
 
   // Route middlewares
-  app.use('/api/v1/users', require('./users/router')(express.Router()));
+  app.use('/api/v1/users', userRouter);
   // handleErrors must be the last middleware
   app.use(handleErrors);
 

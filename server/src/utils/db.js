@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const createUserModel = require('../users/schemas');
+const createUserModel = require('../users/models/user.model');
 
 class DbError extends Error {}
 
