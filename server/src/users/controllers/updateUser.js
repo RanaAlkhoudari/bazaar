@@ -5,7 +5,7 @@ async function updateUser(req, res) {
     const user = await User.findById(req.params.id);
     Object.assign(user, req.body);
     user.save();
-    res.send(user);
+    res.status(200).send(user);
   } catch {
     res.status(404).json(`User with the id ${req.params.id} does not exist in the database`);
   }
