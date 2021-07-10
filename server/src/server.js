@@ -6,7 +6,7 @@ const userRouter = require('./users/routers/UserRouter');
 
 const app = express();
 
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
 
