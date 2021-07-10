@@ -11,7 +11,26 @@ export const Nav = styled.nav`
   z-index: 10;
 `;
 
+export const Logo = styled.img`
+  width: 35%;
+`;
+
 export const NavLink = styled(Link)`
+  color: var(--color-main);
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0 1rem;
+  height: 100%;
+  cursor: pointer;
+  &.active {
+    color: var(--color-main);
+    opacity: 0.8;
+    text-decoration: none;
+  }
+`;
+
+export const NavDropdown = styled.div`
   color: var(--color-main);
   display: flex;
   align-items: center;
