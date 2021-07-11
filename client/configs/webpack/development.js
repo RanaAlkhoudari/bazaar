@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const dotenv = require('dotenv');
 
 module.exports = {
   devServer: {
@@ -13,7 +14,12 @@ module.exports = {
   output: {
     publicPath: `/`,
   },
-  
+
   devtool: 'eval-cheap-module-source-map',
-  plugins: [new webpack.HotModuleReplacementPlugin()],
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(dotenv.config().parsed),
+    }),
+  ],
 };

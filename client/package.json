@@ -9,6 +9,7 @@
     "lint": "eslint '*/**/*.{js}' --quiet --fix"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "bootstrap": "^5.0.2",
     "react": "^17.0.1",
     "react-bootstrap": "^1.6.1",
@@ -28,6 +29,7 @@
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.2",
     "css-loader": "^5.0.1",
+    "dotenv": "^10.0.0",
     "eslint": "^7.17.0",
     "eslint-config-prettier": "^7.1.0",
     "eslint-plugin-prettier": "^3.3.1",
