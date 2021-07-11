@@ -1,57 +1,53 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
+import products from '../mock-data';
 import { FaAngleDown } from 'react-icons/fa';
 import {
   Nav,
+  Logo,
   NavLink,
   Bars,
   NavMenu,
   NavBtnLink,
+  NavDropdown,
   ItemsContainer,
   DropdownContainer,
 } from './Header.styles';
 
-const items = [
-  {
-    id: 1,
-    name: 'Clothing',
-  },
-  {
-    id: 2,
-    name: 'Gardening',
-  },
-  {
-    id: 3,
-    name: 'Training',
-  },
-];
-
 const Header = () => {
   const [showCategories, setShowCategories] = useState(false);
+  const dropdownRef = useRef();
 
-  const handleClick = () => {
-    setShowCategories(!showCategories);
-  };
+  useEffect(() => {
+    let handler = (e) => {
+      if (!dropdownRef.current.contains(e.target)) {
+        setShowCategories(false);
+      }
+    };
+    document.addEventListener('mousedown', handler);
+    return () => {
+      document.removeEventListener('mousedown', handler);
+    };
+  });
 
   return (
     <div>
       <Nav>
         <NavLink to="/">
-          <img src="https://i.ibb.co/VB0vCY6/bazaar1.png" alt="bazaar1" width="35%" />
+          <Logo src="https://i.ibb.co/VB0vCY6/bazaar1.png" alt="bazaar1" />
         </NavLink>
         <Bars />
         <NavMenu>
-          <NavLink to="categories" onClick={handleClick}>
+          <NavDropdown onClick={() => setShowCategories(!showCategories)}>
             Categories <FaAngleDown />
-          </NavLink>
+          </NavDropdown>
           {showCategories && (
-            <DropdownContainer>
-              {items.map((item) => {
+            <DropdownContainer ref={dropdownRef}>
+              {products.map((product) => {
                 return (
-                  <ItemsContainer key={item.id}>
+                  <ItemsContainer key={product.title}>
                     <NavMenu>
                       <NavLink className="subLinks" to="./categoryId">
-                        {item.name}
+                        {product.title}
                       </NavLink>
                     </NavMenu>
                   </ItemsContainer>
