@@ -1,0 +1,136 @@
+[
+  {
+    "title": "Vauxhall Corsa",
+    "description": "Vauxhall Corsa1.4L petrol.12 months MOT.2 keys.engine and gearbox in great condition.central locking.electric windows.power steering.CD player.",
+    "price": "10000.00",
+    "images": ["aaa.jpg", "ggg.jpg"],    
+    "condition": "new",    
+    "categories": ["60e9faddd5a4001ec0509fe5"],
+    "videos": ["aaa.avi", "ggg.avi"]
+
+  },
+
+  {
+    "title": "Ford Ka",
+    "description": "I have for sale my Ford Ka 2 edge, 2014, Mot May 2022,44k, 2 keys V5. I’ve Pretty much parked this car up for the last 18months",
+    "price": "6000.00",
+    "condition": "fairly used",
+    "images": [
+      "img1.jpg",
+      "img2.jpg",
+      "img3.jpg",
+      "img4.jpg",
+      "img5.jpg",
+      "img6.jpg",
+      "img7.jpg"
+    ],
+    "categories": ["60e9faddd5a4001ec0509fe5"],
+    "videos": ["videos1.avi"]
+  },
+  {
+    "title": "Dune Heeled Sandals",
+    "description": "A classic pair of Dune heels. Comfortable and easy to wear, in size 38 EU",
+    "price": "38.00",
+    
+    "condition": "fairly used",
+    "images": [
+      "img1.jpg",
+      "img2.jpg",
+      "img3.jpg",
+      "img4.jpg",
+      "img5.jpg",
+      "img6.jpg",
+      "img7.jpg"
+    ],
+    "categories": ["60e9faddd5a4001ec0509fe2"],
+    "videos": ["videos1.avi", "videos2.avi", "videos3.avi", "videos4.avi"]
+  },
+  {
+    "title": "Bridal and Wedding Wear Original hand make",
+    "description": "",
+    "price": "1.00",
+    "created_at": "2020-09-13T01:22:49.052+00:00",
+    "condition": "fairly used",
+    "images": ["img1.jpg"],
+    "categories": ["60e9faddd5a4001ec0509fe2"],
+    "videos": []
+  },
+  {
+    "title": "Record Player",
+    "description": "Bush record player in great condition",
+    "price": "30.00",
+    "created_at": "2021-03-13T01:20:49.052+00:00",
+    "condition": "fairly used",
+    "images": [],
+    "categories": ["60e9faddd5a4001ec0509fe7"],
+    "videos": []
+  },
+  {
+    "title": "dr martens pascal boots",
+    "description": "Dr Martens 1460 purple boots",
+    "price": "9.00",
+    "created_at": "2021-11-13T01:17:49.052+00:00",
+    "condition": "fairly used",
+    "images": [
+      "img1.jpg",
+      "img2.jpg",
+      "img3.jpg",
+      "img4.jpg",
+      "img5.jpg",
+      "img6.jpg",
+      "img7.jpg"
+    ],
+    "categories": ["60e9faddd5a4001ec0509fe2"],
+    "videos": ["videos1.avi", "videos2.avi", "videos3.avi", "videos4.avi"]
+  },
+  {
+    "title": "Girls dress",
+    "description": "New unwanted gift. Beautiful yellow dress from Ted Baker.",
+    "price": "19.00",
+    "created_at": "2021-11-19T01:17:49.052+00:00",
+    "condition": "new",
+    "images": [
+      "img1.jpg",
+      "img2.jpg",
+      "img3.jpg",
+      "img4.jpg",
+      "img5.jpg",
+      "img6.jpg",
+      "img7.jpg",
+      "img8.jpg",
+      "img9.jpg"
+    ],
+    "categories": ["60e9faddd5a4001ec0509fe2"],
+    "videos": ["videos1.avi", "videos2.avi", "videos3.avi"]
+  },
+  {
+    "title": "Flip flops",
+    "description": "",
+    "price": "10.00",
+    "created_at": "2021-10-10T01:17:49.052+00:00",
+    "condition": "new",
+    "images": ["img1.jpg", "img2.jpg", "img3.jpg"],
+    "categories": ["60e9faddd5a4001ec0509fe2"],
+    "videos": ["videos1.avi"]
+  },
+  {
+    "title": "Nike sneakers",
+    "description": "In good condition, not been warn much.",
+    "price": "20.00",
+    "created_at": "2021-01-10T01:17:49.052+00:00",
+    "condition": "fairly used",
+    "images": ["img1.jpg", "img2.jpg", "img3.jpg"],
+    "categories": ["60e9faddd5a4001ec0509fe2"],
+    "videos": ["videos1.avi"]
+  },
+  {
+    "title": "Open cardigan style soft material abaya.",
+    "description": "FREE SHIPPING to your door Available in 4 colours. Swipe to see other colours. Brand new with tag on. very soft & smooth. Very comfortable in summer.Size - XXL",
+    "price": "80.00",
+    "created_at": "2021-06-18T01:17:49.052+00:00",
+    "condition": "fairly used",
+    "images": ["img1.jpg", "img2.jpg", "img3.jpg"],
+    "categories": ["60e9faddd5a4001ec0509fe2"],
+    "videos": ["videos1.avi"]
+  }
+]
