@@ -1,15 +1,15 @@
-const createUserRepo = require('../users/repositories');
+// const createUserRepo = require('../users/repositories');
 
-function loadRepositories(db) {
-  return (req, res, next) => {
-    const repos = {
-      User: createUserRepo(db)
-    };
+// function loadRepositories(db) {
+//   return (req, res, next) => {
+//     const repos = {
+//       User: createUserRepo(db)
+//     };
 
-    req.repos = repos;
+//     req.repos = repos;
 
-    next();
-  };
-}
+//     next();
+//   };
+// }
 
-exports.loadRepositories = loadRepositories;
+// exports.loadRepositories = loadRepositories;
