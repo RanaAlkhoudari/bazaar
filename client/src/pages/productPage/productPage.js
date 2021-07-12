@@ -1,5 +1,5 @@
 import React from 'react';
-import SimilarProducts from './SimilarProducts';
+import SimilarProducts from '../../components/SimilarProducts';
 import ProductDetails from './product_details';
 
 function ProductPage() {
