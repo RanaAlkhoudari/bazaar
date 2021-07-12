@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Header from '../components/Header';
 import Product from './components/Product';
-import Filters from '../components/Filters';
+import Filters from '../../components/filter/filters';
 import Category from './components/Category';
 import '../styles/Products.css';
 
