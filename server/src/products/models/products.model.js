@@ -8,7 +8,6 @@ const productSchema = new Schema(
     title: { type: String, required: true },
     description: { type: String, required: false },
     price: { type: Number, required: true },
-    date: { type: Date, default: Date.now },
     image: { type: Array, required: false },
     condition: { type: String, required: true },
     category: categorySchema,
