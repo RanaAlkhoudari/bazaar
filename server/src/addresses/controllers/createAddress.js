@@ -8,9 +8,9 @@ function createAddress(req, res, next) {
     .save()
     .then((saved) => {
       if (!saved) {
-        return res.status(400).json('Unable to save user please try later');
+        return res.status(400).json('Unable to save address please try later');
       }
-      return res.status(201).json('Category created successfully');
+      return res.status(201).json('Address created successfully');
     })
     .catch((error) => res.status(500).json(`An error occurred: ${error} `).console.log(error));
 }
