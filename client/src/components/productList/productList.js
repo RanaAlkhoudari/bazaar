@@ -1,5 +1,5 @@
 import React from 'react';
-import productList from '../styles/product_list.css';
+import productList from './productList.css';
 
 function Products(props) {
   const sortedProducts = props.products;

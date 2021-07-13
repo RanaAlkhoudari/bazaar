@@ -1,34 +1,35 @@
-import React from 'react';
-import SearchBar from './searchBar';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import styles from './searchBar.css';
 
-const Search = (props) => {
-  const [input, setInput] = useState('');
-  const [product, setProduct] = useState();
+const Search = () => {
+  const [keyword, setKeyword] = useState('');
+  const history = useHistory();
 
-  const fetchData = async () => {
-    return await fetch('https://restcountries.eu/rest/v2/all')
-      .then((response) => response.json())
-      .then((data) => {
-        setProduct(data);
-      });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(keyword);
+    if (keyword.trim()) {
+      history.push(`/products/${keyword}`);
+    } else {
+      history.push('/');
+    }
   };
-
-  const updateInput = async (input) => {
-    const filtered = products.filter((product) => {
-      return product.name.toLowerCase().includes(input.toLowerCase());
-    });
-    setInput(input);
-    setproduct(filtered);
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   return (
-    <div>
-      <SearchBar input={input} onChange={updateInput} />
-    </div>
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <input
+        className={styles.search_bar}
+        type="text"
+        placeholder="search products"
+        onChange={(e) => setKeyword(e.target.value)}
+      />
+      <button type="submit" className={styles.search_btn}>
+        <FontAwesomeIcon icon={faSearch} />
+      </button>
+    </form>
   );
 };
 
