@@ -5,7 +5,7 @@ import Homepage from './components/Homepage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/Header/Header';
 import NotFoundPage from './components/NotFoundPage';
-import addProduct from './components/addProduct/addProduct';
+import AddProduct from './components/addProduct/addProduct';
 
 import './styles/variables.css';
 import './styles/normalize.css';
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <Header />
         <Switch>
           <Route path="/" exact component={Homepage} />
-          <Route path="/products/add" exact component={addProduct} />
+          <Route path="/products/add" exact component={AddProduct} />
 
           <Route component={NotFoundPage} />
         </Switch>
