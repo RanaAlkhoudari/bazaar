@@ -1,38 +1,50 @@
 [
   {
+    "_id": "60ed787b32db8b0c87019bc0",
     "name": "Vehicles"
   },
   {
+    "_id": "60ed787b32db8b0c87019bbf",
     "name": "Clothing"
   },
   {
+    "_id": "60ed787b32db8b0c87019bbb",
     "name": "Electronics"
   },
   {
+    "_id": "60ed787b32db8b0c87019bbe",
     "name": "Entertainment"
   },
   {
+    "_id": "60ed787b32db8b0c87019bbd",
     "name": "Garden and outdoors"
   },
   {
+    "_id": "60ed787b32db8b0c87019bbc",
     "name": "Hobbies"
   },
   {
+    "_id": "60ed787b32db8b0c87019bba",
     "name": "Home goods"
   },
   {
+    "_id": "60ed787b32db8b0c87019bb9",
     "name": "Musical instruments"
   },
   {
+    "_id": "60ed787b32db8b0c87019bb8",
     "name": "Office supplies"
   },
   {
+    "_id": "60ed787b32db8b0c87019bb7",
     "name": "Pet supplies"
   },
   {
+    "_id": "60ed787b32db8b0c87019bb6",
     "name": "Sporting goods"
   },
   {
+    "_id": "60ed787b32db8b0c87019bb5",
     "name": "Toys & games"
   }
 ]
