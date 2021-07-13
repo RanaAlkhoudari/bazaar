@@ -1,6 +1,6 @@
-import styles from './AddProduct.css';
+import styles from './addProduct.css';
 import React from 'react';
-import Uploader from '../Uploader/Uploader';
+import Uploader from '../uploader/uploader';
 
 const AddProduct = () => {
   const newProduct = {};
