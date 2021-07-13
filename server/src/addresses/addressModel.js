@@ -4,8 +4,8 @@ const { Schema } = mongoose;
 
 const addressSchema = new Schema(
   {
-    first_name: { type: String, required: true },
-    last_name: { type: String, required: true },
+    first_name: { type: String, required: false },
+    last_name: { type: String, required: false },
     street_name: { type: String, required: true },
     building_number: { type: String, required: true },
     extension: { type: String, required: false },
