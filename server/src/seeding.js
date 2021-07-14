@@ -5,12 +5,16 @@ const dummyAddress = require('./dummy-files/addresses.json');
 const dummyProducts = require('./dummy-files/products.json');
 const dummyCategories = require('./dummy-files/categories.json');
 
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
 seeder.connect(process.env.DB_URL, () => {
   seeder.loadModels([
-    './addresses/addressModel',
-    './users/userModel',
-    './products/productModel',
-    './categories/categoryModel',
+    './src/addresses/addressModel',
+    './src/users/userModel',
+    './src/products/productModel',
+    './src/categories/categoryModel',
   ]);
 
   seeder.clearModels(['address', 'user', 'product', 'category'], () => {
