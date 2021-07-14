@@ -1,7 +1,7 @@
 import React from 'react';
-import productList from '../styles/product_list.css';
+import productList from '../productList/productList.css';
 
-function Products(props) {
+function ProductList(props) {
   const sortedProducts = props.products;
   return (
     <>
@@ -22,4 +22,4 @@ function Products(props) {
   );
 }
 
-export default Products;
+export default ProductList;
