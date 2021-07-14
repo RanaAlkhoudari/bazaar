@@ -1,6 +1,7 @@
 const ProductModel = require('../productModel');
 
 function showProducts(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
   ProductModel.find()
     .populate('categories')
     .then((products) => res.json(products))

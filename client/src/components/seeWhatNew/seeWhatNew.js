@@ -1,35 +1,27 @@
-import React, { useEffect } from 'react';
-import axios from 'axios';
-import productsInfo from '../../components/mock-data';
+import React, { useState, useEffect } from 'react';
 import ProductList from '../productList/productList';
+import axios from 'axios';
 
 function SeeWhatNew() {
-  productsInfo.sort(function sortProductsByDateDesc(a, b) {
-    const dateA = new Date(a.date),
-      dateB = new Date(b.date);
+  const [products, setProducts] = useState([]);
+  products.sort(function sortProductsByDateDesc(a, b) {
+    const dateA = new Date(a.createdAt),
+      dateB = new Date(b.createdAt);
     return dateB - dateA;
   });
-  const sortedProductsByDate = productsInfo.slice(0, 10);
+  const sortedProductsByDate = products.slice(0, 10);
   useEffect(() => {
     fetchData();
   }, []);
   async function fetchData() {
     try {
-      const response = await axios.get(`http://localhost:5000/api/v1/users`);
-      const productsArray = response.data.map((user) => user.products);
-      const dateArray = response.data.map((user) => user.products[0].created_at.substring(0, 10));
-      console.log(dateArray);
-      dateArray.sort(function sortProductsByDateDesc(a, b) {
-        const dateA = new Date(a),
-          dateB = new Date(b);
-        return dateB - dateA;
-      });
-      const sortedProductsByDatee = dateArray.slice(0, 10);
-      console.log(sortedProductsByDatee);
+      const response = await axios.get(`http://localhost:5000/api/v1/products`);
+      setProducts(response.data);
     } catch (error) {
       console.log(error);
     }
   }
+  console.log(products);
   return (
     <div>
       <h1>See Whats New</h1>
