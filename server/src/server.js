@@ -1,8 +1,10 @@
 const express = require('express');
 const { loadDb } = require('./db');
-// const { loadRepositories } = require('./middlewares/repositories');
 const { handleErrors } = require('./middlewares/errors');
 const userRouter = require('./users/userRouter');
+const productRouter = require('./products/productRouter');
+const categoryRouter = require('./categories/categoryRouter');
+const addressRouter = require('./addresses/addressRouter');
 
 const app = express();
 
@@ -11,7 +13,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 async function run() {
-  const db = await loadDb();
+  await loadDb();
 
   // Middlewares
   // app.use(loadRepositories(db));
@@ -19,7 +21,10 @@ async function run() {
 
   // Route middlewares
   app.use('/api/v1/users', userRouter);
-  // app.use('/api/v1/users/products', require('./products/router')(express.Router()));
+  app.use('/api/v1/products', productRouter);
+  app.use('/api/v1/categories', categoryRouter);
+  app.use('/api/v1/addresses', addressRouter);
+
   // handleErrors must be the last middleware
   app.use(handleErrors);
 
