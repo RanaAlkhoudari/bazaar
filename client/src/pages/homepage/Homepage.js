@@ -1,9 +1,9 @@
 import React from 'react';
-import SeeWhatNew from '../../components/SeeWhatNew/SeeWhatNew';
+import SeeWhatNew from '../../components/seeWhatNew/seeWhatNew';
+
 function Homepage() {
   return (
     <div>
-      <h1>Homepage</h1>
       <SeeWhatNew />
     </div>
   );

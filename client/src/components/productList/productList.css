@@ -2,13 +2,11 @@
   text-align: center;
 }
 .container {
-  height: 200px; /* height given for illustration */
+  height: 300px; /* height given for illustration */
   display: flex;
   flex-flow: row wrap;
   position: relative;
   margin: 2rem;
-  margin-bottom: 12rem;
-  line-height: 10%;
 }
 .item {
   border: 1px solid black;
