@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
+import Search from '../search/search';
 import products from '../mock-data';
-import styles from './Header.styles.css';
+import styles from './Header.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
@@ -66,7 +67,9 @@ const Header = () => {
             <img src="https://i.ibb.co/VB0vCY6/bazaar1.png" className={styles.logo} alt="bazaar" />
           </a>
         </div>
-
+        <div>
+          <Search />
+        </div>
         <div className={styles.nav_menu}>
           <div className={styles.nav_dropdown} onClick={() => setShowCategories(!showCategories)}>
             Categories
@@ -98,34 +101,6 @@ const Header = () => {
           <FontAwesomeIcon className={styles.barsButton} icon={faBars} />
         </div>
       </div>
-      {/* <Nav>
-        <NavLink to="/">
-          <Logo src="https://i.ibb.co/VB0vCY6/bazaar1.png" alt="bazaar1" />
-        </NavLink>
-        <Bars />
-        <NavMenu>
-          <NavDropdown onClick={() => setShowCategories(!showCategories)}>
-            Categories <FaAngleDown />
-          </NavDropdown>
-          {showCategories && (
-            <DropdownContainer ref={dropdownRef}>
-              {products.map((product) => {
-                return (
-                  <ItemsContainer key={product.title}>
-                    <NavMenu>
-                      <NavLink className="subLinks" to="./categoryId">
-                        {product.title}
-                      </NavLink>
-                    </NavMenu>
-                  </ItemsContainer>
-                );
-              })}
-            </DropdownContainer>
-          )}
-          <NavLink to="/sign-up">Sign Up | Register</NavLink>
-          <NavBtnLink to="/sign-in">Sign In</NavBtnLink>
-        </NavMenu>
-      </Nav> */}
     </div>
   );
 };
