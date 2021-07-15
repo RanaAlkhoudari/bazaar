@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
 
 function ProductDetails({ product }) {
+  console.log(product);
   return (
     <div>
       <div key={product._id}>

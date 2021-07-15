@@ -2,38 +2,29 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Products from '../productList/productList';
 
-function SimilarProducts({ category }) {
-  const [similarProducts, setSimilarProducts] = useState([]);
+function SimilarProducts({ products }) {
+  // const [similarProducts, setSimilarProducts] = useState([]);
+  // console.log(product.categories);
+  // useEffect(() => {
+  //   fetchCategory();
+  // }, []);
 
-  // const category = products.categories[0].name;
-  console.log(category);
-  useEffect(() => {
-    fetchCategory();
-  }, []);
-
-  async function fetchCategory() {
-    try {
-      const res = await axios.get(
-        `http://localhost:3000/api/v1/products?category=${category[0].name}`,
-      );
-      setSimilarProducts(res);
-      console.log(res);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // async function fetchCategory() {
+  //   try {
+  //     const res = await axios.get(
+  //       `http://localhost:3000/api/v1/products?category=${categories[0].name}`,
+  //     );
+  //     setSimilarProducts(res.data);
+  //     console.log(res.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
   return (
-    <div>
-      {similarProducts.map((similarProduct) => {
-        return (
-          <>
-            <h1>ffff</h1>
-            <Products product={similarProduct} />
-          </>
-        );
-      })}
-    </div>
+    <>
+      <Products products={similarProducts} />
+    </>
   );
 }
 
