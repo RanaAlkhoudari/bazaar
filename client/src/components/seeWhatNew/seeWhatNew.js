@@ -21,7 +21,6 @@ function SeeWhatNew() {
       console.log(error);
     }
   }
-  console.log(products);
   return (
     <div>
       <h1>See Whats New</h1>
