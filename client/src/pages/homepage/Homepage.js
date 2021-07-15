@@ -1,6 +1,6 @@
 import React from 'react';
 import productsInfo from '../../components/mock-data';
-import Products from '../../components/Product-List';
+import Products from '../../components/productList/productList';
 
 function Homepage() {
   productsInfo.sort(function sortProductsByDateDesc(a, b) {
@@ -11,7 +11,7 @@ function Homepage() {
   const sortedProductsByDate = productsInfo.slice(0, 10);
   return (
     <div>
-      <h1>See What's New</h1>
+      <h1>See What is New</h1>
       <Products products={sortedProductsByDate} />
     </div>
   );
