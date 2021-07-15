@@ -1,4 +1,6 @@
 const express = require('express');
+const cors = require('cors');
+
 const { loadDb } = require('./db');
 const { handleErrors } = require('./middlewares/errors');
 const userRouter = require('./users/userRouter');
@@ -7,6 +9,7 @@ const categoryRouter = require('./categories/categoryRouter');
 const addressRouter = require('./addresses/addressRouter');
 
 const app = express();
+app.use(cors());
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
