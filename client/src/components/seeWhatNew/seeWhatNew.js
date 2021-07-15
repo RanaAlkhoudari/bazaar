@@ -15,7 +15,7 @@ function SeeWhatNew() {
   }, []);
   async function fetchData() {
     try {
-      const response = await axios.get(`http://localhost:5000/api/v1/products`);
+      const response = await axios.get(`http://localhost:3000/api/v1/products`);
       setProducts(response.data);
     } catch (error) {
       console.log(error);

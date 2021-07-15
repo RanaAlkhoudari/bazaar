@@ -7,7 +7,7 @@ import NotFoundPage from './pages/notFoundPage';
 import AddProduct from './components/addProduct/addProduct';
 import './styles/variables.css';
 import './styles/normalize.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import ProductDetailPage from './pages/productDetailPage/productDetailPage';
 
 document.addEventListener('DOMContentLoaded', () => {
   const el = document.getElementById('root');
@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <Switch>
           <Route path="/" exact component={Homepage} />
           <Route path="/products/add" exact component={AddProduct} />
+          <Route path="/:id" exact component={ProductDetailPage} />
           <Route component={NotFoundPage} />
         </Switch>
       </Router>,

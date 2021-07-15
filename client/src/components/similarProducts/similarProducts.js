@@ -1,29 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Products from '../productList/productList';
+import ProductList from '../productList/productList';
 
 function SimilarProducts({ products }) {
-  // const [similarProducts, setSimilarProducts] = useState([]);
-  // console.log(product.categories);
-  // useEffect(() => {
-  //   fetchCategory();
-  // }, []);
+  const [similarProducts, setSimilarProducts] = useState([]);
 
-  // async function fetchCategory() {
-  //   try {
-  //     const res = await axios.get(
-  //       `http://localhost:3000/api/v1/products?category=${categories[0].name}`,
-  //     );
-  //     setSimilarProducts(res.data);
-  //     console.log(res.data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
+  useEffect(() => {
+    fetchCategory();
+  }, []);
+
+  async function fetchCategory() {
+    try {
+      const res = await axios.get(`http://localhost:3000/api/v1/products?category=Electronics`);
+      setSimilarProducts(res.data);
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <>
-      <Products products={similarProducts} />
+      <ProductList products={similarProducts} />
     </>
   );
 }

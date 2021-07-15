@@ -1,24 +1,21 @@
 import React from 'react';
+import productList from '../productList/productList.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
 
-function ProductDetails({ product }) {
-  console.log(product);
+function ProductDetail({ product }) {
   return (
     <div>
       <div key={product._id}>
-        {/* {product.image.map((img) => {
-          <img src={img} alt={product.title} />;
-        })} */}
+        <img src={product.images} alt={product.title} />
         <p>{product.title}</p>
         <p>{product.description}</p>
         <p>€{product.price}</p>
         <button>Buy</button>
-        {/* <i className="fas fa-star"></i> */}
         <FontAwesomeIcon icon={farStar} />
       </div>
     </div>
   );
 }
 
-export default ProductDetails;
+export default ProductDetail;
