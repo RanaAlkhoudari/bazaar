@@ -1,5 +1,4 @@
 import React from 'react';
-import productList from '../productList/productList.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
 
@@ -12,7 +11,7 @@ function ProductDetail({ product }) {
         <p>{product.description}</p>
         <p>€{product.price}</p>
         <button>Buy</button>
-        <FontAwesomeIcon icon={farStar} />
+         <FontAwesomeIcon icon={farStar} /> 
       </div>
     </div>
   );
