@@ -2,23 +2,23 @@ import styles from './uploader.css';
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const Uploader = ({ data }) => {
+const Uploader = ({ isFilled }) => {
   const [selectedFiles, setSelectedFiles] = useState(null);
 
   const handleClick = async () => {
-    if (!Object.keys(data).length || !selectedFiles) return;
+    if (!selectedFiles || !isFilled) return;
 
     try {
+      const videoRequests = [];
+      const imageRequests = [];
+
       for (const file of selectedFiles) {
         const formData = new FormData();
         formData.append('file', file);
         formData.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET);
         formData.append('folder', process.env.REACT_APP_UPLOAD_FOLDER);
 
-        const videoRequests = [];
-        const imageRequests = [];
         const [type] = file.type.split('/');
-
         if (type === 'video') {
           videoRequests.push(
             axios.post(
@@ -39,12 +39,13 @@ const Uploader = ({ data }) => {
       const videoResponses = await axios.all(videoRequests);
       const imageResponses = await axios.all(imageRequests);
 
+      const media = {};
       if (videoResponses.length)
-        data.videos = videoResponses.map((response) => response.data.secure_url);
+        media.videos = videoResponses.map((response) => response.data.secure_url);
       if (imageResponses.length)
-        data.images = imageResponses.map((response) => response.data.secure_url);
+        media.images = imageResponses.map((response) => response.data.secure_url);
 
-      await axios.post(`${process.env.REACT_APP_API_URL}/products`, data);
+      await axios.post('http://localhost:5001/api/v1/products', media);
     } catch (error) {
       console.error(error);
     }

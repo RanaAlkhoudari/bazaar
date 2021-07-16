@@ -1,23 +1,45 @@
 import styles from './addProduct.css';
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
+import { Multiselect } from 'multiselect-react-dropdown';
 import Uploader from '../uploader/uploader';
 
 const AddProduct = () => {
-  const newProduct = {};
+  const categoryList = async () => await axios.get('http://localhost:3001/categories');
+
+  const [options] = useState(categoryList);
+  const [isFilled, setIsFilled] = useState(false);
+  const [values, setValues] = useState({
+    title: '',
+    price: '',
+    description: '',
+    city: '',
+    condition: '',
+    categories: [],
+  });
+
+  const handleTitleChange = (e) => setValues({ ...values, title: e.target.value });
+  const handlePriceChange = (e) => setValues({ ...values, price: e.target.value });
+  const handleDescriptionChange = (e) => setValues({ ...values, description: e.target.value });
+  const handleCityChange = (e) => setValues({ ...values, city: e.target.value });
+  const handleConditionChange = (e) => setValues({ ...values, condition: e.target.value });
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const productForm = e.target;
-    const formData = new FormData(productForm);
-    for (const key of formData.keys()) {
-      newProduct[key] = formData.get(key);
+    for (const value of Object.values(values)) {
+      if (value) {
+        setIsFilled(true);
+      } else {
+        setIsFilled(false);
+      }
     }
+    console.log(values);
   };
 
   return (
     <div className={styles.add_product_container}>
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form onSubmit={handleSubmit}>
         <label>Add product</label>
 
         <label htmlFor="title">
@@ -26,6 +48,8 @@ const AddProduct = () => {
             placeholder="Laptop / Bike / Table "
             type="text"
             name="title"
+            value={values.title}
+            onChange={handleTitleChange}
             // required
           />
         </label>
@@ -38,6 +62,8 @@ const AddProduct = () => {
             step="any"
             type="number"
             name="price"
+            value={values.price}
+            onChange={handlePriceChange}
             // required
           />
           €
@@ -49,6 +75,8 @@ const AddProduct = () => {
             placeholder="Lorem ipsum dolor sit amet."
             type="text"
             name="description"
+            value={values.description}
+            onChange={handleDescriptionChange}
             // required
           />
         </label>
@@ -59,41 +87,36 @@ const AddProduct = () => {
             placeholder="Amsterdam"
             type="text"
             name="city"
+            value={values.city}
+            onChange={handleCityChange}
             // required
           />
         </label>
 
         <label htmlFor="condition">
           Condition
-          <input
-            placeholder="Like new"
-            list="conditions"
+          <select
             name="condition"
-            // required
-          />
-          <datalist id="conditions">
-            <option value="New"></option>
-            <option value="Like New"></option>
-            <option value="Fairly Used"></option>
-          </datalist>
+            value={values.condition}
+            onChange={handleConditionChange}
+            required
+          >
+            <option value="" disabled>
+              Select
+            </option>
+            <option value="new">New</option>
+            <option value="like new">Like new</option>
+            <option value="fairly used">Fairly used</option>
+          </select>
         </label>
 
-        <label htmlFor="category">
-          Category
-          <input
-            placeholder="Books"
-            list="categories"
-            name="category"
-            // required
-          />
-          <datalist id="categories">
-            <option value="Health"></option>
-            <option value="Electronics"></option>
-            <option value="Home & Kitchen"></option>
-          </datalist>
-        </label>
+        <Multiselect
+          isObject={false}
+          options={categoryList}
+          onSelect={(selected) => (values.categories = selected)}
+        />
 
-        <Uploader data={newProduct} />
+        <Uploader isFilled={isFilled} />
       </form>
     </div>
   );
