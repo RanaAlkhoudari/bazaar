@@ -23,7 +23,7 @@ function SeeWhatNew() {
   }
   return (
     <div>
-      <h1>See Whats New</h1>
+      <h2 style={{ textAlign: 'center' }}>See Whats New</h2>
       <ProductList products={sortedProductsByDate} />
     </div>
   );
