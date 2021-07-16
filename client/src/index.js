@@ -8,6 +8,7 @@ import AddProduct from './components/addProduct/addProduct';
 import './styles/variables.css';
 import './styles/normalize.css';
 import ProductDetailPage from './pages/productDetailPage/productDetailPage';
+import CategoryProducts from './components/header/categories';
 
 document.addEventListener('DOMContentLoaded', () => {
   const el = document.getElementById('root');
@@ -19,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <Route path="/" exact component={Homepage} />
           <Route path="/products/add" exact component={AddProduct} />
           <Route path="/:id" exact component={ProductDetailPage} />
+          <Route path="/categories/:id" exact component={CategoryProducts} />
           <Route component={NotFoundPage} />
         </Switch>
       </Router>,

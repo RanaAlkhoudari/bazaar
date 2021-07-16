@@ -11,7 +11,7 @@ function ProductDetail({ product }) {
         <p>{product.description}</p>
         <p>€{product.price}</p>
         <button>Buy</button>
-        <FontAwesomeIcon icon={farStar} />
+         <FontAwesomeIcon icon={farStar} /> 
       </div>
     </div>
   );
