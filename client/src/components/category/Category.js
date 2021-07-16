@@ -3,6 +3,7 @@ import { GlobalContext } from '../context/context';
 
 const Category = () => {
   const { categories, setCategoryName } = useContext(GlobalContext);
+
   const handleCategory = (category) => {
     setCategoryName(category);
   };

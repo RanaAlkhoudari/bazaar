@@ -11,12 +11,11 @@ function ProductDetailPage() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [id]);
 
   async function fetchData() {
     try {
       const response = await axios.get(`http://localhost:3000/api/v1/products/${id}`);
-
       setProduct(response.data);
     } catch (error) {
       console.log(error);
@@ -27,7 +26,7 @@ function ProductDetailPage() {
     <>
       <ProductDetail product={product} />
       <h2 style={{ textAlign: 'center' }}>See Similar Products</h2>
-      {/* <SimilarProducts products={product.categories} /> */}
+      {product.categories && <SimilarProducts product={product} />}
     </>
   );
 }
