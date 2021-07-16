@@ -1,7 +1,7 @@
 import React from 'react';
 import productDetail from '../productDetail/productDetail.css';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
 
 function ProductDetail({ product }) {
   return (
@@ -12,7 +12,7 @@ function ProductDetail({ product }) {
         <p>{product.description}</p>
         <p>€{product.price}</p>
         <button className={productDetail.but}>Buy</button>
-        {/* <FontAwesomeIcon icon={farStar} /> */}
+        <FontAwesomeIcon className={productDetail.icon} icon={farStar} />
       </div>
     </div>
   );
