@@ -1,5 +1,4 @@
 import React from 'react';
-import productList from '../productList/productList.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
 
