@@ -25,7 +25,7 @@ function ProductDetailPage() {
   return (
     <>
       <ProductDetail product={product} />
-      <h1>See Similar Products</h1>
+      <h2 style={{ textAlign: 'center' }}>See Similar Products</h2>
       {product.categories && <SimilarProducts product={product} />}
     </>
   );
