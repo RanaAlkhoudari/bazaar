@@ -4,9 +4,12 @@ import ProductList from '../productList/productList';
 
 const CategoryProducts = (props) => {
   const [products, setProducts] = useState([]);
-  // const category = product.categories[0].name;
-  console.log(props);
-  console.log(products);
+
+  const categories = products.reduce((allProducts, current) => {
+    return allProducts.includes(current.category)
+      ? allProducts
+      : allProducts.concat([current.category]);
+  }, []);
 
   useEffect(() => {
     fetchProducts();
@@ -20,13 +23,14 @@ const CategoryProducts = (props) => {
       console.log(error);
     }
   }
-  console.log(products);
-
-  const productsFromCategory = products.filter((product) => product.categories[0]._id === props);
 
   return (
     <div>
-      <ProductList products={productsFromCategory} />
+      {categories.map((category) => {
+        // filter out the products of the current category
+        products.filter((prod) => prod.category === category);
+        return <ProductList products={products} key={category} />;
+      })}
     </div>
   );
 };
