@@ -1,0 +1,17 @@
+.container {
+  padding: 1rem;
+  width: 40vw;
+  margin: 2rem 2rem 0;
+  border: 1px solid;
+  border-radius: 0.5rem;
+}
+.img {
+  width: 100%;
+  border-radius: 0.5rem;
+}
+.but {
+  font-size: 2rem;
+}
+p {
+  font-size: 1.5rem;
+}
