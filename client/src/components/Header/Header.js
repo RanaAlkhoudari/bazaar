@@ -1,14 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Search from '../search/search';
-import products from '../mock-data';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 import styles from './Header.css';
+import { Route } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import CategoryProducts from './categories';
 
 const Header = () => {
   const [showCategories, setShowCategories] = useState(false);
+  const [categories, setCategories] = useState([]);
   const dropdownRef = useRef();
 
   useEffect(() => {
@@ -22,45 +24,22 @@ const Header = () => {
       document.removeEventListener('mousedown', handler);
     };
   });
-  const mobileMenuShow = () => {
-    document.getElementById('nav_mobile').style.width = '100%';
-    document.getElementById('nav_mobile').style.left = '0px';
-    setTimeout(function () {
-      document.getElementById('nav_mobile_link').style.display = 'block';
-    }, 400);
-  };
-  const mobileMenuHide = () => {
-    document.getElementById('nav_mobile').style.width = '0';
-    document.getElementById('nav_mobile').style.left = '-30px';
-    document.getElementById('nav_mobile_link').style.display = 'none';
-  };
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
+  async function fetchCategories() {
+    try {
+      const res = await axios.get(`http://localhost:3000/api/v1/categories`);
+      setCategories(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <div>
-      <div id="nav_mobile" className={styles.nav_mobile}>
-        <div className={styles.timesButton_container} onClick={() => mobileMenuHide()}>
-          <FontAwesomeIcon className={styles.timesButton} icon={faTimes} />
-        </div>
-        <div id="nav_mobile_link" className={styles.nav_mobile_link}>
-          <a className={styles.nav_link} href="/sign-up">
-            Sign Up | Register
-          </a>
-          <a className={styles.nav_link} href="/sign-in">
-            Sign In
-          </a>
-          <hr />
-          <strong>Categories</strong>
-          {products.map((product) => {
-            return (
-              <div key={product.title}>
-                <a className={styles.nav_link} href="./categoryId">
-                  {product.title}
-                </a>
-              </div>
-            );
-          })}
-        </div>
-      </div>
       <div className={styles.nav}>
         <div className={styles.logo_container}>
           <a href="/">
@@ -68,7 +47,7 @@ const Header = () => {
           </a>
         </div>
         <div>
-          <Search />
+          <Route render={({ history }) => <Search history={history} />} />
         </div>
         <div className={styles.nav_menu}>
           <div className={styles.nav_dropdown} onClick={() => setShowCategories(!showCategories)}>
@@ -77,28 +56,25 @@ const Header = () => {
           </div>
           {showCategories && (
             <div className={styles.dropdown_container} ref={dropdownRef}>
-              {products.map((product) => {
+              {categories.map((category) => {
                 return (
-                  <div className={styles.item_container} key={product.title}>
+                  <div className={styles.item_container} key={category._id}>
                     <div className={styles.nav_menu}>
-                      <a className={styles.nav_link} href="./categoryId">
-                        {product.title}
-                      </a>
+                      <Link className={styles.nav_link} to={`/categories/${category._id}`}>
+                        {category.name}
+                      </Link>
                     </div>
                   </div>
                 );
               })}
             </div>
           )}
-          <a className={styles.nav_link} href="/sign-up">
+          <Link className={styles.nav_link} to="/sign-up">
             Sign Up | Register
-          </a>
-          <a className={styles.nav_link} href="/sign-in">
+          </Link>
+          <Link className={styles.nav_link} to="/sign-in">
             Sign In
-          </a>
-        </div>
-        <div className={styles.bars} onClick={() => mobileMenuShow()}>
-          <FontAwesomeIcon className={styles.barsButton} icon={faBars} />
+          </Link>
         </div>
       </div>
     </div>

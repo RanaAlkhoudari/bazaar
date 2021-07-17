@@ -10,9 +10,10 @@ const Search = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(keyword);
+    //console.log(keyword);
     if (keyword.trim()) {
-      history.push(`/products/${keyword}`);
+      // history.push(`/products/${keyword}`);
+      history.push(`/searchResult/${keyword}`);
     } else {
       history.push('/');
     }
