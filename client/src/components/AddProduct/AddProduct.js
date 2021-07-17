@@ -6,8 +6,8 @@ import { Multiselect } from 'multiselect-react-dropdown';
 
 const AddProduct = () => {
   // const categoryList = async () => await axios.get(`${process.env.REACT_APP_API_URL}/categories`);
-  const categoryList = ['Electronic', 'Health', 'Home'];
   // const conditionList = async () => await axios.get(`${process.env.REACT_APP_API_URL}/conditions`); //?? should be fetched or hard coded
+  const categoryList = ['Electronic', 'Health', 'Home'];
   const conditionList = ['new', 'like new', 'fairly used'];
 
   const [values, setValues] = useState({
