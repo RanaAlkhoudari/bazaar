@@ -17,8 +17,8 @@ const Uploader = ({ data }) => {
         const formData = new FormData();
 
         formData.append('file', file);
-        formData.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET);
         formData.append('folder', process.env.REACT_APP_UPLOAD_FOLDER);
+        formData.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET);
 
         const [type] = file.type.split('/');
         const cloudinaryUrl = `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}`;
@@ -44,7 +44,7 @@ const Uploader = ({ data }) => {
   };
 
   return (
-    <div className={styles.uploader_container}>
+    <div className={styles.uploaderContainer}>
       <input
         required
         multiple

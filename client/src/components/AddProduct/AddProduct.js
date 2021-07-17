@@ -11,12 +11,12 @@ const AddProduct = () => {
   const conditionList = ['new', 'like new', 'fairly used'];
 
   const [values, setValues] = useState({
+    city: '',
     title: '',
     price: '',
-    description: '',
-    city: '',
     condition: '',
     categories: [],
+    description: '',
   });
 
   const handleCityChange = (e) => setValues({ ...values, city: e.target.value });
@@ -25,7 +25,7 @@ const AddProduct = () => {
   const handleDescriptionChange = (e) => setValues({ ...values, description: e.target.value });
 
   return (
-    <div className={styles.add_product_container}>
+    <div className={styles.addProductContainer}>
       <form onSubmit={(e) => e.preventDefault()}>
         <label>Add product</label>
 

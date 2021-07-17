@@ -15,11 +15,11 @@ input::-webkit-calendar-picker-indicator {
   opacity: 0;
 }
 
-.add_product_container {
+.addProductContainer {
   padding-top: 5rem;
 }
 
-.add_product_container form {
+.addProductContainer form {
   display: flex;
   flex-direction: column;
   align-items: center;
