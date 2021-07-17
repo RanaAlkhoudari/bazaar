@@ -5,3 +5,42 @@
   gap: 2rem;
   margin-block: 1rem;
 }
+
+.uploadInput::-webkit-file-upload-button {
+  box-shadow: inset 0px 1px 0px 0px #ffffff;
+  background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+  background-color: #ffffff;
+  border-radius: 6px;
+  border: 1px solid var(--color-main);
+  display: inline-block;
+  cursor: pointer;
+  font-size: 15px;
+  color: var(--color-main);
+  font-weight: bold;
+  padding: 6px 24px;
+  text-shadow: 0px 1px 0px #ffffff;
+  outline: none;
+}
+
+.uploadInput::-webkit-file-upload-button:hover {
+  background: linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+  background-color: #f6f6f6;
+}
+
+.submitBtn {
+  box-shadow: inset 0px 1px 0px 0px #ffffff;
+  background-color: var(--color-main);
+  border-radius: 6px;
+  border: 0;
+  display: inline-block;
+  cursor: pointer;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 6px 24px;
+  outline: none;
+}
+
+.submitBtn:hover {
+  background-color: hsl(180, 100%, 20%);
+}
