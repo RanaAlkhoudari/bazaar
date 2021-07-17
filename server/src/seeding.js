@@ -8,6 +8,7 @@ const dummyCategories = require('./dummy-files/categories.json');
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
+console.log(process.env.DB_URL);
 
 seeder.connect(process.env.DB_URL, () => {
   seeder.loadModels([
@@ -25,7 +26,7 @@ seeder.connect(process.env.DB_URL, () => {
       if (done) {
         return console.log('seed done', done);
       }
-      seeder.disconnect();
+      return seeder.disconnect();
     });
   });
 });

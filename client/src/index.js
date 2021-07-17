@@ -10,6 +10,7 @@ import './styles/normalize.css';
 import ProductDetailPage from './pages/productDetailPage/productDetailPage';
 import CategoryProducts from './components/header/categories';
 import Products from './pages/products/Products';
+import SearchResult from './components/searchResult/searchResult';
 
 document.addEventListener('DOMContentLoaded', () => {
   const el = document.getElementById('root');
@@ -23,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <Route path="/:id" exact component={ProductDetailPage} />
           <Route path="/categories/:id" exact component={CategoryProducts} />
           <Route path="/products/:keyword" exact component={Products} />
+          <Route path="/searchResult/:q" exact component={SearchResult} />
           <Route component={NotFoundPage} />
         </Switch>
       </Router>,
