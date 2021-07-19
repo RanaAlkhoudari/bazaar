@@ -1,58 +1,58 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import Header from '../components/Header';
-import Product from './components/Product';
-import Filters from '../../components/filter/filters';
-import Category from './components/Category';
-import '../styles/Products.css';
+import ProductList from '../../components/productList/productList';
+// import Filters from '../../components/filter/filters';
+import Category from '../../components/Category/Category';
+import './Products.css';
 
 const Products = () => {
   const [products, setProducts] = useState([]);
-
-  const { categoryName } = useContext(GlobalContext);
+  const [allProducts, setAllProducts] = useState([]);
+  const { keyword } = useParams();
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/products/` + categoryName)
+      .get(`http://localhost:3000/api/v1/products/searchedProduct/${keyword}`)
       .then((response) => response.data)
       .then((data) => setProducts(data))
       .catch((error) => {
         console.log(error);
       });
-  }, [categoryName]);
+  }, [keyword]);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/api/v1/products`)
+      .then((response) => response.data)
+      .then((data) => setAllProducts(data))
+      .catch((error) => {
+        console.log(error);
+      });
+    setProducts([]);
+  }, [keyword]);
+
+  const productsByCategory = allProducts.filter(
+    (product) => product.categories[0].name === keyword,
+  );
 
   return (
     <div className="container">
-      <div className="Header">
-        <Header />
-      </div>
-      <div className="Filters">
+      {/* <div className="filter">
         <Filters />
-      </div>
-      <div className="Categories">
+      </div> */}
+      <div className="category">
         <Category />
       </div>
-      <div className="Products product-items">
-        {' '}
-        {categoryName.length === 0 ? (
-          <div className="no_category">Please Select the category</div>
-        ) : (
-          products.map((product) => {
-            return (
-              <div key={product.id}>
-                <Link to={`${product.title}/details`}>
-                  <Product
-                    image={product.image}
-                    title={product.title}
-                    description={product.description}
-                    price={product.price}
-                  />
-                </Link>
-              </div>
-            );
-          })
+
+      <div className="products">
+        {products.length === 0 && productsByCategory.length === 0 && (
+          <h1>This Category is empty chose another one please </h1>
         )}
+
+        {productsByCategory.length !== 0 && <ProductList products={productsByCategory} />}
+
+        {products.length !== 0 && <ProductList products={products} />}
       </div>
     </div>
   );

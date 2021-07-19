@@ -13,7 +13,7 @@ const Search = () => {
     //console.log(keyword);
     if (keyword.trim()) {
       // history.push(`/products/${keyword}`);
-      history.push(`/searchResult/${keyword}`);
+      history.push(`/products/${keyword}`);
     } else {
       history.push('/');
     }
