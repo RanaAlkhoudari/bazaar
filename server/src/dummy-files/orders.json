@@ -1,0 +1,29 @@
+[
+    {
+        "_id": "60ec9b000eb2b755602b5071",
+        "product": "Vauxhall Corsa",
+        "amount": "1",
+        "payment": "60ed787b32db8b0c87019bba",
+        "products": ["60ec9b000eb2b755602b5071"],
+        "address": "60ec89b6c11d83d518e123c1",
+        "status":"Used"
+      },
+      {
+        "_id": "60ec9b000eb2b755602b5072",
+        "product": "Vauxhall Corsa",
+        "amount": "1",
+        "payment": "60ed787b32db8b0c87019bba",
+        "products": ["60ec9b000eb2b755602b5072"],
+        "address": "60ec89b6c11d83d518e123c1",
+        "status":"Used"
+      },
+      {
+        "_id": "60ec9b000eb2b755602b5073",
+        "product": "Vauxhall Corsa",
+        "amount": "1",
+        "payment": "60ed787b32db8b0c87019bba",
+        "products": ["60ec9b000eb2b755602b5073"],
+        "address": "60ec89b6c11d83d518e123c1",
+        "status":"Used"
+      }
+]
