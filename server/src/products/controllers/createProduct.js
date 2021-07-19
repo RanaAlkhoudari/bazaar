@@ -7,7 +7,7 @@ function createProduct(req, res, next) {
   const newProduct = new ProductModel({
     title,
     description,
-    price,
+    price: Number(price),
     images,
     condition,
     categories,
@@ -21,7 +21,7 @@ function createProduct(req, res, next) {
       }
       return res.status(201).json('Product created successfully');
     })
-    .catch((error) => res.status(500).json(`An error occurred: ${error} `).console.log(error));
+    .catch((error) => res.status(500).json(`An error occurred: ${error} `));
 }
 
 module.exports = createProduct;
