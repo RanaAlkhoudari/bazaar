@@ -4,7 +4,7 @@ const createPayment = async (req, res) => {
   const { amount, id } = req.body;
 
   try {
-    const payment = await stripe.paymentIntents.create({
+    await stripe.paymentIntents.create({
       amount,
       currency: 'EUR',
       description: 'Bazzar',
