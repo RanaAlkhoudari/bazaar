@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 
+import React, { useState, useEffect } from 'react';
+import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import Search from '../search/search';
 import axios from 'axios';
 import { Route } from 'react-router-dom';
@@ -20,6 +20,10 @@ const Header = () => {
       console.log(error);
     }
   }
+  const handleLogout = async () => {
+    localStorage.removeItem(`user`);
+    window.location.href = `/`;
+  };
 
   return (
     <>
@@ -67,6 +71,7 @@ const Header = () => {
       </Navbar>
       <Route render={({ history }) => <Search history={history} />} />
     </>
+
   );
 };
 

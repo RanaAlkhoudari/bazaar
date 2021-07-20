@@ -10,22 +10,30 @@ import './styles/normalize.css';
 import ProductDetailPage from './pages/productDetailPage/productDetailPage';
 import CategoryProducts from './components/header/categories';
 import Products from './pages/products/Products';
+import SignUp from './components/SignUp/SignUp';
+import SignIn from './components/SignIn/SignIn';
+import { AuthContextProvider } from './context/AuthContext';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 document.addEventListener('DOMContentLoaded', () => {
   const el = document.getElementById('root');
   if (el) {
     render(
-      <Router>
-        <Header />
-        <Switch>
-          <Route path="/" exact component={Homepage} />
-          <Route path="/products/add" exact component={AddProduct} />
-          <Route path="/:id" exact component={ProductDetailPage} />
-          <Route path="/categories/:id" exact component={CategoryProducts} />
-          <Route path="/products/:keyword" exact component={Products} />
-          <Route component={NotFoundPage} />
-        </Switch>
-      </Router>,
+      <AuthContextProvider>
+        <Router>
+          <Header />
+          <Switch>
+            <Route path="/" exact component={Homepage} />
+            <Route exact path="/signin" component={SignIn} />
+            <Route exact path="/signup" component={SignUp} />
+            <Route path="/products/add" exact component={AddProduct} />
+            <Route path="/:id" exact component={ProductDetailPage} />
+            <Route path="/categories/:id" exact component={CategoryProducts} />
+            <Route path="/products/:keyword" exact component={Products} />
+            <Route component={NotFoundPage} />
+          </Switch>
+        </Router>
+      </AuthContextProvider>,
       el,
     );
   }
