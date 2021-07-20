@@ -31,6 +31,7 @@ const Products = () => {
       });
     setProducts([]);
   }, [keyword]);
+
   const productsByCategory = allProducts.filter(
     (product) => product.categories[0].name === keyword,
   );
