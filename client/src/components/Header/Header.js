@@ -1,31 +1,14 @@
-import React, { useState, useEffect, useRef, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import { AuthContext } from '../../context/AuthContext';
-
-import Search from '../search/search';
 import { Link } from 'react-router-dom';
+import Search from '../search/search';
 import axios from 'axios';
-import styles from './Header.css';
 import { Route } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 const Header = () => {
-  const [showCategories, setShowCategories] = useState(false);
   const [categories, setCategories] = useState([]);
-  const dropdownRef = useRef();
   const { user } = useContext(AuthContext);
-
-  useEffect(() => {
-    let handler = (e) => {
-      if (!dropdownRef.current.contains(e.target)) {
-        setShowCategories(false);
-      }
-    };
-    document.addEventListener('mousedown', handler);
-    return () => {
-      document.removeEventListener('mousedown', handler);
-    };
-  });
 
   useEffect(() => {
     fetchCategories();
@@ -45,57 +28,59 @@ const Header = () => {
   };
 
   return (
-    <div>
-      <div className={styles.nav}>
-        <div className={styles.logo_container}>
-          <a href="/">
-            <img src="https://i.ibb.co/VB0vCY6/bazaar1.png" className={styles.logo} alt="bazaar" />
-          </a>
-        </div>
-        <div>
-          <Route render={({ history }) => <Search history={history} />} />
-        </div>
-        <div className={styles.nav_menu}>
-          <div className={styles.nav_dropdown} onClick={() => setShowCategories(!showCategories)}>
-            Categories
-            <FontAwesomeIcon className={styles.nav_angel_down} icon={faAngleDown} />
-          </div>
-          {showCategories && (
-            <div className={styles.dropdown_container} ref={dropdownRef}>
-              {categories.map((category) => {
-                return (
-                  <div className={styles.item_container} key={category._id}>
-                    <div className={styles.nav_menu}>
-                      <Link className={styles.nav_link} to={`/categories/${category._id}`}>
+    <>
+      <Navbar collapseOnSelect expand="lg" variant="light" bg="light">
+        <Container>
+          <Navbar.Brand href="/" style={{ width: '120px' }}>
+            <img src="https://i.ibb.co/VB0vCY6/bazaar1.png" alt="bazaar" />
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="me-auto" style={{ color: 'teal' }}>
+              <NavDropdown
+                title={<span style={{ color: 'teal' }}>Categories</span>}
+                id="nav-dropdown"
+              >
+                {categories.map((category) => {
+                  return (
+                    <div key={category._id}>
+                      <NavDropdown.Item
+                        href={`/categories/${category._id}`}
+                        style={{ color: 'teal' }}
+                      >
+                        {' '}
                         {category.name}
-                      </Link>
+                      </NavDropdown.Item>
                     </div>
-                  </div>
-                );
-              })}
-            </div>
-          )}
-          {user ? (
-            <Link className={styles.nav_link} to="/myprofile">
-              My Profile
-            </Link>
-          ) : (
-            <a className={styles.nav_link} href="/signup">
-              Sign Up | Register
-            </a>
-          )}
-          {user ? (
-            <p className={styles.nav_link} onClick={handleLogout}>
-              Sign Out
-            </p>
-          ) : (
-            <a className={styles.nav_link} href="/signin">
-              Sign In
-            </a>
-          )}
-        </div>
-      </div>
-    </div>
+                  );
+                })}
+              </NavDropdown>
+              <Nav.Link href="/Info" style={{ color: 'teal' }}>
+                Info
+              </Nav.Link>
+            </Nav>
+
+            <Nav>
+              {user ? (
+                <Link to="/myprofile">My Profile</Link>
+              ) : (
+                <Nav.Link href="/signup" style={{ color: 'teal' }}>
+                  Sign Up
+                </Nav.Link>
+              )}
+              {user ? (
+                <p onClick={handleLogout}>Sign Out</p>
+              ) : (
+                <Nav.Link href="/signin" style={{ color: 'teal' }}>
+                  Sign In
+                </Nav.Link>
+              )}
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+      <Route render={({ history }) => <Search history={history} />} />
+    </>
   );
 };
 

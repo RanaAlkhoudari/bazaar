@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
+import { Form, Button, InputGroup, FormControl } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import styles from './searchBar.css';
 
 const Search = () => {
   const [keyword, setKeyword] = useState('');
@@ -19,17 +17,23 @@ const Search = () => {
   };
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
-      <input
-        className={styles.search_bar}
-        type="text"
-        placeholder="search products"
-        onChange={(e) => setKeyword(e.target.value)}
-      />
-      <button type="submit" className={styles.search_btn}>
-        <FontAwesomeIcon icon={faSearch} />
-      </button>
-    </form>
+    <Form onSubmit={handleSubmit} style={{ background: '#FBFBFB' }}>
+      <InputGroup className="mb-3" style={{ width: '50%', margin: '0 auto' }}>
+        <FormControl
+          aria-describedby="basic-addon2"
+          placeholder="search products"
+          onChange={(e) => setKeyword(e.target.value)}
+        />
+        <Button
+          variant="outline-secondary"
+          id="button-addon2"
+          type="submit"
+          style={{ background: 'teal', color: 'white' }}
+        >
+          Search
+        </Button>
+      </InputGroup>
+    </Form>
   );
 };
 
