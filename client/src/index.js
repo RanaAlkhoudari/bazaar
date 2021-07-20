@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Homepage from './pages/homepage/Homepage';
-import Header from './components/Header/Header';
+import Header from './components/header/header';
 import NotFoundPage from './pages/notFoundPage';
 import AddProduct from './components/addProduct/addProduct';
 import './styles/variables.css';
