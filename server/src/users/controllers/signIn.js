@@ -1,54 +1,6 @@
-// const express = require('express');
-// const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-// const router = express.Router();
-// const authorize = require('../../middlewares/auth');
+
 const User = require('../userModel');
-
-// const signIn = (req, res, next) => {
-//   let getUser;
-//   User.findOne({
-//     email: req.body.email,
-//   })
-//     .then((user) => {
-//       if (!user) {
-//         throw new Error('No user with that email');
-//       }
-//       getUser = user;
-
-//       return bcrypt.compare(req.body.password, user.password);
-//     })
-//     .then((response) => {
-//       if (!response) {
-//         return res.status(401).json({
-//           message: 'Authentication - failed',
-//         });
-//       }
-
-//       let payload = {
-//         user: {
-//           email: getUser.email,
-//           userId: getUser._id,
-//         },
-//       };
-
-//       let jwtToken = jwt.sign(payload, 'longer-secret-is-better', {
-//         expiresIn: '1h',
-//       });
-//       res.status(200).json({
-//         token: jwtToken,
-//         expiresIn: 3600,
-//         msg: getUser,
-//       });
-//     })
-//     .catch(() => {
-//       res.status(401).json({
-//         message: 'Authentication failed',
-//       });
-//     });
-// };
-
-// module.exports = signIn;
 
 const login = async (req, res) => {
   const { email, password } = req.body;
