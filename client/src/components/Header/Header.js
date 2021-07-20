@@ -1,12 +1,14 @@
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
+import { AuthContext } from '../../context/AuthContext';
+import { Link } from 'react-router-dom';
 import Search from '../search/search';
 import axios from 'axios';
 import { Route } from 'react-router-dom';
 
 const Header = () => {
   const [categories, setCategories] = useState([]);
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     fetchCategories();
@@ -59,19 +61,26 @@ const Header = () => {
             </Nav>
 
             <Nav>
-              <Nav.Link href="/sign-up" style={{ color: 'teal' }}>
-                Sign Up
-              </Nav.Link>
-              <Nav.Link href="/sign-in" style={{ color: 'teal' }}>
-                Sign In
-              </Nav.Link>
+              {user ? (
+                <Link to="/myprofile">My Profile</Link>
+              ) : (
+                <Nav.Link href="/signup" style={{ color: 'teal' }}>
+                  Sign Up
+                </Nav.Link>
+              )}
+              {user ? (
+                <p onClick={handleLogout}>Sign Out</p>
+              ) : (
+                <Nav.Link href="/signin" style={{ color: 'teal' }}>
+                  Sign In
+                </Nav.Link>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
       <Route render={({ history }) => <Search history={history} />} />
     </>
-
   );
 };
 
