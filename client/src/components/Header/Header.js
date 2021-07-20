@@ -8,7 +8,6 @@ import styles from './Header.css';
 import { Route } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
-import CategoryProducts from './categories';
 
 const Header = () => {
   const [showCategories, setShowCategories] = useState(false);
