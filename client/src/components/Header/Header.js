@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext';
+
 import Search from '../search/search';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -12,6 +14,7 @@ const Header = () => {
   const [showCategories, setShowCategories] = useState(false);
   const [categories, setCategories] = useState([]);
   const dropdownRef = useRef();
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     let handler = (e) => {
@@ -37,6 +40,10 @@ const Header = () => {
       console.log(error);
     }
   }
+  const handleLogout = async () => {
+    localStorage.removeItem(`user`);
+    window.location.href = `/`;
+  };
 
   return (
     <div>
@@ -69,12 +76,24 @@ const Header = () => {
               })}
             </div>
           )}
-          <Link className={styles.nav_link} to="/sign-up">
-            Sign Up | Register
-          </Link>
-          <Link className={styles.nav_link} to="/sign-in">
-            Sign In
-          </Link>
+          {user ? (
+            <Link className={styles.nav_link} to="/myprofile">
+              My Profile
+            </Link>
+          ) : (
+            <a className={styles.nav_link} href="/signup">
+              Sign Up | Register
+            </a>
+          )}
+          {user ? (
+            <p className={styles.nav_link} onClick={handleLogout}>
+              Sign Out
+            </p>
+          ) : (
+            <a className={styles.nav_link} href="/signin">
+              Sign In
+            </a>
+          )}
         </div>
       </div>
     </div>
