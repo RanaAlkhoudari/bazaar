@@ -1,0 +1,23 @@
+.cont {
+  background-color: #dbdbdb;
+  width: 70%;
+  padding-bottom: 1em;
+}
+
+img {
+  width: 100px;
+  vertical-align: middle;
+}
+.box {
+  display: flex;
+
+  align-items: center;
+  background-color: white;
+  margin: 1em;
+
+  height: 110px;
+}
+
+.box .item {
+  padding: 0 1em 0 1em;
+}

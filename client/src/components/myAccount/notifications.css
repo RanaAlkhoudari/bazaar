@@ -1,0 +1,28 @@
+.cont {
+  background-color: #dbdbdb;
+  width: 70%;
+  padding-bottom: 1em;
+}
+
+img {
+  width: 100px;
+  vertical-align: middle;
+}
+.box {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+  margin: 1em;
+
+  height: 110px;
+}
+
+.box .item {
+  padding: 0 1.5em 0 1.5em;
+}
+.message {
+  border: 1px solid black;
+  padding: 1em;
+  flex: 3;
+}
