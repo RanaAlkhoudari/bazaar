@@ -7,9 +7,10 @@ import { Multiselect } from 'multiselect-react-dropdown';
 const AddProduct = () => {
   const [categories, setCategories] = useState([]);
   const [values, setValues] = useState({
+    user: '60ec89b6c11d83d518e123c1', //TODO: should be replaced with logged in user _id once the AuthContext created
     city: '',
-    title: '',
     price: 0,
+    title: '',
     condition: '',
     categories: [],
     description: '',
@@ -31,7 +32,7 @@ const AddProduct = () => {
 
   const handleCityChange = (e) => setValues({ ...values, city: e.target.value });
   const handleTitleChange = (e) => setValues({ ...values, title: e.target.value });
-  const handlePriceChange = (e) => setValues({ ...values, price: Number(e.target.value) });
+  const handlePriceChange = (e) => setValues({ ...values, price: e.target.value });
   const handleConditionChange = (e) => setValues({ ...values, condition: e.target.value });
   const handleDescriptionChange = (e) => setValues({ ...values, description: e.target.value });
 
@@ -106,7 +107,7 @@ const AddProduct = () => {
               width: '18rem',
             },
             chips: { background: 'var(--color-main)' },
-            optionContainer: { background: '#666', color: 'white' },
+            optionContainer: { background: '#666', color: 'white', borderRadius: '.5rem' },
           }}
         />
 
