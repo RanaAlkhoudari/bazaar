@@ -1,34 +1,21 @@
 .container {
   display: grid;
-  grid-template-columns: 0.6fr 1.5fr 1fr;
-  grid-template-rows: 0.5fr 0.5fr 1.5fr 1fr;
-  gap: 0px 0px;
+  grid-template-columns: 1.1fr 1fr 1fr;
+  grid-template-rows: 0.8fr 0.9fr 0.8fr 1fr 1fr;
+  gap: 10px 10px;
   grid-auto-flow: row;
   grid-template-areas:
-    "Header Header Header"
-    "Filters Filters Filters"
-    "Categories Products Products"
-    "Categories Products Products";
+    "header header header"
+    "filter filter filter"
+    "category products products"
+    "category products products"
+    "category products products";
 }
 
-.Header {
-  grid-area: Header;
-}
+.header { grid-area: header; }
 
-.Filters {
-  grid-area: Filters;
-}
+.filter { grid-area: filter; }
 
-.Categories {
-  grid-area: Categories;
-}
+.category { grid-area: category; }
 
-.Products {
-  grid-area: Products;
-}
-
-.product-items {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-}
+.products { grid-area: products; }

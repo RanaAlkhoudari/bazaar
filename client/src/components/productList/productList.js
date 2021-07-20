@@ -7,19 +7,20 @@ function ProductList(props) {
   return (
     <>
       <div className={productList.container}>
-        {sortedProducts.map((product) => {
-          return (
-            <div className={productList.item} key={product._id}>
-              <Link to={`/${product._id}`}>
-                <div className={productList.image}>
-                  <img src={product.images} alt="React Image"></img>
-                </div>
-              </Link>
-              <p>{product.title}</p>
-              <p>{product.price} €</p>
-            </div>
-          );
-        })}
+        {sortedProducts.length !== 0 &&
+          sortedProducts.map((product) => {
+            return (
+              <div className={productList.item} key={product._id}>
+                <Link to={`/${product._id}`}>
+                  <div className={productList.image}>
+                    <img src={product.images} alt="React Image"></img>
+                  </div>
+                </Link>
+                <p>{product.title}</p>
+                <p>{product.price} €</p>
+              </div>
+            );
+          })}
       </div>
     </>
   );

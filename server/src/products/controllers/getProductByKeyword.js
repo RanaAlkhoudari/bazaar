@@ -2,6 +2,7 @@ const ProductModel = require('../productModel');
 
 function GetProductByKeyword(req, res) {
   const name = req.params.keyword;
+  
   ProductModel.find({ title: { $regex: `.*${name.toUpperCase()}.*` } })
     .limit(30)
 
