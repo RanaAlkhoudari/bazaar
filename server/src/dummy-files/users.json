@@ -164,5 +164,35 @@
     "address": "60ed753f40846e186e5d7beb",
     "favorites": [],
     "products": []
+  },
+  {
+    "_id": "60ec89b6c11d83d518e123c9",
+    "first_name": "Marwa",
+    "last_name": "Kwara",
+    "email": "memo@mail.com",
+    "phone": "06-12312223",
+    "password": "12356",
+    "role": "user",
+    "active": "false",
+    "avatar": "dkk1.jpg",
+    "orders": [],
+    "address": "60ec89b6c11d83d518e123ba",
+    "favorites": [],
+    "products": []
+  },
+  {
+    "_id": "60ec89b6c11d83d518e123c9",
+    "first_name": "Ghaith",
+    "last_name": "MG",
+    "email": "MG@mail.com",
+    "phone": "06-12315553",
+    "password": "12356",
+    "role": "user",
+    "active": "false",
+    "avatar": "dkk1.jpg",
+    "orders": [],
+    "address": "60ec89b6c11d83d518e123bd",
+    "favorites": [],
+    "products": []
   }
 ]
