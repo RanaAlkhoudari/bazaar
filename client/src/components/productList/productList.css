@@ -20,3 +20,6 @@ img {
 .title {
   min-height: 60px;
 }
+.card img {
+  height: 300px;
+}
