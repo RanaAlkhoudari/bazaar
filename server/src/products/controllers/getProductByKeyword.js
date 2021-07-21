@@ -2,7 +2,9 @@ const ProductModel = require('../productModel');
 
 function GetProductByKeyword(req, res) {
   const name = req.params.keyword;
-  ProductModel.find({ title: new RegExp(name) }).limit(30)
+  
+  ProductModel.find({ title: { $regex: `.*${name.toUpperCase()}.*` } })
+    .limit(30)
 
     .populate('categories')
     .then((product) => {

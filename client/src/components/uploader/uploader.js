@@ -36,8 +36,7 @@ const Uploader = ({ data }) => {
       data.videos = videoResponses.map((response) => response.data.secure_url);
       data.images = imageResponses.map((response) => response.data.secure_url);
 
-      // await axios.post(`${process.env.REACT_APP_API_URL}/products`, data);
-      console.log(data);
+      await axios.post(`${process.env.REACT_APP_API_URL}/products/create`, data);
     } catch (error) {
       console.error(error);
     }
@@ -50,9 +49,15 @@ const Uploader = ({ data }) => {
         multiple
         type="file"
         accept="image/*, video/*" //?? size limit
+        className={styles.uploadInput}
         onChange={(e) => setSelectedFiles(e.target.files)}
       />
-      <input type="submit" value="Add product" onClick={handleClick} />
+      <input
+        type="submit"
+        value="Add product"
+        onClick={handleClick}
+        className={styles.submitBtn}
+      />
     </div>
   );
 };

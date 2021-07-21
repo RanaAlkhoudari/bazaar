@@ -1,33 +1,49 @@
 import axios from 'axios';
 import styles from './addProduct.css';
-import React, { useState } from 'react';
 import Uploader from '../uploader/uploader';
+import { AuthContext } from '../../context/AuthContext';
 import { Multiselect } from 'multiselect-react-dropdown';
+import React, { useState, useEffect, useContext } from 'react';
 
 const AddProduct = () => {
-  // const categoryList = async () => await axios.get(`${process.env.REACT_APP_API_URL}/categories`);
-  // const conditionList = async () => await axios.get(`${process.env.REACT_APP_API_URL}/conditions`); //?? should be fetched or hard coded
-  const categoryList = ['Electronic', 'Health', 'Home'];
-  const conditionList = ['new', 'like new', 'fairly used'];
+  const { user } = useContext(AuthContext);
 
+  const [categories, setCategories] = useState([]);
   const [values, setValues] = useState({
     city: '',
+    price: 0,
     title: '',
-    price: '',
     condition: '',
+    user: user._id,
     categories: [],
     description: '',
   });
 
+  useEffect(() => {
+    fetchCategories();
+    document.getElementById('add-product-link').style.display = 'none';
+  }, []);
+
+  const fetchCategories = async () => {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/categories`);
+      const categoryList = response.data.map((category) => category.name);
+      setCategories(categoryList);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const handleCityChange = (e) => setValues({ ...values, city: e.target.value });
   const handleTitleChange = (e) => setValues({ ...values, title: e.target.value });
   const handlePriceChange = (e) => setValues({ ...values, price: e.target.value });
+  const handleConditionChange = (e) => setValues({ ...values, condition: e.target.value });
   const handleDescriptionChange = (e) => setValues({ ...values, description: e.target.value });
 
   return (
     <div className={styles.addProductContainer}>
       <form onSubmit={(e) => e.preventDefault()}>
-        <label>Add product</label>
+        <h2>Add product</h2>
 
         <input
           required
@@ -40,8 +56,8 @@ const AddProduct = () => {
         />
 
         <input
-          required
           min="0"
+          required
           step="any"
           name="price"
           type="number"
@@ -51,21 +67,18 @@ const AddProduct = () => {
           className={`${styles.customInput} searchWrapper`}
         />
 
-        <Multiselect
-          singleSelect
-          isObject={false}
-          placeholder="Condition"
-          avoidHighlightFirstOption={true}
-          options={conditionList}
-          onSelect={(selected) => (values.condition = selected.toString())}
-          style={{
-            multiselectContainer: {
-              width: '18rem',
-            },
-            option: { textTransform: 'capitalize' },
-            chips: { fontSize: '1rem', textTransform: 'capitalize' },
-          }}
-        />
+        <div
+          className={`${styles.customSelect} ${styles.customInput} ${styles.conditionSelectWrapper} searchWrapper`}
+        >
+          <select required onChange={handleConditionChange}>
+            <option className={styles.defaultOption} hidden selected disabled>
+              Condition
+            </option>
+            <option value="new">New</option>
+            <option value="like new">Like new</option>
+            <option value="fairly used">Fairly used</option>
+          </select>
+        </div>
 
         <input
           required
@@ -89,7 +102,7 @@ const AddProduct = () => {
 
         <Multiselect
           isObject={false}
-          options={categoryList}
+          options={categories}
           placeholder="Categories"
           avoidHighlightFirstOption={true}
           onSelect={(selected) => (values.categories = selected)}
@@ -97,6 +110,8 @@ const AddProduct = () => {
             multiselectContainer: {
               width: '18rem',
             },
+            chips: { background: 'var(--color-main)' },
+            optionContainer: { color: 'white', background: '#666666', borderRadius: '.5rem' },
           }}
         />
 
