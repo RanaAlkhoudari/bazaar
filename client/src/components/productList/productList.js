@@ -1,4 +1,5 @@
 import React from 'react';
+import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import productList from '../productList/productList.css';
 
@@ -10,15 +11,15 @@ function ProductList(props) {
         {sortedProducts.length !== 0 &&
           sortedProducts.map((product) => {
             return (
-              <div className={productList.item} key={product._id}>
+              <Card className={productList.card} key={product._id}>
                 <Link to={`/${product._id}`}>
-                  <div className={productList.image}>
-                    <img src={product.images} alt="React Image"></img>
-                  </div>
+                  <Card.Img variant="top" src={product.images} />
+                  <Card.Body>
+                    <Card.Title className={productList.title}>{product.title}</Card.Title>
+                    <Card.Text>{product.price} €</Card.Text>
+                  </Card.Body>
                 </Link>
-                <p>{product.title}</p>
-                <p>{product.price} €</p>
-              </div>
+              </Card>
             );
           })}
       </div>
