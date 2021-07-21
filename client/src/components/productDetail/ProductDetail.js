@@ -14,7 +14,7 @@ function ProductDetail({ product }) {
             <Col>
               <Card.Title>{product.title}</Card.Title>
               <Card.Text>{product.price}</Card.Text>
-              <Card.Text style={{ textAlign: 'right' }}>{product.description}</Card.Text>
+              <Card.Text style={{ textAlign: 'left' }}>{product.description}</Card.Text>
               <Row>
                 {' '}
                 <Col>
