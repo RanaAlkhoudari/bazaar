@@ -2,13 +2,12 @@ import React from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Homepage from './pages/homepage/Homepage';
-import Header from './components/Header/Header';
+import Header from './components/header/header';
 import NotFoundPage from './pages/notFoundPage';
 import AddProduct from './components/addProduct/addProduct';
 import './styles/variables.css';
 import './styles/normalize.css';
 import ProductDetailPage from './pages/productDetailPage/productDetailPage';
-import CategoryProducts from './components/header/categories';
 import Products from './pages/products/Products';
 import SignUp from './components/SignUp/SignUp';
 import SignIn from './components/SignIn/SignIn';
@@ -28,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
             <Route exact path="/signup" component={SignUp} />
             <Route path="/products/add" exact component={AddProduct} />
             <Route path="/:id" exact component={ProductDetailPage} />
-            <Route path="/categories/:id" exact component={CategoryProducts} />
             <Route path="/products/:keyword" exact component={Products} />
             <Route component={NotFoundPage} />
           </Switch>

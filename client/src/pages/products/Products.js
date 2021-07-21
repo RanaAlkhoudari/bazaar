@@ -32,9 +32,11 @@ const Products = () => {
     setProducts([]);
   }, [keyword]);
 
-  const productsByCategory = allProducts.filter(
-    (product) => product.categories[0].name === keyword,
-  );
+  const productsByCategory = allProducts.filter((product) => {
+    if (product.title.includes(keyword)) {
+      return product;
+    }
+  });
 
   return (
     <div className="container">
@@ -49,9 +51,7 @@ const Products = () => {
         {products.length === 0 && productsByCategory.length === 0 && (
           <h1>This Category is empty chose another one please </h1>
         )}
-
         {productsByCategory.length !== 0 && <ProductList products={productsByCategory} />}
-
         {products.length !== 0 && <ProductList products={products} />}
       </div>
     </div>

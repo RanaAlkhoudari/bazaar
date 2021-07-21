@@ -1,23 +1,27 @@
 import axios from 'axios';
 import styles from './addProduct.css';
 import Uploader from '../uploader/uploader';
-import React, { useState, useEffect } from 'react';
+import { AuthContext } from '../../context/AuthContext';
 import { Multiselect } from 'multiselect-react-dropdown';
+import React, { useState, useEffect, useContext } from 'react';
 
 const AddProduct = () => {
+  const { user } = useContext(AuthContext);
+
   const [categories, setCategories] = useState([]);
   const [values, setValues] = useState({
-    user: '60ec89b6c11d83d518e123c1', //TODO: should be replaced with logged in user _id once the AuthContext created
     city: '',
     price: 0,
     title: '',
     condition: '',
+    user: user._id,
     categories: [],
     description: '',
   });
 
   useEffect(() => {
     fetchCategories();
+    document.getElementById('add-product-link').style.display = 'none';
   }, []);
 
   const fetchCategories = async () => {
@@ -107,7 +111,7 @@ const AddProduct = () => {
               width: '18rem',
             },
             chips: { background: 'var(--color-main)' },
-            optionContainer: { background: '#666', color: 'white', borderRadius: '.5rem' },
+            optionContainer: { color: 'white', background: '#666666', borderRadius: '.5rem' },
           }}
         />
 
