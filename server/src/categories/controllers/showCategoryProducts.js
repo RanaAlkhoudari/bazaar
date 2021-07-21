@@ -1,13 +1,11 @@
-const CategoryModel = require('../categoryModel');
+const Category = require('../categoryModel');
 
-function showCategoryProduct(req, res) {
-  CategoryModel.getBySlug({ slug: req.params.slug })
-    .populate('product')
-    .then((product) => {
-      res.status(200);
-      res.json(product);
-    })
-    .catch((err) => res.status(400).json(`Error :  ${err}`));
+async function showCategoryProducts(req, res) {
+  try {
+    const categoryProducts = await Category.findById(req.params.id).populate('products');
+    res.status(200).send(categoryProducts);
+  } catch {
+    res.status(404).json(`Category with the id ${req.params.id} does not exist in the database`);
+  }
 }
-
-module.exports = showCategoryProduct;
+module.exports = showCategoryProducts;
