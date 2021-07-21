@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Search from '../search/search';
 import axios from 'axios';
 import { Route } from 'react-router-dom';
+import styles from './header.css';
 
 const Header = () => {
   const [categories, setCategories] = useState([]);
@@ -59,6 +60,12 @@ const Header = () => {
                 Info
               </Nav.Link>
             </Nav>
+
+            {user && (
+              <Link role="button" to="/products/add" id="add-product-link" className={styles.link}>
+                Add product
+              </Link>
+            )}
 
             <Nav>
               {user ? (
