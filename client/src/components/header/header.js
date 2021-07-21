@@ -69,14 +69,18 @@ const Header = () => {
 
             <Nav>
               {user ? (
-                <Link to="/myprofile">My Profile</Link>
+                <Nav.Link to="/myprofile" style={{ color: 'teal' }}>
+                  My Profile
+                </Nav.Link>
               ) : (
                 <Nav.Link href="/signup" style={{ color: 'teal' }}>
                   Sign Up
                 </Nav.Link>
               )}
               {user ? (
-                <p onClick={handleLogout}>Sign Out</p>
+                <Nav.Link onClick={handleLogout} style={{ color: 'teal' }}>
+                  Sign Out
+                </Nav.Link>
               ) : (
                 <Nav.Link href="/signin" style={{ color: 'teal' }}>
                   Sign In
