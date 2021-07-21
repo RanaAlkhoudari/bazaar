@@ -1,22 +1,27 @@
 import axios from 'axios';
 import styles from './addProduct.css';
 import Uploader from '../uploader/uploader';
-import React, { useState, useEffect } from 'react';
+import { AuthContext } from '../../context/AuthContext';
 import { Multiselect } from 'multiselect-react-dropdown';
+import React, { useState, useEffect, useContext } from 'react';
 
 const AddProduct = () => {
+  const { user } = useContext(AuthContext);
+
   const [categories, setCategories] = useState([]);
   const [values, setValues] = useState({
     city: '',
-    title: '',
     price: 0,
+    title: '',
     condition: '',
+    user: user._id,
     categories: [],
     description: '',
   });
 
   useEffect(() => {
     fetchCategories();
+    document.getElementById('add-product-link').style.display = 'none';
   }, []);
 
   const fetchCategories = async () => {
@@ -31,7 +36,7 @@ const AddProduct = () => {
 
   const handleCityChange = (e) => setValues({ ...values, city: e.target.value });
   const handleTitleChange = (e) => setValues({ ...values, title: e.target.value });
-  const handlePriceChange = (e) => setValues({ ...values, price: Number(e.target.value) });
+  const handlePriceChange = (e) => setValues({ ...values, price: e.target.value });
   const handleConditionChange = (e) => setValues({ ...values, condition: e.target.value });
   const handleDescriptionChange = (e) => setValues({ ...values, description: e.target.value });
 
@@ -106,7 +111,7 @@ const AddProduct = () => {
               width: '18rem',
             },
             chips: { background: 'var(--color-main)' },
-            optionContainer: { background: '#666', color: 'white' },
+            optionContainer: { color: 'white', background: '#666666', borderRadius: '.5rem' },
           }}
         />
 
