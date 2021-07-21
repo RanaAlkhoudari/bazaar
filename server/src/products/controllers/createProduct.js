@@ -1,6 +1,6 @@
 const ProductModel = require('../productModel');
 
-function createProduct(req, res, next) {
+function createProduct(req, res) {
   const productBody = req.body;
   const { title, description, price, images, condition, categories, videos } = productBody;
 
