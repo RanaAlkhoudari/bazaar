@@ -1,6 +1,6 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_TEST);
 
-const createPayment = async (req, res) => {
+const checkout = async (req, res) => {
   const { amount, id } = req.body;
 
   try {
@@ -23,4 +23,4 @@ const createPayment = async (req, res) => {
   }
 };
 
-module.exports = createPayment;
+module.exports = checkout;

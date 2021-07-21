@@ -7,7 +7,7 @@ const userRouter = require('./users/userRouter');
 const productRouter = require('./products/productRouter');
 const categoryRouter = require('./categories/categoryRouter');
 const addressRouter = require('./addresses/addressRouter');
-const paymentRouter = require('./payment/paymentRouter');
+const ordersRouter = require('./orders/ordersRouter');
 
 const app = express();
 app.use(cors());
@@ -29,7 +29,7 @@ async function run() {
   app.use('/api/v1/products', productRouter);
   app.use('/api/v1/categories', categoryRouter);
   app.use('/api/v1/addresses', addressRouter);
-  app.use('/api/v1/payment', paymentRouter);
+  app.use('/api/v1/orders', ordersRouter);
 
   // handleErrors must be the last middleware
   app.use(handleErrors);

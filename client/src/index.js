@@ -13,6 +13,7 @@ import SignUp from './components/SignUp/SignUp';
 import SignIn from './components/SignIn/SignIn';
 import { AuthContextProvider } from './context/AuthContext';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import Checkout from './pages/checkout/checkout';
 
 document.addEventListener('DOMContentLoaded', () => {
   const el = document.getElementById('root');
@@ -28,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <Route path="/products/add" exact component={AddProduct} />
             <Route path="/:id" exact component={ProductDetailPage} />
             <Route path="/products/:keyword" exact component={Products} />
+            <Route path="/orders/checkout" exact component={Checkout} />
             <Route component={NotFoundPage} />
           </Switch>
         </Router>

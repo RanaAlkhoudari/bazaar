@@ -1,0 +1,6 @@
+.paymentBox {
+  width: 40%;
+  display: flex;
+  margin-inline: auto;
+  flex-direction: column;
+}
