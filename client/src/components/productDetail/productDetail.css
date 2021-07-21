@@ -1,16 +1,16 @@
 .container {
   padding: 0.5rem;
-  width: 20vw;
+  width: 40vw;
   margin: 2rem 3rem 0;
   border: 2px solid;
   border-radius: 0.5rem;
   border-color: var(--color-main);
   box-shadow: 3px 3px 7px gray;
-}
-.img {
-  width: 60%;
   border-radius: 0.5rem;
   box-shadow: 1px 1px 5px gray;
+}
+.img {
+  width: 30%;
 }
 .but {
   font-size: 1.25rem;
