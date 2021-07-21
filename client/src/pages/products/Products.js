@@ -32,11 +32,9 @@ const Products = () => {
     setProducts([]);
   }, [keyword]);
 
-  const productsByCategory = allProducts.filter((product) => {
-    if (product.title.includes(keyword)) {
-      return product;
-    }
-  });
+  const productsByCategory = allProducts.filter(
+    (product) => product.categories[0].name === keyword,
+  );
 
   return (
     <div className="container">

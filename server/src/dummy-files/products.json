@@ -9,7 +9,6 @@
     "condition": "new",
     "categories": ["60ed787b32db8b0c87019bbb"],
 
-
     "user": "60ec89b6c11d83d518e123c1",
     "videos": ["aaa.avi", "ggg.avi"]
   },
@@ -21,12 +20,10 @@
     "price": "54.89",
     "condition": "fairly used",
     "images": [
-
       "https://multimedia.cdn.bcc.nl/productimages/products/272456/PI_637076100082965091_zoom.jpg"
     ],
     "categories": ["60ed787b32db8b0c87019bbb"],
     "user": "60ec89b6c11d83d518e123c1",
-
 
     "videos": ["videos1.avi"]
   },
@@ -63,10 +60,9 @@
     "price": "30.00",
     "condition": "fairly used",
     "images": [
-
       "https://yams.secondhandapp.at/api/v1/shpock-production/images/5ceaff75734f6d1cffc0d7ab/?rule=w1200q75jpeg"
     ],
-    "categories": ["60ed787b32db8b0c87019bbb"],
+    "categories": ["60ed787b32db8b0c87019bbe"],
 
     "user": "60ec89b6c11d83d518e123c4",
     "videos": []
@@ -78,12 +74,11 @@
     "price": "9.00",
     "condition": "fairly used",
     "images": [
-
       "https://d2h1pu99sxkfvn.cloudfront.net/b0/18266616/708853542_73718d28042049f3b4b3876d3c51c510/P0.jpg"
     ],
     "categories": ["60ed787b32db8b0c87019bbf"],
 
-    "user": "60ec89b6c11d83d518e123c4",
+    "user": "60ec89b6c11d83d518e123c0",
     "videos": ["videos1.avi", "videos2.avi", "videos3.avi", "videos4.avi"]
   },
   {
@@ -93,7 +88,6 @@
     "price": "19.00",
     "condition": "new",
     "images": [
-
       "https://media.tedbaker.com/t_xld_pdp_primary,q_auto:best,f_auto/Product/Kids/254546_YELLOW_1"
     ],
     "categories": ["60ed787b32db8b0c87019bbf"],
@@ -121,7 +115,6 @@
     "price": "20.00",
     "condition": "fairly used",
     "images": [
-
       "https://media.karousell.com/media/photos/products/2020/6/20/nike_air_force_1_low_used_1592623371_676d84f5"
     ],
     "categories": ["60ed787b32db8b0c87019bbf"],
