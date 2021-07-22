@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import { AuthContext } from '../../context/AuthContext';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Search from '../search/search';
 import axios from 'axios';
 import { Route } from 'react-router-dom';
-import styles from './header.css';
 
 const Header = () => {
   const [categories, setCategories] = useState([]);
   const { user } = useContext(AuthContext);
+  const history = useHistory();
 
   useEffect(() => {
     fetchCategories();
@@ -28,12 +28,21 @@ const Header = () => {
     window.location.href = `/`;
   };
 
+  const handleDropdownItem = (e) => {
+    const keyword = e.target.innerText;
+    history.replace(`/products/${keyword}`, `/${keyword}`);
+  };
+
   return (
     <>
       <Navbar collapseOnSelect expand="lg" variant="light" bg="light">
         <Container>
-          <Navbar.Brand href="/" style={{ width: '120px' }}>
-            <img src="https://i.ibb.co/VB0vCY6/bazaar1.png" alt="bazaar" />
+          <Navbar.Brand href="/">
+            <img
+              src="https://i.ibb.co/VB0vCY6/bazaar1.png"
+              style={{ width: '120px' }}
+              alt="bazaar"
+            />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
@@ -46,7 +55,7 @@ const Header = () => {
                   return (
                     <div key={category._id}>
                       <NavDropdown.Item
-                        href={`/categories/${category._id}`}
+                        onClick={(e) => handleDropdownItem(e)}
                         style={{ color: 'teal' }}
                       >
                         {' '}
@@ -62,21 +71,25 @@ const Header = () => {
             </Nav>
 
             {user && (
-              <Link role="button" to="/products/add" id="add-product-link" className={styles.link}>
+              <Nav.Link href="/products/add" id="add-product-link" style={{ color: 'teal' }}>
                 Add product
-              </Link>
+              </Nav.Link>
             )}
 
             <Nav>
               {user ? (
-                <Link to="/myprofile">My Profile</Link>
+                <Nav.Link href="/myprofile" style={{ color: 'teal' }}>
+                  My Profile
+                </Nav.Link>
               ) : (
                 <Nav.Link href="/signup" style={{ color: 'teal' }}>
                   Sign Up
                 </Nav.Link>
               )}
               {user ? (
-                <p onClick={handleLogout}>Sign Out</p>
+                <Nav.Link onClick={handleLogout} style={{ color: 'teal' }}>
+                  Sign Out
+                </Nav.Link>
               ) : (
                 <Nav.Link href="/signin" style={{ color: 'teal' }}>
                   Sign In

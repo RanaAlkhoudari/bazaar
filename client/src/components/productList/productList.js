@@ -1,24 +1,24 @@
 import React from 'react';
+import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import productList from '../productList/productList.css';
 
 function ProductList(props) {
   const sortedProducts = props.products;
   return (
     <>
-      <div className={productList.container}>
+      <div className="d-flex flex-wrap justify-content-center">
         {sortedProducts.length !== 0 &&
           sortedProducts.map((product) => {
             return (
-              <div className={productList.item} key={product._id}>
-                <Link to={`/${product._id}`}>
-                  <div className={productList.image}>
-                    <img src={product.images} alt="React Image"></img>
-                  </div>
+              <Card className="m-3" style={{ width: '16rem' }} key={product._id}>
+                <Link to={`/${product._id}`} style={{ textDecoration: 'none' }}>
+                  <Card.Img variant="top" src={product.images} style={{ height: '300px' }} />
+                  <Card.Body style={{ color: 'teal' }}>
+                    <Card.Title>{product.title}</Card.Title>
+                    <Card.Text>{product.price} €</Card.Text>
+                  </Card.Body>
                 </Link>
-                <p>{product.title}</p>
-                <p>{product.price} €</p>
-              </div>
+              </Card>
             );
           })}
       </div>

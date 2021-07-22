@@ -7,6 +7,10 @@
     "images": ["https://images-na.ssl-images-amazon.com/images/I/71ScDJ8rlrL._SL1500_.jpg"],
     "condition": "new",
     "categories": ["60ed787b32db8b0c87019bbb"],
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
     "user": "60ec89b6c11d83d518e123c1",
     "videos": ["aaa.avi", "ggg.avi"]
   },
@@ -60,7 +64,7 @@
     "images": [
       "https://yams.secondhandapp.at/api/v1/shpock-production/images/5ceaff75734f6d1cffc0d7ab/?rule=w1200q75jpeg"
     ],
-    "categories": ["60ed787b32db8b0c87019bbb"],
+    "categories": ["60ed787b32db8b0c87019bbe"],
 
     "user": "60ec89b6c11d83d518e123c4",
     "videos": []
@@ -76,7 +80,7 @@
     ],
     "categories": ["60ed787b32db8b0c87019bbf"],
 
-    "user": "60ec89b6c11d83d518e123c4",
+    "user": "60ec89b6c11d83d518e123c0",
     "videos": ["videos1.avi", "videos2.avi", "videos3.avi", "videos4.avi"]
   },
   {
