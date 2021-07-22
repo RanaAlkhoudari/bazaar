@@ -163,25 +163,10 @@
     "orders": [],
     "address": "60ed753f40846e186e5d7beb",
     "favorites": [],
-    "products": []
-  },
-  {
-    "_id": "60ec89b6c11d83d518e123c9",
-    "first_name": "Burak",
-    "last_name": "Kreijkes",
-    "email": "burak@mail.com",
-    "phone": "06-12521324",
-    "password": "12356234",
-    "role": "user",
-    "active": "false",
-    "avatar": "dkk8.jpg",
-    "orders": [],
-    "address": "60ec89b6c11d83d518e123c1",
-    "favorites": [],
     "products": [
-      "60f82f14a294392cd1484f6c",
-      "60f82f14a294392cd1484f6d",
-      "60f82f14a294392cd1484f6e"
+      "60ec9b000eb2b755602b5076",
+      "60f7ebc5a294392cd1484f6a",
+      "60f7ebc5a294392cd1484f6b"
     ]
   }
 ]
