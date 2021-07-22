@@ -2,24 +2,27 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Profile.css';
 
-const Profile = ({ firstName, lastName, city, phoneNumber, email, image }) => {
+const Profile = ({ firstName, lastName, city, country, phoneNumber, email, image }) => {
   return (
-    <div>
-      <div className={styles.profile-header}>
-        <h1>My profile data</h1>
+    <div className={styles.container}>
+      <div className={styles.header}>
+        <h4 className={styles.title}>My profile data</h4>
         <Link to={`/${firstName}/edit`}>
-          <button className={styles.profile-edit-btn}>edit profile</button>
+          <button className={styles.btn}>edit profile</button>
         </Link>
       </div>
-      <div className={styles.profile-info}>
-        <img src={image} alt="profile pic" />
-        <ul>
+      <div className={styles.info}>
+        <img className={styles.img} src={image} alt="profile pic" />
+        <ul className={styles.list}>
           <li>
-            {firstName} {lastName}
+            {' '}
+            Name : {firstName} {lastName}
           </li>
-          <li>{city}</li>
-          <li>{phoneNumber}</li>
-          <li>{email}</li>
+          <li>
+            Location : {city} - {country}
+          </li>
+          <li> Phone Number : {phoneNumber}</li>
+          <li>Email-address : {email}</li>
         </ul>
       </div>
     </div>
