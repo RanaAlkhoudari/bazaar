@@ -5,7 +5,7 @@ import { Link, useHistory } from 'react-router-dom';
 import Search from '../search/search';
 import axios from 'axios';
 import { Route } from 'react-router-dom';
-import styles from './header.css';
+// import styles from './header.css';
 
 const Header = () => {
   const [categories, setCategories] = useState([]);
@@ -38,8 +38,14 @@ const Header = () => {
     <>
       <Navbar collapseOnSelect expand="lg" variant="light" bg="light">
         <Container>
-          <Navbar.Brand href="/" style={{ width: '140px' }}>
-            <img src="https://i.ibb.co/VB0vCY6/bazaar1.png" alt="bazaar" />
+
+          <Navbar.Brand href="/">
+            <img
+              src="https://i.ibb.co/VB0vCY6/bazaar1.png"
+              style={{ width: '120px' }}
+              alt="bazaar"
+            />
+
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
@@ -68,14 +74,14 @@ const Header = () => {
             </Nav>
 
             {user && (
-              <Link role="button" to="/products/add" id="add-product-link" className={styles.link}>
+              <Nav.Link href="/products/add" id="add-product-link" style={{ color: 'teal' }}>
                 Add product
-              </Link>
+              </Nav.Link>
             )}
 
             <Nav>
               {user ? (
-                <Nav.Link to="/myprofile" style={{ color: 'teal' }}>
+                <Nav.Link href="/myprofile" style={{ color: 'teal' }}>
                   My Profile
                 </Nav.Link>
               ) : (
