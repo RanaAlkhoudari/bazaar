@@ -49,9 +49,7 @@ const Products = () => {
         {products.length === 0 && productsByCategory.length === 0 && (
           <h1>This Category is empty chose another one please </h1>
         )}
-
         {productsByCategory.length !== 0 && <ProductList products={productsByCategory} />}
-
         {products.length !== 0 && <ProductList products={products} />}
       </div>
     </div>

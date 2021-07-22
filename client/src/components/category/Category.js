@@ -5,6 +5,7 @@ import axios from 'axios';
 const Category = () => {
   const [categories, setCategories] = useState([]);
   const [categoryName, setCategoryName] = useState('');
+
   useEffect(() => {
     fetchCategories();
   }, []);
