@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 
 function ProductDetail({ product }) {
   const history = useHistory();
-  const handleClick = () =>
+  const goToCheckout = () =>
     history.push({
       pathname: '/orders/checkout',
       state: product,
@@ -34,7 +34,7 @@ function ProductDetail({ product }) {
                   <Button
                     className="w-100"
                     style={{ backgroundColor: 'var(--color-main)' }}
-                    onClick={handleClick}
+                    onClick={goToCheckout}
                   >
                     Buy
                   </Button>

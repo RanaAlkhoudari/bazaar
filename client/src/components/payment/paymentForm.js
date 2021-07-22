@@ -1,23 +1,24 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
+import styles from './payment.css';
 
 const CARD_OPTIONS = {
   iconStyle: 'solid',
 
   style: {
     base: {
-      color: 'teal',
+      color: '#32325d',
       fontSize: '1.2rem',
-      iconColor: '#c4f0ff',
+      iconColor: '#32325d',
       fontFamily: 'Arial',
       fontSmoothing: 'antialiased',
-      '::placeholder': { color: '#87bbfd' },
+      '::placeholder': { color: '#cccccc' },
       ':-webkit-autofill': { color: '#fce883' },
     },
     invalid: {
-      color: '#ffc7ee',
-      iconColor: '#ffc7ee',
+      color: '#fa755a',
+      iconColor: '#fa755a',
     },
   },
 };
@@ -58,13 +59,13 @@ const PaymentForm = () => {
   return (
     <>
       {!success ? (
-        <form onSubmit={handleSubmit}>
+        <form className={styles.checkout_form} onSubmit={handleSubmit}>
           <fieldset className="FormGroup">
             <div className="FormRow">
               <CardElement options={CARD_OPTIONS} />
             </div>
           </fieldset>
-          <button>Pay</button>
+          <button className={styles.checkout_button}>Pay now</button>
         </form>
       ) : (
         <div>
