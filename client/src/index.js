@@ -5,7 +5,7 @@ import Homepage from './pages/homepage/Homepage';
 import Header from './components/header/header';
 import NotFoundPage from './pages/notFoundPage';
 import AddProduct from './components/addProduct/addProduct';
-import AccountPage from './pages/account/account';
+import myAccountPage from './pages/myAccountPage/myAccountPage';
 import './styles/variables.css';
 import './styles/normalize.css';
 import ProductDetailPage from './pages/productDetailPage/productDetailPage';
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <Route path="/products/add" exact component={AddProduct} />
             <Route path="/:id" exact component={ProductDetailPage} />
             <Route path="/products/:keyword" exact component={Products} />
-            <Route path="/account/:id" exact component={AccountPage} />
+            <Route path="/account/:id" exact component={myAccountPage} />
             <Route component={NotFoundPage} />
           </Switch>
         </Router>

@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import Profile from '../../components/profile/Profile';
+import Profile from '../../components/myAccount/Profile';
 import { AuthContext } from '../../context/AuthContext';
-import styles from './account.css';
+import styles from './myAccountPage.css';
 
-const AccountPage = () => {
+const myAccountPage = () => {
   const [address, setAddress] = useState({});
 
   const { user } = useContext(AuthContext);
@@ -49,4 +49,4 @@ const AccountPage = () => {
   );
 };
 
-export default AccountPage;
+export default myAccountPage;
