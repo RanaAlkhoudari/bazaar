@@ -1,19 +1,38 @@
 import React from 'react';
-import productDetail from '../productDetail/productDetail.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
+import { Card, Button, Row, Col } from 'react-bootstrap';
+import { AiFillStar } from 'react-icons/ai';
 
 function ProductDetail({ product }) {
   return (
-    <div className={productDetail.container}>
-      <div key={product._id}>
-        <img className={productDetail.img} src={product.images} alt={product.title} />
-        <p>{product.title}</p>
-        <p>{product.description}</p>
-        <p>€{product.price}</p>
-        <button className={productDetail.but}>Buy</button>
-        <FontAwesomeIcon className={productDetail.icon} icon={farStar} />
-      </div>
+    <div key={product._id}>
+      <Card className="w-50" style={{ borderColor: 'var(--color-main)' }}>
+        <Card.Body>
+          <Row>
+            <Col>
+              <Card.Img src={product.images} alt={product.title} />
+            </Col>
+            <Col>
+              <Card.Title>{product.title}</Card.Title>
+              <Card.Text>{product.price}</Card.Text>
+              <Card.Text style={{ textAlign: 'left' }}>{product.description}</Card.Text>
+              <Row>
+                {' '}
+                <Col>
+                  <Button className="w-100" style={{ backgroundColor: 'var(--color-main)' }}>
+                    <AiFillStar style={{ color: 'yellow' }} />
+                  </Button>
+                </Col>
+                <Col>
+                  {' '}
+                  <Button className="w-100" style={{ backgroundColor: 'var(--color-main)' }}>
+                    Buy
+                  </Button>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+        </Card.Body>
+      </Card>
     </div>
   );
 }
