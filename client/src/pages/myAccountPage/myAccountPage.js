@@ -1,31 +1,41 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext';
 import Orders from '../../components/myAccount/orders';
 import Favorites from '../../components/myAccount/favorites';
 import Notifications from '../../components/myAccount/notifications';
 import Profile from '../../components/myAccount/profile';
-import Tabs from '../../components/myAccount/Tabs';
+import { Tabs, Tab } from 'react-bootstrap-tabs';
+import { Container, Button } from 'react-bootstrap';
 
-const tabsData = [
-  {
-    heading: 'orders',
-    body: <Orders />,
-  },
-  {
-    heading: 'notifications',
-    body: <Notifications />,
-  },
-  {
-    heading: 'favorites',
-    body: <Favorites />,
-  },
-];
 function myAccountPage() {
+  const { user } = useContext(AuthContext);
   return (
     <>
-      <h1>My Account</h1>
-      <Tabs tabsData={tabsData} />
-      <Profile />
+      {user ? (
+        <Container>
+          <h1>My Account</h1>
+          <Tabs
+            headerStyle={{ color: '#adadad', cursor: 'default' }}
+            activeHeaderStyle={{ fontWeight: 'bold', color: 'black' }}
+            contentStyle={{}}
+            selected="orders"
+          >
+            <Tab label="orders">
+              <Orders />
+            </Tab>
+            <Tab label="notifications">
+              <Notifications />
+            </Tab>
+            <Tab label="favorites">
+              <Favorites />
+            </Tab>
+          </Tabs>
+          <Profile />
+        </Container>
+      ) : (
+        <div>You are logged out. Please log in.</div>
+      )}
     </>
   );
 }

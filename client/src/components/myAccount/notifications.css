@@ -1,7 +1,6 @@
 .cont {
-  background-color: #dbdbdb;
-  width: 70%;
   padding-bottom: 1em;
+  padding-top: 1em;
 }
 
 img {
@@ -12,9 +11,8 @@ img {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: white;
+  background-color: #f8f9fa;
   margin: 1em;
-
   height: 110px;
 }
 
@@ -22,7 +20,8 @@ img {
   padding: 0 1.5em 0 1.5em;
 }
 .message {
-  border: 1px solid black;
+  border: 1px solid #a1a1a1;
+  background-color: white;
   padding: 1em;
   flex: 3;
 }

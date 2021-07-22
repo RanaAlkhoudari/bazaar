@@ -1,5 +1,6 @@
 import React from 'react';
 import ProductList from '../productList/productList';
+import favoritesStyle from './favorites.css';
 
 const Favorites = () => {
   const favoriteProducts = [
@@ -41,8 +42,8 @@ const Favorites = () => {
   ];
 
   return (
-    <div>
-      <h2>List of favorites</h2>
+    <div className={favoritesStyle.cont}>
+      <h2>Favorites</h2>
       <ProductList products={favoriteProducts} />
     </div>
   );

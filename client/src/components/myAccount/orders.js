@@ -38,7 +38,7 @@ const Orders = () => {
   });
   return (
     <div className={ordersStyle.cont}>
-      <h2>List of orders</h2>
+      <h2>Orders</h2>
       {ordersItems}
     </div>
   );

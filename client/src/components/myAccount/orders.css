@@ -1,7 +1,6 @@
 .cont {
-  background-color: #dbdbdb;
-  width: 70%;
   padding-bottom: 1em;
+  padding-top: 1em;
 }
 
 img {
@@ -10,11 +9,9 @@ img {
 }
 .box {
   display: flex;
-
   align-items: center;
-  background-color: white;
+  background-color: #f8f9fa;
   margin: 1em;
-
   height: 110px;
 }
 

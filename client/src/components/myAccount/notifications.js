@@ -60,7 +60,7 @@ const Notifications = () => {
   });
   return (
     <div className={notificationsStyle.cont}>
-      <h2>List of notifications</h2>
+      <h2>Notifications</h2>
       {notificationsItems}
     </div>
   );
