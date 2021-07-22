@@ -38,14 +38,12 @@ const Header = () => {
     <>
       <Navbar collapseOnSelect expand="lg" variant="light" bg="light">
         <Container>
-
           <Navbar.Brand href="/">
             <img
               src="https://i.ibb.co/VB0vCY6/bazaar1.png"
               style={{ width: '120px' }}
               alt="bazaar"
             />
-
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
@@ -81,7 +79,7 @@ const Header = () => {
 
             <Nav>
               {user ? (
-                <Nav.Link href="/myprofile" style={{ color: 'teal' }}>
+                <Nav.Link href={`/account/${user.address}`} style={{ color: 'teal' }}>
                   My Profile
                 </Nav.Link>
               ) : (

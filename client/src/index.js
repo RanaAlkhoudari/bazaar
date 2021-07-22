@@ -5,12 +5,11 @@ import Homepage from './pages/homepage/Homepage';
 import Header from './components/header/header';
 import NotFoundPage from './pages/notFoundPage';
 import AddProduct from './components/addProduct/addProduct';
+import myAccountPage from './pages/myAccountPage/myAccountPage';
 import './styles/variables.css';
 import './styles/normalize.css';
 import ProductDetailPage from './pages/productDetailPage/productDetailPage';
 import Products from './pages/products/Products';
-
-import myAccountPage from './pages/myAccountPage/myAccountPage';
 import SignUp from './components/SignUp/SignUp';
 import SignIn from './components/SignIn/SignIn';
 import { AuthContextProvider } from './context/AuthContext';
@@ -30,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <Route path="/products/add" exact component={AddProduct} />
             <Route path="/:id" exact component={ProductDetailPage} />
             <Route path="/products/:keyword" exact component={Products} />
-            <Route path="/myAccount/:id" component={myAccountPage} />
+            <Route path="/account/:id" exact component={myAccountPage} />
             <Route component={NotFoundPage} />
           </Switch>
         </Router>
