@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import { AuthContext } from '../../context/AuthContext';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Search from '../search/search';
 import axios from 'axios';
 import { Route } from 'react-router-dom';
-// import styles from './header.css';
 
 const Header = () => {
   const [categories, setCategories] = useState([]);
@@ -38,14 +37,12 @@ const Header = () => {
     <>
       <Navbar collapseOnSelect expand="lg" variant="light" bg="light">
         <Container>
-
           <Navbar.Brand href="/">
             <img
               src="https://i.ibb.co/VB0vCY6/bazaar1.png"
               style={{ width: '120px' }}
               alt="bazaar"
             />
-
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
