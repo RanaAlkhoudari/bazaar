@@ -2,7 +2,9 @@ import React from 'react';
 import styles from './checkout.css';
 import Payment from '../../components/payment/payment';
 
-const Checkout = () => {
+const Checkout = (prop) => {
+  const product = prop.location.state;
+  console.log('product', product);
   return (
     <div className={styles.checkoutWrapper}>
       <div className={styles.leftContainer}>
