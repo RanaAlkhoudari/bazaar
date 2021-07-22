@@ -1,15 +1,12 @@
 [
   {
     "_id": "60ec9b000eb2b755602b5071",
-
     "title": "Iron",
     "description": "Crompton Aristo 1200-Watt Steam Iron with Anti Drip Technology and Double Layer Non-Stick Coating(White/Blue)",
     "price": "29.99",
     "images": ["https://images-na.ssl-images-amazon.com/images/I/71ScDJ8rlrL._SL1500_.jpg"],
     "condition": "new",
     "categories": ["60ed787b32db8b0c87019bbb"],
-
-
     "user": "60ec89b6c11d83d518e123c1",
     "videos": ["aaa.avi", "ggg.avi"]
   },
@@ -21,12 +18,10 @@
     "price": "54.89",
     "condition": "fairly used",
     "images": [
-
       "https://multimedia.cdn.bcc.nl/productimages/products/272456/PI_637076100082965091_zoom.jpg"
     ],
     "categories": ["60ed787b32db8b0c87019bbb"],
     "user": "60ec89b6c11d83d518e123c1",
-
 
     "videos": ["videos1.avi"]
   },
@@ -63,7 +58,6 @@
     "price": "30.00",
     "condition": "fairly used",
     "images": [
-
       "https://yams.secondhandapp.at/api/v1/shpock-production/images/5ceaff75734f6d1cffc0d7ab/?rule=w1200q75jpeg"
     ],
     "categories": ["60ed787b32db8b0c87019bbb"],
@@ -78,7 +72,6 @@
     "price": "9.00",
     "condition": "fairly used",
     "images": [
-
       "https://d2h1pu99sxkfvn.cloudfront.net/b0/18266616/708853542_73718d28042049f3b4b3876d3c51c510/P0.jpg"
     ],
     "categories": ["60ed787b32db8b0c87019bbf"],
@@ -93,7 +86,6 @@
     "price": "19.00",
     "condition": "new",
     "images": [
-
       "https://media.tedbaker.com/t_xld_pdp_primary,q_auto:best,f_auto/Product/Kids/254546_YELLOW_1"
     ],
     "categories": ["60ed787b32db8b0c87019bbf"],
@@ -121,7 +113,6 @@
     "price": "20.00",
     "condition": "fairly used",
     "images": [
-
       "https://media.karousell.com/media/photos/products/2020/6/20/nike_air_force_1_low_used_1592623371_676d84f5"
     ],
     "categories": ["60ed787b32db8b0c87019bbf"],
@@ -162,7 +153,9 @@
     "price": "80.00",
     "condition": "fairly used",
 
-    "images": ["https://s3.dutchcrafters.com/product-images/pid_46477-Amish-Baytown-Dining-Room-Chair--150.jpg"],
+    "images": [
+      "https://s3.dutchcrafters.com/product-images/pid_46477-Amish-Baytown-Dining-Room-Chair--150.jpg"
+    ],
     "categories": ["60ed787b32db8b0c87019bba"],
 
     "user": "60ec89b6c11d83d518e123c5",
@@ -173,7 +166,10 @@
     "title": "Shoe",
     "description": "Crompton Aristo 1200-Watt Steam Iron with Anti Drip Technology and Double Layer Non-Stick Coating(White/Blue)",
     "price": "67.99",
-    "images": ["https://m.media-amazon.com/images/I/41Leu3gBUFL.jpg","https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/how-to-buy-running-shoes-1611448820.jpg"],
+    "images": [
+      "https://m.media-amazon.com/images/I/41Leu3gBUFL.jpg",
+      "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/how-to-buy-running-shoes-1611448820.jpg"
+    ],
     "condition": "fairly used",
     "categories": ["60ed787b32db8b0c87019bbf"],
     "user": "60ec89b6c11d83d518e123c0",
@@ -184,7 +180,9 @@
     "title": "Tafel",
     "description": "Double Layer Non-Stick Coating(White/Blue)",
     "price": "19.99",
-    "images": ["https://www.tafels99.nl/media/catalog/product/cache/20/image/9df78eab33525d08d6e5fb8d27136e95/i/n/industriele-tafel-westport-2.jpg"],
+    "images": [
+      "https://www.tafels99.nl/media/catalog/product/cache/20/image/9df78eab33525d08d6e5fb8d27136e95/i/n/industriele-tafel-westport-2.jpg"
+    ],
     "condition": "fairly used",
     "categories": ["60ed787b32db8b0c87019bba"],
     "user": "60ec89b6c11d83d518e123c0",
@@ -195,11 +193,12 @@
     "title": "Glass",
     "description": "Anti Drip Technology and Double Layer Non-Stick Coating(White/Blue)",
     "price": "29.99",
-    "images": ["https://www.mepal.com/en/604/0/0/1/ffffff00/c7f95583/a70ff74c34db6dbe117f5e90358e361e759ba87ee46e06b2ef7573188b91c2cd/glass-wave-200-ml-transparent.jpg"],
+    "images": [
+      "https://www.mepal.com/en/604/0/0/1/ffffff00/c7f95583/a70ff74c34db6dbe117f5e90358e361e759ba87ee46e06b2ef7573188b91c2cd/glass-wave-200-ml-transparent.jpg"
+    ],
     "condition": "new",
     "categories": ["60ed787b32db8b0c87019bba"],
     "user": "60ec89b6c11d83d518e123c0",
     "videos": ["aaa.avi", "ggg.avi"]
   }
-  
 ]
