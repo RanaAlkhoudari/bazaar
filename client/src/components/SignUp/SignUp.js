@@ -45,7 +45,7 @@ const SignUp = () => {
         className="d-flex align-items-center justify-content-center "
         style={{ minHeight: '75vh' }}
       >
-        <div>
+        <div className="w-200">
           <Card style={{ width: '22rem' }}>
             <Card.Body>
               <h2 className="text-center mb-4">Sign Up</h2>

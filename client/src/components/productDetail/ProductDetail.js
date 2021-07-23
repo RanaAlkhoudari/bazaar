@@ -5,7 +5,7 @@ import { AiFillStar } from 'react-icons/ai';
 function ProductDetail({ product }) {
   return (
     <div key={product._id}>
-      <Card className="w-50" style={{ borderColor: 'var(--color-main)' }}>
+      <Card className="w-50 m-3 text-center" style={{ borderColor: 'var(--color-main)' }}>
         <Card.Body>
           <Row>
             <Col>
@@ -13,7 +13,7 @@ function ProductDetail({ product }) {
             </Col>
             <Col>
               <Card.Title>{product.title}</Card.Title>
-              <Card.Text>{product.price}</Card.Text>
+              <Card.Text>{product.price} €</Card.Text>
               <Card.Text style={{ textAlign: 'left' }}>{product.description}</Card.Text>
               <Row>
                 {' '}

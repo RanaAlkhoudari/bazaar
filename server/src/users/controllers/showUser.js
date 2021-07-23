@@ -3,6 +3,7 @@ const User = require('../userModel');
 async function showUser(req, res) {
   try {
     const user = await User.findById(req.params.id)
+      .populate('orders')
       .populate('products')
       .populate('favorites')
       .populate('address');
