@@ -6,9 +6,8 @@ async function createProduct(req, res) {
     const ids = [];
     const { title, description, price, images, condition, categories, videos } = req.body;
 
-    await categories.forEach((category) =>
-      CategoryModel.find({ name: category }, (err, result) => ids.push(result[0].id)),
-    );
+    for await (const category of categories)
+      await CategoryModel.find({ name: category }, (err, result) => ids.push(result[0].id));
 
     const newProduct = new ProductModel({
       title,
@@ -21,11 +20,14 @@ async function createProduct(req, res) {
     });
 
     const saved = await newProduct.save();
-    if (!saved) return res.status(400).json('Unable to save product please try later');
+    if (!saved)
+      return res
+        .status(400)
+        .json({ success: false, message: 'Unable to save product please try later!' });
 
-    res.status(201).json('Product created successfully');
+    res.status(201).json({ success: true, id: saved.id });
   } catch (error) {
-    res.status(500).json(`An error occurred: ${error} `);
+    res.status(500).json({ success: false, message: `An error occurred: ${error}` });
   }
 }
 
