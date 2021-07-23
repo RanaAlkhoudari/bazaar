@@ -4,7 +4,7 @@ import { Container, Col, Row } from 'react-bootstrap';
 
 import axios from 'axios';
 import ProductList from '../../components/productList/productList';
-// import Filters from '../../components/filter/filters';
+import Filters from '../../components/filter/filters';
 import Category from '../../components/Category/Category';
 import './Products.css';
 
@@ -39,30 +39,33 @@ const Products = () => {
   );
 
   return (
-    <Container>
-      <Row>
-        <Col xs={12} md={4} lg={3}>
-          <div>
-            <Category />
-          </div>
-        </Col>
-        <Col xs={12} md={8} lg={9}>
-          <div>
-            {products.length === 0 && productsByCategory.length === 0 && (
-              <h1
-                style={{
-                  marginTop: '100px',
-                }}
-              >
-                This Category is empty chose another one please{' '}
-              </h1>
-            )}
-            {productsByCategory.length !== 0 && <ProductList products={productsByCategory} />}
-            {products.length !== 0 && <ProductList products={products} />}
-          </div>
-        </Col>
-      </Row>
-    </Container>
+    <div>
+      <Filters />
+      <Container>
+        <Row>
+          <Col xs={12} md={4} lg={3}>
+            <div>
+              <Category />
+            </div>
+          </Col>
+          <Col xs={12} md={8} lg={9}>
+            <div>
+              {products.length === 0 && productsByCategory.length === 0 && (
+                <h1
+                  style={{
+                    marginTop: '100px',
+                  }}
+                >
+                  This Category is empty chose another one please{' '}
+                </h1>
+              )}
+              {productsByCategory.length !== 0 && <ProductList products={productsByCategory} />}
+              {products.length !== 0 && <ProductList products={products} />}
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   );
 };
 

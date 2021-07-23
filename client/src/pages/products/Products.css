@@ -1,4 +1,4 @@
-.container {
+/* .container {
   display: grid;
   grid-template-columns: 1.1fr 1fr 1fr;
   grid-template-rows: 0.8fr 0.9fr 0.8fr 1fr 1fr;
@@ -18,4 +18,4 @@
 
 .category { grid-area: category; }
 
-.products { grid-area: products; }
+.products { grid-area: products; } */

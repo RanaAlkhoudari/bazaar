@@ -26,13 +26,7 @@ const Category = () => {
 
   return (
     <>
-      <h3
-        style={{
-          textAlign: 'center',
-        }}
-      >
-        CATEGORIES
-      </h3>
+      <h3 className="text-center">CATEGORIES</h3>
       <div
         style={{
           border: '1px solid teal',
@@ -41,13 +35,7 @@ const Category = () => {
         {categories.length !== 0 &&
           categories.map((category) => {
             return (
-              <div
-                key={category._id}
-                style={{
-                  padding: '10px',
-                  textAlign: 'center',
-                }}
-              >
+              <div key={category._id} className=" p-3 text-center">
                 <Link to={`${category.name}`}>
                   <Button
                     onClick={() => handleCategory(category)}
