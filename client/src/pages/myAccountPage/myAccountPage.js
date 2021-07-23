@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Profile from '../../components/myAccount/Profile';
 import { AuthContext } from '../../context/AuthContext';
@@ -13,19 +13,20 @@ import styles from './myAccountPage.css';
 const myAccountPage = () => {
   const [address, setAddress] = useState({});
   const { user } = useContext(AuthContext);
-  const { id } = useParams();
+
   useEffect(() => {
     fetchData();
-  }, [id]);
+  }, []);
 
   async function fetchData() {
     try {
-      const response = await axios.get(`http://localhost:3000/api/v1/addresses/${id}`);
+      const response = await axios.get(`http://localhost:3000/api/v1/addresses/${user.address}`);
       setAddress(response.data);
     } catch (error) {
       console.log(error);
     }
   }
+
   return (
     <>
       {user ? (
@@ -47,15 +48,31 @@ const myAccountPage = () => {
               <Favorites />
             </Tab>
           </Tabs>
-          <hr />
+          <div className={styles.middle}>
+            <Link to={`/account/ads`}>
+              <Button className="w-50" style={{ background: 'var(--color-main)' }}>
+                My Ads
+              </Button>
+            </Link>
+            <Link to={`/account/new-ad`}>
+              <Button className="w-50" style={{ background: 'var(--color-main)' }}>
+                add the new ad
+              </Button>
+            </Link>
+          </div>
+
           <Profile
             firstName={user.first_name}
             lastName={user.last_name}
-            city={address.city}
-            country={address.country}
+            city={address.city ? address.city : ''}
+            country={address.country ? address.country : ''}
             phoneNumber={user.phone}
             email={user.email}
             image={user.avatar}
+            street_name={address.street_name ? address.street_name : ''}
+            building_number={address.building_number ? address.building_number : ''}
+            extension={address.extension ? address.extension : ''}
+            post_code={address.post_code ? address.post_code : ''}
           />
         </Container>
       ) : (

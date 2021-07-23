@@ -26,10 +26,11 @@ document.addEventListener('DOMContentLoaded', () => {
             <Route path="/" exact component={Homepage} />
             <Route exact path="/signin" component={SignIn} />
             <Route exact path="/signup" component={SignUp} />
+            <Route path="/account" exact component={myAccountPage} />
             <Route path="/products/add" exact component={AddProduct} />
             <Route path="/:id" exact component={ProductDetailPage} />
             <Route path="/products/:keyword" exact component={Products} />
-            <Route path="/account/:id" exact component={myAccountPage} />
+
             <Route component={NotFoundPage} />
           </Switch>
         </Router>

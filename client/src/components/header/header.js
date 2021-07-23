@@ -79,8 +79,8 @@ const Header = () => {
 
             <Nav>
               {user ? (
-                <Nav.Link href={`/account/${user.address}`} style={{ color: 'teal' }}>
-                  My Profile
+                <Nav.Link href={`/account`} style={{ color: 'teal' }}>
+                  My Account
                 </Nav.Link>
               ) : (
                 <Nav.Link href="/signup" style={{ color: 'teal' }}>
