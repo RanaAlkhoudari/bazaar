@@ -16,24 +16,20 @@
     "name": "Entertainment"
   },
   {
-    "_id": "60ed787b32db8b0c87019bbd",
-    "name": "Garden and outdoors"
-  },
-  {
     "_id": "60ed787b32db8b0c87019bbc",
     "name": "Hobbies"
   },
   {
     "_id": "60ed787b32db8b0c87019bba",
-    "name": "Home goods"
+    "name": "DIY"
   },
   {
     "_id": "60ed787b32db8b0c87019bb9",
-    "name": "Musical instruments"
+    "name": "Bicycles & mopeds"
   },
   {
     "_id": "60ed787b32db8b0c87019bb8",
-    "name": "Office supplies"
+    "name": "Telecommunication"
   },
   {
     "_id": "60ed787b32db8b0c87019bb7",
@@ -41,7 +37,7 @@
   },
   {
     "_id": "60ed787b32db8b0c87019bb6",
-    "name": "Sporting goods"
+    "name": "Sports & fitness"
   },
   {
     "_id": "60ed787b32db8b0c87019bb5",
