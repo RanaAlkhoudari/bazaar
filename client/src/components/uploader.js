@@ -1,6 +1,6 @@
 import axios from 'axios';
-import styles from './uploader.css';
 import React, { useState } from 'react';
+import { Button } from 'react-bootstrap';
 
 const Uploader = ({ data }) => {
   const [selectedFiles, setSelectedFiles] = useState(null);
@@ -43,21 +43,23 @@ const Uploader = ({ data }) => {
   };
 
   return (
-    <div className={styles.uploaderContainer}>
+    <div>
       <input
         required
         multiple
         type="file"
+        className="mt-2 mb-2 "
         accept="image/*, video/*" //?? size limit
-        className={styles.uploadInput}
         onChange={(e) => setSelectedFiles(e.target.files)}
       />
-      <input
+      <Button
         type="submit"
-        value="Add product"
+        className="w-100"
         onClick={handleClick}
-        className={styles.submitBtn}
-      />
+        style={{ background: 'var(--color-main)' }}
+      >
+        Add Product
+      </Button>
     </div>
   );
 };

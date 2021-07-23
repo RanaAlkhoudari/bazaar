@@ -4,6 +4,7 @@ const dummyUsers = require('./dummy-files/users.json');
 const dummyAddress = require('./dummy-files/addresses.json');
 const dummyProducts = require('./dummy-files/products.json');
 const dummyCategories = require('./dummy-files/categories.json');
+const dummyOrders = require('./dummy-files/orders.json');
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
@@ -16,9 +17,10 @@ seeder.connect(process.env.DB_URL, () => {
     './src/users/userModel',
     './src/products/productModel',
     './src/categories/categoryModel',
+    './src/orders/orderModel',
   ]);
 
-  seeder.clearModels(['address', 'user', 'product', 'category'], () => {
+  seeder.clearModels(['address', 'user', 'product', 'category', 'order'], () => {
     seeder.populateModels(data, (err, done) => {
       if (err) {
         return console.log('seed error', err);
@@ -48,5 +50,9 @@ const data = [
   {
     model: 'category',
     documents: dummyCategories,
+  },
+  {
+    model: 'order',
+    documents: dummyOrders,
   },
 ];
