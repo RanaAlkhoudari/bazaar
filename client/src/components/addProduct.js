@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import Uploader from './uploader';
 import { Container, Form, Card } from 'react-bootstrap';
-import Uploader from '../uploader/uploader';
-import { AuthContext } from '../../context/AuthContext';
+import { AuthContext } from '../context/AuthContext';
 import { Multiselect } from 'multiselect-react-dropdown';
+import React, { useState, useEffect, useContext } from 'react';
 
 const AddProduct = () => {
   const { user } = useContext(AuthContext);
@@ -11,7 +11,7 @@ const AddProduct = () => {
   const [categories, setCategories] = useState([]);
   const [values, setValues] = useState({
     city: '',
-    price: 0,
+    price: '',
     title: '',
     condition: '',
     user: user._id,
@@ -36,7 +36,7 @@ const AddProduct = () => {
 
   const handleCityChange = (e) => setValues({ ...values, city: e.target.value });
   const handleTitleChange = (e) => setValues({ ...values, title: e.target.value });
-  const handlePriceChange = (e) => setValues({ ...values, price: e.target.value });
+  const handlePriceChange = (e) => setValues({ ...values, price: Number(e.target.value) });
   const handleConditionChange = (e) => setValues({ ...values, condition: e.target.value });
   const handleDescriptionChange = (e) => setValues({ ...values, description: e.target.value });
 
@@ -52,15 +52,16 @@ const AddProduct = () => {
             <Form onSubmit={(e) => e.preventDefault()}>
               <Form.Group>
                 <Form.Control
+                  required
                   type="text"
                   name="title"
                   placeholder="Title"
                   value={values.title}
                   onChange={handleTitleChange}
-                  required
                 />
               </Form.Group>
               <br />
+
               <Form.Group>
                 <Form.Control
                   min="0"
@@ -74,11 +75,12 @@ const AddProduct = () => {
                 />
               </Form.Group>
               <br />
+
               <Form.Group>
                 <Form.Control
+                  required
                   as="select"
                   defaultValue="Condition"
-                  required
                   onChange={handleConditionChange}
                 >
                   <option hidden disabled>
@@ -90,6 +92,7 @@ const AddProduct = () => {
                 </Form.Control>
               </Form.Group>
               <br />
+
               <Form.Group>
                 <Form.Control
                   required
@@ -104,17 +107,18 @@ const AddProduct = () => {
 
               <Form.Group>
                 <Form.Control
-                  as="textarea"
-                  type="text"
-                  placeholder="Description"
-                  style={{ height: '100px' }}
                   required
+                  type="text"
+                  as="textarea"
                   name="description"
+                  placeholder="Description"
                   value={values.description}
+                  style={{ height: '100px' }}
                   onChange={handleDescriptionChange}
                 />
               </Form.Group>
               <br />
+
               <Multiselect
                 isObject={false}
                 options={categories}
@@ -124,12 +128,11 @@ const AddProduct = () => {
                 style={{
                   chips: { background: 'var(--color-main)' },
                   optionContainer: {
-                    color: 'white',
-                    background: '#666666',
                     borderRadius: '.5rem',
                   },
                 }}
               />
+
               <Uploader data={values} />
             </Form>
           </Card.Body>

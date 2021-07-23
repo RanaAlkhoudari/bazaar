@@ -3,9 +3,10 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import SimilarProducts from '../../components/SimilarProducts/similarProducts';
 import ProductDetail from '../../components/productDetail/ProductDetail';
+import NotFoundPage from '../notFoundPage';
 
 function ProductDetailPage() {
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState('');
 
   const { id } = useParams();
 
@@ -24,9 +25,15 @@ function ProductDetailPage() {
 
   return (
     <>
-      <ProductDetail product={product} />
-      <h2 style={{ textAlign: 'center', marginTop: '70px' }}>See Similar Products</h2>
-      {product.categories && <SimilarProducts product={product} />}
+      {product ? (
+        <>
+          <ProductDetail product={product} />
+          <h2 style={{ textAlign: 'center', marginTop: '70px' }}>See Similar Products</h2>
+          {product.categories && <SimilarProducts product={product} />}
+        </>
+      ) : (
+        <NotFoundPage />
+      )}
     </>
   );
 }

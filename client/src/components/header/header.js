@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import { AuthContext } from '../../context/AuthContext';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Search from '../search/search';
 import axios from 'axios';
 import { Route } from 'react-router-dom';
-// import styles from './header.css';
 
 const Header = () => {
   const [categories, setCategories] = useState([]);
