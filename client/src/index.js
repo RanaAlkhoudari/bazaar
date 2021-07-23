@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Homepage from './pages/homepage/Homepage';
 import Header from './components/header/header';
 import NotFoundPage from './pages/notFoundPage';
-import AddProduct from './components/addProduct';
+import AddProduct from './components/addProduct/addProduct';
+import myAccountPage from './pages/myAccountPage/myAccountPage';
 import './styles/variables.css';
 import './styles/normalize.css';
 import ProductDetailPage from './pages/productDetailPage/productDetailPage';
@@ -25,13 +26,16 @@ document.addEventListener('DOMContentLoaded', () => {
             <Route path="/" exact component={Homepage} />
             <Route exact path="/signin" component={SignIn} />
             <Route exact path="/signup" component={SignUp} />
+            <Route path="/account" exact component={myAccountPage} />
             <Route path="/products/add" exact component={AddProduct} />
             <Route path="/:id" exact component={ProductDetailPage} />
             <Route path="/products/:keyword" exact component={Products} />
+
             <Route component={NotFoundPage} />
           </Switch>
         </Router>
       </AuthContextProvider>,
+
       el,
     );
   }
