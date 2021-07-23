@@ -1,10 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import styles from './checkout.css';
 import Payment from '../../components/payment/payment';
 
 const Checkout = (prop) => {
   const product = prop.location.state;
-  console.log('product', product);
+  console.log('product: ', product);
+
+  const [seller, setSeller] = useState([]);
+  console.log('seller: ', seller);
+
+  useEffect(() => {
+    fetchSellerData();
+  }, []);
+
+  async function fetchSellerData() {
+    try {
+      const response = await axios.get(`http://localhost:3000/api/v1/users/${product.user}`);
+      setSeller(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div className={styles.checkoutWrapper}>
       <div className={styles.leftContainer}>
@@ -30,8 +48,10 @@ const Checkout = (prop) => {
         </div>
       </div>
       <div className={styles.rightContainer}>
-        <img src="" />
-        <h2>Seller name</h2>
+        <img src={seller.avatar} alt="User image" />
+        <h3>
+          {seller.first_name} {seller.last_name}
+        </h3>
       </div>
     </div>
   );
