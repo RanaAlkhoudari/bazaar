@@ -40,7 +40,7 @@ const Header = () => {
           <Navbar.Brand href="/">
             <img
               src="https://i.ibb.co/VB0vCY6/bazaar1.png"
-              style={{ width: '120px' }}
+              style={{ width: '140px' }}
               alt="bazaar"
             />
           </Navbar.Brand>
