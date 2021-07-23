@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Homepage from './pages/homepage/Homepage';
 import Header from './components/header/header';
 import NotFoundPage from './pages/notFoundPage';
-import AddProduct from './components/addProduct/addProduct';
+import AddProduct from './components/addProduct';
 import './styles/variables.css';
 import './styles/normalize.css';
 import ProductDetailPage from './pages/productDetailPage/productDetailPage';
