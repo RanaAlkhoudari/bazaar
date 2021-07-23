@@ -5,7 +5,7 @@ import { AiFillStar } from 'react-icons/ai';
 function ProductDetail({ product }) {
   return (
     <div key={product._id}>
-      <Card className="w-50 m-5 " style={{ borderColor: 'var(--color-main)' }}>
+      <Card className="w-50 m-3 text-center" style={{ borderColor: 'var(--color-main)' }}>
         <Card.Body>
           <Row>
             <Col>
