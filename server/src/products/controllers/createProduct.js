@@ -6,9 +6,8 @@ async function createProduct(req, res) {
     const ids = [];
     const { title, description, price, images, condition, categories, videos } = req.body;
 
-    await categories.forEach((category) =>
-      CategoryModel.find({ name: category }, (err, result) => ids.push(result[0].id)),
-    );
+    for await (const category of categories)
+      await CategoryModel.find({ name: category }, (err, result) => ids.push(result[0].id));
 
     const newProduct = new ProductModel({
       title,

@@ -40,7 +40,7 @@ const Uploader = ({ data }) => {
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/products/create`, data);
       const { id } = response.data;
 
-      toProductPage(id);
+      if (id) toProductPage(id);
     } catch (error) {
       console.error(error);
     }
