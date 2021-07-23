@@ -48,15 +48,15 @@ const Uploader = ({ data }) => {
         required
         multiple
         type="file"
-        accept="image/*, video/*" //?? size limit
         className="mt-2 mb-2 "
+        accept="image/*, video/*" //?? size limit
         onChange={(e) => setSelectedFiles(e.target.files)}
       />
       <Button
-        className="w-100"
         type="submit"
-        style={{ background: 'var(--color-main)' }}
+        className="w-100"
         onClick={handleClick}
+        style={{ background: 'var(--color-main)' }}
       >
         Add Product
       </Button>
