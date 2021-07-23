@@ -1,10 +1,10 @@
 [
   {
     "_id": "60ec9b000eb2b755602b5071",
-    "title": "iron",
+    "title": "Iron",
     "description": "Crompton Aristo 1200-Watt Steam Iron with Anti Drip Technology and Double Layer Non-Stick Coating(White/Blue)",
     "price": "29.99",
-    "images": ["https://images.blokker.nl/2090000/large/2091647-7b688295.jpg"],
+    "images": ["https://images-na.ssl-images-amazon.com/images/I/71ScDJ8rlrL._SL1500_.jpg"],
     "condition": "new",
     "categories": ["60ed787b32db8b0c87019bbb"],
     "user": "60ec89b6c11d83d518e123c1",
@@ -13,67 +13,75 @@
 
   {
     "_id": "60ec9b000eb2b755602b5072",
-    "title": "tefal blender BL4388",
+    "title": "Tefal blender BL4388",
     "description": "De Blendforce blender zorgt voor krachtig vermogen en topprestaties dankzij de Powelix Technology. Deze technologie is maar op één doel gericht: perfectie! De blender heeft een grote glazen blenderkan die bestand is tegen thermische schokken, een innovatief Air Cooling systeem voor optimale motorduurzaamheid, een krachtige motor, veiligheidsfuncties (waaronder Smart Lock technology) en een ergonomisch design voor extra gebruiksgemak.",
     "price": "54.89",
     "condition": "fairly used",
-    "images": ["https://i.ebayimg.com/00/s/MTAyNFg3Njg=/z/0M4AAOSwWrZg3GLo/$_84.JPG"],
-    "categories": ["60ec89b6c11d83d518e123c2"],
+    "images": [
+      "https://multimedia.cdn.bcc.nl/productimages/products/272456/PI_637076100082965091_zoom.jpg"
+    ],
+    "categories": ["60ed787b32db8b0c87019bbb"],
     "user": "60ec89b6c11d83d518e123c1",
+
     "videos": ["videos1.avi"]
   },
   {
     "_id": "60ec9b000eb2b755602b5073",
-    "title": "camera",
+    "title": "Camera",
     "description": "Looking for the best beginner DSLRs? If you're just starting a new photography hobby, trying to decide which DSLR to buy can feel a little overwhelming. Fortunately, our in-depth testing of all the latest models from the likes of Canon, Nikon and Pentax is here to find you find the right match",
     "price": "138.99",
     "condition": "fairly used",
-    "images": ["https://i.ebayimg.com/00/s/NjMwWDk0NQ==/z/3CYAAOSwH95gwcd3/$_84.JPG"],
-    "categories": ["60ed787b32db8b0c87019bbc", "60ed787b32db8b0c87019bb8"],
-    "user": "60ec89b6c11d83d518e123c3",
+
+    "images": ["https://cdn.mos.cms.futurecdn.net/mVEhQU5grHExywfQsDoAYj-1024-80.jpg.webp"],
+    "categories": ["60ed787b32db8b0c87019bbb", "60ed787b32db8b0c87019bb8"],
+    "user": "60ec89b6c11d83d518e123c1",
+
     "videos": ["videos1.avi", "videos2.avi", "videos3.avi", "videos4.avi"]
   },
   {
     "_id": "60f7d2283b4bfd67010828e4",
-    "title": "wedding dress",
+    "title": "Bridal dress",
     "description": "Bridal and Wedding Wear Original hand make",
     "price": "199.00",
     "condition": "fairly used",
+
     "images": ["https://i.ebayimg.com/images/g/SHUAAOSwsJ5ewlgj/s-l400.jpg"],
-    "categories": ["60ec89b6c11d83d518e123c4"],
+    "categories": ["60ed787b32db8b0c87019bbf"],
     "user": "60ec89b6c11d83d518e123c3",
+
     "videos": []
   },
   {
     "_id": "60ec9b000eb2b755602b5075",
-    "title": "record player",
+    "title": "Record Player",
     "description": "Bush record player in great condition",
     "price": "30.00",
     "condition": "fairly used",
     "images": [
       "https://yams.secondhandapp.at/api/v1/shpock-production/images/5ceaff75734f6d1cffc0d7ab/?rule=w1200q75jpeg"
     ],
-    "categories": ["60ed787b32db8b0c87019bbe", "60ed787b32db8b0c87019bb8"],
-    "user": "60ec89b6c11d83d518e123c9",
+    "categories": ["60ed787b32db8b0c87019bbe"],
+
+    "user": "60ec89b6c11d83d518e123c4",
     "videos": []
   },
   {
     "_id": "60ec9b000eb2b755602b5076",
     "title": "dr martens pascal boots",
     "description": "Dr Martens 1460 purple boots",
-    "price": "90.00",
+    "price": "9.00",
     "condition": "fairly used",
     "images": [
       "https://d2h1pu99sxkfvn.cloudfront.net/b0/18266616/708853542_73718d28042049f3b4b3876d3c51c510/P0.jpg"
     ],
     "categories": ["60ed787b32db8b0c87019bbf"],
 
-    "user": "60ec89b6c11d83d518e123c6",
+    "user": "60ec89b6c11d83d518e123c0",
     "videos": ["videos1.avi", "videos2.avi", "videos3.avi", "videos4.avi"]
   },
   {
     "_id": "60ec9b000eb2b755602b5077",
-    "title": "girls dress",
+    "title": "Girls dress",
     "description": "New unwanted gift. Beautiful yellow dress from Ted Baker.",
     "price": "19.00",
     "condition": "new",
@@ -81,83 +89,91 @@
       "https://media.tedbaker.com/t_xld_pdp_primary,q_auto:best,f_auto/Product/Kids/254546_YELLOW_1"
     ],
     "categories": ["60ed787b32db8b0c87019bbf"],
-    "user": "60ec89b6c11d83d518e123c7",
+
+    "user": "60ec89b6c11d83d518e123c4",
     "videos": ["videos1.avi", "videos2.avi", "videos3.avi"]
   },
   {
     "_id": "60ed6eeb40846e186e5d7bea",
     "title": "DIY set",
     "description": "Reciprocating saw, Tratel screwdriver and a drill all on air",
-    "price": "110.00",
-    "condition": "fairly used",
+    "price": "130.00",
+    "condition": "new",
+
     "images": ["https://i.ebayimg.com/00/s/MTAyNFg3Njg=/z/qTcAAOSwfORg-qB2/$_84.JPG"],
     "categories": ["60ed787b32db8b0c87019bba"],
-    "user": "60ec89b6c11d83d518e123c8",
+
+    "user": "60ec89b6c11d83d518e123c5",
     "videos": ["videos1.avi"]
   },
   {
     "_id": "60ed6f1862bf9d2c546dd1d4",
-    "title": "folding bicycle",
+    "title": "Folding bicycle",
     "description": "Folding bicycle wheel size diameter 40cm 6 gears",
-    "price": "80.00",
+    "price": "120.00",
     "condition": "fairly used",
     "images": ["https://i.ebayimg.com/00/s/NzY4WDEwMjQ=/z/zuQAAOSwEhhg-d0j/$_84.JPG"],
     "categories": ["60ed787b32db8b0c87019bb9"],
-    "user": "60ec89b6c11d83d518e123c9",
+
+    "user": "60ec89b6c11d83d518e123c6",
     "videos": ["videos1.avi"]
   },
   {
     "_id": "60ed6f1862bf9d2c546dd1d5",
-    "title": "scooter",
-    "description": "white kymco blue plate drives well",
-    "price": "480.00",
+    "title": "Open cardigan style soft material abaya.",
+    "description": "FREE SHIPPING to your door Available in 4 colours. Swipe to see other colours. Brand new with tag on. very soft & smooth. Very comfortable in summer.Size - XXL",
+    "price": "80.00",
     "condition": "fairly used",
-    "images": ["https://i.ebayimg.com/00/s/MTAyNFg3Njg=/z/ftwAAOSw7Bdg-CJT/$_84.JPG"],
-    "categories": ["60ed787b32db8b0c87019bb9"],
-    "user": "60ec89b6c11d83d518e123c0",
+
+    "images": ["https://i.pinimg.com/originals/f6/ee/d4/f6eed4c6f3d064ba88c6ddf91880e6ab.jpg"],
+    "categories": ["60ed787b32db8b0c87019bbf"],
+
+    "user": "60ec89b6c11d83d518e123c7",
     "videos": ["videos1.avi"]
   },
   {
     "_id": "60f82ce2c7395b797d0ef093",
-    "title": "lamp",
+    "title": "Lamp",
     "description": "In good condition, works perfectly",
     "price": "100.00",
     "condition": "fairly used",
+
     "images": ["https://www.lampandlight.eu/media/catalog/product/4/2/3046_42891_0.jpg"],
     "categories": ["60ed787b32db8b0c87019bba"],
-    "user": "60ec89b6c11d83d518e123c0",
+
+    "user": "60ec89b6c11d83d518e123c5",
     "videos": ["videos1.avi"]
   },
   {
     "_id": "60f82ce2c7395b797d0ef094",
-    "title": "dining room chairs",
+    "title": "Dining room chairs",
     "description": "In very good condition",
     "price": "80.00",
     "condition": "fairly used",
-    "images": [
-      "https://s3.dutchcrafters.com/product-images/pid_46477-Amish-Baytown-Dining-Room-Chair--150.jpg"
-    ],
+
+    "images": ["https://i.ebayimg.com/00/s/NzY4WDEwMjQ=/z/ScgAAOSwVZlg8rfd/$_86.JPG"],
     "categories": ["60ed787b32db8b0c87019bba"],
-    "user": "60ec89b6c11d83d518e123c9",
+
+    "user": "60ec89b6c11d83d518e123c5",
     "videos": ["videos1.avi"]
   },
   {
     "_id": "60f82f14a294392cd1484f6c",
     "title": "Yeezys",
     "description": "Yeezy Balenciaga Dsquared Givenchy LV Shoes Shirt Pants",
-    "price": "167.99",
+    "price": "367.99",
     "images": [
       "https://i.ebayimg.com/00/s/OTY1WDc1MA==/z/upQAAOSwNehg9syH/$_86.JPG",
       "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/how-to-buy-running-shoes-1611448820.jpg"
     ],
     "condition": "fairly used",
     "categories": ["60ed787b32db8b0c87019bbf"],
-    "user": "60ec89b6c11d83d518e123c8",
+    "user": "60ec89b6c11d83d518e123c0",
     "videos": ["aaa.avi", "ggg.avi"]
   },
   {
     "_id": "60f82f14a294392cd1484f6d",
-    "title": "dining tabel",
+    "title": "Dining table",
     "description": "Double Layer Non-Stick Coating(White/Blue)",
     "price": "19.99",
     "images": [
@@ -165,194 +181,205 @@
     ],
     "condition": "fairly used",
     "categories": ["60ed787b32db8b0c87019bba"],
-    "user": "60ec89b6c11d83d518e123c8",
+    "user": "60ec89b6c11d83d518e123c0",
+    "videos": ["aaa.avi", "ggg.avi"]
+  },
+  {
+    "_id": "60f82f14a294392cd1484f6e",
+    "title": "Scooter",
+    "description": "white kymco blue plate drives well",
+    "price": "629.99",
+    "images": ["https://i.ebayimg.com/00/s/MTAyNFg3Njg=/z/ftwAAOSw7Bdg-CJT/$_84.JPG"],
+    "condition": "fairly used",
+    "categories": ["60ed787b32db8b0c87019bb9"],
+    "user": "60ec89b6c11d83d518e123c0",
+    "videos": ["aaa.avi", "ggg.avi"]
+  },
+  {
+    "_id": "60fab0f38224d543ae4e05a2",
+    "title": "Pokemon card",
+    "description": "Blane's Charizard",
+    "price": "9.99",
+    "images": ["https://i.ebayimg.com/00/s/MTAyNFg3Njg=/z/hqEAAOSwMqxg7Sa-/$_84.JPG"],
+    "condition": "new",
+    "categories": ["60ed787b32db8b0c87019bbc"],
+    "user": "60ec89b6c11d83d518e123c0",
+    "videos": ["aaa.avi", "ggg.avi"]
+  },
+  {
+    "_id": "60fab0f38224d543ae4e05a3",
+    "title": "Board games",
+    "description": "Many well-known board games including monopoly scrabble stratego",
+    "price": "4.99",
+    "images": ["https://i.ebayimg.com/00/s/MTAyNFg3Njg=/z/W2QAAOSwe-tg7IBy/$_84.JPG"],
+    "condition": "fairly used",
+    "categories": ["60ed787b32db8b0c87019bbc", "60ed787b32db8b0c87019bb5"],
+    "user": "60ec89b6c11d83d518e123c0",
+    "videos": ["aaa.avi", "ggg.avi"]
+  },
+  {
+    "_id": "60fab0f38224d543ae4e05a4",
+    "title": "Model helicopter",
+    "description": "WWII dioramas, model airplanes/helicopter 1/32",
+    "price": "254.99",
+    "images": ["https://i.ebayimg.com/00/s/NzY4WDEwMjQ=/z/768AAOSwfq1g-C2W/$_84.JPG"],
+    "condition": "new",
+    "categories": ["60ed787b32db8b0c87019bbc"],
+    "user": "60ec89b6c11d83d518e123c0",
+    "videos": ["aaa.avi", "ggg.avi"]
+  },
+  {
+    "_id": "60fab0f38224d543ae4e05a5",
+    "title": "Lego technic",
+    "description": "Lego Porsche GT3 RS 42056 UNOPENED and sealed",
+    "price": "94.49",
+    "images": ["https://i.ebayimg.com/00/s/NzI4WDEwMjQ=/z/PEkAAOSwx2xg97aZ/$_84.JPG"],
+    "condition": "new",
+    "categories": ["60ed787b32db8b0c87019bb5", "60ed787b32db8b0c87019bbc"],
+    "user": "60ec89b6c11d83d518e123c0",
+    "videos": ["aaa.avi", "ggg.avi"]
+  },
+  {
+    "_id": "60fab0f38224d543ae4e05a7",
+    "title": "Nerf collection",
+    "description": "Various Nerf's with corresponding ammunition",
+    "price": "45.49",
+    "images": ["https://i.ebayimg.com/00/s/NTc2WDEwMjQ=/z/WjMAAOSwEFNg-poq/$_84.JPG"],
+    "condition": "new",
+    "categories": ["60ed787b32db8b0c87019bb5"],
+    "user": "60ec89b6c11d83d518e123c0",
+    "videos": ["aaa.avi", "ggg.avi"]
+  },
+  {
+    "_id": "60fab0f38224d543ae4e05a6",
+    "title": "Lego",
+    "description": "LEGO - Technic - 3.7 kg Lego (net) with a lot of Technic",
+    "price": "84.90",
+    "images": ["https://i.ebayimg.com/00/s/NTI1WDcwMA==/z/YhEAAOSwIk9g-Ij9/$_84.JPG"],
+    "condition": "new",
+    "categories": ["60ed787b32db8b0c87019bb5"],
+    "user": "60ec89b6c11d83d518e123c0",
+    "videos": ["aaa.avi", "ggg.avi"]
+  },
+  {
+    "_id": "60fab0f38224d543ae4e05a8",
+    "title": "Cats scratching post",
+    "description": "Scratching post from real logs and used wood",
+    "price": "125.00",
+    "images": ["https://i.ebayimg.com/00/s/MTAyNFg3Njg=/z/YKgAAOSwmQNfaYMY/$_86.JPG"],
+    "condition": "new",
+    "categories": ["60ed787b32db8b0c87019bb7"],
+    "user": "60ec89b6c11d83d518e123c0",
+    "videos": ["aaa.avi", "ggg.avi"]
+  },
+  {
+    "_id": "60fab0f38224d543ae4e05a9",
+    "title": "Aquarium",
+    "description": "Beautiful white aquarium with fish stock and accessories",
+    "price": "225.00",
+    "images": ["https://i.ebayimg.com/00/s/NzY4WDEwMjQ=/z/v7AAAOSwxqlg-oWE/$_86.JPG"],
+    "condition": "fairly used",
+    "categories": ["60ed787b32db8b0c87019bb7"],
+    "user": "60ec89b6c11d83d518e123c0",
+    "videos": ["aaa.avi", "ggg.avi"]
+  },
+  {
+    "_id": "60fab0f38224d543ae4e05aa",
+    "title": "Bird cage",
+    "description": "aviary wood bird run with lock bird cage outdoor customization",
+    "price": "95.00",
+    "images": ["https://i.ebayimg.com/00/s/NzY4WDEwMjQ=/z/ry0AAOSwREReXm8N/$_84.JPG"],
+    "condition": "fairly used",
+    "categories": ["60ed787b32db8b0c87019bb7"],
+    "user": "60ec89b6c11d83d518e123c0",
+    "videos": ["aaa.avi", "ggg.avi"]
+  },
+  {
+    "_id": "60fab0f38224d543ae4e05ab",
+    "title": "Treadmill",
+    "description": "Electric Treadmill Jet 5",
+    "price": "295.00",
+    "images": ["https://i.ebayimg.com/00/s/MTAyNFg3Njg=/z/I7QAAOSw4aJg-oy6/$_86.JPG"],
+    "condition": "fairly used",
+    "categories": ["60ed787b32db8b0c87019bb6"],
+    "user": "60ec89b6c11d83d518e123c0",
+    "videos": ["aaa.avi", "ggg.avi"]
+  },
+  {
+    "_id": "60fab0f38224d543ae4e05ac",
+    "title": "Golf set",
+    "description": "Ladies golf set right handed",
+    "price": "145.40",
+    "images": ["https://i.ebayimg.com/00/s/MTAyNFg3Njg=/z/nQEAAOSwqONg-m74/$_84.JPG"],
+    "condition": "fairly used",
+    "categories": ["60ed787b32db8b0c87019bb6"],
+    "user": "60ec89b6c11d83d518e123c0",
+    "videos": ["aaa.avi", "ggg.avi"]
+  },
+  {
+    "_id": "60fa8fb6c7395b797d0ef0a3",
+    "title": "Weight bench",
+    "description": "adjustable weight bench",
+    "price": "98.40",
+    "images": ["https://i.ebayimg.com/00/s/MTAyNFg4NjY=/z/qQYAAOSwSnJg-pO2/$_84.JPG"],
+    "condition": "fairly used",
+    "categories": ["60ed787b32db8b0c87019bb6"],
+    "user": "60ec89b6c11d83d518e123c0",
+    "videos": ["aaa.avi", "ggg.avi"]
+  },
+  {
+    "_id": "60fa8fb6c7395b797d0ef0a2",
+    "title": "Guiter",
+    "description": "Fender American Stratocaster",
+    "price": "110.50",
+    "images": ["https://i.ebayimg.com/00/s/MTAyNFg3Njg=/z/l60AAOSwP2hg-mj~/$_84.JPG"],
+    "condition": "fairly used",
+    "categories": ["60ed787b32db8b0c87019bbe", "60ed787b32db8b0c87019bbc"],
+    "user": "60ec89b6c11d83d518e123c0",
+    "videos": ["aaa.avi", "ggg.avi"]
+  },
+  {
+    "_id": "60fa8fb6c7395b797d0df0a2",
+    "title": "Drumset",
+    "description": "SONOR Teardrop Big beat 1195 - DW Design 1075 ...+ SNARES",
+    "price": "910.50",
+    "images": ["https://i.ebayimg.com/00/s/NzY4WDEwMjQ=/z/l9MAAOSwSmFg7W19/$_84.JPG"],
+    "condition": "fairly used",
+    "categories": ["60ed787b32db8b0c87019bbe", "60ed787b32db8b0c87019bbc"],
+    "user": "60ec89b6c11d83d518e123c0",
+    "videos": ["aaa.avi", "ggg.avi"]
+  },
+  {
+    "_id": "60fa8fb6c7395b797d0ef0a1",
+    "title": "Mercedes-benz",
+    "description": "Mercedes-Benz SLK 200 Seat heating - Leather - Panoramic roof",
+    "price": "910.50",
+    "images": ["https://i.ebayimg.com/00/s/NzY4WDEwMjQ=/z/lm0AAOSwg0pg-o7U/$_85.JPG"],
+    "condition": "fairly used",
+    "categories": ["60ed787b32db8b0c87019bc0"],
+    "user": "60ec89b6c11d83d518e123c0",
+    "videos": ["aaa.avi", "ggg.avi"]
+  },
+  {
+    "_id": "60fa8fb6c7395b797d0ef0a0",
+    "title": "Beetle cabriolet",
+    "description": "Volkswagen Beetle Cabriolet 1303 LS CONVERTIBLE / BEAUTIFUL CAR",
+    "price": "780.50",
+    "images": ["https://i.ebayimg.com/00/s/NzY4WDEwMjQ=/z/hbMAAOSwlmlg-otU/$_85.JPG"],
+    "condition": "fairly used",
+    "categories": ["60ed787b32db8b0c87019bc0"],
+    "user": "60ec89b6c11d83d518e123c0",
     "videos": ["aaa.avi", "ggg.avi"]
   },
   {
     "_id": "60fa8fb6c7395b797d0ef09f",
     "title": "volkswagen golf",
     "description": "Volkswagen Golf 1.5 TSI R-Line Buisness",
-    "price": "278.49",
+    "price": "880.50",
     "images": ["https://i.ebayimg.com/00/s/NzY4WDEwMjQ=/z/0dgAAOSwP0Rg-ETR/$_85.JPG"],
     "condition": "fairly used",
     "categories": ["60ed787b32db8b0c87019bc0"],
-    "user": "60ec89b6c11d83d518e123c7",
-    "videos": ["aaa.avi", "ggg.avi"]
-  },
-  {
-    "_id": "60fa8fb6c7395b797d0ef0a0",
-    "title": "beetle cabriolet",
-    "description": "Volkswagen Beetle Cabriolet 1303 LS CONVERTIBLE / BEAUTIFUL CAR",
-    "price": "269.00",
-    "images": ["https://i.ebayimg.com/00/s/NzY4WDEwMjQ=/z/hbMAAOSwlmlg-otU/$_85.JPG"],
-    "condition": "fairly used",
-    "categories": ["60ed787b32db8b0c87019bc0"],
-    "user": "60ec89b6c11d83d518e123c7",
-    "videos": ["aaa.avi", "ggg.avi"]
-  },
-  {
-    "_id": "60fa8fb6c7395b797d0ef0a1",
-    "title": "mercedes-benz",
-    "description": "Mercedes-Benz SLK 200 Seat heating - Leather - Panoramic roof",
-    "price": "279.50",
-    "images": ["https://i.ebayimg.com/00/s/NzY4WDEwMjQ=/z/lm0AAOSwg0pg-o7U/$_85.JPG"],
-    "condition": "fairly used",
-    "categories": ["60ed787b32db8b0c87019bc0"],
-    "user": "60ec89b6c11d83d518e123c6",
-    "videos": ["aaa.avi", "ggg.avi"]
-  },
-  {
-    "_id": "60fa8fb6c7395b797d0ef0a2",
-    "title": "drumset",
-    "description": "SONOR Teardrop Big beat 1195 - DW Design 1075 ...+ SNARES",
-    "price": "950.00",
-    "images": ["https://i.ebayimg.com/00/s/NzY4WDEwMjQ=/z/l9MAAOSwSmFg7W19/$_84.JPG"],
-    "condition": "fairly used",
-    "categories": ["60ed787b32db8b0c87019bbe"],
-    "user": "60ec89b6c11d83d518e123c6",
-    "videos": ["aaa.avi", "ggg.avi"]
-  },
-  {
-    "_id": "60fa8fb6c7395b797d0ef0a2",
-    "title": "guiter",
-    "description": "Fender American Stratocaster",
-    "price": "110.00",
-    "images": ["https://i.ebayimg.com/00/s/MTAyNFg3Njg=/z/l60AAOSwP2hg-mj~/$_84.JPG"],
-    "condition": "fairly used",
-    "categories": ["60ed787b32db8b0c87019bbe"],
-    "user": "60ec89b6c11d83d518e123c5",
-    "videos": ["aaa.avi", "ggg.avi"]
-  },
-  {
-    "_id": "60fa8fb6c7395b797d0ef0a3",
-    "title": "weight bench",
-    "description": "adjustable weight bench",
-    "price": "95.00",
-    "images": ["https://i.ebayimg.com/00/s/MTAyNFg4NjY=/z/qQYAAOSwSnJg-pO2/$_84.JPG"],
-    "condition": "fairly used",
-    "categories": ["60ed787b32db8b0c87019bb6"],
-    "user": "60ec89b6c11d83d518e123c5",
-    "videos": ["aaa.avi", "ggg.avi"]
-  },
-  {
-    "_id": "60fab0f38224d543ae4e05ac",
-    "title": "golf set",
-    "description": "Ladies golf set right handed",
-    "price": "195.00",
-    "images": ["https://i.ebayimg.com/00/s/MTAyNFg3Njg=/z/nQEAAOSwqONg-m74/$_84.JPG"],
-    "condition": "fairly used",
-    "categories": ["60ed787b32db8b0c87019bb6"],
-    "user": "60ec89b6c11d83d518e123c4",
-    "videos": ["aaa.avi", "ggg.avi"]
-  },
-  {
-    "_id": "60fab0f38224d543ae4e05ab",
-    "title": "treadmill",
-    "description": "Electric Treadmill Jet 5",
-    "price": "295.00",
-    "images": ["https://i.ebayimg.com/00/s/MTAyNFg3Njg=/z/I7QAAOSw4aJg-oy6/$_86.JPG"],
-    "condition": "fairly used",
-    "categories": ["60ed787b32db8b0c87019bb6"],
-    "user": "60ec89b6c11d83d518e123c4",
-    "videos": ["aaa.avi", "ggg.avi"]
-  },
-  {
-    "_id": "60fab0f38224d543ae4e05aa",
-    "title": "bird cage",
-    "description": "aviary wood bird run with lock bird cage outdoor customization",
-    "price": "95.00",
-    "images": ["https://i.ebayimg.com/00/s/NzY4WDEwMjQ=/z/ry0AAOSwREReXm8N/$_84.JPG"],
-    "condition": "fairly used",
-    "categories": ["60ed787b32db8b0c87019bb7"],
-    "user": "60ec89b6c11d83d518e123c3",
-    "videos": ["aaa.avi", "ggg.avi"]
-  },
-  {
-    "_id": "60fab0f38224d543ae4e05a9",
-    "title": "aquarium",
-    "description": "Beautiful white aquarium with fish stock and accessories",
-    "price": "200.00",
-    "images": ["https://i.ebayimg.com/00/s/NzY4WDEwMjQ=/z/v7AAAOSwxqlg-oWE/$_86.JPG"],
-    "condition": "fairly used",
-    "categories": ["60ed787b32db8b0c87019bb7"],
-    "user": "60ec89b6c11d83d518e123c3",
-    "videos": ["aaa.avi", "ggg.avi"]
-  },
-  {
-    "_id": "60fab0f38224d543ae4e05a8",
-    "title": "scratching post",
-    "description": "Scratching post from real logs and used wood",
-    "price": "125.00",
-    "images": ["https://i.ebayimg.com/00/s/MTAyNFg3Njg=/z/YKgAAOSwmQNfaYMY/$_86.JPG"],
-    "condition": "fairly used",
-    "categories": ["60ed787b32db8b0c87019bb7"],
-    "user": "60ec89b6c11d83d518e123c2",
-    "videos": ["aaa.avi", "ggg.avi"]
-  },
-  {
-    "_id": "60fab0f38224d543ae4e05a7",
-    "title": "nerf collection",
-    "description": "Various Nerf's with corresponding ammunition",
-    "price": "69.99",
-    "images": ["https://i.ebayimg.com/00/s/NTc2WDEwMjQ=/z/WjMAAOSwEFNg-poq/$_84.JPG"],
-    "condition": "fairly used",
-    "categories": ["60ed787b32db8b0c87019bb5"],
-    "user": "60ec89b6c11d83d518e123c2",
-    "videos": ["aaa.avi", "ggg.avi"]
-  },
-  {
-    "_id": "60fab0f38224d543ae4e05a6",
-    "title": "lego",
-    "description": "LEGO - Technic - 3.7 kg Lego (net) with a lot of Technic",
-    "price": "84.90",
-    "images": ["https://i.ebayimg.com/00/s/NTI1WDcwMA==/z/YhEAAOSwIk9g-Ij9/$_84.JPG"],
-    "condition": "fairly used",
-    "categories": ["60ed787b32db8b0c87019bb5"],
-    "user": "60ec89b6c11d83d518e123c1",
-    "videos": ["aaa.avi", "ggg.avi"]
-  },
-  {
-    "_id": "60fab0f38224d543ae4e05a5",
-    "title": "lego technic",
-    "description": "Lego Porsche GT3 RS 42056 UNOPENED and sealed",
-    "price": "90.00",
-    "images": ["https://i.ebayimg.com/00/s/NzI4WDEwMjQ=/z/PEkAAOSwx2xg97aZ/$_84.JPG"],
-    "condition": "new",
-    "categories": ["60ed787b32db8b0c87019bb5"],
-    "user": "60ec89b6c11d83d518e123c1",
-    "videos": ["aaa.avi", "ggg.avi"]
-  },
-  {
-    "_id": "60fab0f38224d543ae4e05a4",
-    "title": "model helicopter",
-    "description": "WWII dioramas, model airplanes/helicopter 1/32",
-    "price": "269.99",
-    "images": ["https://i.ebayimg.com/00/s/NzY4WDEwMjQ=/z/768AAOSwfq1g-C2W/$_84.JPG"],
-    "condition": "fairly used",
-    "categories": ["60ed787b32db8b0c87019bbc"],
-    "user": "60ec89b6c11d83d518e123c1",
-    "videos": ["aaa.avi", "ggg.avi"]
-  },
-  {
-    "_id": "60fab0f38224d543ae4e05a3",
-    "title": "board games",
-    "description": "Many well-known board games including monopoly scrabble stratego",
-    "price": "4.90",
-    "images": ["https://i.ebayimg.com/00/s/MTAyNFg3Njg=/z/W2QAAOSwe-tg7IBy/$_84.JPG"],
-    "condition": "fairly used",
-    "categories": ["60ed787b32db8b0c87019bbc"],
-    "user": "60ec89b6c11d83d518e123c2",
-    "videos": ["aaa.avi", "ggg.avi"]
-  },
-  {
-    "_id": "60fab0f38224d543ae4e05a2",
-    "title": "pokemon card",
-    "description": "Blane's Charizard",
-    "price": "9.00",
-    "images": ["https://i.ebayimg.com/00/s/MTAyNFg3Njg=/z/hqEAAOSwMqxg7Sa-/$_84.JPG"],
-    "condition": "fairly used",
-    "categories": ["60ed787b32db8b0c87019bbc"],
-    "user": "60ec89b6c11d83d518e123c3",
+    "user": "60ec89b6c11d83d518e123c0",
     "videos": ["aaa.avi", "ggg.avi"]
   }
 ]
