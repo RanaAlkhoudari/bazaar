@@ -9,7 +9,7 @@
     "role": "user",
     "active": "true",
     "avatar": "https://yt3.ggpht.com/ytc/AAUvwnh-ggT3AdwnyIHnKgxNnb44Fy0owULurUQIN9QQrw=s900-c-k-c0x00ffffff-no-rj",
-    "orders": [],
+    "orders": ["60ec9b000eb2b755602b5071"],
     "address": "60ec89b6c11d83d518e123c3",
     "favorites": ["60ec9b000eb2b755602b506f", "60ec9b000eb2b755602b5070"],
     "products": [
@@ -28,7 +28,7 @@
     "role": "user",
     "active": "false",
     "avatar": "ddd9.jpg",
-    "orders": [],
+    "orders": ["60ec9b000eb2b755602b5072"],
     "address": "60ec89b6c11d83d518e123ba",
     "favorites": [],
     "products": [
@@ -47,7 +47,7 @@
     "role": "user",
     "active": "false",
     "avatar": "ddd8.jpg",
-    "orders": [],
+    "orders": ["60ec9b000eb2b755602b5073"],
     "address": "60ec89b6c11d83d518e123bb",
     "favorites": ["60ec9b000eb2b755602b5072"],
     "products": ["60ec9b000eb2b755602b5074"]
@@ -62,7 +62,7 @@
     "role": "user",
     "active": "false",
     "avatar": "ddd7.jpg",
-    "orders": [],
+    "orders": ["60ec9b000eb2b755602b5074"],
     "address": "60ed74f4767cef2f651c64f3",
     "favorites": [
       "60ec9b000eb2b755602b5072",
@@ -85,10 +85,14 @@
     "role": "admin",
     "active": "true",
     "avatar": "ddd6.jpg",
-    "orders": [],
+    "orders": ["60ec9b000eb2b755602b5075"],
     "address": "60ec89b6c11d83d518e123bc",
     "favorites": [],
-    "products": ["60ed6eeb40846e186e5d7bea"]
+    "products": [
+      "60ed6eeb40846e186e5d7bea",
+      "60f82ce2c7395b797d0ef093",
+      "60f82ce2c7395b797d0ef094"
+    ]
   },
   {
     "_id": "60ec89b6c11d83d518e123c6",
@@ -163,6 +167,10 @@
     "orders": [],
     "address": "60ed753f40846e186e5d7beb",
     "favorites": [],
-    "products": []
+    "products": [
+      "60ec9b000eb2b755602b5076",
+      "60f7ebc5a294392cd1484f6a",
+      "60f7ebc5a294392cd1484f6b"
+    ]
   }
 ]
