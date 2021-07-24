@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
-import SimilarProducts from '../../components/SimilarProducts/similarProducts';
-import ProductDetail from '../../components/productDetail/ProductDetail';
-import NotFoundPage from '../notFoundPage';
-import UserDetail from '../../components/productDetail/userDetail';
+import SimilarProducts from '../components/SimilarProducts';
+import ProductDetail from '../components/ProductDetail';
+import NotFoundPage from './notFoundPage';
+import UserDetail from '../components/ProductDetail/userDetail';
 
 function ProductDetailPage() {
   const [product, setProduct] = useState('');
