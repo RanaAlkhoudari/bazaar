@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
-import { AuthContext } from '../../context/AuthContext';
+import { AuthContext } from '../context/AuthContext';
 import { useHistory } from 'react-router-dom';
-import Search from '../search/search';
+import Search from './Search';
 import axios from 'axios';
 import { Route } from 'react-router-dom';
 

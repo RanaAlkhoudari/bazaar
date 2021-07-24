@@ -1,6 +1,5 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
-import { First } from 'react-bootstrap/esm/PageItem';
 import { Link } from 'react-router-dom';
 
 function ProductList(props) {

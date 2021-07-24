@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ProductList from '../productList/productList';
+import ProductList from './ProductList';
 import axios from 'axios';
 
 function SeeWhatNew() {

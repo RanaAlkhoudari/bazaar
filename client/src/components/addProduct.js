@@ -1,5 +1,5 @@
 import axios from 'axios';
-import Uploader from './uploader';
+import Uploader from './Uploader';
 import { AuthContext } from '../context/AuthContext';
 import { Container, Form, Card } from 'react-bootstrap';
 import { Multiselect } from 'multiselect-react-dropdown';
