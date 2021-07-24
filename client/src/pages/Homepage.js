@@ -1,5 +1,5 @@
 import React from 'react';
-import SeeWhatNew from '../../components/seeWhatNew/seeWhatNew';
+import SeeWhatNew from '../components/SeeWhatNew';
 
 function Homepage() {
   return (

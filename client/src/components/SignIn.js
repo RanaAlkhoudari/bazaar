@@ -1,7 +1,7 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useRef } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { loginCall } from '../../apiCalls';
-import { AuthContext } from '../../context/AuthContext';
+import { loginCall } from '../apiCalls';
+import { AuthContext } from '../context/AuthContext';
 import { Container, Form, Button, Card, Alert } from 'react-bootstrap';
 
 const SignIn = () => {

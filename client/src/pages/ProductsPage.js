@@ -3,10 +3,9 @@ import { useParams } from 'react-router-dom';
 import { Container, Col, Row } from 'react-bootstrap';
 
 import axios from 'axios';
-import ProductList from '../../components/productList/productList';
-import Filters from '../../components/filter/filters';
-import Category from '../../components/Category/Category';
-import './Products.css';
+import ProductList from '../components/ProductList';
+import Filters from '../components/Filters';
+import Category from '../components/Category';
 
 const Products = () => {
   const [products, setProducts] = useState([]);
