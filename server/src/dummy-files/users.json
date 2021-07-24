@@ -203,7 +203,11 @@
     "orders": [],
     "address": "60ec89b6c11d83d518e123bd",
     "favorites": [],
-    "products": ["60f955d71501296d297ddf77, 60f955d71501296d297ddf78, 60f955d71501296d297ddf79"]
+    "products": [
+      "60f955d71501296d297ddf77",
+      "60f955d71501296d297ddf78",
+      "60f955d71501296d297ddf79"
+    ]
   },
   {
     "_id": "60f94a998b979720fc681b10",
@@ -218,12 +222,10 @@
     "orders": [],
     "address": "60ec89b6c11d83d518e123ba",
     "favorites": [],
-    "products": ["60f950033b4bfd67010828f1, 60f950033b4bfd67010828f2, 60f950033b4bfd67010828f3"]
     "products": [
-      "60ed6f1862bf9d2c546dd1d5",
-      "60f82ce2c7395b797d0ef093",
-      "60f7ebc5a294392cd1484f6b",
-      "60ed6f1862bf9d2c546dd1d5"
+      "60f950033b4bfd67010828f1",
+      "60f950033b4bfd67010828f2",
+      "60f950033b4bfd67010828f3"
     ]
   }
 ]

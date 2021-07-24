@@ -132,7 +132,7 @@
     "videos": ["videos1.avi"]
   },
   {
-    "_id": "60f950033b4bfd67010828f13",
+    "_id": "60f950033b4bfd67010828f1",
     "title": "Record Player",
     "description": "Set of 2 Faux Rattan Garden Chairs Grey in good situation",
     "price": "50.00",
@@ -159,7 +159,7 @@
     "videos": []
   },
   {
-    "_id": "60f950033b4bfd67010828f1",
+    "_id": "60f950033b4bfd67010828f3",
     "title": "Girls dress",
     "description": "New with tag, the size :116 ",
     "price": "24.99",
@@ -213,7 +213,8 @@
 
     "user": "60f94a998b979720fc681b11",
     "videos": []
-=======
+  },
+  {
     "_id": "60f82ce2c7395b797d0ef093",
     "title": "Lamp",
     "description": "In good condition, works perfectly",

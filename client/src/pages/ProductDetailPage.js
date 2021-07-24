@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import SimilarProducts from '../components/SimilarProducts';
 import ProductDetail from '../components/ProductDetail';
 import NotFoundPage from './notFoundPage';
-import UserDetail from '../components/ProductDetail/userDetail';
+import UserDetail from '../components/UserDetail';
 
 function ProductDetailPage() {
   const [product, setProduct] = useState('');
