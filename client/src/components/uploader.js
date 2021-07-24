@@ -7,7 +7,10 @@ const Uploader = ({ data }) => {
   const history = useHistory();
   const [selectedFiles, setSelectedFiles] = useState(null);
 
-  const toProductPage = (id) => history.push(`/${id}`);
+  const toProductPage = (id) => {
+    history.push(`/${id}`);
+    document.getElementById('add-product-link').style.display = 'block';
+  };
 
   const handleClick = async () => {
     const isFilled = Object.keys(data).every((key) => data[key]);

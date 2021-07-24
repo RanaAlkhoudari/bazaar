@@ -4,19 +4,20 @@ const CategoryModel = require('../../categories/categoryModel');
 async function createProduct(req, res) {
   try {
     const ids = [];
-    const { title, description, price, images, condition, categories, videos } = req.body;
+    const { user, title, description, price, images, condition, categories, videos } = req.body;
 
     for await (const category of categories)
       await CategoryModel.find({ name: category }, (err, result) => ids.push(result[0].id));
 
     const newProduct = new ProductModel({
+      user,
       title,
-      description,
       price,
       images,
-      condition,
-      categories: ids,
       videos,
+      condition,
+      description,
+      categories: ids,
     });
 
     const saved = await newProduct.save();
