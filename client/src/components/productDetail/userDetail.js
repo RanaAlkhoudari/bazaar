@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Card } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 
 function UserDetail({ product }) {
   const [user, setUser] = useState('');
@@ -24,6 +24,9 @@ function UserDetail({ product }) {
         <Card.Title>
           {user.first_name} {user.last_name}
         </Card.Title>
+        <Button className="w-100" style={{ backgroundColor: 'var(--color-main)' }}>
+          Send a message
+        </Button>
       </Card.Body>
     </Card>
   );

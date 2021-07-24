@@ -10,7 +10,7 @@ function ProductDetail({ product }) {
           <Row>
             <Col>
               <Card.Img
-                style={{ minWidth: '300px', maxHeight: '400px' }}
+                style={{ minWidth: '250px', height: '300px' }}
                 src={product.images}
                 alt={product.title}
               />
