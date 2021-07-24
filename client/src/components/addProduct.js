@@ -120,6 +120,7 @@ const AddProduct = () => {
               <br />
 
               <Multiselect
+                required={true}
                 isObject={false}
                 options={categories}
                 placeholder="Categories"
