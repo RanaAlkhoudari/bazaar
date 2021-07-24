@@ -1,12 +1,19 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 
 const Uploader = ({ data }) => {
+  const history = useHistory();
   const [selectedFiles, setSelectedFiles] = useState(null);
-  const isFilled = Object.keys(data).every((key) => data[key]);
+
+  const toProductPage = (id) => {
+    history.push(`/${id}`);
+    document.getElementById('add-product-link').style.display = 'block';
+  };
 
   const handleClick = async () => {
+    const isFilled = Object.keys(data).every((key) => data[key]);
     try {
       if (!selectedFiles || !isFilled) return;
 
@@ -21,13 +28,10 @@ const Uploader = ({ data }) => {
         formData.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET);
 
         const [type] = file.type.split('/');
-        const cloudinaryUrl = `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}`;
+        const url = `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}`;
 
-        if (type === 'video') {
-          videoRequests.push(axios.post(`${cloudinaryUrl}/video/upload`, formData));
-        } else {
-          imageRequests.push(axios.post(`${cloudinaryUrl}/image/upload`, formData));
-        }
+        if (type === 'video') videoRequests.push(axios.post(`${url}/video/upload`, formData));
+        if (type === 'image') imageRequests.push(axios.post(`${url}/image/upload`, formData));
       }
 
       const videoResponses = await axios.all(videoRequests);
@@ -36,7 +40,10 @@ const Uploader = ({ data }) => {
       data.videos = videoResponses.map((response) => response.data.secure_url);
       data.images = imageResponses.map((response) => response.data.secure_url);
 
-      await axios.post(`${process.env.REACT_APP_API_URL}/products/create`, data);
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/products/create`, data);
+      const { id } = response.data;
+
+      if (id) toProductPage(id);
     } catch (error) {
       console.error(error);
     }
@@ -48,15 +55,15 @@ const Uploader = ({ data }) => {
         required
         multiple
         type="file"
-        accept="image/*, video/*" //?? size limit
         className="mt-2 mb-2 "
+        accept="image/*, video/*" //?? size/limit/format
         onChange={(e) => setSelectedFiles(e.target.files)}
       />
       <Button
-        className="w-100"
         type="submit"
-        style={{ background: 'var(--color-main)' }}
+        className="w-100"
         onClick={handleClick}
+        style={{ background: 'var(--color-main)' }}
       >
         Add Product
       </Button>
