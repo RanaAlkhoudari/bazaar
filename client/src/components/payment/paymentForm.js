@@ -39,7 +39,7 @@ const PaymentForm = () => {
     if (!error) {
       try {
         const { id } = paymentMethod;
-        const response = await axios.post(`${REACT_APP_API_URL}/payment`, {
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/orders/checkout`, {
           amount: 1000,
           id,
         });
