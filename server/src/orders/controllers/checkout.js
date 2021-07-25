@@ -1,4 +1,6 @@
-const stripe = require('stripe')(process.env.STRIPE_SECRET_TEST);
+const stripe = require('stripe')(
+  'sk_test_51JEwbADmfnnMKNZBbws10pOAKU5H4vcRwjrYIbI7UR7YvvT559KEap0Ie7vaAN3gGmAfDRHaumk4WDlMRIIzB4TL000NaugjPa',
+);
 
 const checkout = async (req, res) => {
   const { amount, id } = req.body;
@@ -6,19 +8,19 @@ const checkout = async (req, res) => {
   try {
     await stripe.paymentIntents.create({
       amount,
-      currency: 'EUR',
-      description: 'Bazzar',
-      payment_method: id,
       confirm: true,
+      currency: 'eur',
+      payment_method: id,
+      description: 'One time payment.',
     });
     res.status(200).json({
-      message: 'Payment successful.',
       success: true,
+      message: 'Payment successful.',
     });
   } catch (error) {
     res.status(500).json({
-      message: 'Payment failed!',
       success: false,
+      message: 'Payment failed!',
     });
   }
 };

@@ -1,7 +1,8 @@
 import axios from 'axios';
-import React, { useState } from 'react';
-import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import styles from './payment.css';
+import React, { useState, useContext, useHistory } from 'react';
+import { AuthContext } from '../../context/AuthContext';
+import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 
 const CARD_OPTIONS = {
   iconStyle: 'solid',
@@ -24,6 +25,10 @@ const CARD_OPTIONS = {
 };
 
 const PaymentForm = () => {
+  const history = useHistory();
+
+  const { user } = useContext(AuthContext);
+
   const stripe = useStripe();
   const elements = useElements();
   const [success, setSuccess] = useState(false);
@@ -40,14 +45,13 @@ const PaymentForm = () => {
       try {
         const { id } = paymentMethod;
         const response = await axios.post(`${process.env.REACT_APP_API_URL}/orders/checkout`, {
-          amount: 1000,
           id,
+          user: product.user,
+          product: product.id,
+          amount: product.price,
         });
 
-        if (response.data.success) {
-          console.log('Successful payment');
-          setSuccess(true);
-        }
+        if (response.data.success) setSuccess(true);
       } catch (error) {
         console.error(`Error ${error}`);
       }

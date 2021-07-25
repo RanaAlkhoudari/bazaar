@@ -10,6 +10,7 @@ function ProductDetail({ product }) {
       pathname: '/orders/checkout',
       state: product,
     });
+
   return (
     <div key={product._id}>
       <Card style={{ borderColor: 'var(--color-main)' }}>
