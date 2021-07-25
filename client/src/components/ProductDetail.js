@@ -1,8 +1,16 @@
 import React from 'react';
 import { Card, Button, Row, Col } from 'react-bootstrap';
 import { AiFillStar } from 'react-icons/ai';
+import { useHistory } from 'react-router-dom';
 
 function ProductDetail({ product }) {
+  const history = useHistory();
+  const goToCheckout = () =>
+    history.push({
+      pathname: '/orders/checkout',
+      state: product,
+    });
+
   return (
     <div key={product._id}>
       <Card style={{ borderColor: 'var(--color-main)' }}>
@@ -28,7 +36,11 @@ function ProductDetail({ product }) {
                 </Col>
                 <Col>
                   {' '}
-                  <Button className="w-100" style={{ backgroundColor: 'var(--color-main)' }}>
+                  <Button
+                    className="w-100"
+                    style={{ backgroundColor: 'var(--color-main)' }}
+                    onClick={goToCheckout}
+                  >
                     Buy
                   </Button>
                 </Col>

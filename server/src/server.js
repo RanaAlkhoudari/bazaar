@@ -11,7 +11,7 @@ const orderRouter = require('./orders/orderRouter');
 
 const app = express();
 app.use(cors());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
