@@ -1,7 +1,6 @@
 import axios from 'axios';
 import styles from './payment.css';
-import React, { useState, useContext, useHistory } from 'react';
-import { AuthContext } from '../../context/AuthContext';
+import React, { useState } from 'react';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 
 const CARD_OPTIONS = {
@@ -24,11 +23,7 @@ const CARD_OPTIONS = {
   },
 };
 
-const PaymentForm = () => {
-  const history = useHistory();
-
-  const { user } = useContext(AuthContext);
-
+const PaymentForm = ({ product }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [success, setSuccess] = useState(false);

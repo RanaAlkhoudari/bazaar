@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styles from './checkout.css';
+import React, { useEffect, useState } from 'react';
 import Payment from '../../components/payment/payment';
 
 const Checkout = (prop) => {
   const product = prop.location.state;
-  console.log('product: ', product);
 
   const [seller, setSeller] = useState([]);
-  console.log('seller: ', seller);
 
   useEffect(() => {
     fetchSellerData();
@@ -67,7 +65,7 @@ const Checkout = (prop) => {
         </div>
         <div>
           <h3>Credit Card Info</h3>
-          <Payment />
+          <Payment product={product} />
         </div>
       </div>
       <div className={styles.rightContainer}>
