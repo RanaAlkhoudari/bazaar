@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import Profile from '../components/Profile';
 import { AuthContext } from '../context/AuthContext';
-import Orders from '../components/myAccount/Orders';
+import Orders from '../components/Orders';
 import Favorites from '../components/myAccount/Favorites';
 import Notifications from '../components/myAccount/Notifications';
 import { Tabs, Tab } from 'react-bootstrap-tabs';
