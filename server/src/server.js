@@ -33,7 +33,7 @@ async function run() {
   // handleErrors must be the last middleware
   app.use(handleErrors);
 
-  app.listen(process.env.PORT, () => {
+  app.listen(3000, () => {
     console.log(`Example app listening at http://localhost:${process.env.PORT}`);
   });
 }

@@ -25,6 +25,14 @@ const myAccountPage = () => {
     }
   }
 
+  const numOfProducts = user.products.length;
+  const numOfOrders = user.orders.length;
+  const numOfFavorites = user.favorites.length;
+  console.log(user);
+  console.log(numOfProducts);
+  console.log(numOfOrders);
+  console.log(numOfFavorites);
+
   return (
     <>
       {user ? (
@@ -33,16 +41,74 @@ const myAccountPage = () => {
           <Tabs
             headerStyle={{ color: '#adadad', cursor: 'default' }}
             activeHeaderStyle={{ fontWeight: 'bold', color: 'black' }}
-            contentStyle={{}}
-            selected="orders"
           >
-            <Tab label="orders">
+            <Tab
+              label={
+                <React.Fragment>
+                  Orders
+                  <span
+                    style={{
+                      height: '25px',
+                      width: '25px',
+                      backgroundColor: '#bbb',
+                      color: 'white',
+                      borderRadius: '50%',
+                      display: 'inline-block',
+                      textAlign: 'center',
+                      marginLeft: '0.3rem',
+                    }}
+                  >
+                    {numOfOrders}
+                  </span>
+                </React.Fragment>
+              }
+            >
               <Orders />
             </Tab>
-            <Tab label="notifications">
+            <Tab
+              label={
+                <React.Fragment>
+                  Notifications
+                  <span
+                    style={{
+                      height: '25px',
+                      width: '25px',
+                      backgroundColor: '#bbb',
+                      color: 'white',
+                      borderRadius: '50%',
+                      display: 'inline-block',
+                      textAlign: 'center',
+                      marginLeft: '0.3rem',
+                    }}
+                  >
+                    {numOfProducts}
+                  </span>
+                </React.Fragment>
+              }
+            >
               <Notifications />
             </Tab>
-            <Tab label="favorites">
+            <Tab
+              label={
+                <React.Fragment>
+                  Favorites
+                  <span
+                    style={{
+                      height: '25px',
+                      width: '25px',
+                      backgroundColor: '#bbb',
+                      color: 'white',
+                      borderRadius: '50%',
+                      display: 'inline-block',
+                      textAlign: 'center',
+                      marginLeft: '0.3rem',
+                    }}
+                  >
+                    {numOfFavorites}
+                  </span>
+                </React.Fragment>
+              }
+            >
               <Favorites />
             </Tab>
           </Tabs>
