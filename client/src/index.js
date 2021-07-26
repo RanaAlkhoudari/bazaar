@@ -6,7 +6,7 @@ import Header from './components/Header';
 import NotFoundPage from './pages/NotFoundPage';
 import AddProduct from './components/AddProduct';
 
-import myAccountPage from './pages/myAccountPage/myAccountPage';
+import MyAccountPage from './pages/MyAccountPage';
 import './styles/variables.css';
 import './styles/normalize.css';
 import ProductDetailPage from './pages/ProductDetailPage';
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <Route path="/" exact component={Homepage} />
             <Route exact path="/signin" component={SignInPage} />
             <Route exact path="/signup" component={SignUpPage} />
-            <Route path="/account" exact component={myAccountPage} />
+            <Route path="/account" exact component={MyAccountPage} />
             <Route path="/products/add" exact component={AddProduct} />
             <Route path="/:id" exact component={ProductDetailPage} />
             <Route path="/products/:keyword" exact component={Products} />

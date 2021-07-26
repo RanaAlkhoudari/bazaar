@@ -36,12 +36,7 @@ const Orders = () => {
       </div>
     );
   });
-  return (
-    <div className={ordersStyle.cont}>
-      <h2>Orders</h2>
-      {ordersItems}
-    </div>
-  );
+  return <div className={ordersStyle.cont}>{ordersItems}</div>;
 };
 
 export default Orders;
