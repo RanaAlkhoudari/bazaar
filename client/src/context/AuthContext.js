@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useReducer } from 'react';
+import React, { createContext, useEffect, useReducer, useState } from 'react';
 import AuthReducer from './AuthReducer';
 
 const INITIAL_STATE = {
@@ -25,7 +25,7 @@ const AuthContextProvider = ({ children }) => {
         dispatch,
       }}
     >
-      {children}
+      {!state.isFetching && children}
     </AuthContext.Provider>
   );
 };

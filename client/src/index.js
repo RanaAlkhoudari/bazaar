@@ -16,26 +16,29 @@ import SignUpPage from './pages/SignUpPage';
 import { AuthContextProvider } from './context/AuthContext';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Checkout from './pages/checkout/checkout';
+import ListFaveContextProvider from './context/FaveContext';
 
 document.addEventListener('DOMContentLoaded', () => {
   const el = document.getElementById('root');
   if (el) {
     render(
       <AuthContextProvider>
-        <Router>
-          <Header />
-          <Switch>
-            <Route path="/" exact component={Homepage} />
-            <Route exact path="/signin" component={SignInPage} />
-            <Route exact path="/signup" component={SignUpPage} />
-            <Route path="/account" exact component={myAccountPage} />
-            <Route path="/products/add" exact component={AddProduct} />
-            <Route path="/:id" exact component={ProductDetailPage} />
-            <Route path="/products/:keyword" exact component={Products} />
-            <Route path="/orders/checkout" exact component={Checkout} />
-            <Route path="*" component={NotFoundPage} />
-          </Switch>
-        </Router>
+        <ListFaveContextProvider>
+          <Router>
+            <Header />
+            <Switch>
+              <Route path="/" exact component={Homepage} />
+              <Route exact path="/signin" component={SignInPage} />
+              <Route exact path="/signup" component={SignUpPage} />
+              <Route path="/account" exact component={myAccountPage} />
+              <Route path="/products/add" exact component={AddProduct} />
+              <Route path="/:id" exact component={ProductDetailPage} />
+              <Route path="/products/:keyword" exact component={Products} />
+              <Route path="/orders/checkout" exact component={Checkout} />
+              <Route path="*" component={NotFoundPage} />
+            </Switch>
+          </Router>
+        </ListFaveContextProvider>
       </AuthContextProvider>,
 
       el,

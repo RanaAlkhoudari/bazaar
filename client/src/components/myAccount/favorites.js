@@ -1,50 +1,85 @@
-import React from 'react';
-import ProductList from '../ProductList';
-import favoritesStyle from './favorites.css';
+import React, { useContext, useState, useEffect } from 'react';
+import { AuthContext } from '../../context/AuthContext';
+import { Card, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+// import { useListContext } from '../../context/FaveContext';
 
 const Favorites = () => {
-  const favoriteProducts = [
-    {
-      _id: '60ec9b000eb2b755602b5071',
-      title: 'Vauxhall Corsa',
-      description:
-        'Vauxhall Corsa1.4L petrol.12 months MOT.2 keys.engine and gearbox in great condition.central locking.electric windows.power steering.CD player.',
-      price: '10000.00',
-      images: 'https://ms314006.github.io/static/b7a8f321b0bbc07ca9b9d22a7a505ed5/97b31/React.jpg',
-      condition: 'new',
-      categories: ['60ed787b32db8b0c87019bba'],
-      user: '60ec89b6c11d83d518e123c1',
-      videos: ['aaa.avi', 'ggg.avi'],
-    },
-    {
-      _id: '60ec9b000eb2b755602b5072',
-      title: 'Ford Ka',
-      description:
-        'I have for sale my Ford Ka 2 edge, 2014, Mot May 2022,44k, 2 keys V5. I’ve Pretty much parked this car up for the last 18months',
-      price: '6000.00',
-      condition: 'fairly used',
-      images: 'https://ms314006.github.io/static/b7a8f321b0bbc07ca9b9d22a7a505ed5/97b31/React.jpg',
-      categories: ['60ed787b32db8b0c87019bba'],
-      user: '60ec89b6c11d83d518e123c2',
-      videos: ['videos1.avi'],
-    },
-    {
-      _id: '60ec9b000eb2b755602b5073',
-      title: 'Dune Heeled Sandals',
-      description: 'A classic pair of Dune heels. Comfortable and easy to wear, in size 38 EU',
-      price: '38.00',
-      condition: 'fairly used',
-      images: 'https://ms314006.github.io/static/b7a8f321b0bbc07ca9b9d22a7a505ed5/97b31/React.jpg',
-      categories: ['60ed787b32db8b0c87019bb6'],
-      user: '60ec89b6c11d83d518e123c2',
-      videos: ['videos1.avi', 'videos2.avi', 'videos3.avi', 'videos4.avi'],
-    },
-  ];
+  const { user } = useContext(AuthContext);
 
   return (
-    <div className={favoritesStyle.cont}>
-      <h2>Favorites</h2>
-      <ProductList products={favoriteProducts} />
+    <div className="d-flex flex-wrap justify-content-center">
+      {user.favorites.map((favorite) => (
+        <FaveList key={favorite} favorite={favorite} />
+      ))}
+    </div>
+  );
+};
+
+const FaveList = (favorite) => {
+  const [fave, setFave] = useState();
+  const { user } = useContext(AuthContext);
+  // const { fave, setFave } = useListContext(false);
+
+  useEffect(() => {
+    fetchFave(favorite.favorite);
+  }, [favorite]);
+
+  async function fetchFave(favorite) {
+    try {
+      const response = await axios.get(`http://localhost:3000/api/v1/products/${favorite}`);
+
+      setFave(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function deleteFavorite(user, _id) {
+    const newList = user.favorites.filter((item) => item !== _id);
+
+    try {
+      const response = await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, {
+        favorites: newList,
+      });
+      setFave(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+    return;
+  }
+
+  return (
+    <div>
+      {fave && (
+        <Card className="m-3" style={{ width: '15rem' }} key={fave._id}>
+          {/* <Link to={`/${fave._id}`} style={{ textDecoration: 'none' }}> */}
+          <Card.Img
+            variant="top"
+            src={fave.images}
+            style={{
+              height: '200px',
+              objectFit: 'cover',
+              objectPosition: 'center',
+            }}
+          />
+          <Card.Body style={{ color: 'teal' }}>
+            <Card.Title>{fave.title}</Card.Title>
+            <Card.Text>{fave.price} €</Card.Text>
+            <Button
+              type="submit"
+              variant="danger"
+              onClick={() => {
+                deleteFavorite(user, fave._id);
+              }}
+            >
+              Delete
+            </Button>
+          </Card.Body>
+          {/* </Link> */}
+        </Card>
+      )}
     </div>
   );
 };

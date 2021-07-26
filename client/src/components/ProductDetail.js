@@ -1,15 +1,37 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Card, Button, Row, Col } from 'react-bootstrap';
 import { AiFillStar } from 'react-icons/ai';
 import { useHistory } from 'react-router-dom';
+import { useListContext } from '../context/FaveContext';
+import { AuthContext } from '../context/AuthContext';
+import { axios } from 'axios';
 
 function ProductDetail({ product }) {
   const history = useHistory();
+
+  const { user } = useContext(AuthContext);
+
   const goToCheckout = () =>
     history.push({
       pathname: '/orders/checkout',
       state: product,
     });
+
+  async function addFave(_id) {
+    const { fave, setFave } = useListContext([]);
+    console.log(fave);
+    // setFave((prev) => [...prev, _id]);
+
+    try {
+      const response = await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, {
+        favorites: fave,
+      });
+      setFave(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+    return;
+  }
 
   return (
     <div key={product._id}>
@@ -30,7 +52,13 @@ function ProductDetail({ product }) {
               <Row>
                 {' '}
                 <Col>
-                  <Button className="w-100" style={{ backgroundColor: 'var(--color-main)' }}>
+                  <Button
+                    className="w-100"
+                    style={{ backgroundColor: 'var(--color-main)' }}
+                    onClick={() => {
+                      addFave(product._id);
+                    }}
+                  >
                     <AiFillStar style={{ color: 'yellow' }} />
                   </Button>
                 </Col>
