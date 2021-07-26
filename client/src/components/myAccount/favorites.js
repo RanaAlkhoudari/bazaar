@@ -43,7 +43,6 @@ const Favorites = () => {
 
   return (
     <div className={favoritesStyle.cont}>
-      <h2>Favorites</h2>
       <ProductList products={favoriteProducts} />
     </div>
   );
