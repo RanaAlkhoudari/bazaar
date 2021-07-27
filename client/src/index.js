@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (el) {
     render(
       <AuthContextProvider>
-<<<<<<< HEAD
         <ListFaveContextProvider>
           <Router>
             <Header />
@@ -31,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <Route path="/" exact component={Homepage} />
               <Route exact path="/signin" component={SignInPage} />
               <Route exact path="/signup" component={SignUpPage} />
-              <Route path="/account" exact component={myAccountPage} />
+              <Route path="/account" exact component={MyAccountPage} />
               <Route path="/products/add" exact component={AddProduct} />
               <Route path="/:id" exact component={ProductDetailPage} />
               <Route path="/products/:keyword" exact component={Products} />
@@ -40,22 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
             </Switch>
           </Router>
         </ListFaveContextProvider>
-=======
-        <Router>
-          <Header />
-          <Switch>
-            <Route path="/" exact component={Homepage} />
-            <Route exact path="/signin" component={SignInPage} />
-            <Route exact path="/signup" component={SignUpPage} />
-            <Route path="/account" exact component={MyAccountPage} />
-            <Route path="/products/add" exact component={AddProduct} />
-            <Route path="/:id" exact component={ProductDetailPage} />
-            <Route path="/products/:keyword" exact component={Products} />
-            <Route path="/orders/checkout" exact component={Checkout} />
-            <Route path="*" component={NotFoundPage} />
-          </Switch>
-        </Router>
->>>>>>> dev
       </AuthContextProvider>,
 
       el,

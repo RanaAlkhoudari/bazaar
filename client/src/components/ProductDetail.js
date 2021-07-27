@@ -18,7 +18,8 @@ function ProductDetail({ product }) {
       state: product,
     });
   // const { fave, setFave } = useListContext([]);
-  const { addFave } = useContext(AuthContext);
+  const { addFave, setState } = useContext(AuthContext);
+
   async function addFavorite(newFave) {
     setFaves((prev) => [...prev, newFave]);
 

@@ -19,17 +19,14 @@ const AuthContextProvider = ({ children }) => {
   const [setState, setSetState] = useState([]);
 
   const addFave = async (_id) => {
-    console.log('from auth', _id);
-    setSetState((prev) => [...prev, _id]);
     try {
-      const response = await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, {
-        favorites: setState,
-      });
-      console.log(response.data);
+      const response = await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`);
+      setSetState(response.data);
     } catch (error) {
       console.log(error);
     }
   };
+  console.log(setState);
 
   return (
     <AuthContext.Provider
@@ -39,6 +36,7 @@ const AuthContextProvider = ({ children }) => {
         error: state.error,
         dispatch,
         addFave,
+        setState,
       }}
     >
       {!state.isFetching && children}
