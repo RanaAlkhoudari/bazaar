@@ -18,8 +18,8 @@ function ProductDetail({ product }) {
       state: product,
     });
   // const { fave, setFave } = useListContext([]);
-
-  async function addFave(newFave) {
+  const { addFave } = useContext(AuthContext);
+  async function addFavorite(newFave) {
     console.log(newFave);
 
     setFaves((prev) => [...prev, newFave]);
@@ -30,7 +30,7 @@ function ProductDetail({ product }) {
       const response = await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, {
         favorites: faves,
       });
-
+      addFave(user._id);
       // setFave(response.data);
     } catch (error) {
       console.log(error);
@@ -60,7 +60,7 @@ function ProductDetail({ product }) {
                     className="w-100"
                     style={{ backgroundColor: 'var(--color-main)' }}
                     onClick={() => {
-                      addFave(product._id);
+                      addFavorite(product._id);
                     }}
                   >
                     <AiFillStar style={{ color: 'yellow' }} />
