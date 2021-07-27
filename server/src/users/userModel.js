@@ -22,7 +22,7 @@ const userSchema = new Schema(
     active: { type: Boolean },
     avatar: { type: String, required: false },
     orders: [{ type: Schema.Types.ObjectId, ref: 'order' }],
-    address: { type: Schema.Types.ObjectId, ref: 'address' },
+    addresses: [{ type: Schema.Types.ObjectId, ref: 'address' }],
     favorites: [{ type: Schema.Types.ObjectId, ref: 'product' }],
     products: [{ type: Schema.Types.ObjectId, ref: 'product' }],
   },
