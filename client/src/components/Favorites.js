@@ -42,7 +42,7 @@ const Favorites = () => {
   ];
 
   return (
-    <div className={favoritesStyle.cont}>
+    <div style={{ paddingBottom: '1em', paddingTop: '1em' }}>
       <ProductList products={favoriteProducts} />
     </div>
   );
