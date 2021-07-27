@@ -10,6 +10,7 @@ const dummyOrders = require('./dummy-files/orders.json');
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
+
 console.log(process.env.DB_URL);
 
 seeder.connect(process.env.DB_URL, () => {
