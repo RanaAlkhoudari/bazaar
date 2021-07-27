@@ -11,6 +11,20 @@ import { Container, Alert } from 'react-bootstrap';
 const myAccountPage = () => {
   const [address, setAddress] = useState({});
   const { user } = useContext(AuthContext);
+  const [userFromDB, setUserFromDB] = useState({});
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
+
+  const fetchUser = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3000/api/v1/users/${user._id}`);
+      setUserFromDB(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     fetchData();
@@ -29,6 +43,7 @@ const myAccountPage = () => {
   const numOfOrders = user.orders.length;
   const numOfFavorites = user.favorites.length;
   console.log(user);
+  console.log(userFromDB);
   console.log(numOfProducts);
   console.log(numOfOrders);
   console.log(numOfFavorites);
