@@ -8,7 +8,7 @@ const Orders = ({ orders }) => {
       return (
         <CardRow key={order._id}>
           <Col style={{ maxWidth: '100px', padding: '0' }}>
-            <img src={order.product.images[0]} alt={order.product.title} />
+            <img width={100} src={order.product.images[0]} alt={order.product.title} />
           </Col>
           <Col>{order.product.title}</Col>
           <Col style={{ textAlign: 'right' }}>{order.product.price}</Col>
