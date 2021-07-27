@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col } from 'react-bootstrap';
-import CardRow from '../CardRow';
+import CardRow from './CardRow';
 
 const notificationsData = [
   {

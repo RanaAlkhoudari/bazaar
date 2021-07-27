@@ -1,6 +1,5 @@
 import React from 'react';
 import ProductList from '../ProductList';
-import favoritesStyle from './favorites.css';
 
 const Favorites = () => {
   const favoriteProducts = [
