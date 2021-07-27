@@ -1,36 +1,40 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Card, Button, Row, Col } from 'react-bootstrap';
 import { AiFillStar } from 'react-icons/ai';
 import { useHistory } from 'react-router-dom';
 import { useListContext } from '../context/FaveContext';
 import { AuthContext } from '../context/AuthContext';
-import { axios } from 'axios';
+import axios from 'axios';
 
 function ProductDetail({ product }) {
   const history = useHistory();
-
   const { user } = useContext(AuthContext);
+
+  const [faves, setFaves] = useState(user.favorites);
 
   const goToCheckout = () =>
     history.push({
       pathname: '/orders/checkout',
       state: product,
     });
+  // const { fave, setFave } = useListContext([]);
+  const { addFave } = useContext(AuthContext);
+  async function addFavorite(newFave) {
+    console.log(newFave);
 
-  async function addFave(_id) {
-    const { fave, setFave } = useListContext([]);
-    console.log(fave);
-    // setFave((prev) => [...prev, _id]);
+    setFaves((prev) => [...prev, newFave]);
+    console.log(faves);
 
     try {
+      // console.log(_id);
       const response = await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, {
-        favorites: fave,
+        favorites: faves,
       });
-      setFave(response.data);
+      addFave(user._id);
+      // setFave(response.data);
     } catch (error) {
       console.log(error);
     }
-    return;
   }
 
   return (
@@ -56,7 +60,7 @@ function ProductDetail({ product }) {
                     className="w-100"
                     style={{ backgroundColor: 'var(--color-main)' }}
                     onClick={() => {
-                      addFave(product._id);
+                      addFavorite(product._id);
                     }}
                   >
                     <AiFillStar style={{ color: 'yellow' }} />
