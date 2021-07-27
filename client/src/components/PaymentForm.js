@@ -60,17 +60,6 @@ const PaymentForm = ({ product }) => {
     setLoading(false);
   };
 
-  /**
- * <Form onSubmit={handleSubmit}>
-          <Form.Group>
-            <CardElement options={CARD_OPTIONS} />
-          </Form.Group>
-          <Button type="submit" style={{ background: 'var(--color-main)' }}>
-            Pay now
-          </Button>
-        </Form>
- */
-
   return (
     <>
       {!success ? (
@@ -79,7 +68,7 @@ const PaymentForm = ({ product }) => {
           <Button
             disabled={loading}
             type="submit"
-            style={{ paddingTop: '2px', width: '100%', background: 'var(--color-main)' }}
+            style={{ marginTop: '10px', width: '100%', background: 'var(--color-main)' }}
           >
             Pay now
           </Button>
