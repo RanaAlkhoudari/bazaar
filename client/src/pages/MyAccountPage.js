@@ -25,8 +25,7 @@ const myAccountPage = () => {
       console.log(error);
     }
   };
-  console.log('user from DB: ', userFromDB);
-
+  
   useEffect(() => {
     fetchData();
   }, []);
