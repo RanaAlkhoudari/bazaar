@@ -10,7 +10,7 @@ function ProductDetail({ product }) {
   const history = useHistory();
   const { user } = useContext(AuthContext);
 
-  const [faves, setFaves] = useState(user.favorites);
+  const [faves, setFaves] = useState([]);
 
   const goToCheckout = () =>
     history.push({
@@ -20,18 +20,13 @@ function ProductDetail({ product }) {
   // const { fave, setFave } = useListContext([]);
   const { addFave } = useContext(AuthContext);
   async function addFavorite(newFave) {
-    console.log(newFave);
-
     setFaves((prev) => [...prev, newFave]);
-    console.log(faves);
 
     try {
-      // console.log(_id);
       const response = await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, {
         favorites: faves,
       });
-      addFave(user._id);
-      // setFave(response.data);
+      addFave(product._id);
     } catch (error) {
       console.log(error);
     }

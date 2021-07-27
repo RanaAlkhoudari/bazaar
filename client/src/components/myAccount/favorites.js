@@ -47,10 +47,6 @@ const FaveList = (props) => {
         favorites: fave,
       });
       deleteFave;
-      // console.log(user.favorites.filter((item) => item !== _id));
-      // console.log(fState);
-
-      // setFave(response.data);
     } catch (error) {
       console.log(error);
     }
