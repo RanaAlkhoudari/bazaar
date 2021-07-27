@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useReducer, useState } from 'react';
+import React, { createContext, useEffect, useReducer, useState, useContext } from 'react';
 import AuthReducer from './AuthReducer';
 import axios from 'axios';
 const INITIAL_STATE = {
@@ -11,23 +11,20 @@ const AuthContext = createContext(INITIAL_STATE);
 
 const AuthContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AuthReducer, INITIAL_STATE);
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     localStorage.setItem(`user`, JSON.stringify(state.user));
   }, [state.user]);
-  const [setState, setSetState] = useState();
+  const [setState, setSetState] = useState([]);
 
   const addFave = async (_id) => {
     console.log('from auth', _id);
-    const newList = user.favorites.filter((item) => item !== _id);
-    // setSetState(newList);
-    console.log(setState);
+    setSetState((prev) => [...prev, _id]);
     try {
-      const response = await axios.patch(
-        `http://localhost:3000/api/v1/users/update/${_id}`,
-        // setSetState(newList),
-        console.log(state.user),
-      );
+      const response = await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, {
+        favorites: setState,
+      });
       console.log(response.data);
     } catch (error) {
       console.log(error);
