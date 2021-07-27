@@ -1,7 +1,8 @@
 import axios from 'axios';
-import styles from './payment.css';
+// import styles from './payment.css';
 import React, { useState } from 'react';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
+import { Form, Alert, Button } from 'react-bootstrap';
 
 const CARD_OPTIONS = {
   iconStyle: 'solid',
@@ -27,9 +28,11 @@ const PaymentForm = ({ product }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: 'card',
@@ -53,23 +56,25 @@ const PaymentForm = ({ product }) => {
     } else {
       console.error(error.message);
     }
+
+    setLoading(false);
   };
 
   return (
     <>
       {!success ? (
-        <form className={styles.checkout_form} onSubmit={handleSubmit}>
-          <fieldset className="FormGroup">
-            <div className="FormRow">
-              <CardElement options={CARD_OPTIONS} />
-            </div>
-          </fieldset>
-          <button className={styles.checkout_button}>Pay now</button>
-        </form>
+        <Form onSubmit={handleSubmit}>
+          <CardElement options={CARD_OPTIONS} />
+          <Button
+            disabled={loading}
+            type="submit"
+            style={{ marginTop: '10px', width: '100%', background: 'var(--color-main)' }}
+          >
+            Pay now
+          </Button>
+        </Form>
       ) : (
-        <div>
-          <h2>Thank you!</h2>
-        </div>
+        <Alert variant="success">Thank you!</Alert>
       )}
     </>
   );

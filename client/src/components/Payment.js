@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from './payment.css';
 import PaymentForm from './PaymentForm';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
@@ -10,11 +9,9 @@ const Payment = ({ product }) => {
   );
 
   return (
-    <div className={styles.paymentBox}>
-      <Elements stripe={stripeTestPromise}>
-        <PaymentForm product={product} />
-      </Elements>
-    </div>
+    <Elements stripe={stripeTestPromise}>
+      <PaymentForm product={product} />
+    </Elements>
   );
 };
 

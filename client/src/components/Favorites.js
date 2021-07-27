@@ -1,6 +1,5 @@
 import React from 'react';
-import ProductList from '../ProductList';
-import favoritesStyle from './favorites.css';
+import ProductList from './ProductList';
 
 const Favorites = () => {
   const favoriteProducts = [
@@ -42,7 +41,7 @@ const Favorites = () => {
   ];
 
   return (
-    <div className={favoritesStyle.cont}>
+    <div style={{ paddingBottom: '1em', paddingTop: '1em' }}>
       <ProductList products={favoriteProducts} />
     </div>
   );
