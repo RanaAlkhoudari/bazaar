@@ -1,7 +1,7 @@
 import axios from 'axios';
 import styles from './checkout.css';
 import React, { useEffect, useState } from 'react';
-import Payment from '../../components/payment/payment';
+import Payment from '../../components/Payment';
 
 const Checkout = (prop) => {
   const product = prop.location.state;
