@@ -16,6 +16,18 @@ const AuthContextProvider = ({ children }) => {
     localStorage.setItem(`user`, JSON.stringify(state.user));
   }, [state.user]);
 
+  const deleteFave = async () => {
+    console.log(user);
+    // try {
+
+    //   const response = await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, {
+    //     favorites: fave,
+    //   });
+    // } catch (error) {
+    //   console.log(error);
+    // }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -23,6 +35,7 @@ const AuthContextProvider = ({ children }) => {
         isFetching: state.isFetching,
         error: state.error,
         dispatch,
+        deleteFave,
       }}
     >
       {!state.isFetching && children}

@@ -3,7 +3,7 @@ import { AuthContext } from '../../context/AuthContext';
 import { Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-// import { useListContext } from '../../context/FaveContext';
+import { useListContext } from '../../context/FaveContext';
 
 const Favorites = () => {
   const { user } = useContext(AuthContext);
@@ -17,14 +17,16 @@ const Favorites = () => {
   );
 };
 
-const FaveList = (favorite) => {
+const FaveList = (props) => {
   const [fave, setFave] = useState();
   const { user } = useContext(AuthContext);
   // const { fave, setFave } = useListContext(false);
+  const [fState, setFState] = useState();
+  const { deleteFave } = useContext(AuthContext);
 
   useEffect(() => {
-    fetchFave(favorite.favorite);
-  }, [favorite]);
+    fetchFave(props.favorite);
+  }, []);
 
   async function fetchFave(favorite) {
     try {
@@ -38,12 +40,17 @@ const FaveList = (favorite) => {
 
   async function deleteFavorite(user, _id) {
     const newList = user.favorites.filter((item) => item !== _id);
+    setFave(newList);
 
     try {
       const response = await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, {
-        favorites: newList,
+        favorites: fave,
       });
-      setFave(response.data);
+      deleteFave;
+      // console.log(user.favorites.filter((item) => item !== _id));
+      // console.log(fState);
+
+      // setFave(response.data);
     } catch (error) {
       console.log(error);
     }
