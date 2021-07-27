@@ -28,7 +28,7 @@ const ordersData = [
 const Orders = () => {
   const ordersItems = ordersData.map((order) => {
     return (
-      <CardRow>
+      <CardRow key={order._id}>
         <Col style={{ maxWidth: '100px', padding: '0' }}>
           <img src={order.images[0]} alt={order.title} />
         </Col>
