@@ -8,8 +8,9 @@ const dummyCategories = require('./dummy-files/categories.json');
 const dummyOrders = require('./dummy-files/orders.json');
 
 if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config();
+  require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 }
+
 console.log(process.env.DB_URL);
 
 seeder.connect(process.env.DB_URL, () => {

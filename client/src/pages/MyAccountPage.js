@@ -20,6 +20,7 @@ const myAccountPage = () => {
   const fetchUser = async () => {
     try {
       const response = await axios.get(`http://localhost:3000/api/v1/users/${user._id}`);
+
       setUserFromDB(response.data);
     } catch (error) {
       console.log(error);
@@ -73,7 +74,7 @@ const myAccountPage = () => {
                       marginLeft: '0.3rem',
                     }}
                   >
-                    {numOfOrders}
+                    {userFromDB && <Orders orders={userFromDB.orders} />}
                   </span>
                 </React.Fragment>
               }
