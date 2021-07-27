@@ -1,3 +1,4 @@
+const path = require('path');
 const seeder = require('mongoose-seed');
 
 const dummyUsers = require('./dummy-files/users.json');
@@ -13,11 +14,11 @@ console.log(process.env.DB_URL);
 
 seeder.connect(process.env.DB_URL, () => {
   seeder.loadModels([
-    './addresses/addressModel',
-    './users/userModel',
-    './products/productModel',
-    './categories/categoryModel',
-    './orders/orderModel',
+    path.join(__dirname, 'addresses/addressModel.js'),
+    path.join(__dirname, 'users/userModel.js'),
+    path.join(__dirname, 'products/productModel.js'),
+    path.join(__dirname, 'categories/categoryModel.js'),
+    path.join(__dirname, 'orders/orderModel.js'),
   ]);
 
   seeder.clearModels(['address', 'user', 'product', 'category', 'order'], () => {
