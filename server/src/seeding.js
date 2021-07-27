@@ -13,11 +13,11 @@ console.log(process.env.DB_URL);
 
 seeder.connect(process.env.DB_URL, () => {
   seeder.loadModels([
-    './src/addresses/addressModel',
-    './src/users/userModel',
-    './src/products/productModel',
-    './src/categories/categoryModel',
-    './src/orders/orderModel',
+    './addresses/addressModel',
+    './users/userModel',
+    './products/productModel',
+    './categories/categoryModel',
+    './orders/orderModel',
   ]);
 
   seeder.clearModels(['address', 'user', 'product', 'category', 'order'], () => {

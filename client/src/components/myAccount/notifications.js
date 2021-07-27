@@ -58,12 +58,7 @@ const Notifications = () => {
       </div>
     );
   });
-  return (
-    <div className={notificationsStyle.cont}>
-      <h2>Notifications</h2>
-      {notificationsItems}
-    </div>
-  );
+  return <div className={notificationsStyle.cont}>{notificationsItems}</div>;
 };
 
 export default Notifications;

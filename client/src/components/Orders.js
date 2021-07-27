@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import ordersStyle from './orders.css';
+import React from 'react';
+import { Col } from 'react-bootstrap';
+import CardRow from './CardRow';
+
 const ordersData = [
   {
     _id: '1',
@@ -26,22 +28,18 @@ const ordersData = [
 const Orders = () => {
   const ordersItems = ordersData.map((order) => {
     return (
-      <div key={order._id} className={ordersStyle.box}>
-        <div className={ordersStyle.item}>{order.date}</div>
-        <div className={ordersStyle.item}>
+      <CardRow key={order._id}>
+        <Col style={{ maxWidth: '100px', padding: '0' }}>
           <img src={order.images[0]} alt={order.title} />
-        </div>
-        <div className={ordersStyle.item}>{order.title}</div>
-        <div className={ordersStyle.item}>{order.price}</div>
-      </div>
+        </Col>
+        <Col>{order.title}</Col>
+        <Col style={{ textAlign: 'right' }}>{order.price}</Col>
+        <Col style={{ textAlign: 'right' }}>{order.date}</Col>
+      </CardRow>
     );
   });
-  return (
-    <div className={ordersStyle.cont}>
-      <h2>Orders</h2>
-      {ordersItems}
-    </div>
-  );
+
+  return <div style={{ paddingTop: '1em', paddingBottom: '1em' }}>{ordersItems}</div>;
 };
 
 export default Orders;
