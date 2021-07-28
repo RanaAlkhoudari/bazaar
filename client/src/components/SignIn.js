@@ -1,8 +1,11 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useRef, useState } from 'react';
+import axios from 'axios';
+import FacebookLogin from 'react-facebook-login';
 import { Link, useHistory } from 'react-router-dom';
 import { loginCall } from '../apiCalls';
 import { AuthContext } from '../context/AuthContext';
-import { Container, Form, Button, Card, Alert } from 'react-bootstrap';
+import { Container, Form, Button, Card, Alert, Image } from 'react-bootstrap';
+import Facebook from './facebook';
 
 const SignIn = () => {
   const emailRef = useRef();
@@ -50,9 +53,11 @@ const SignIn = () => {
             Sign Up
           </Link>
         </div>
+        <Facebook />
       </div>
     </Container>
   );
 };
 
 export default SignIn;
+//https://www.termsfeed.com/live/07230a08-1c38-4612-b6c9-361503bc1bd8
