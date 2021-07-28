@@ -16,16 +16,20 @@ const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     localStorage.setItem(`user`, JSON.stringify(state.user));
   }, [state.user]);
-  const [setState, setSetState] = useState([]);
+  // const [newFaves, setNewFaves] = useState(user.favorites);
+  const [currentUser, setCurrentUser] = useState(user);
 
   const addFave = async (_id) => {
-    console.log('from auth', _id);
-    setSetState((prev) => [...prev, _id]);
     try {
+      setNewFaves((prev) => [...prev, _id]);
       const response = await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, {
-        favorites: setState,
+        favorites: newFaves,
       });
-      console.log(response.data);
+
+      if (currentUser) {
+        console.log('this is a current user', currentUser);
+        setCurrentUser(response.data);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -39,6 +43,7 @@ const AuthContextProvider = ({ children }) => {
         error: state.error,
         dispatch,
         addFave,
+        currentUser,
       }}
     >
       {!state.isFetching && children}

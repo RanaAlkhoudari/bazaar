@@ -19,9 +19,9 @@ function ProductDetail({ product }) {
     });
   // const { fave, setFave } = useListContext([]);
   const { addFave } = useContext(AuthContext);
+
   async function addFavorite(newFave) {
     setFaves((prev) => [...prev, newFave]);
-
     try {
       const response = await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, {
         favorites: faves,

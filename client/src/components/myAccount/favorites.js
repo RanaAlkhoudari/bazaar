@@ -7,6 +7,9 @@ import { useListContext } from '../../context/FaveContext';
 
 const Favorites = () => {
   const { user } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
+
+  console.log('current', currentUser);
 
   return (
     <div className="d-flex flex-wrap justify-content-center">
