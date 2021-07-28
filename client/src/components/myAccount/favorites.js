@@ -7,9 +7,12 @@ import { useListContext } from '../../context/FaveContext';
 
 const Favorites = () => {
   const { user } = useContext(AuthContext);
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, setCurrentUser } = useContext(AuthContext);
 
-  console.log('current', currentUser);
+  // setCurrentUser(localStorage.getItem('user'));
+  // setCurrentUser(JSON.parse(user));
+
+  console.log('new current', user);
 
   return (
     <div className="d-flex flex-wrap justify-content-center">
@@ -44,12 +47,11 @@ const FaveList = (props) => {
   async function deleteFavorite(user, _id) {
     const newList = user.favorites.filter((item) => item !== _id);
     setFave(newList);
-
     try {
       const response = await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, {
         favorites: fave,
       });
-      deleteFave;
+      deleteFave(user, _id);
     } catch (error) {
       console.log(error);
     }
