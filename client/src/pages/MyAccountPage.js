@@ -7,9 +7,21 @@ import Favorites from '../components/Favorites';
 import Notifications from '../components/Notifications';
 import { Tabs, Tab } from 'react-bootstrap-tabs';
 import { Container, Alert } from 'react-bootstrap';
+import LoadingImage from '../images/Loading.gif';
 
 const myAccountPage = () => {
-  const [address, setAddress] = useState({});
+  const tabStyle = {
+    height: '25px',
+    width: '25px',
+    backgroundColor: '#bbb',
+    color: 'white',
+    borderRadius: '50%',
+    display: 'inline-block',
+    textAlign: 'center',
+    marginLeft: '0.3rem',
+  };
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [err, setErr] = useState(false);
   const { user } = useContext(AuthContext);
   const [userFromDB, setUserFromDB] = useState({});
 
@@ -20,38 +32,25 @@ const myAccountPage = () => {
   const fetchUser = async () => {
     try {
       const response = await axios.get(`http://localhost:3000/api/v1/users/${user._id}`);
-
       setUserFromDB(response.data);
+      setIsLoaded(true);
+      setErr(false);
     } catch (error) {
       console.log(error);
+      setIsLoaded(false);
+      setErr(true);
     }
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  async function fetchData() {
-    try {
-      const response = await axios.get(`http://localhost:3000/api/v1/addresses/${user.address}`);
-      setAddress(response.data);
-    } catch (error) {
-      console.log(error);
-    }
+  if (!isLoaded && !err) {
+    return (
+      <img src={LoadingImage} style={{ margin: '0 auto', display: 'block', height: '65vh' }} />
+    );
   }
-
-  const numOfProducts = user.products.length;
-  const numOfOrders = user.orders.length;
-  const numOfFavorites = user.favorites.length;
-  console.log(user);
-  console.log(userFromDB);
-  console.log(numOfProducts);
-  console.log(numOfOrders);
-  console.log(numOfFavorites);
 
   return (
     <>
-      {user ? (
+      {isLoaded && !err ? (
         <Container>
           <h1>My Account</h1>
           <Tabs
@@ -62,86 +61,35 @@ const myAccountPage = () => {
               label={
                 <React.Fragment>
                   Orders
-                  <span
-                    style={{
-                      height: '25px',
-                      width: '25px',
-                      backgroundColor: '#bbb',
-                      color: 'white',
-                      borderRadius: '50%',
-                      display: 'inline-block',
-                      textAlign: 'center',
-                      marginLeft: '0.3rem',
-                    }}
-                  >
-                    {userFromDB && <Orders orders={userFromDB.orders} />}
-                  </span>
+                  <span style={tabStyle}>{userFromDB.orders.length}</span>
                 </React.Fragment>
               }
             >
-              <Orders />
+              {userFromDB && <Orders orders={userFromDB.orders} />}
             </Tab>
             <Tab
               label={
                 <React.Fragment>
                   Notifications
-                  <span
-                    style={{
-                      height: '25px',
-                      width: '25px',
-                      backgroundColor: '#bbb',
-                      color: 'white',
-                      borderRadius: '50%',
-                      display: 'inline-block',
-                      textAlign: 'center',
-                      marginLeft: '0.3rem',
-                    }}
-                  >
-                    {numOfProducts}
-                  </span>
+                  <span style={tabStyle}>{userFromDB.products.length}</span>
                 </React.Fragment>
               }
             >
-              <Notifications />
+              {userFromDB && <Notifications />}
             </Tab>
             <Tab
               label={
                 <React.Fragment>
                   Favorites
-                  <span
-                    style={{
-                      height: '25px',
-                      width: '25px',
-                      backgroundColor: '#bbb',
-                      color: 'white',
-                      borderRadius: '50%',
-                      display: 'inline-block',
-                      textAlign: 'center',
-                      marginLeft: '0.3rem',
-                    }}
-                  >
-                    {numOfFavorites}
-                  </span>
+                  <span style={tabStyle}>{userFromDB.favorites.length}</span>
                 </React.Fragment>
               }
             >
-              <Favorites />
+              {userFromDB && <Favorites />}
             </Tab>
           </Tabs>
           <hr />
-          <Profile
-            firstName={user.first_name}
-            lastName={user.last_name}
-            city={address.city ? address.city : ''}
-            country={address.country ? address.country : ''}
-            phoneNumber={user.phone}
-            email={user.email}
-            image={user.avatar}
-            streetName={address.street_name ? address.street_name : ''}
-            buildingNumber={address.building_number ? address.building_number : ''}
-            extension={address.extension ? address.extension : ''}
-            postcode={address.post_code ? address.post_code : ''}
-          />
+          <Profile user={isLoaded ? userFromDB : <></>} />
         </Container>
       ) : (
         <Container>
