@@ -9,7 +9,6 @@ import { Tabs, Tab } from 'react-bootstrap-tabs';
 import { Container, Alert } from 'react-bootstrap';
 
 const myAccountPage = () => {
-  const [address, setAddress] = useState({});
   const { user } = useContext(AuthContext);
   const [userFromDB, setUserFromDB] = useState({});
 
@@ -26,19 +25,6 @@ const myAccountPage = () => {
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  async function fetchData() {
-    try {
-      const response = await axios.get(`http://localhost:3000/api/v1/addresses/${user.address}`);
-      setAddress(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
 
   return (
     <>
@@ -60,19 +46,7 @@ const myAccountPage = () => {
             </Tab>
           </Tabs>
           <hr />
-          <Profile
-            firstName={user.first_name}
-            lastName={user.last_name}
-            city={address.city ? address.city : ''}
-            country={address.country ? address.country : ''}
-            phoneNumber={user.phone}
-            email={user.email}
-            image={user.avatar}
-            streetName={address.street_name ? address.street_name : ''}
-            buildingNumber={address.building_number ? address.building_number : ''}
-            extension={address.extension ? address.extension : ''}
-            postcode={address.post_code ? address.post_code : ''}
-          />
+          <Profile user={userFromDB} />
         </Container>
       ) : (
         <Container>
