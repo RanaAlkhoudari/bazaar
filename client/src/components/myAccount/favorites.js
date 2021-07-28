@@ -27,7 +27,7 @@ const FaveList = (props) => {
   const [fave, setFave] = useState();
   const { user } = useContext(AuthContext);
   // const { fave, setFave } = useListContext(false);
-  const [fState, setFState] = useState();
+  // const [fState, setFState] = useState();
   const { deleteFave } = useContext(AuthContext);
 
   useEffect(() => {
@@ -37,7 +37,6 @@ const FaveList = (props) => {
   async function fetchFave(favorite) {
     try {
       const response = await axios.get(`http://localhost:3000/api/v1/products/${favorite}`);
-
       setFave(response.data);
     } catch (error) {
       console.log(error);

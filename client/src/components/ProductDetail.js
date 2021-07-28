@@ -17,6 +17,7 @@ function ProductDetail({ product }) {
       pathname: '/orders/checkout',
       state: product,
     });
+
   const { addFave } = useContext(AuthContext);
 
   async function addFavorite(newFave) {
