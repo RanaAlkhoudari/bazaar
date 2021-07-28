@@ -48,6 +48,8 @@ const myAccountPage = () => {
     );
   }
 
+  console.log(userFromDB);
+
   return (
     <>
       {isLoaded && !err ? (
