@@ -2,28 +2,29 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import Profile from '../components/Profile';
 import { AuthContext } from '../context/AuthContext';
-import Orders from '../components/myAccount/Orders';
-import Favorites from '../components/myAccount/Favorites';
-import Notifications from '../components/myAccount/Notifications';
+import Orders from '../components/Orders';
+import Favorites from '../components/Favorites';
+import Notifications from '../components/Notifications';
 import { Tabs, Tab } from 'react-bootstrap-tabs';
 import { Container, Alert } from 'react-bootstrap';
 
 const myAccountPage = () => {
-  const [address, setAddress] = useState({});
   const { user } = useContext(AuthContext);
+  const [userFromDB, setUserFromDB] = useState({});
 
   useEffect(() => {
-    fetchData();
+    fetchUser();
   }, []);
 
-  async function fetchData() {
+  const fetchUser = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/v1/addresses/${user.address}`);
-      setAddress(response.data);
+      const response = await axios.get(`http://localhost:3000/api/v1/users/${user._id}`);
+
+      setUserFromDB(response.data);
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   return (
     <>
@@ -36,9 +37,7 @@ const myAccountPage = () => {
             contentStyle={{}}
             selected="orders"
           >
-            <Tab label="orders">
-              <Orders />
-            </Tab>
+            <Tab label="orders">{userFromDB && <Orders orders={userFromDB.orders} />}</Tab>
             <Tab label="notifications">
               <Notifications />
             </Tab>
@@ -47,19 +46,7 @@ const myAccountPage = () => {
             </Tab>
           </Tabs>
           <hr />
-          <Profile
-            firstName={user.first_name}
-            lastName={user.last_name}
-            city={address.city ? address.city : ''}
-            country={address.country ? address.country : ''}
-            phoneNumber={user.phone}
-            email={user.email}
-            image={user.avatar}
-            streetName={address.street_name ? address.street_name : ''}
-            buildingNumber={address.building_number ? address.building_number : ''}
-            extension={address.extension ? address.extension : ''}
-            postcode={address.post_code ? address.post_code : ''}
-          />
+          <Profile user={userFromDB} />
         </Container>
       ) : (
         <Container>

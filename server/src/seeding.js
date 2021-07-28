@@ -1,3 +1,4 @@
+const path = require('path');
 const seeder = require('mongoose-seed');
 
 const dummyUsers = require('./dummy-files/users.json');
@@ -7,17 +8,18 @@ const dummyCategories = require('./dummy-files/categories.json');
 const dummyOrders = require('./dummy-files/orders.json');
 
 if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config();
+  require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 }
+
 console.log(process.env.DB_URL);
 
 seeder.connect(process.env.DB_URL, () => {
   seeder.loadModels([
-    './src/addresses/addressModel',
-    './src/users/userModel',
-    './src/products/productModel',
-    './src/categories/categoryModel',
-    './src/orders/orderModel',
+    path.join(__dirname, 'addresses/addressModel.js'),
+    path.join(__dirname, 'users/userModel.js'),
+    path.join(__dirname, 'products/productModel.js'),
+    path.join(__dirname, 'categories/categoryModel.js'),
+    path.join(__dirname, 'orders/orderModel.js'),
   ]);
 
   seeder.clearModels(['address', 'user', 'product', 'category', 'order'], () => {
