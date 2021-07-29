@@ -9,6 +9,7 @@ import axios from 'axios';
 function ProductDetail({ product }) {
   const history = useHistory();
   const { user } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
 
   const [faves, setFaves] = useState([]);
 
@@ -20,17 +21,25 @@ function ProductDetail({ product }) {
 
   const { addFave } = useContext(AuthContext);
 
+  // adds favorite to the database
   async function addFavorite(newFave) {
-    setFaves((prev) => [...prev, newFave]);
     console.log(user);
     try {
-      const response = await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, {
+      await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, {
         favorites: faves,
       });
       addFave(product._id);
     } catch (error) {
       console.log(error);
     }
+    setFaves((prev) => [...prev, newFave]);
+  }
+  let addF;
+
+  function AddBtn({ product, currentUser }) {
+    addF = currentUser.favorites.find((item) => item.id === product._id);
+
+    return addF;
   }
 
   return (
@@ -59,7 +68,11 @@ function ProductDetail({ product }) {
                       addFavorite(product._id);
                     }}
                   >
-                    <AiFillStar style={{ color: 'yellow' }} />
+                    {currentUser && !currentUser.favorites.includes(product._id) ? (
+                      <AiFillStar style={{ color: 'yellow' }} />
+                    ) : (
+                      <AiFillStar style={{ color: 'red' }} />
+                    )}
                   </Button>
                 </Col>
                 <Col>

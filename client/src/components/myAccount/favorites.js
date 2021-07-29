@@ -7,12 +7,6 @@ import { useListContext } from '../../context/FaveContext';
 
 const Favorites = () => {
   const { user } = useContext(AuthContext);
-  const { currentUser, setCurrentUser } = useContext(AuthContext);
-
-  // setCurrentUser(localStorage.getItem('user'));
-  // setCurrentUser(JSON.parse(user));
-
-  console.log('new current', user);
 
   return (
     <div className="d-flex flex-wrap justify-content-center">
@@ -26,8 +20,6 @@ const Favorites = () => {
 const FaveList = (props) => {
   const [fave, setFave] = useState();
   const { user } = useContext(AuthContext);
-  // const { fave, setFave } = useListContext(false);
-  // const [fState, setFState] = useState();
   const { deleteFave } = useContext(AuthContext);
 
   useEffect(() => {
@@ -42,6 +34,8 @@ const FaveList = (props) => {
       console.log(error);
     }
   }
+
+  // deletes favorite from the database
 
   async function deleteFavorite(user, _id) {
     const newList = user.favorites.filter((item) => item !== _id);

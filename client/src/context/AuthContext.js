@@ -31,9 +31,10 @@ const AuthContextProvider = ({ children }) => {
     localStorage.setItem(`user`, JSON.stringify(currentUser));
   }, [currentUser]);
 
+  // adds favorite to the local storage
+
   const addFave = async (_id) => {
     try {
-      setAddedFave((prev) => [...prev, _id]);
       const response = await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, {
         favorites: addedFave,
       });
@@ -45,13 +46,14 @@ const AuthContextProvider = ({ children }) => {
     } catch (error) {
       console.log(error);
     }
+    setAddedFave((prev) => [...prev, _id]);
   };
 
+  // deletes favorite from the local storage
+
   const deleteFave = async (user, _id) => {
-    // console.log(_id);
     const newList = user.favorites.filter((item) => item !== _id);
-    // setDeletedFave(newList);
-    // console.log('new list', newList);
+
     try {
       const response = await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, {
         favorites: newList,
@@ -74,7 +76,6 @@ const AuthContextProvider = ({ children }) => {
         error: state.error,
         dispatch,
         addFave,
-
         deleteFave,
         currentUser,
         setCurrentUser,
