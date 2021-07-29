@@ -25,7 +25,6 @@ const myAccountPage = () => {
       console.log(error);
     }
   };
-  
   useEffect(() => {
     fetchData();
   }, []);

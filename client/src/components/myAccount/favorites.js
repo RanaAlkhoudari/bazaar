@@ -10,6 +10,7 @@ const Favorites = () => {
 
   return (
     <div className="d-flex flex-wrap justify-content-center">
+      {console.log(user)}
       {user.favorites.map((favorite) => (
         <FaveList key={favorite} favorite={favorite} />
       ))}
@@ -28,6 +29,7 @@ const FaveList = (props) => {
 
   async function fetchFave(favorite) {
     try {
+      console.log('something');
       const response = await axios.get(`http://localhost:3000/api/v1/products/${favorite}`);
       setFave(response.data);
     } catch (error) {
@@ -55,19 +57,21 @@ const FaveList = (props) => {
     <div>
       {fave && (
         <Card className="m-3" style={{ width: '15rem' }} key={fave._id}>
-          {/* <Link to={`/${fave._id}`} style={{ textDecoration: 'none' }}> */}
-          <Card.Img
-            variant="top"
-            src={fave.images}
-            style={{
-              height: '200px',
-              objectFit: 'cover',
-              objectPosition: 'center',
-            }}
-          />
           <Card.Body style={{ color: 'teal' }}>
-            <Card.Title>{fave.title}</Card.Title>
-            <Card.Text>{fave.price} €</Card.Text>
+            <Link to={`/${fave._id}`} style={{ textDecoration: 'none' }}>
+              <Card.Img
+                variant="top"
+                src={fave.images}
+                style={{
+                  height: '200px',
+                  objectFit: 'cover',
+                  objectPosition: 'center',
+                }}
+              />
+
+              <Card.Title>{fave.title}</Card.Title>
+              <Card.Text>{fave.price} €</Card.Text>
+            </Link>
             <Button
               type="submit"
               variant="danger"
@@ -78,7 +82,6 @@ const FaveList = (props) => {
               Delete
             </Button>
           </Card.Body>
-          {/* </Link> */}
         </Card>
       )}
     </div>

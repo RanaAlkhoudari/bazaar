@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { AiFillStar } from 'react-icons/ai';
+import { AuthContext } from '../context/AuthContext';
 
 function ProductList(props) {
   const sortedProducts = props.products;
+  const { currentUser } = useContext(AuthContext);
+
   return (
     <>
       <div className="d-flex flex-wrap justify-content-center">
@@ -24,6 +28,9 @@ function ProductList(props) {
                   <Card.Body style={{ color: 'teal' }}>
                     <Card.Title>{product.title}</Card.Title>
                     <Card.Text>{product.price} €</Card.Text>
+                    {currentUser.favorites.includes(product._id) ? (
+                      <AiFillStar style={{ color: 'red' }} />
+                    ) : null}
                   </Card.Body>
                 </Link>
               </Card>
