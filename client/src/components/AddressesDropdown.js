@@ -18,8 +18,6 @@ const AddressesDropdown = ({ getShippingAddress }) => {
   };
 
   const handleClick = (e) => {
-    if (e.target.id === 'new') setShippingAddress('');
-
     const selectedAddress = addresses.find((address) => address._id === e.target.id);
     setShippingAddress(selectedAddress);
   };
