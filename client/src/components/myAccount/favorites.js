@@ -36,7 +36,6 @@ const FaveList = (props) => {
   }
 
   // deletes favorite from the database
-
   async function deleteFavorite(user, _id) {
     const newList = user.favorites.filter((item) => item !== _id);
     setFave(newList);

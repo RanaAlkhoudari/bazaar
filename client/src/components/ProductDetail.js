@@ -25,21 +25,18 @@ function ProductDetail({ product }) {
   async function addFavorite(newFave) {
     console.log(user);
     try {
-      await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, {
-        favorites: faves,
-      });
-      addFave(product._id);
+      if (user) {
+        await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, {
+          favorites: faves,
+        });
+        addFave(product._id);
+      } else {
+        alert('You need to log in first');
+      }
     } catch (error) {
       console.log(error);
     }
     setFaves((prev) => [...prev, newFave]);
-  }
-  let addF;
-
-  function AddBtn({ product, currentUser }) {
-    addF = currentUser.favorites.find((item) => item.id === product._id);
-
-    return addF;
   }
 
   return (
@@ -69,9 +66,9 @@ function ProductDetail({ product }) {
                     }}
                   >
                     {currentUser && !currentUser.favorites.includes(product._id) ? (
-                      <AiFillStar style={{ color: 'yellow' }} />
+                      <AiFillStar style={{ color: 'white' }} />
                     ) : (
-                      <AiFillStar style={{ color: 'red' }} />
+                      <AiFillStar style={{ color: 'yellow' }} />
                     )}
                   </Button>
                 </Col>
