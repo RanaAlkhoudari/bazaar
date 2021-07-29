@@ -46,9 +46,9 @@ const Header = () => {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="me-auto" style={{ color: 'teal' }}>
+            <Nav className="me-auto" style={{ color: 'var(--color-main)' }}>
               <NavDropdown
-                title={<span style={{ color: 'teal' }}>Categories</span>}
+                title={<span style={{ color: 'var(--color-main)' }}>Categories</span>}
                 id="nav-dropdown"
               >
                 {categories.map((category) => {
@@ -56,7 +56,7 @@ const Header = () => {
                     <div key={category._id}>
                       <NavDropdown.Item
                         onClick={(e) => handleDropdownItem(e)}
-                        style={{ color: 'teal' }}
+                        style={{ color: 'var(--color-main)' }}
                       >
                         {' '}
                         {category.name}
@@ -65,33 +65,37 @@ const Header = () => {
                   );
                 })}
               </NavDropdown>
-              <Nav.Link href="/Info" style={{ color: 'teal' }}>
+              <Nav.Link href="/Info" style={{ color: 'var(--color-main)' }}>
                 Info
               </Nav.Link>
             </Nav>
 
             {user && (
-              <Nav.Link href="/products/add" id="add-product-link" style={{ color: 'teal' }}>
+              <Nav.Link
+                href="/products/add"
+                id="add-product-link"
+                style={{ color: 'var(--color-main)' }}
+              >
                 Add product
               </Nav.Link>
             )}
 
             <Nav>
               {user ? (
-                <Nav.Link href={`/account`} style={{ color: 'teal' }}>
+                <Nav.Link href={`/account`} style={{ color: 'var(--color-main)' }}>
                   My Account
                 </Nav.Link>
               ) : (
-                <Nav.Link href="/signup" style={{ color: 'teal' }}>
+                <Nav.Link href="/signup" style={{ color: 'var(--color-main)' }}>
                   Sign Up
                 </Nav.Link>
               )}
               {user ? (
-                <Nav.Link onClick={handleLogout} style={{ color: 'teal' }}>
+                <Nav.Link onClick={handleLogout} style={{ color: 'var(--color-main)' }}>
                   Sign Out
                 </Nav.Link>
               ) : (
-                <Nav.Link href="/signin" style={{ color: 'teal' }}>
+                <Nav.Link href="/signin" style={{ color: 'var(--color-main)' }}>
                   Sign In
                 </Nav.Link>
               )}

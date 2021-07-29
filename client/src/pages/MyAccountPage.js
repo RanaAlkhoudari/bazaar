@@ -56,7 +56,7 @@ const myAccountPage = () => {
         <Container>
           <h1>My Account</h1>
           <Tabs
-            headerStyle={{ color: '#adadad', cursor: 'default' }}
+            headerStyle={{ color: 'var(--color-grey)', cursor: 'default' }}
             activeHeaderStyle={{ fontWeight: 'bold', color: 'black' }}
           >
             <Tab

@@ -29,7 +29,7 @@ const Category = () => {
       <h3 className="text-center">CATEGORIES</h3>
       <div
         style={{
-          border: '1px solid teal',
+          border: '1px solid var(--color-main)',
         }}
       >
         {categories.length !== 0 &&
@@ -40,8 +40,8 @@ const Category = () => {
                   <Button
                     onClick={() => handleCategory(category)}
                     style={{
-                      color: 'teal',
-                      background: '#DCDCDC',
+                      color: 'var(--color-main)',
+                      background: 'var(--color-light-grey)',
                       border: '1px solid transparent',
                       borderRadius: '20px',
                       minWidth: '170px',

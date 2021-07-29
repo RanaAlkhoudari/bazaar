@@ -85,7 +85,7 @@ a {
 }
 
 a:hover {
-  color: teal;
+  color: var(--color-main);
   opacity: 0.9;
 }
 
