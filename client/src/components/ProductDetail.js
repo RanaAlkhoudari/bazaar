@@ -26,13 +26,21 @@ function ProductDetail({ product }) {
     console.log(user);
     setFaves((prev) => [...prev, newFave]);
     try {
-      await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, {
-        favorites: faves,
-      });
-      addFave(product._id);
+      if (user) {
+        await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, {
+          favorites: faves,
+        });
+        addFave(product._id);
+      } else {
+        alert('You need to log in first');
+      }
     } catch (error) {
       console.log(error);
     }
+<<<<<<< HEAD
+=======
+    setFaves((prev) => [...prev, newFave]);
+>>>>>>> cdc568886abfd876db06b81aaaaf5e4d39e324f1
   }
 
   return (
@@ -54,6 +62,7 @@ function ProductDetail({ product }) {
               <Row>
                 {' '}
                 <Col>
+<<<<<<< HEAD
                   {currentUser.favorites.includes(product._id) ? (
                     <Button className="w-100" style={{ backgroundColor: 'var(--color-main)' }}>
                       <AiFillStar style={{ color: 'red' }} />{' '}
@@ -69,6 +78,21 @@ function ProductDetail({ product }) {
                       <AiFillStar style={{ color: 'yellow' }} />
                     </Button>
                   )}
+=======
+                  <Button
+                    className="w-100"
+                    style={{ backgroundColor: 'var(--color-main)' }}
+                    onClick={() => {
+                      addFavorite(product._id);
+                    }}
+                  >
+                    {currentUser && !currentUser.favorites.includes(product._id) ? (
+                      <AiFillStar style={{ color: 'white' }} />
+                    ) : (
+                      <AiFillStar style={{ color: 'yellow' }} />
+                    )}
+                  </Button>
+>>>>>>> cdc568886abfd876db06b81aaaaf5e4d39e324f1
                 </Col>
                 <Col>
                   {' '}
