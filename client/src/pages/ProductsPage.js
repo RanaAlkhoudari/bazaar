@@ -34,7 +34,7 @@ const Products = () => {
   }, [keyword]);
 
   const productsByCategory = allProducts.filter(
-    (product) => product.categories[0].name === keyword,
+    (product) => product.categories.length > 0 && product.categories[0].name === keyword,
   );
 
   return (
@@ -55,7 +55,7 @@ const Products = () => {
                     marginTop: '100px',
                   }}
                 >
-                  This Category is empty chose another one please{' '}
+                  This category is empty, choose another one please{' '}
                 </h1>
               )}
               {productsByCategory.length !== 0 && <ProductList products={productsByCategory} />}
