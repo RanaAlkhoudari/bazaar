@@ -48,22 +48,22 @@ const AuthContextProvider = ({ children }) => {
   };
 
   const deleteFave = async (user, _id) => {
-    console.log('i am here');
-    // const newList = user.favorites.filter((item) => item !== _id);
-    // setDeletedFave(user, newList);
-    // try {
-    //   // setAddedFave((prev) => [...prev, _id]);
-    //   const response = await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, {
-    //     favorites: addedFave,
-    //   });
+    // console.log(_id);
+    const newList = user.favorites.filter((item) => item !== _id);
+    // setDeletedFave(newList);
+    // console.log('new list', newList);
+    try {
+      const response = await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, {
+        favorites: newList,
+      });
 
-    //   if (currentUser) {
-    //     console.log('this is a current user', currentUser);
-    //     setCurrentUser(response.data);
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    // }
+      if (user) {
+        console.log('this is a current user', user);
+        setCurrentUser(response.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -75,7 +75,7 @@ const AuthContextProvider = ({ children }) => {
         dispatch,
         addFave,
 
-        // deleteFave,
+        deleteFave,
         currentUser,
         setCurrentUser,
       }}
