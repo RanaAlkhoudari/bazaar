@@ -2,11 +2,15 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Payment from '../components/Payment';
 import { Row, Col, Card } from 'react-bootstrap';
+import AddressesDropdown from '../components/AddressesDropdown';
 
 const Checkout = (prop) => {
   const product = prop.location.state;
 
   const [seller, setSeller] = useState([]);
+  const [shippingAddress, setShippingAddress] = useState(null);
+
+  const getShippingAddress = (address) => setShippingAddress(address);
 
   useEffect(() => {
     fetchSellerData();
@@ -40,59 +44,13 @@ const Checkout = (prop) => {
             </div>
           </Card.Body>
         </Card>
-        <Card style={cardStyles}>
-          <Card.Header>Shipping Address</Card.Header>
-          <Card.Body>
-            <Row>
-              <Col md={6}>
-                <input
-                  style={inputStyles}
-                  type="text"
-                  name="first_name"
-                  placeholder="First Name"
-                />
-              </Col>
-              <Col md={6}>
-                <input style={inputStyles} type="text" name="last_name" placeholder="Last Name" />
-              </Col>
-            </Row>
-            <Row>
-              <Col md={12}>
-                <input style={inputStyles} type="text" name="city" placeholder="City" />
-              </Col>
-            </Row>
-            <Row>
-              <Col md={4}>
-                <input style={inputStyles} type="text" name="post_code" placeholder="PostCode" />
-              </Col>
-              <Col md={4}>
-                <input
-                  style={inputStyles}
-                  type="text"
-                  name="building_number"
-                  placeholder="Building Number"
-                />
-              </Col>
-              <Col md={4}>
-                <input style={inputStyles} type="text" name="extension" placeholder="Extra" />
-              </Col>
-            </Row>
-            <Row>
-              <Col md={12}>
-                <input
-                  style={inputStyles}
-                  type="text"
-                  name="street_name"
-                  placeholder="Street Name"
-                />
-              </Col>
-            </Row>
-          </Card.Body>
-        </Card>
+
+        <AddressesDropdown getShippingAddress={getShippingAddress} />
+
         <Card style={cardStyles}>
           <Card.Header>Credit Card Info</Card.Header>
           <Card.Body>
-            <Payment product={product} />
+            <Payment product={product} shippingAddress={shippingAddress} />
           </Card.Body>
         </Card>
       </Col>
@@ -116,11 +74,6 @@ const Checkout = (prop) => {
       </Col>
     </Row>
   );
-};
-
-const inputStyles = {
-  marginBottom: '10px',
-  width: '100%',
 };
 
 const cardStyles = {
