@@ -17,7 +17,7 @@ const Search = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit} style={{ background: '#FBFBFB' }}>
+    <Form onSubmit={handleSubmit} style={{ margin: '5px auto' }}>
       <InputGroup className="mb-3" style={{ width: '50%', margin: '0 auto' }}>
         <FormControl
           aria-describedby="basic-addon2"
@@ -28,7 +28,7 @@ const Search = () => {
           variant="outline-secondary"
           id="button-addon2"
           type="submit"
-          style={{ background: 'teal', color: 'white' }}
+          style={{ background: 'var(--color-main)', color: 'white' }}
         >
           Search
         </Button>
