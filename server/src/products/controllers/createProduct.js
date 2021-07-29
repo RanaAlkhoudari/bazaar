@@ -1,5 +1,5 @@
-const ProductModel = require('../productModel');
-const CategoryModel = require('../../categories/categoryModel');
+const Product = require('../productModel');
+const Category = require('../../categories/categoryModel');
 
 async function createProduct(req, res) {
   try {
@@ -7,9 +7,9 @@ async function createProduct(req, res) {
     const { user, title, description, price, images, condition, categories, videos } = req.body;
 
     for await (const category of categories)
-      await CategoryModel.find({ name: category }, (err, result) => ids.push(result[0].id));
+      await Category.find({ name: category }, (err, result) => ids.push(result[0].id));
 
-    const newProduct = new ProductModel({
+    const newProduct = new Product({
       user,
       title,
       price,
