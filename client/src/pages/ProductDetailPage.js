@@ -6,9 +6,11 @@ import SimilarProducts from '../components/SimilarProducts';
 import ProductDetail from '../components/ProductDetail';
 import NotFoundPage from './notFoundPage';
 import UserDetail from '../components/UserDetail';
+import Loading from '../components/Loading';
 
 function ProductDetailPage() {
   const [product, setProduct] = useState('');
+  const [error, setError] = useState(false);
 
   const { id } = useParams();
 
@@ -21,33 +23,30 @@ function ProductDetailPage() {
       const response = await axios.get(`http://localhost:3000/api/v1/products/${id}`);
       setProduct(response.data);
     } catch (error) {
-      console.log(error);
+      setError(true);
+      console.log('error:', error);
     }
   }
+  if (product)
+    return (
+      <>
+        <Container>
+          <Row>
+            <Col xs={12} md={8} lg={8}>
+              <ProductDetail product={product} />
+            </Col>
+            <Col xs={12} md={4} lg={4}>
+              <UserDetail product={product} />
+            </Col>
+          </Row>
+        </Container>
 
-  return (
-    <>
-      {product ? (
-        <>
-          <Container>
-            <Row>
-              <Col xs={12} md={8} lg={8}>
-                <ProductDetail product={product} />
-              </Col>
-              <Col xs={12} md={4} lg={4}>
-                <UserDetail product={product} />
-              </Col>
-            </Row>
-          </Container>
-
-          <h2 style={{ textAlign: 'center', marginTop: '70px' }}>See Similar Products</h2>
-          {product.categories && <SimilarProducts product={product} />}
-        </>
-      ) : (
-        <NotFoundPage />
-      )}
-    </>
-  );
+        <h2 style={{ textAlign: 'center', marginTop: '70px' }}>See Similar Products</h2>
+        {product.categories && <SimilarProducts product={product} />}
+      </>
+    );
+  if (error) return <NotFoundPage />;
+  return <Loading />;
 }
 
 export default ProductDetailPage;

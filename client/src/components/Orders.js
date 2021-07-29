@@ -5,6 +5,7 @@ import CardRow from './CardRow';
 const Orders = ({ orders }) => {
   if (orders) {
     const ordersItems = orders.map((order) => {
+      const date = new Date(order.createdAt);
       return (
         <CardRow key={order._id}>
           <Col style={{ maxWidth: '100px', padding: '0' }}>
@@ -12,7 +13,9 @@ const Orders = ({ orders }) => {
           </Col>
           <Col>{order.product.title}</Col>
           <Col style={{ textAlign: 'right' }}>{order.product.price}</Col>
-          <Col style={{ textAlign: 'right' }}>{order.createdAt}</Col>
+          <Col style={{ textAlign: 'right' }}>
+            {date.getDate()}-{date.getMonth()}-{date.getFullYear()}
+          </Col>
         </CardRow>
       );
     });
