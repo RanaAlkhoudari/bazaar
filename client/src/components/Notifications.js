@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
 import { Col } from 'react-bootstrap';
 import CardRow from './CardRow';
@@ -7,8 +8,23 @@ import { FcCancel, FcCheckmark } from 'react-icons/fc';
 
 const Notifications = ({ data }) => {
   const { user } = useContext(AuthContext);
+  const [fetch, SetFetch] = useState(0);
+  // console.log(data);
+  // console.log(fetch);
 
-  const isExpert = (admin, isVerified) => {
+  const acceptProduct = async (e) => {
+    const productID = e.target.id;
+    // console.log(e.target.id);
+    // SetFetch(fetch + 1);
+
+    try {
+      await axios.patch(`http://localhost:3000/api/v1/products/${productID}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const isExpert = (admin, isVerified, product_id) => {
     switch (isVerified) {
       case true:
         switch (admin) {
@@ -28,11 +44,16 @@ const Notifications = ({ data }) => {
           case true:
             return (
               <div style={{ color: 'red' }}>
-                <Button style={{ backgroundColor: 'white', color: 'black', margin: '0 10px' }}>
+                <Button
+                  id={product_id}
+                  check={isVerified.toString()}
+                  onClick={(e) => acceptProduct(e)}
+                  style={{ backgroundColor: 'white', color: 'black', margin: '0 10px' }}
+                >
                   Accept
                   <FcCheckmark style={{ marginLeft: '5px' }} />
                 </Button>
-                <Button style={{ backgroundColor: 'white', color: 'black' }}>
+                <Button>
                   Decline
                   <FcCancel style={{ marginLeft: '5px' }} />
                 </Button>
@@ -57,8 +78,10 @@ const Notifications = ({ data }) => {
           <img src={notification.images[0]} alt={notification.title} style={{ width: '100px' }} />
         </Col>
         <Col>{notification.title}</Col>
-        <Col style={{ textAlign: 'left' }}>Price : {notification.price}€</Col>
-        <Col style={{ textAlign: 'center' }}>{isExpert(user.expert, notification.verified)}</Col>
+        <Col style={{ textAlign: 'left' }}>Price : {notification.price} €</Col>
+        <Col style={{ textAlign: 'center' }}>
+          {isExpert(user.expert, notification.verified, notification._id)}
+        </Col>
       </CardRow>
     );
   });

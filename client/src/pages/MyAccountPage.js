@@ -77,7 +77,7 @@ const myAccountPage = () => {
                 </React.Fragment>
               }
             >
-              <Notifications data={isLoaded ? userFromDB.products : <></>} />;
+              <Notifications data={isLoaded ? userFromDB.products : <></>} />
             </Tab>
             <Tab
               label={
