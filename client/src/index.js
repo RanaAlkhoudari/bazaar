@@ -15,7 +15,7 @@ import SignInPage from './pages/SignInPage';
 import SignUpPage from './pages/SignUpPage';
 import { AuthContextProvider } from './context/AuthContext';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import Checkout from './pages/checkout/checkout';
+import Checkout from './pages/Checkout';
 
 document.addEventListener('DOMContentLoaded', () => {
   const el = document.getElementById('root');

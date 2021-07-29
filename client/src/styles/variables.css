@@ -23,5 +23,7 @@
   --color-main: rgba(0, 128, 128);
   --color-main-opacity-10: rgba(0, 128, 128, 0.1);
   --color-light: #fff;
-  --color-search: #7f8f87;
+  --color-grey: #7f8f87;
+  --color-light-grey: #dcdcdc;
+  --color-star: #ffff00;
 }

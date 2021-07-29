@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 
 const orderSchema = new Schema(
   {
-    user: { type: Schema.Types.ObjectId, ref: 'user', required: true},
+    user: { type: Schema.Types.ObjectId, ref: 'user', required: true },
     product: { type: Schema.Types.ObjectId, ref: 'product', required: true },
     address: { type: Schema.Types.ObjectId, ref: 'address', required: true },
     amount: { type: String, required: false },

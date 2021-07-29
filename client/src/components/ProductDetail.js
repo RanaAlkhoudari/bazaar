@@ -31,7 +31,7 @@ function ProductDetail({ product }) {
                 {' '}
                 <Col>
                   <Button className="w-100" style={{ backgroundColor: 'var(--color-main)' }}>
-                    <AiFillStar style={{ color: 'yellow' }} />
+                    <AiFillStar style={{ color: 'var(--color-star)' }} />
                   </Button>
                 </Col>
                 <Col>
