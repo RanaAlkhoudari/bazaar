@@ -11,7 +11,6 @@ import { Container, Alert } from 'react-bootstrap';
 const myAccountPage = () => {
   const [address, setAddress] = useState({});
   const { user } = useContext(AuthContext);
-
   useEffect(() => {
     fetchData();
   }, []);

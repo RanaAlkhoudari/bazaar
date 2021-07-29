@@ -1,13 +1,13 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { loginCall } from '../apiCalls';
 import { AuthContext } from '../context/AuthContext';
 import { Container, Form, Button, Card, Alert } from 'react-bootstrap';
+import GoogleSignIn from './GoogleSignIn';
 
 const SignIn = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
-
   const { error, dispatch, user } = useContext(AuthContext);
   const history = useHistory();
 
@@ -44,6 +44,7 @@ const SignIn = () => {
             </Form>
           </Card.Body>
         </Card>
+        <GoogleSignIn />
         <div className="w-100 text-center mt-2">
           Need an account?{' '}
           <Link to="/signup" style={{ color: 'var(--color-main)' }}>
