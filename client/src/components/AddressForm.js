@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { Card, Col, Row } from 'react-bootstrap';
 import React, { useContext, useRef } from 'react';
 import { AuthContext } from '../context/AuthContext';
+import { Button, Card, Col, Form, Row } from 'react-bootstrap';
 
 const AddressForm = ({ getNewAddress }) => {
   const { user } = useContext(AuthContext);
@@ -30,19 +30,17 @@ const AddressForm = ({ getNewAddress }) => {
       building_number: buildingNumberRef.current.value || null,
     };
 
-    // TODO: change (input) to (Form.Control) to be able to set (required) attribute and remove that (isFilled())
-    const isFilled = () => {
+    const isValid = () => {
       for (const key in newAddress) if (newAddress[key] === null) return false;
       return true;
     };
 
-    if (isFilled()) {
+    if (isValid()) {
       const response = await axios.post(
         `${process.env.REACT_APP_API_URL}/addresses/create`,
         newAddress,
       );
 
-      // set it on the parent component (addressesDropdown) if the user filled all the required fields
       getNewAddress(response.data.address);
     }
   };
@@ -53,9 +51,8 @@ const AddressForm = ({ getNewAddress }) => {
       <Card.Body>
         <Row>
           <Col md={6}>
-            <input
+            <Form.Control
               type="text"
-              name="first_name"
               ref={firstNameRef}
               style={inputStyles}
               placeholder="First Name"
@@ -63,9 +60,8 @@ const AddressForm = ({ getNewAddress }) => {
           </Col>
 
           <Col md={6}>
-            <input
+            <Form.Control
               type="text"
-              name="last_name"
               ref={lastNameRef}
               style={inputStyles}
               placeholder="Last Name"
@@ -75,9 +71,8 @@ const AddressForm = ({ getNewAddress }) => {
 
         <Row>
           <Col md={6}>
-            <input
+            <Form.Control
               type="text"
-              name="street_name"
               style={inputStyles}
               ref={streetNameRef}
               placeholder="Street Name"
@@ -85,31 +80,28 @@ const AddressForm = ({ getNewAddress }) => {
           </Col>
 
           <Col md={4}>
-            <input
+            <Form.Control
               type="text"
               style={inputStyles}
-              name="building_number"
               ref={buildingNumberRef}
               placeholder="Building Number"
             />
           </Col>
 
           <Col md={2}>
-            <input
+            <Form.Control
               type="text"
-              name="extension"
               ref={extensionRef}
               style={inputStyles}
-              placeholder="Extension (Optional)"
+              placeholder="Ext. (Optional)"
             />
           </Col>
         </Row>
 
         <Row>
           <Col md={4}>
-            <input
+            <Form.Control
               type="text"
-              name="post_code"
               ref={postCodeRef}
               style={inputStyles}
               placeholder="Post Code"
@@ -117,30 +109,25 @@ const AddressForm = ({ getNewAddress }) => {
           </Col>
 
           <Col md={4}>
-            <input type="text" name="city" ref={cityRef} placeholder="City" style={inputStyles} />
+            <Form.Control type="text" ref={cityRef} placeholder="City" style={inputStyles} />
           </Col>
 
           <Col md={4}>
-            <input
-              type="text"
-              name="country"
-              ref={countryRef}
-              style={inputStyles}
-              placeholder="Country"
-            />
+            <Form.Control type="text" ref={countryRef} style={inputStyles} placeholder="Country" />
           </Col>
         </Row>
 
         <Row>
           <Col md={12}>
-            <input
+            <Button
               value="Add"
               type="submit"
-              name="submit"
               style={btnStyles}
               onClick={handleClick}
               className="btn btn-primary"
-            />
+            >
+              Add
+            </Button>
           </Col>
         </Row>
       </Card.Body>

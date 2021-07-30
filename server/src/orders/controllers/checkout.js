@@ -20,11 +20,10 @@ const checkout = async (req, res) => {
 
     const newOrder = new Order({ user, product, address });
     const saved = await newOrder.save();
-    // ?? should send status 400/500 (has nothing todo with the req, (req body validation done in the client side!!)
     if (!saved) throw new Error('Cannot save order!');
 
     const added = await User.findByIdAndUpdate(user, { $push: { orders: saved._id } });
-    if (!added) throw new Error('Cannot find user!');
+    if (!added) throw new Error('Cannot add order to user!');
 
     res.status(200).json({
       success: true,

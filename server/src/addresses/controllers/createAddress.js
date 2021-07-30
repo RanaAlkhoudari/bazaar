@@ -10,7 +10,9 @@ const createAddress = async (req, res) => {
     if (!saved)
       return res.status(400).json({ success: false, message: 'Failed to save address!' });
 
-    await User.findByIdAndUpdate(user, { $push: { addresses: saved._id } });
+    const added = await User.findByIdAndUpdate(user, { $push: { addresses: saved._id } });
+    if (!added)
+      return res.status(400).json({ success: false, message: 'Cannot add address to user!' });
 
     res.status(201).json({ success: true, address: saved });
   } catch (error) {
