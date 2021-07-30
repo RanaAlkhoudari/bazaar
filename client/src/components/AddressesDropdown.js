@@ -22,6 +22,9 @@ const AddressesDropdown = ({ getShippingAddress }) => {
     setShippingAddress(selectedAddress);
   };
 
+  const getNewAddress = (address) => setShippingAddress(address);
+
+  // set it on the parent checkout page if the user choose one of the recent addresses
   getShippingAddress(shippingAddress);
 
   return (
@@ -43,30 +46,32 @@ const AddressesDropdown = ({ getShippingAddress }) => {
               </Dropdown.Item>
             ))}
 
-          <Dropdown.Item>New shipping address</Dropdown.Item>
+          <Dropdown.Item id="new">Add new shipping address</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
       {shippingAddress ? (
         <Card style={cardStyles}>
           <Card.Header className="card-header">Shipping Address</Card.Header>
-
-          <Card.Body>
-            <Card.Text>{`${shippingAddress.first_name || user.first_name} 
+          {shippingAddress && (
+            <Card.Body>
+              <Card.Text>{`${shippingAddress.first_name || user.first_name} 
                 ${shippingAddress.last_name || user.last_name}`}</Card.Text>
-            <Card.Text>{`${shippingAddress.street_name} ${shippingAddress.building_number},`}</Card.Text>
-            <Card.Text>{`${shippingAddress.post_code} ${shippingAddress.city} - ${shippingAddress.country}`}</Card.Text>
-          </Card.Body>
+              <Card.Text>{`${shippingAddress.street_name} ${shippingAddress.building_number} ${shippingAddress.extension},`}</Card.Text>
+              <Card.Text>{`${shippingAddress.post_code} ${shippingAddress.city} - ${shippingAddress.country}`}</Card.Text>
+            </Card.Body>
+          )}
         </Card>
       ) : (
-        shippingAddress !== null && <AddressForm />
+        // get it from the child component (addressForm) if the user choose to add new one
+        shippingAddress !== null && <AddressForm getNewAddress={getNewAddress} />
       )}
     </div>
   );
 };
 
 const cardStyles = {
-  borderColor: 'var(--color-main)',
   marginBottom: '10px',
+  borderColor: 'var(--color-main)',
 };
 
 export default AddressesDropdown;
