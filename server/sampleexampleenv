@@ -1,0 +1,5 @@
+PORT=3000
+DB_URL="your mongo"
+GOOGLE_CLIENT_ID=your Google Client Id
+
+Note: You should also add GOOGLE_CLIENT_ID into .env in client.
