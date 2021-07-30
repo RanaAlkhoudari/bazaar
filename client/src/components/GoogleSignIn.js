@@ -1,12 +1,15 @@
 import React, { useState, useContext } from 'react';
 import { Container, Form, Button, Card, Alert, Image } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
 import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
+import GoogleButton from 'react-google-button';
 
 function GoogleSignIn() {
   const { dispatch } = useContext(AuthContext);
   const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+  const history = useHistory();
   async function responseGoogle(response) {
     const res = await axios({
       method: 'POST',
@@ -17,15 +20,15 @@ function GoogleSignIn() {
         email: response.profileObj.email,
       },
     });
-    console.log(res);
-    const loginCall = async (userCredential, dispatch) => {
+    function loginCall(userCredential, dispatch) {
       dispatch({ type: 'LOGIN_START' });
       try {
         dispatch({ type: `LOGIN_SUCCESS`, payload: res.data });
+        history.push('/');
       } catch (err) {
         dispatch({ type: `LOGIN_FAILURE`, payload: err.response.data });
       }
-    };
+    }
     loginCall({ email: res.data.email, password: res.data.password }, dispatch);
   }
   return (
@@ -33,11 +36,17 @@ function GoogleSignIn() {
       <Card.Header style={{ margin: '0 auto' }}>
         <GoogleLogin
           clientId={GOOGLE_CLIENT_ID}
-          buttonText="Login"
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
           cookiePolicy={'single_host_origin'}
-          style={{ width: '350px' }}
+          render={(renderProps) => (
+            <GoogleButton
+              onClick={renderProps.onClick}
+              disabled={renderProps.disabled}
+              label="Log in with Google"
+              style={{ width: '300px' }}
+            />
+          )}
         />
       </Card.Header>
     </Card>

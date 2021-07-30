@@ -44,13 +44,13 @@ const SignIn = () => {
             </Form>
           </Card.Body>
         </Card>
-        <GoogleSignIn />
         <div className="w-100 text-center mt-2">
           Need an account?{' '}
           <Link to="/signup" style={{ color: 'var(--color-main)' }}>
             Sign Up
           </Link>
         </div>
+        <GoogleSignIn />
       </div>
     </Container>
   );

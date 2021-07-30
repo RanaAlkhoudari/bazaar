@@ -1,5 +1,6 @@
 const pkg = require('google-auth-library');
 const bcrypt = require('bcrypt');
+const { v4: uuidv4 } = require('uuid');
 const User = require('../userModel');
 
 const { OAuth2Client } = pkg;
@@ -12,17 +13,15 @@ async function authUserGoogle(req, res) {
       idToken: tokenId,
       audience: process.env.GOOGLE_CLIENT_ID,
     });
-
-    const { email_verified, name, email, given_name } = payload;
-    const password = email + process.env.JWT_SECRET;
-    const user = await User.findOne({ email });
+    console.log(payload);
+    const { email_verified, name, email, given_name, picture } = payload;
+    const password = uuidv4(); //We used uuid because we dont need password, but just email.
+    const user = await User.findOne({ email }); //We search user according to email not password.
 
     if (email_verified) {
       if (user) {
-        if (await bcrypt.compare(password, user.password)) {
-          res.status(200).json({
-            user,
-          });
+        if (password) {
+          res.status(200).json(user);
         } else {
           res.status(401);
           throw new Error('Invalid email or password');
@@ -33,6 +32,7 @@ async function authUserGoogle(req, res) {
           last_name: given_name,
           email,
           password,
+          avatar: picture,
         });
         res.status(201).json(newUser);
       }
