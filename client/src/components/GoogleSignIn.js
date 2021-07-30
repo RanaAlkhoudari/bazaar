@@ -1,5 +1,5 @@
-import React, { useState, useContext } from 'react';
-import { Container, Form, Button, Card, Alert, Image } from 'react-bootstrap';
+import React, { useContext } from 'react';
+import { Card } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
 import { AuthContext } from '../context/AuthContext';

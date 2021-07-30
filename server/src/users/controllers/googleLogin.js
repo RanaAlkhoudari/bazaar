@@ -1,5 +1,4 @@
 const pkg = require('google-auth-library');
-const bcrypt = require('bcrypt');
 const { v4: uuidv4 } = require('uuid');
 const User = require('../userModel');
 
@@ -13,10 +12,9 @@ async function authUserGoogle(req, res) {
       idToken: tokenId,
       audience: process.env.GOOGLE_CLIENT_ID,
     });
-    console.log(payload);
     const { email_verified, name, email, given_name, picture } = payload;
-    const password = uuidv4(); //We used uuid because we dont need password, but just email.
-    const user = await User.findOne({ email }); //We search user according to email not password.
+    const password = uuidv4();
+    const user = await User.findOne({ email });
 
     if (email_verified) {
       if (user) {
