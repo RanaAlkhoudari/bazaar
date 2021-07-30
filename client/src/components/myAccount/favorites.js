@@ -19,19 +19,16 @@ const Favorites = () => {
 const FaveList = (favorite) => {
   const [fave, setFave] = useState();
   const { user } = useContext(AuthContext);
-  const { deleteFave } = useContext(AuthContext);
+  const { deleteFavorite } = useContext(AuthContext);
 
   useEffect(() => {
     fetchFave(favorite.favorite);
   }, [favorite]);
 
   async function fetchFave(favorite) {
-    console.log('favorites:', favorite);
-
     try {
       const response = await axios.get(`http://localhost:3000/api/v1/products/${favorite}`);
       setFave(response.data);
-      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -59,7 +56,7 @@ const FaveList = (favorite) => {
               type="submit"
               variant="danger"
               onClick={() => {
-                deleteFave(user, fave._id);
+                deleteFavorite(user, fave._id);
               }}
             >
               Delete

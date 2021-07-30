@@ -6,8 +6,8 @@ import { AuthContext } from '../context/AuthContext';
 
 function ProductDetail({ product }) {
   const history = useHistory();
-  const { addFave } = useContext(AuthContext);
-  const { currentUser } = useContext(AuthContext);
+  const { addFavorite, deleteFavorite } = useContext(AuthContext);
+  const { user, currentUser } = useContext(AuthContext);
 
   const goToCheckout = () =>
     history.push({
@@ -35,7 +35,13 @@ function ProductDetail({ product }) {
                 {' '}
                 <Col>
                   {currentUser.favorites.includes(product._id) ? (
-                    <Button className="w-100" style={{ backgroundColor: 'var(--color-main)' }}>
+                    <Button
+                      className="w-100"
+                      style={{ backgroundColor: 'var(--color-main)' }}
+                      onClick={() => {
+                        deleteFavorite(user, product._id);
+                      }}
+                    >
                       <AiFillStar style={{ color: 'red' }} />{' '}
                     </Button>
                   ) : (
@@ -43,7 +49,7 @@ function ProductDetail({ product }) {
                       className="w-100"
                       style={{ backgroundColor: 'var(--color-main)' }}
                       onClick={() => {
-                        addFave(product._id);
+                        addFavorite(product._id);
                       }}
                     >
                       <AiFillStar style={{ color: 'yellow' }} />
