@@ -53,7 +53,7 @@ const AuthContextProvider = ({ children }) => {
   // deletes favorite from the local storage
 
   const deleteFave = async (user, _id) => {
-    const newList = user.favorites.filter((item) => item !== _id);
+    const newList = currentUser.favorites.filter((item) => item !== _id);
 
     try {
       const response = await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, {
