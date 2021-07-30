@@ -19,6 +19,7 @@
     "@stripe/stripe-js": "^1.16.0",
     "axios": "^0.21.1",
     "bootstrap": "^5.0.2",
+    "emailjs-com": "^3.2.0",
     "multiselect-react-dropdown": "^2.0.4",
     "react": "^17.0.1",
     "react-bootstrap": "^1.6.1",
@@ -26,6 +27,7 @@
     "react-dom": "^17.0.1",
     "react-icons": "^4.2.0",
     "react-router-dom": "^5.2.0",
+    "react-spinners": "^0.11.0",
     "styled-components": "^5.3.0",
     "webpack": "^5.11.1"
   },
