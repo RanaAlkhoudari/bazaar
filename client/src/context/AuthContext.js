@@ -21,6 +21,7 @@ const AuthContextProvider = ({ children }) => {
 
   const { user } = useContext(AuthContext);
   const [addedFave, setAddedFave] = useState(user ? user.favorites : []);
+
   const [currentUser, setCurrentUser] = useState(user);
 
   useEffect(() => {
@@ -34,11 +35,12 @@ const AuthContextProvider = ({ children }) => {
 
   const addFave = async (_id) => {
     try {
-      setAddedFave((prev) => [...prev, _id]);
+      const newF = [...addedFave, _id];
       const response = await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, {
-        favorites: addedFave,
+        favorites: newF,
       });
 
+      setAddedFave((prev) => [...prev, _id]);
       if (user) {
         console.log('this is a current user', currentUser);
         setCurrentUser(response.data);
@@ -58,11 +60,7 @@ const AuthContextProvider = ({ children }) => {
         favorites: newList,
       });
 
-      if (user) {
-        console.log('this is a current user', user);
-        setCurrentUser(response.data);
-      }
-      // window.location.reload();
+      setCurrentUser(response.data);
     } catch (error) {
       console.log(error);
     }

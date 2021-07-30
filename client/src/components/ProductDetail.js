@@ -22,23 +22,23 @@ function ProductDetail({ product }) {
   const { addFave } = useContext(AuthContext);
 
   // adds favorite to the database
-  async function addFavorite(newFave) {
-    console.log(user);
+  // async function addFavorite(newFave) {
+  //   console.log(user);
 
-    try {
-      if (user) {
-        await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, {
-          favorites: faves,
-        });
-        addFave(product._id);
-      } else {
-        alert('You need to log in first');
-      }
-    } catch (error) {
-      console.log(error);
-    }
-    setFaves((prev) => [...prev, newFave]);
-  }
+  //   try {
+  //     if (user) {
+  //       await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, {
+  //         favorites: faves,
+  //       });
+  //       addFave(product._id);
+  //     } else {
+  //       alert('You need to log in first');
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  //   setFaves((prev) => [...prev, newFave]);
+  // }
 
   return (
     <div key={product._id}>
@@ -68,7 +68,8 @@ function ProductDetail({ product }) {
                       className="w-100"
                       style={{ backgroundColor: 'var(--color-main)' }}
                       onClick={() => {
-                        addFavorite(product._id);
+                        // addFavorite(product._id);
+                        addFave(product._id);
                       }}
                     >
                       <AiFillStar style={{ color: 'yellow' }} />

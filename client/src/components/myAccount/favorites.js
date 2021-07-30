@@ -39,19 +39,19 @@ const FaveList = (favorite) => {
   }
 
   // deletes favorite from the database
-  async function deleteFavorite(user, _id) {
-    const newList = currentUser.favorites.filter((item) => item !== _id);
-    setFave(newList);
-    try {
-      const response = await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, {
-        favorites: fave,
-      });
-      deleteFave(user, _id);
-    } catch (error) {
-      console.log(error);
-    }
-    return;
-  }
+  // async function deleteFavorite(user, _id) {
+  //   const newList = currentUser.favorites.filter((item) => item !== _id);
+  //   setFave(newList);
+  //   try {
+  //     const response = await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, {
+  //       favorites: fave,
+  //     });
+  //     deleteFave(user, _id);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  //   return;
+  // }
 
   return (
     <div>
@@ -76,7 +76,8 @@ const FaveList = (favorite) => {
               type="submit"
               variant="danger"
               onClick={() => {
-                deleteFavorite(user, fave._id);
+                // deleteFavorite(user, fave._id);
+                deleteFave(user, fave._id);
               }}
             >
               Delete
