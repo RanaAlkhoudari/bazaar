@@ -28,7 +28,7 @@ function ProductList(props) {
                   <Card.Body style={{ color: 'teal' }}>
                     <Card.Title>{product.title}</Card.Title>
                     <Card.Text>{product.price} €</Card.Text>
-                    {currentUser.favorites.includes(product._id) ? (
+                    {currentUser && currentUser.favorites.includes(product._id) ? (
                       <AiFillStar style={{ color: 'red' }} />
                     ) : null}
                   </Card.Body>

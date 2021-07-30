@@ -6,32 +6,33 @@ import axios from 'axios';
 import { useListContext } from '../../context/FaveContext';
 
 const Favorites = () => {
-  const { user } = useContext(AuthContext);
+  const { user, currentUser } = useContext(AuthContext);
 
   return (
     <div className="d-flex flex-wrap justify-content-center">
-      {console.log(user)}
-      {user.favorites.map((favorite) => (
+      {currentUser.favorites.map((favorite) => (
         <FaveList key={favorite} favorite={favorite} />
       ))}
     </div>
   );
 };
 
-const FaveList = (props) => {
+const FaveList = (favorite) => {
   const [fave, setFave] = useState();
-  const { user } = useContext(AuthContext);
+  const { user, currentUser } = useContext(AuthContext);
   const { deleteFave } = useContext(AuthContext);
 
   useEffect(() => {
-    fetchFave(props.favorite);
-  }, []);
+    fetchFave(favorite.favorite);
+  }, [favorite]);
 
   async function fetchFave(favorite) {
+    console.log('favorites:', favorite);
+
     try {
-      console.log('something');
       const response = await axios.get(`http://localhost:3000/api/v1/products/${favorite}`);
       setFave(response.data);
+      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -39,7 +40,7 @@ const FaveList = (props) => {
 
   // deletes favorite from the database
   async function deleteFavorite(user, _id) {
-    const newList = user.favorites.filter((item) => item !== _id);
+    const newList = currentUser.favorites.filter((item) => item !== _id);
     setFave(newList);
     try {
       const response = await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, {

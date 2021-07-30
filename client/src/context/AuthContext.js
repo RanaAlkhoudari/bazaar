@@ -13,9 +13,9 @@ const AuthContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(
     AuthReducer,
     INITIAL_STATE,
-    //  () => {
-    // const localData = localStorage.getItem('user');
-    // return localData ? JSON.parse(localData) : INITIAL_STATE;
+    //   () => {
+    //   const localData = localStorage.getItem('user');
+    //   return localData ? JSON.parse(localData) : INITIAL_STATE;
     // }
   );
 
@@ -33,8 +33,8 @@ const AuthContextProvider = ({ children }) => {
   // adds favorite to the local storage
 
   const addFave = async (_id) => {
-    setAddedFave((prev) => [...prev, _id]);
     try {
+      setAddedFave((prev) => [...prev, _id]);
       const response = await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, {
         favorites: addedFave,
       });
@@ -62,7 +62,7 @@ const AuthContextProvider = ({ children }) => {
         console.log('this is a current user', user);
         setCurrentUser(response.data);
       }
-      window.location.reload();
+      // window.location.reload();
     } catch (error) {
       console.log(error);
     }
