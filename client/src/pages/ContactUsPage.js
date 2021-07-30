@@ -1,8 +1,8 @@
 import React from 'react';
 import emailjs from 'emailjs-com';
 import { Form, Button, Container } from 'react-bootstrap';
-const  {REACT_APP_SERVICE_ID, REACT_APP_TEMPLATE_ID, REACT_APP_USER_ID} = process.env
-console.log(REACT_APP_SERVICE_ID);
+const  {REACT_APP_SERVICE_ID, REACT_APP_TEMPLATE_ID, REACT_APP_USER_ID} = process.env;
+
 const ContactUsPage = () => {
   function sendEmail(e) {
     e.preventDefault();

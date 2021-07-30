@@ -11,6 +11,7 @@ import { Container, Alert } from 'react-bootstrap';
 const myAccountPage = () => {
   const { user } = useContext(AuthContext);
   const [userFromDB, setUserFromDB] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetchUser();
@@ -19,8 +20,8 @@ const myAccountPage = () => {
   const fetchUser = async () => {
     try {
       const response = await axios.get(`http://localhost:3000/api/v1/users/${user._id}`);
-
       setUserFromDB(response.data);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -37,7 +38,7 @@ const myAccountPage = () => {
             contentStyle={{}}
             selected="orders"
           >
-            <Tab label="orders">{userFromDB && <Orders orders={userFromDB.orders} />}</Tab>
+            <Tab label="orders">{isLoading ? <div>Loading...</div> : <Orders orders={userFromDB.orders} />}</Tab>
             <Tab label="notifications">
               <Notifications />
             </Tab>
@@ -46,7 +47,7 @@ const myAccountPage = () => {
             </Tab>
           </Tabs>
           <hr />
-          <Profile user={userFromDB} />
+          {isLoading ? <div>Loading...</div> : <Profile user={userFromDB} />}
         </Container>
       ) : (
         <Container>
