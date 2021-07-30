@@ -2,43 +2,18 @@ import React, { useContext, useState } from 'react';
 import { Card, Button, Row, Col } from 'react-bootstrap';
 import { AiFillStar } from 'react-icons/ai';
 import { useHistory } from 'react-router-dom';
-import { useListContext } from '../context/FaveContext';
 import { AuthContext } from '../context/AuthContext';
-import axios from 'axios';
 
 function ProductDetail({ product }) {
   const history = useHistory();
-  const { user } = useContext(AuthContext);
+  const { addFave } = useContext(AuthContext);
   const { currentUser } = useContext(AuthContext);
-
-  const [faves, setFaves] = useState([]);
 
   const goToCheckout = () =>
     history.push({
       pathname: '/orders/checkout',
       state: product,
     });
-
-  const { addFave } = useContext(AuthContext);
-
-  // adds favorite to the database
-  // async function addFavorite(newFave) {
-  //   console.log(user);
-
-  //   try {
-  //     if (user) {
-  //       await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, {
-  //         favorites: faves,
-  //       });
-  //       addFave(product._id);
-  //     } else {
-  //       alert('You need to log in first');
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  //   setFaves((prev) => [...prev, newFave]);
-  // }
 
   return (
     <div key={product._id}>
@@ -68,7 +43,6 @@ function ProductDetail({ product }) {
                       className="w-100"
                       style={{ backgroundColor: 'var(--color-main)' }}
                       onClick={() => {
-                        // addFavorite(product._id);
                         addFave(product._id);
                       }}
                     >

@@ -3,10 +3,9 @@ import { AuthContext } from '../../context/AuthContext';
 import { Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { useListContext } from '../../context/FaveContext';
 
 const Favorites = () => {
-  const { user, currentUser } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
 
   return (
     <div className="d-flex flex-wrap justify-content-center">
@@ -19,7 +18,7 @@ const Favorites = () => {
 
 const FaveList = (favorite) => {
   const [fave, setFave] = useState();
-  const { user, currentUser } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const { deleteFave } = useContext(AuthContext);
 
   useEffect(() => {
@@ -38,21 +37,6 @@ const FaveList = (favorite) => {
     }
   }
 
-  // deletes favorite from the database
-  // async function deleteFavorite(user, _id) {
-  //   const newList = currentUser.favorites.filter((item) => item !== _id);
-  //   setFave(newList);
-  //   try {
-  //     const response = await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, {
-  //       favorites: fave,
-  //     });
-  //     deleteFave(user, _id);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  //   return;
-  // }
-
   return (
     <div>
       {fave && (
@@ -68,7 +52,6 @@ const FaveList = (favorite) => {
                   objectPosition: 'center',
                 }}
               />
-
               <Card.Title>{fave.title}</Card.Title>
               <Card.Text>{fave.price} €</Card.Text>
             </Link>
@@ -76,7 +59,6 @@ const FaveList = (favorite) => {
               type="submit"
               variant="danger"
               onClick={() => {
-                // deleteFavorite(user, fave._id);
                 deleteFave(user, fave._id);
               }}
             >

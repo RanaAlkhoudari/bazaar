@@ -26,11 +26,13 @@ function ProductList(props) {
                     }}
                   />
                   <Card.Body style={{ color: 'teal' }}>
-                    <Card.Title>{product.title}</Card.Title>
+                    <Card.Title>
+                      {product.title}
+                      {currentUser && currentUser.favorites.includes(product._id) ? (
+                        <AiFillStar style={{ color: 'red', float: 'right' }} />
+                      ) : null}
+                    </Card.Title>
                     <Card.Text>{product.price} €</Card.Text>
-                    {currentUser && currentUser.favorites.includes(product._id) ? (
-                      <AiFillStar style={{ color: 'red' }} />
-                    ) : null}
                   </Card.Body>
                 </Link>
               </Card>
