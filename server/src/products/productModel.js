@@ -12,7 +12,7 @@ const productSchema = new Schema(
     categories: [{ type: Schema.Types.ObjectId, ref: 'category' }],
     user: { type: Schema.Types.ObjectId, ref: 'user' },
     videos: [{ type: String, required: false }],
-    verified: { type: Boolean, default: false },
+    verified: { type: Boolean, default: null },
   },
   { timestamps: true },
 );

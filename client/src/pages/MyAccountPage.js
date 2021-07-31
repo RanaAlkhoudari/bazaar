@@ -2,24 +2,35 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import Profile from '../components/Profile';
 import { AuthContext } from '../context/AuthContext';
+import AdminPanel from '../components/AdminPanel';
 import Orders from '../components/Orders';
 import Favorites from '../components/Favorites';
 import Notifications from '../components/Notifications';
-import { Tabs, Tab } from 'react-bootstrap-tabs';
+import Tabs from 'react-bootstrap/Tabs';
+import Tab from 'react-bootstrap/Tab';
 import { Container, Alert } from 'react-bootstrap';
+import { GrUserAdmin } from 'react-icons/gr';
 import LoadingImage from '../images/Loading.gif';
 
 const myAccountPage = () => {
-  const tabStyle = {
-    height: '25px',
-    width: '25px',
-    backgroundColor: '#bbb',
-    color: 'white',
-    borderRadius: '50%',
-    display: 'inline-block',
-    textAlign: 'center',
-    marginLeft: '0.3rem',
-  };
+  const styles = [
+    {
+      height: '25px',
+      width: '25px',
+      backgroundColor: '#bbb',
+      color: 'white',
+      borderRadius: '50%',
+      display: 'inline-block',
+      textAlign: 'center',
+      marginLeft: '0.3rem',
+    },
+    {
+      maxHeight: '30rem',
+      overflow: 'auto',
+      background: '#fff',
+    },
+  ];
+
   const [isLoaded, setIsLoaded] = useState(false);
   const [err, setErr] = useState(false);
   const { user } = useContext(AuthContext);
@@ -52,43 +63,79 @@ const myAccountPage = () => {
 
   return (
     <>
+      <style type="text/css">
+        {`
+.nav-link {
+    color: var(--color-grey);
+    cursor: default;
+}
+.nav-link.active {
+    font-weight:bold;
+    color:green;
+    background-color: black;
+}
+.nav-links:hover {
+  background-color:green;
+  color: red;
+  }
+    `}
+      </style>
       {isLoaded && !err ? (
         <Container>
           <h1>My Account</h1>
-          <Tabs
-            headerStyle={{ color: 'var(--color-grey)', cursor: 'default' }}
-            activeHeaderStyle={{ fontWeight: 'bold', color: 'black' }}
-          >
+          <Tabs justify defaultActiveKey="notifications" transition={false}>
             <Tab
-              label={
+              eventKey="Orders"
+              style={styles[1]}
+              title={
                 <React.Fragment>
                   Orders
-                  <span style={tabStyle}>{userFromDB.orders.length}</span>
+                  <span style={styles[0]}>{userFromDB.orders.length}</span>
                 </React.Fragment>
               }
             >
-              <Orders orders={isLoaded ? userFromDB.orders : <></>} />
+              <Orders orders={isLoaded ? userFromDB.orders : <></>} />{' '}
             </Tab>
             <Tab
-              label={
+              eventKey="notifications"
+              style={styles[1]}
+              title={
                 <React.Fragment>
                   Notifications
-                  <span style={tabStyle}>{userFromDB.products.length}</span>
+                  <span style={styles[0]}>{userFromDB.products.length}</span>
                 </React.Fragment>
               }
             >
-              <Notifications data={isLoaded ? userFromDB.products : <></>} />
+              <Notifications data={isLoaded ? userFromDB.products : <></>} />{' '}
             </Tab>
             <Tab
-              label={
+              eventKey="Favorites"
+              style={styles[1]}
+              title={
                 <React.Fragment>
                   Favorites
-                  <span style={tabStyle}>{userFromDB.favorites.length}</span>
+                  <span style={styles[0]}>{userFromDB.favorites.length}</span>
                 </React.Fragment>
               }
             >
               <Favorites orders={isLoaded ? userFromDB.favorites : <></>} />
             </Tab>
+            {user.expert ? (
+              <Tab
+                eventKey="Admin"
+                style={styles[1]}
+                title={
+                  <React.Fragment>
+                    <GrUserAdmin style={{ marginLeft: '5px', color: 'green' }} /> Admin Panel
+                    <span style={styles[0]}>{userFromDB.favorites.length}</span>
+                  </React.Fragment>
+                }
+              >
+                <AdminPanel orders={isLoaded ? userFromDB.orders : <></>} />
+              </Tab>
+            ) : (
+              <></>
+            )}
           </Tabs>
           <hr />
           <Profile user={isLoaded ? userFromDB : <></>} />
