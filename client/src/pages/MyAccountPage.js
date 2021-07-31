@@ -94,7 +94,7 @@ const myAccountPage = () => {
                 </React.Fragment>
               }
             >
-              <Orders orders={isLoaded ? userFromDB.orders : <></>} />{' '}
+              <Orders orders={isLoaded ? userFromDB.orders : <></>} />
             </Tab>
             <Tab
               eventKey="notifications"
@@ -106,7 +106,7 @@ const myAccountPage = () => {
                 </React.Fragment>
               }
             >
-              <Notifications data={isLoaded ? userFromDB.products : <></>} />{' '}
+              <Notifications data={isLoaded ? userFromDB.products : <></>} />
             </Tab>
             <Tab
               eventKey="Favorites"

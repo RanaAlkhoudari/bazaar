@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, Button, Row, Col } from 'react-bootstrap';
+import NotifyIcon from './NotifyIcon';
 import { AiFillStar } from 'react-icons/ai';
 import { useHistory } from 'react-router-dom';
 
@@ -25,7 +26,8 @@ function ProductDetail({ product }) {
             </Col>
             <Col>
               <Card.Title>{product.title}</Card.Title>
-              <Card.Text>{product.price} €</Card.Text>
+              <NotifyIcon product={product.verified} />
+              <Card.Text>{product.price} € </Card.Text>
               <Card.Text style={{ textAlign: 'left' }}>{product.description}</Card.Text>
               <Row>
                 {' '}
