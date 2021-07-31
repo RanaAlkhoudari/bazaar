@@ -90,8 +90,8 @@ const SignUp = () => {
               Sign In
             </Link>
           </div>
-          <FacebookSignIn />
           <GoogleSignIn />
+          <FacebookSignIn />
         </div>
       </Container>
     </div>

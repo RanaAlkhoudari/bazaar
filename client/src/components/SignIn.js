@@ -51,8 +51,8 @@ const SignIn = () => {
             Sign Up
           </Link>
         </div>
-        <FacebookSignIn />
         <GoogleSignIn />
+        <FacebookSignIn />
       </div>
     </Container>
   );

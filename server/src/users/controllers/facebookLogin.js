@@ -1,5 +1,4 @@
 const axios = require('axios');
-const bcrypt = require('bcrypt');
 const { v4: uuidv4 } = require('uuid');
 const User = require('../userModel');
 
@@ -14,12 +13,6 @@ async function facebookLogin(req, res) {
     const user = await User.findOne({ email });
 
     if (user) {
-      // if (await bcrypt.compare(password, user.password)) {
-      //   res.status(200).json(user);
-      // } else {
-      //   res.status(401);
-      //   throw new Error('Invalid email or password');
-      // }
       res.status(200).json(user);
     } else {
       const newUser = await User.create({
