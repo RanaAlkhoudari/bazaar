@@ -10,6 +10,7 @@ const UpdateUser = require('./controllers/updateUser');
 const DeleteUser = require('./controllers/deleteUser');
 const SingIn = require('./controllers/signIn');
 const facebookLogin = require('./controllers/facebookLogin');
+const AuthUserGoogle = require('./controllers/googleLogin');
 
 const router = express.Router();
 
@@ -114,5 +115,6 @@ router.delete('/:id', DeleteUser);
 router.post('/signin', SingIn);
 
 router.post('/facebooklogin', facebookLogin);
+router.post('/googleLogin', AuthUserGoogle);
 
 module.exports = router;

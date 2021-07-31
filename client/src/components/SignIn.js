@@ -4,11 +4,11 @@ import { loginCall } from '../apiCalls';
 import { AuthContext } from '../context/AuthContext';
 import { Container, Form, Button, Card, Alert } from 'react-bootstrap';
 import FacebookSignIn from './FacebookSignIn';
+import GoogleSignIn from './GoogleSignIn';
 
 const SignIn = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
-
   const { error, dispatch, user } = useContext(AuthContext);
   const history = useHistory();
 
@@ -52,6 +52,7 @@ const SignIn = () => {
           </Link>
         </div>
         <FacebookSignIn />
+        <GoogleSignIn />
       </div>
     </Container>
   );

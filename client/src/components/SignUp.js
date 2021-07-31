@@ -3,6 +3,7 @@ import { Container, Form, Button, Card, Alert } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import FacebookSignIn from './FacebookSignIn';
+import GoogleSignIn from './GoogleSignIn';
 
 const SignUp = () => {
   const firstNameRef = useRef(false);
@@ -90,6 +91,7 @@ const SignUp = () => {
             </Link>
           </div>
           <FacebookSignIn />
+          <GoogleSignIn />
         </div>
       </Container>
     </div>

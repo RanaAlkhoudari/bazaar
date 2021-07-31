@@ -1,10 +1,12 @@
 const express = require('express');
-const CreateAddress = require('./controllers/createAddress');
-const ShowAddress = require('./controllers/showAddress');
+const showAddress = require('./controllers/showAddress');
+const createAddress = require('./controllers/createAddress');
+const showAddresses = require('./controllers/showAddresses');
 
 const router = express.Router();
 
-router.post('/create', CreateAddress);
-router.get('/:id', ShowAddress);
+router.get('/:id', showAddress);
+router.post('/create', createAddress);
+router.get('/all/:id', showAddresses);
 
 module.exports = router;

@@ -12,7 +12,7 @@ const Filters = () => {
         <div
           className="d-flex flex-wrap justify-content-evenly p-4  m-5"
           style={{
-            border: '1px solid teal',
+            border: '1px solid var(--color-main)',
           }}
         >
           <Dropdown as={ButtonGroup}>

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Uploader from './Uploader';
 import { AuthContext } from '../context/AuthContext';
-import { Container, Form, Card } from 'react-bootstrap';
+import { Form, Card, Container } from 'react-bootstrap';
 import { Multiselect } from 'multiselect-react-dropdown';
 import React, { useState, useEffect, useContext } from 'react';
 
@@ -28,6 +28,7 @@ const AddProduct = () => {
     try {
       const response = await axios.get(`${process.env.REACT_APP_API_URL}/categories`);
       const categoryList = response.data.map((category) => category.name);
+
       setCategories(categoryList);
     } catch (error) {
       console.error(error);
@@ -48,7 +49,7 @@ const AddProduct = () => {
       <div>
         <Card style={{ width: '22rem' }}>
           <Card.Body>
-            <h2 className="text-center mb-4">Add Product</h2>
+            <Card.Title className="text-center mb-4">Add Product</Card.Title>
             <Form onSubmit={(e) => e.preventDefault()}>
               <Form.Group>
                 <Form.Control
@@ -76,21 +77,29 @@ const AddProduct = () => {
               </Form.Group>
               <br />
 
-              <Form.Group>
-                <Form.Control
-                  required
-                  as="select"
-                  defaultValue="Condition"
-                  onChange={handleConditionChange}
-                >
-                  <option hidden disabled>
-                    Condition
-                  </option>
-                  <option value="new">New</option>
-                  <option value="like new">Like new</option>
-                  <option value="fairly used">Fairly used</option>
-                </Form.Control>
-              </Form.Group>
+              <Form.Check
+                value="new"
+                label="New"
+                type="radio"
+                name="condition"
+                onClick={handleConditionChange}
+              />
+
+              <Form.Check
+                type="radio"
+                value="like new"
+                label="Like new"
+                name="condition"
+                onClick={handleConditionChange}
+              />
+
+              <Form.Check
+                type="radio"
+                name="condition"
+                value="fairly used"
+                label="Fairly used"
+                onClick={handleConditionChange}
+              />
               <br />
 
               <Form.Group>
@@ -132,6 +141,7 @@ const AddProduct = () => {
                   },
                 }}
               />
+              <br />
 
               <Uploader data={values} />
             </Form>
