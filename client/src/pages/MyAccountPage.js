@@ -38,7 +38,9 @@ const myAccountPage = () => {
             contentStyle={{}}
             selected="orders"
           >
-            <Tab label="orders">{isLoading ? <div>Loading...</div> : <Orders orders={userFromDB.orders} />}</Tab>
+            <Tab label="orders">
+              {isLoading ? <div>Loading...</div> : <Orders orders={userFromDB.orders} />}
+            </Tab>
             <Tab label="notifications">
               <Notifications />
             </Tab>
