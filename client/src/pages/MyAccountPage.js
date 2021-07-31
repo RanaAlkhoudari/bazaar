@@ -67,17 +67,15 @@ const myAccountPage = () => {
       <style type="text/css">
         {`
 .nav-link {
-    color: var(--color-grey);
+  color: var(--color-grey);
     cursor: default;
 }
 .nav-link.active {
     font-weight:bold;
-    color:green;
-    background-color: black;
 }
-.nav-links:hover {
-  background-color:green;
-  color: red;
+.nav-link:hover {
+  background-color:var(--color-grey);
+  color: white;
   }
     `}
       </style>

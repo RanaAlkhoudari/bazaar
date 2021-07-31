@@ -1,11 +1,8 @@
 import React from 'react';
 import { Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import NotifyIcon from './NotifyIcon';
 import CardRow from './CardRow';
-import { TiThumbsOk, TiThumbsDown } from 'react-icons/ti';
-import { MdCached } from 'react-icons/md';
-
-<TiThumbsOk style={{ marginLeft: '5px' }} />;
 
 const Notifications = ({ data }) => {
   // console.log(data);
@@ -14,7 +11,13 @@ const Notifications = ({ data }) => {
     return (
       <CardRow key={notification._id}>
         <Col style={{ maxWidth: '100px', padding: '0' }}>
-          <img src={notification.images[0]} alt={notification.title} style={{ width: '100px' }} />
+          <Link to={`/${notification._id}`} style={{ textDecoration: 'none' }}>
+            <img
+              src={notification.images[0]}
+              alt={notification.title}
+              style={{ width: '100px' }}
+            />
+          </Link>
         </Col>
         <Col>
           <span style={{ height: '3em', fontWeight: 'bold' }}> {notification.title}</span>
