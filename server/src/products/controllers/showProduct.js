@@ -1,13 +1,18 @@
 const ProductModel = require('../productModel');
 
 function showProduct(req, res) {
-  ProductModel.findById(req.params.id)
-    .populate('categories')
-    .then((product) => {
-      res.status(200);
-      res.json(product);
-    })
-    .catch((err) => res.status(400).json(`Error :  ${err}`));
+  try {
+    const product = await ProductModel.findById(req.params.id).populate('categories');
+
+    res.status(200);
+    res.json(product);
+  } catch (error) {
+    console.log('Error while showing product');
+    console.log('Request', req);
+    console.log('Error', error);
+
+    res.status(500).json(`Could not show product`);
+  }
 }
 
 module.exports = showProduct;
