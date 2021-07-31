@@ -25,7 +25,7 @@ function ProductList(props) {
                       objectPosition: 'center',
                     }}
                   />
-                  <Card.Body style={{ color: 'teal' }}>
+                  <Card.Body style={{ color: 'var(--color-main)' }}>
                     <Card.Title>{product.title}</Card.Title>
                     <Card.Text>{product.price} €</Card.Text>
                     {currentUser && currentUser.favorites.includes(product._id) ? (

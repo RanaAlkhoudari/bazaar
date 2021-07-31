@@ -1,18 +1,16 @@
 const path = require('path');
 const seeder = require('mongoose-seed');
-
 const dummyUsers = require('./dummy-files/users.json');
+const dummyOrders = require('./dummy-files/orders.json');
 const dummyAddress = require('./dummy-files/addresses.json');
 const dummyProducts = require('./dummy-files/products.json');
 const dummyCategories = require('./dummy-files/categories.json');
-const dummyOrders = require('./dummy-files/orders.json');
 
 if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config();
+  require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 }
-console.log(process.env.DB_URL);
 
-seeder.connect(process.env.DB_URL, () => {
+seeder.connect(process.env.DB_URL, { useUnifiedTopology: true }, () => {
   seeder.loadModels([
     path.join(__dirname, 'addresses/addressModel.js'),
     path.join(__dirname, 'users/userModel.js'),

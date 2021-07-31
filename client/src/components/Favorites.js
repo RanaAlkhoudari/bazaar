@@ -1,13 +1,19 @@
+<<<<<<< HEAD:client/src/components/myAccount/favorites.js
 import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+=======
+import React from 'react';
+import ProductList from './ProductList';
+>>>>>>> dev:client/src/components/Favorites.js
 
 const Favorites = () => {
   const { currentUser } = useContext(AuthContext);
 
   return (
+<<<<<<< HEAD:client/src/components/myAccount/favorites.js
     <div className="d-flex flex-wrap justify-content-center">
       {currentUser.favorites.map((favorite) => (
         <FaveList key={favorite} favorite={favorite} />
@@ -64,6 +70,10 @@ const FaveList = (favorite) => {
           </Card.Body>
         </Card>
       )}
+=======
+    <div style={{ paddingBottom: '1em', paddingTop: '1em' }}>
+      <ProductList products={favoriteProducts} />
+>>>>>>> dev:client/src/components/Favorites.js
     </div>
   );
 };

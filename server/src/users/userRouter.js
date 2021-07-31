@@ -1,11 +1,12 @@
 const express = require('express');
-
 const ShowUsers = require('./controllers/showUsers');
 const ShowUser = require('./controllers/showUser');
 const CreateUser = require('./controllers/createUser');
 const UpdateUser = require('./controllers/updateUser');
 const DeleteUser = require('./controllers/deleteUser');
 const SingIn = require('./controllers/signIn');
+const facebookLogin = require('./controllers/facebookLogin');
+const AuthUserGoogle = require('./controllers/googleLogin');
 
 const router = express.Router();
 
@@ -20,5 +21,9 @@ router.patch('/update/:id', UpdateUser);
 router.delete('/:id', DeleteUser);
 
 router.post('/signin', SingIn);
+
+router.post('/facebookLogin', facebookLogin);
+
+router.post('/googleLogin', AuthUserGoogle);
 
 module.exports = router;

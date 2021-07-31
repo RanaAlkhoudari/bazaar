@@ -34,6 +34,7 @@ function ProductDetail({ product }) {
               <Row>
                 {' '}
                 <Col>
+<<<<<<< HEAD
                   {currentUser && currentUser.favorites.includes(product._id) ? (
                     <Button
                       className="w-100"
@@ -55,6 +56,11 @@ function ProductDetail({ product }) {
                       <AiFillStar style={{ color: 'yellow' }} />
                     </Button>
                   )}
+=======
+                  <Button className="w-100" style={{ backgroundColor: 'var(--color-main)' }}>
+                    <AiFillStar style={{ color: 'var(--color-star)' }} />
+                  </Button>
+>>>>>>> dev
                 </Col>
                 <Col>
                   {' '}
