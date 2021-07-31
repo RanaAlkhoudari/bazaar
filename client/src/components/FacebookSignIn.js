@@ -11,7 +11,6 @@ function FacebookSignIn() {
   const history = useHistory();
 
   async function responseFacebook(response) {
-    console.log(response);
     const res = await axios({
       method: 'POST',
       url: 'http://localhost:3000/api/v1/users/facebookLogin',
