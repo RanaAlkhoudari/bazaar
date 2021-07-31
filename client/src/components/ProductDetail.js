@@ -16,62 +16,66 @@ function ProductDetail({ product }) {
     });
 
   return (
-    <div key={product._id}>
-      <Card style={{ borderColor: 'var(--color-main)' }}>
-        <Card.Body>
-          <Row>
-            <Col>
-              <Card.Img
-                style={{ minWidth: '250px', height: '300px' }}
-                src={product.images}
-                alt={product.title}
-              />
-            </Col>
-            <Col>
-              <Card.Title>{product.title}</Card.Title>
-              <Card.Text>{product.price} €</Card.Text>
-              <Card.Text style={{ textAlign: 'left' }}>{product.description}</Card.Text>
+    <>
+      {product && (
+        <div key={product._id}>
+          <Card style={{ borderColor: 'var(--color-main)' }}>
+            <Card.Body>
               <Row>
-                {' '}
                 <Col>
-                  {currentUser && currentUser.favorites.includes(product._id) ? (
-                    <Button
-                      className="w-100"
-                      style={{ backgroundColor: 'var(--color-main)' }}
-                      onClick={() => {
-                        deleteFavorite(user, product._id);
-                      }}
-                    >
-                      <AiFillStar style={{ color: 'red' }} />{' '}
-                    </Button>
-                  ) : (
-                    <Button
-                      className="w-100"
-                      style={{ backgroundColor: 'var(--color-main)' }}
-                      onClick={() => {
-                        addFavorite(product._id);
-                      }}
-                    >
-                      <AiFillStar style={{ color: 'yellow' }} />
-                    </Button>
-                  )}
+                  <Card.Img
+                    style={{ minWidth: '250px', height: '300px' }}
+                    src={product.images}
+                    alt={product.title}
+                  />
                 </Col>
                 <Col>
-                  {' '}
-                  <Button
-                    className="w-100"
-                    style={{ backgroundColor: 'var(--color-main)' }}
-                    onClick={goToCheckout}
-                  >
-                    Buy
-                  </Button>
+                  <Card.Title>{product.title}</Card.Title>
+                  <Card.Text>{product.price} €</Card.Text>
+                  <Card.Text style={{ textAlign: 'left' }}>{product.description}</Card.Text>
+                  <Row>
+                    {' '}
+                    <Col>
+                      {currentUser && currentUser.favorites.includes(product._id) ? (
+                        <Button
+                          className="w-100"
+                          style={{ backgroundColor: 'var(--color-main)' }}
+                          onClick={() => {
+                            deleteFavorite(user, product._id);
+                          }}
+                        >
+                          <AiFillStar style={{ color: 'red' }} />{' '}
+                        </Button>
+                      ) : (
+                        <Button
+                          className="w-100"
+                          style={{ backgroundColor: 'var(--color-main)' }}
+                          onClick={() => {
+                            addFavorite(product._id);
+                          }}
+                        >
+                          <AiFillStar style={{ color: 'yellow' }} />
+                        </Button>
+                      )}
+                    </Col>
+                    <Col>
+                      {' '}
+                      <Button
+                        className="w-100"
+                        style={{ backgroundColor: 'var(--color-main)' }}
+                        onClick={goToCheckout}
+                      >
+                        Buy
+                      </Button>
+                    </Col>
+                  </Row>
                 </Col>
               </Row>
-            </Col>
-          </Row>
-        </Card.Body>
-      </Card>
-    </div>
+            </Card.Body>
+          </Card>
+        </div>
+      )}
+    </>
   );
 }
 

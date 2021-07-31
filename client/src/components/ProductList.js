@@ -6,7 +6,7 @@ import { AuthContext } from '../context/AuthContext';
 
 function ProductList(props) {
   const sortedProducts = props.products;
-  const { currentUser } = useContext(AuthContext);
+  const { user, currentUser } = useContext(AuthContext);
 
   return (
     <>
