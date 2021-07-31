@@ -16,66 +16,62 @@ function ProductDetail({ product }) {
     });
 
   return (
-    <>
-      {product && (
-        <div key={product._id}>
-          <Card style={{ borderColor: 'var(--color-main)' }}>
-            <Card.Body>
+    <div key={product._id}>
+      <Card style={{ borderColor: 'var(--color-main)' }}>
+        <Card.Body>
+          <Row>
+            <Col>
+              <Card.Img
+                style={{ minWidth: '250px', height: '300px' }}
+                src={product.images}
+                alt={product.title}
+              />
+            </Col>
+            <Col>
+              <Card.Title>{product.title}</Card.Title>
+              <Card.Text>{product.price} €</Card.Text>
+              <Card.Text style={{ textAlign: 'left' }}>{product.description}</Card.Text>
               <Row>
+                {' '}
                 <Col>
-                  <Card.Img
-                    style={{ minWidth: '250px', height: '300px' }}
-                    src={product.images}
-                    alt={product.title}
-                  />
+                  {currentUser && currentUser.favorites.includes(product._id) ? (
+                    <Button
+                      className="w-100"
+                      style={{ backgroundColor: 'var(--color-main)' }}
+                      onClick={() => {
+                        deleteFavorite(user, product._id);
+                      }}
+                    >
+                      <AiFillStar style={{ color: 'red' }} />{' '}
+                    </Button>
+                  ) : (
+                    <Button
+                      className="w-100"
+                      style={{ backgroundColor: 'var(--color-main)' }}
+                      onClick={() => {
+                        addFavorite(user, product._id);
+                      }}
+                    >
+                      <AiFillStar style={{ color: 'yellow' }} />
+                    </Button>
+                  )}
                 </Col>
                 <Col>
-                  <Card.Title>{product.title}</Card.Title>
-                  <Card.Text>{product.price} €</Card.Text>
-                  <Card.Text style={{ textAlign: 'left' }}>{product.description}</Card.Text>
-                  <Row>
-                    {' '}
-                    <Col>
-                      {currentUser && currentUser.favorites.includes(product._id) ? (
-                        <Button
-                          className="w-100"
-                          style={{ backgroundColor: 'var(--color-main)' }}
-                          onClick={() => {
-                            deleteFavorite(user, product._id);
-                          }}
-                        >
-                          <AiFillStar style={{ color: 'red' }} />{' '}
-                        </Button>
-                      ) : (
-                        <Button
-                          className="w-100"
-                          style={{ backgroundColor: 'var(--color-main)' }}
-                          onClick={() => {
-                            addFavorite(product._id);
-                          }}
-                        >
-                          <AiFillStar style={{ color: 'yellow' }} />
-                        </Button>
-                      )}
-                    </Col>
-                    <Col>
-                      {' '}
-                      <Button
-                        className="w-100"
-                        style={{ backgroundColor: 'var(--color-main)' }}
-                        onClick={goToCheckout}
-                      >
-                        Buy
-                      </Button>
-                    </Col>
-                  </Row>
+                  {' '}
+                  <Button
+                    className="w-100"
+                    style={{ backgroundColor: 'var(--color-main)' }}
+                    onClick={goToCheckout}
+                  >
+                    Buy
+                  </Button>
                 </Col>
               </Row>
-            </Card.Body>
-          </Card>
-        </div>
-      )}
-    </>
+            </Col>
+          </Row>
+        </Card.Body>
+      </Card>
+    </div>
   );
 }
 
