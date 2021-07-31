@@ -18,7 +18,7 @@ const Favorites = () => {
 
 const FaveList = (favorite) => {
   const [fave, setFave] = useState();
-  const { user } = useContext(AuthContext);
+  const { user, currentUser } = useContext(AuthContext);
   const { deleteFavorite } = useContext(AuthContext);
 
   useEffect(() => {
@@ -56,7 +56,7 @@ const FaveList = (favorite) => {
               type="submit"
               variant="danger"
               onClick={() => {
-                deleteFavorite(user, fave._id);
+                deleteFavorite(currentUser, fave._id);
               }}
             >
               Delete

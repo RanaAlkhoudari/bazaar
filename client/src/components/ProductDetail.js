@@ -34,7 +34,7 @@ function ProductDetail({ product }) {
               <Row>
                 {' '}
                 <Col>
-                  {currentUser.favorites.includes(product._id) ? (
+                  {currentUser && currentUser.favorites.includes(product._id) ? (
                     <Button
                       className="w-100"
                       style={{ backgroundColor: 'var(--color-main)' }}

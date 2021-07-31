@@ -27,10 +27,10 @@ const AuthContextProvider = ({ children }) => {
   const addFavorite = async (_id) => {
     try {
       const newFavorites = [...addedFave, _id];
+
       const response = await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, {
         favorites: newFavorites,
       });
-      setAddedFave((prev) => [...prev, _id]);
       if (user) {
         setCurrentUser(response.data);
       }
@@ -49,6 +49,7 @@ const AuthContextProvider = ({ children }) => {
       });
 
       setCurrentUser(response.data);
+      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
