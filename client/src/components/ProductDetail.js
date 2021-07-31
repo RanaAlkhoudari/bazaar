@@ -3,7 +3,7 @@ import { Card, Button, Row, Col } from 'react-bootstrap';
 import { AiFillStar } from 'react-icons/ai';
 import { useHistory } from 'react-router-dom';
 
-function ProductDetail({ product }) {
+const ProductDetail = ({ product }) => {
   const history = useHistory();
   const goToCheckout = () =>
     history.push({
@@ -51,6 +51,6 @@ function ProductDetail({ product }) {
       </Card>
     </div>
   );
-}
+};
 
 export default ProductDetail;

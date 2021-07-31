@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import ProductList from './ProductList';
 
-function SimilarProducts({ product }) {
+const SimilarProducts = ({ product }) => {
   const [products, setProducts] = useState([]);
   const category = product.categories[0].name;
 
@@ -27,5 +27,5 @@ function SimilarProducts({ product }) {
       <ProductList products={similarProducts} />
     </div>
   );
-}
+};
 export default SimilarProducts;

@@ -4,7 +4,7 @@ const User = require('../userModel');
 
 const { OAuth2Client } = pkg;
 
-async function authUserGoogle(req, res) {
+async function googleLogin(req, res) {
   const tokenId = req.body.userID;
   try {
     const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
@@ -43,4 +43,4 @@ async function authUserGoogle(req, res) {
     throw new Error('Something went wrong...');
   }
 }
-module.exports = authUserGoogle;
+module.exports = googleLogin;

@@ -8,7 +8,7 @@ import Notifications from '../components/Notifications';
 import { Tabs, Tab } from 'react-bootstrap-tabs';
 import { Container, Alert } from 'react-bootstrap';
 
-const myAccountPage = () => {
+const MyAccountPage = () => {
   const { user } = useContext(AuthContext);
   const [userFromDB, setUserFromDB] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -38,7 +38,9 @@ const myAccountPage = () => {
             contentStyle={{}}
             selected="orders"
           >
-            <Tab label="orders">{isLoading ? <div>Loading...</div> : <Orders orders={userFromDB.orders} />}</Tab>
+            <Tab label="orders">
+              {isLoading ? <div>Loading...</div> : <Orders orders={userFromDB.orders} />}
+            </Tab>
             <Tab label="notifications">
               <Notifications />
             </Tab>
@@ -58,4 +60,4 @@ const myAccountPage = () => {
   );
 };
 
-export default myAccountPage;
+export default MyAccountPage;

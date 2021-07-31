@@ -2,7 +2,7 @@ import React from 'react';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-function ProductList(props) {
+const ProductList = (props) => {
   const sortedProducts = props.products;
   return (
     <>
@@ -32,6 +32,6 @@ function ProductList(props) {
       </div>
     </>
   );
-}
+};
 
 export default ProductList;

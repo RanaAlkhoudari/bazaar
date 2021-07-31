@@ -1,27 +1,27 @@
 const express = require('express');
 
-const ShowUsers = require('./controllers/showUsers');
-const ShowUser = require('./controllers/showUser');
-const CreateUser = require('./controllers/createUser');
-const UpdateUser = require('./controllers/updateUser');
-const DeleteUser = require('./controllers/deleteUser');
-const SingIn = require('./controllers/signIn');
-const AuthUserGoogle = require('./controllers/googleLogin');
+const showUsers = require('./controllers/showUsers');
+const showUser = require('./controllers/showUser');
+const createUser = require('./controllers/createUser');
+const updateUser = require('./controllers/updateUser');
+const deleteUser = require('./controllers/deleteUser');
+const signIn = require('./controllers/signIn');
+const googleLogin = require('./controllers/googleLogin');
 
 const router = express.Router();
 
-router.get('/', ShowUsers);
+router.get('/', showUsers);
 
-router.get('/:id', ShowUser);
+router.get('/:id', showUser);
 
-router.post('/signup', CreateUser);
+router.post('/signup', createUser);
 
-router.patch('/update/:id', UpdateUser);
+router.patch('/update/:id', updateUser);
 
-router.delete('/:id', DeleteUser);
+router.delete('/:id', deleteUser);
 
-router.post('/signin', SingIn);
+router.post('/signin', signIn);
 
-router.post('/googleLogin', AuthUserGoogle);
+router.post('/googleLogin', googleLogin);
 
 module.exports = router;
