@@ -35,6 +35,7 @@ const myAccountPage = () => {
   const [err, setErr] = useState(false);
   const { user } = useContext(AuthContext);
   const [userFromDB, setUserFromDB] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetchUser();

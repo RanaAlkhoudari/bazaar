@@ -3,11 +3,11 @@ import { Link, useHistory } from 'react-router-dom';
 import { loginCall } from '../apiCalls';
 import { AuthContext } from '../context/AuthContext';
 import { Container, Form, Button, Card, Alert } from 'react-bootstrap';
+import GoogleSignIn from './GoogleSignIn';
 
 const SignIn = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
-
   const { error, dispatch, user } = useContext(AuthContext);
   const history = useHistory();
 
@@ -50,6 +50,7 @@ const SignIn = () => {
             Sign Up
           </Link>
         </div>
+        <GoogleSignIn />
       </div>
     </Container>
   );

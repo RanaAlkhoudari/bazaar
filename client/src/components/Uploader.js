@@ -1,10 +1,11 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { Button } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 
 const Uploader = ({ data }) => {
   const history = useHistory();
+
   const [selectedFiles, setSelectedFiles] = useState(null);
 
   const toProductPage = (id) => {
@@ -50,15 +51,15 @@ const Uploader = ({ data }) => {
   };
 
   return (
-    <div>
-      <input
+    <>
+      <Form.File
         required
         multiple
         type="file"
-        className="mt-2 mb-2 "
-        accept="image/*, video/*" //?? size/limit/format
+        accept="image/*, video/*"
         onChange={(e) => setSelectedFiles(e.target.files)}
       />
+      <br />
 
       <Button
         type="submit"
@@ -68,7 +69,7 @@ const Uploader = ({ data }) => {
       >
         Add Product
       </Button>
-    </div>
+    </>
   );
 };
 

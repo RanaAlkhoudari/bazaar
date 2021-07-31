@@ -9,6 +9,8 @@ const categoryRouter = require('./categories/categoryRouter');
 const addressRouter = require('./addresses/addressRouter');
 const orderRouter = require('./orders/orderRouter');
 
+require('dotenv').config();
+
 const app = express();
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));

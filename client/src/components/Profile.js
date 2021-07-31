@@ -4,14 +4,13 @@ import { Container, Row, Col, Card } from 'react-bootstrap';
 const Profile = ({ user }) => {
   let addresses = [];
   if (user.addresses) {
-    addresses = user.addresses.map((address, index) => {
+    addresses = user.addresses.map((address) => {
       return (
         <Row key={address.street_name + address.building_number + address.first_name}>
           <Card style={{ borderColor: 'var(--color-main)' }}>
             <Card.Body>
               <Row>
                 <Col>
-                  <Card.Title>{index == 0 ? 'Default address' : ''}</Card.Title>
                   <Card.Title>
                     {address.first_name} {address.last_name}
                   </Card.Title>
@@ -35,6 +34,16 @@ const Profile = ({ user }) => {
       <Row>
         <Col>
           <h4>My profile data</h4>
+        </Col>
+        <Col>
+          <a
+            className="btn btn-primary"
+            href="/edit-profile"
+            role="button"
+            style={{ background: 'var(--color-main)' }}
+          >
+            Edit my profile data
+          </a>
         </Col>
       </Row>
       <Row>
