@@ -35,11 +35,16 @@ const myAccountPage = () => {
   const [err, setErr] = useState(false);
   const { user } = useContext(AuthContext);
   const [userFromDB, setUserFromDB] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
+  const [toggle, setToggle] = useState(null);
 
   useEffect(() => {
     fetchUser();
-  }, []);
+    console.log('Notification refreshed');
+    const intervalID = setTimeout(() => {
+      setToggle((toggle) => !toggle);
+    }, 2000);
+    return () => clearInterval(intervalID);
+  }, [toggle]);
 
   const fetchUser = async () => {
     try {
@@ -59,8 +64,6 @@ const myAccountPage = () => {
       <img src={LoadingImage} style={{ margin: '0 auto', display: 'block', height: '65vh' }} />
     );
   }
-
-  console.log(userFromDB);
 
   return (
     <>
@@ -130,7 +133,7 @@ const myAccountPage = () => {
                   </React.Fragment>
                 }
               >
-                <AdminPanel orders={isLoaded ? userFromDB.orders : <></>} />
+                <AdminPanel />
               </Tab>
             ) : (
               <></>

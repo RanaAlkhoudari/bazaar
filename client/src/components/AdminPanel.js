@@ -30,8 +30,7 @@ function AdminPanel() {
     try {
       await axios.patch(`http://localhost:3000/api/v1/products/${productID}`).then((response) => {
         setVerifiedProduct(response.data);
-        setCheckVerified(verifiedProduct);
-        console.log(checkVerified);
+        setCheckVerified(verifiedProduct.verified);
       });
     } catch (error) {
       console.log(error);
@@ -83,9 +82,6 @@ function AdminPanel() {
         );
     }
   };
-
-  console.log(products);
-  console.log(checkVerified);
 
   const itemsToVerify = products.map((product) => {
     return (
