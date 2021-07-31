@@ -55,7 +55,7 @@ const PaymentForm = ({ product, shippingAddress }) => {
 
         if (response.data.success) {
           setSuccess(true);
-          document.getElementById('dropdown-basic').disabled = true;
+          document.getElementById('addresses_dropdown').disabled = true;
         }
       } catch (error) {
         console.error(`Error ${error}`);
