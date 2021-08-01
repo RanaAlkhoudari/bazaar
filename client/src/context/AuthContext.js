@@ -22,13 +22,13 @@ const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     localStorage.setItem(`user`, JSON.stringify(currentUser));
   }, [currentUser]);
-  let newTest;
 
+  let newF;
   // adds favorite to the local storage and user object
   const addFavorite = async (user, _id) => {
     try {
-      const newFavorites = [...addedFave, _id];
-
+      newF = addedFave.filter((item) => item !== _id);
+      const newFavorites = [...newF, _id];
       const response = await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, {
         favorites: newFavorites,
       });
@@ -51,7 +51,6 @@ const AuthContextProvider = ({ children }) => {
       });
 
       setCurrentUser(response.data);
-      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
