@@ -4,7 +4,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import SimilarProducts from '../components/SimilarProducts';
 import ProductDetail from '../components/ProductDetail';
-import NotFoundPage from './notFoundPage';
+import NotFoundPage from './NotFoundPage';
 import UserDetail from '../components/UserDetail';
 import Loading from '../components/Loading';
 

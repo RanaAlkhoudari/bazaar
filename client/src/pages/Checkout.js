@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Payment from '../components/Payment';
-import { Row, Col, Card } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
+import { Row, Col, Card, Image } from 'react-bootstrap';
 import AddressesDropdown from '../components/AddressesDropdown';
 
 const Checkout = (prop) => {
@@ -30,18 +30,20 @@ const Checkout = (prop) => {
         <Card style={cardStyles}>
           <Card.Header>{product.title}</Card.Header>
 
-          <Card.Body style={{ display: 'flex' }}>
-            <div style={{ width: '200px', marginRight: '20px' }}>
-              <img
-                style={{ width: '100%', borderRadius: '0.5rem' }}
-                src={product.images[0]}
+          <Card.Body style={{ display: 'flex', alignItems: 'center' }}>
+            <Col xs={6} md={4}>
+              <Image
+                thumbnail
                 alt="Product Image"
+                src={product.images[0]}
+                style={{ width: '100%', borderRadius: '0.5rem' }}
               />
-            </div>
-            <div>
-              <h5>{product.price} €</h5>
-              <p>{product.description}</p>
-            </div>
+            </Col>
+
+            <Card style={{ border: '0', textAlign: 'center', marginLeft: '10px' }}>
+              <Card.Title>{product.price} €</Card.Title>
+              <Card.Title>{product.description}</Card.Title>
+            </Card>
           </Card.Body>
         </Card>
 
@@ -57,27 +59,26 @@ const Checkout = (prop) => {
         </Card>
       </Col>
 
-      <Col md={4}>
-        <div style={{ textAlign: 'center', paddingTop: '10rem' }}>
-          <img
-            style={{
-              padding: '5px',
-              width: '10rem',
-              height: '10rem',
-              borderRadius: '1rem',
-              border: '1px solid var(--color-main)',
-            }}
-            alt="User image"
-            src={
-              seller.avatar ||
-              'https://static.zooniverse.org/www.zooniverse.org/assets/simple-avatar.png'
-            }
-          />
+      <Col style={{ textAlign: 'center', paddingTop: '10rem' }} md={4}>
+        <Image
+          thumbnail
+          alt="User image"
+          src={
+            seller.avatar ||
+            'https://static.zooniverse.org/www.zooniverse.org/assets/simple-avatar.png'
+          }
+          style={{
+            padding: '5px',
+            width: '10rem',
+            height: '10rem',
+            borderRadius: '1rem',
+            border: '1px solid var(--color-main)',
+          }}
+        />
 
-          <h3>
-            {seller.first_name} {seller.last_name}
-          </h3>
-        </div>
+        <Card.Title>
+          {seller.first_name} {seller.last_name}
+        </Card.Title>
       </Col>
     </Row>
   );
