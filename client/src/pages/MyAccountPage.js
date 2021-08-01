@@ -3,13 +3,8 @@ import axios from 'axios';
 import Profile from '../components/Profile';
 import { AuthContext } from '../context/AuthContext';
 import Orders from '../components/Orders';
-<<<<<<< HEAD
-import Favorites from '../components/myAccount/favorites';
-import Notifications from '../components/myAccount/Notifications';
-=======
 import Favorites from '../components/Favorites';
 import Notifications from '../components/Notifications';
->>>>>>> dev
 import { Tabs, Tab } from 'react-bootstrap-tabs';
 import { Container, Alert } from 'react-bootstrap';
 
@@ -31,7 +26,6 @@ const myAccountPage = () => {
       console.log(error);
     }
   };
-<<<<<<< HEAD
   useEffect(() => {
     fetchData();
   }, []);
@@ -44,8 +38,6 @@ const myAccountPage = () => {
       console.log(error);
     }
   }
-=======
->>>>>>> dev
 
   return (
     <>
