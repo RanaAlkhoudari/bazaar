@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import Profile from '../components/Profile';
 import { AuthContext } from '../context/AuthContext';
 import AdminPanel from '../components/AdminPanel';
 import Orders from '../components/Orders';
 import Favorites from '../components/Favorites';
-import Notifications from '../components/Notifications';
+import Profile from '../components/Profile';
+import MyProducts from '../components/MyProducts';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import { Container, Alert } from 'react-bootstrap';
@@ -17,12 +17,12 @@ const myAccountPage = () => {
     {
       height: '25px',
       width: '25px',
-      backgroundColor: '#bbb',
+      backgroundColor: 'red',
       color: 'white',
       borderRadius: '50%',
       display: 'inline-block',
       textAlign: 'center',
-      marginLeft: '0.3rem',
+      marginLeft: '0.5rem',
     },
     {
       maxHeight: '30rem',
@@ -39,7 +39,7 @@ const myAccountPage = () => {
 
   useEffect(() => {
     fetchUser();
-    console.log('Notification refreshed');
+    // console.log('Refreshed');
     const intervalID = setTimeout(() => {
       setToggle((toggle) => !toggle);
     }, 2000);
@@ -58,18 +58,6 @@ const myAccountPage = () => {
       setErr(true);
     }
   };
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  async function fetchData() {
-    try {
-      const response = await axios.get(`http://localhost:3000/api/v1/addresses/${user.address}`);
-      setAddress(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
 
   if (!isLoaded && !err) {
     return (
@@ -97,7 +85,7 @@ const myAccountPage = () => {
       {isLoaded && !err ? (
         <Container>
           <h1>My Account</h1>
-          <Tabs justify defaultActiveKey="notifications" transition={false}>
+          <Tabs justify defaultActiveKey="products" transition={false}>
             <Tab
               eventKey="Orders"
               style={styles[1]}
@@ -111,19 +99,31 @@ const myAccountPage = () => {
               <Orders orders={isLoaded ? userFromDB.orders : <></>} />
             </Tab>
             <Tab
-              eventKey="notifications"
+              eventKey="notification"
               style={styles[1]}
               title={
                 <React.Fragment>
                   Notifications
+                  <span style={styles[0]}>4</span>
+                </React.Fragment>
+              }
+            >
+              <></>
+            </Tab>
+            <Tab
+              eventKey="products"
+              style={styles[1]}
+              title={
+                <React.Fragment>
+                  My Products
                   <span style={styles[0]}>{userFromDB.products.length}</span>
                 </React.Fragment>
               }
             >
-              <Notifications data={isLoaded ? userFromDB.products : <></>} />
+              <MyProducts data={isLoaded ? userFromDB.products : <></>} />
             </Tab>
             <Tab
-              eventKey="Favorites"
+              eventKey="favorites"
               style={styles[1]}
               title={
                 <React.Fragment>
@@ -132,16 +132,15 @@ const myAccountPage = () => {
                 </React.Fragment>
               }
             >
-              <Favorites orders={isLoaded ? userFromDB.favorites : <></>} />
+              <Favorites />
             </Tab>
             {user.expert ? (
               <Tab
-                eventKey="Admin"
+                eventKey="admin"
                 style={styles[1]}
                 title={
                   <React.Fragment>
-                    <GrUserAdmin style={{ marginLeft: '5px', color: 'green' }} /> Admin Panel
-                    <span style={styles[0]}>{userFromDB.favorites.length}</span>
+                    <GrUserAdmin style={{ marginLeft: '6px' }} /> Admin Panel
                   </React.Fragment>
                 }
               >

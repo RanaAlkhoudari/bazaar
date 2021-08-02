@@ -12,7 +12,7 @@ import './styles/normalize.css';
 import ProductDetailPage from './pages/ProductDetailPage';
 import Products from './pages/ProductsPage';
 import InfoPage from './pages/InfoPage';
-// import ContactUsPage from './pages/ContactUsPage';
+import ContactUsPage from './pages/ContactUsPage';
 import SignInPage from './pages/SignInPage';
 import SignUpPage from './pages/SignUpPage';
 import { AuthContextProvider } from './context/AuthContext';
