@@ -9,15 +9,14 @@ const EditProfile = ({ user }) => {
     email: user.email,
     phone: user.phone,
     avatar: user.avatar,
+    addresses: user.addresses,
   });
-
+  const [addressesData, setAddressesData] = useState(user.addresses);
+  console.log('addressesData: ', addressesData);
   const onSubmit = async (e) => {
     try {
       e.preventDefault();
-      const a = await axios.patch(
-        `http://localhost:3000/api/v1/users/update/${user._id}`,
-        userData,
-      );
+      await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, userData);
       alert('Successfully updated!');
     } catch (err) {
       console.log(err);
@@ -25,30 +24,178 @@ const EditProfile = ({ user }) => {
   };
 
   let addresses = [];
-  if (user.addresses) {
-    addresses = user.addresses.map((address, index) => {
+  if (addressesData) {
+    addresses = addressesData.map((address, index) => {
       return (
-        <Row key={address.street_name + address.building_number + address.first_name}>
-          <Card style={{ borderColor: 'var(--color-main)' }}>
-            <Card.Body>
-              <Row>
-                <Col>
-                  <Card.Title>{index == 0 ? 'Default address' : ''}</Card.Title>
-                  <Card.Title>
-                    {address.first_name} {address.last_name}
-                  </Card.Title>
-                  <Card.Text>
-                    {address.city} - {address.country}
-                  </Card.Text>
-                  <Card.Text>
-                    {address.street_name} {address.building_number} {address.extension}
-                  </Card.Text>
-                  <Card.Text>Postal code: {address.post_code}</Card.Text>
-                </Col>
-              </Row>
-            </Card.Body>
-          </Card>
-        </Row>
+        <Card style={{ borderColor: 'var(--color-main)' }} key={address._id} className="m-3 p-3">
+          <h4>Address {index + 1}</h4>
+          <Form.Group>
+            <Form.Label>Recipient (if the name is different from yours)</Form.Label>
+            <br />
+            <Form.Label>First Name:</Form.Label>
+            <Form.Control
+              type="text"
+              value={address.first_name}
+              onChange={(e) => {
+                setAddressesData((oldArr) => {
+                  const newArr = oldArr.map((item) => {
+                    if (item._id == address._id) {
+                      item.first_name = e.target.value;
+                    }
+                    return item;
+                  });
+                  return newArr;
+                });
+              }}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Last Name:</Form.Label>
+            <Form.Control
+              type="text"
+              value={address.last_name}
+              onChange={(e) => {
+                setAddressesData((oldArr) => {
+                  const newArr = oldArr.map((item) => {
+                    if (item._id == address._id) {
+                      item.last_name = e.target.value;
+                    }
+                    return item;
+                  });
+                  return newArr;
+                });
+              }}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Country:</Form.Label>
+            <Form.Control
+              type="text"
+              value={address.country}
+              onChange={(e) => {
+                setAddressesData((oldArr) => {
+                  const newArr = oldArr.map((item) => {
+                    if (item._id == address._id) {
+                      item.country = e.target.value;
+                    }
+                    return item;
+                  });
+                  return newArr;
+                });
+              }}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>City:</Form.Label>
+            <Form.Control
+              type="text"
+              value={address.city}
+              onChange={(e) => {
+                setAddressesData((oldArr) => {
+                  const newArr = oldArr.map((item) => {
+                    if (item._id == address._id) {
+                      item.city = e.target.value;
+                    }
+                    return item;
+                  });
+                  return newArr;
+                });
+              }}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Street:</Form.Label>
+            <Form.Control
+              type="text"
+              value={address.street_name}
+              onChange={(e) => {
+                setAddressesData((oldArr) => {
+                  const newArr = oldArr.map((item) => {
+                    if (item._id == address._id) {
+                      item.street_name = e.target.value;
+                    }
+                    return item;
+                  });
+                  return newArr;
+                });
+              }}
+            />
+          </Form.Group>
+
+          <Form.Group>
+            <Form.Label>Building Number:</Form.Label>
+            <Form.Control
+              type="text"
+              value={address.building_number}
+              onChange={(e) => {
+                setAddressesData((oldArr) => {
+                  const newArr = oldArr.map((item) => {
+                    if (item._id == address._id) {
+                      item.building_number = e.target.value;
+                    }
+                    return item;
+                  });
+                  return newArr;
+                });
+              }}
+            />
+          </Form.Group>
+
+          <Form.Group>
+            <Form.Label>Extension:</Form.Label>
+            <Form.Control
+              type="text"
+              value={address.extension}
+              onChange={(e) => {
+                setAddressesData((oldArr) => {
+                  const newArr = oldArr.map((item) => {
+                    if (item._id == address._id) {
+                      item.extension = e.target.value;
+                    }
+                    return item;
+                  });
+                  return newArr;
+                });
+              }}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Postal code:</Form.Label>
+            <Form.Control
+              type="text"
+              value={address.post_code}
+              onChange={(e) => {
+                setAddressesData((oldArr) => {
+                  const newArr = oldArr.map((item) => {
+                    if (item._id == address._id) {
+                      item.post_code = e.target.value;
+                    }
+                    return item;
+                  });
+                  return newArr;
+                });
+              }}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Comment:</Form.Label>
+            <Form.Control
+              type="text"
+              value={address.comment}
+              onChange={(e) => {
+                setAddressesData((oldArr) => {
+                  const newArr = oldArr.map((item) => {
+                    if (item._id == address._id) {
+                      item.comment = e.target.value;
+                    }
+                    return item;
+                  });
+                  return newArr;
+                });
+              }}
+            />
+          </Form.Group>
+        </Card>
       );
     });
   }
@@ -56,18 +203,6 @@ const EditProfile = ({ user }) => {
   return (
     <Container>
       <Form onSubmit={onSubmit}>
-        <Form.Group>
-          <Form.Label>
-            <img src="user.avatar" alt="avatar" />
-          </Form.Label>
-          <Form.Control
-            type="file"
-            onChange={(e) => {
-              setUserData({ ...userData, avatar: e.target.value });
-            }}
-          />
-        </Form.Group>
-
         <Form.Group>
           <Form.Label>First Name:</Form.Label>
           <Form.Control
@@ -108,6 +243,8 @@ const EditProfile = ({ user }) => {
             }}
           />
         </Form.Group>
+        <hr />
+        {addresses}
 
         <Button className="w-100" type="submit" style={{ background: 'var(--color-main)' }}>
           Save

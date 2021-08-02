@@ -29,10 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
           <Switch>
             <Route path="/" exact component={Homepage} />
             <Route exact path="/info" component={InfoPage} />
-            <Route exact path="/ContactUsPage" exact component={ContactUsPage} />
+            {/*<Route exact path="/ContactUsPage" exact component={ContactUsPage} />*/}
             <Route exact path="/signin" component={SignInPage} />
             <Route exact path="/signup" component={SignUpPage} />
-            <Route path="/account" exact component={MyAccountPage} />            
+            <Route path="/account" exact component={MyAccountPage} />
             <Route path="/edit-profile" exact component={EditProfilePage} />
             <Route path="/products/add" exact component={AddProduct} />
             <Route path="/:id" exact component={ProductDetailPage} />

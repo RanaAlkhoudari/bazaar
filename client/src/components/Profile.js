@@ -21,6 +21,7 @@ const Profile = ({ user }) => {
                     {address.street_name} {address.building_number} {address.extension}
                   </Card.Text>
                   <Card.Text>Postal code: {address.post_code}</Card.Text>
+                  <Card.Text>{address.comment}</Card.Text>
                 </Col>
               </Row>
             </Card.Body>
@@ -50,9 +51,6 @@ const Profile = ({ user }) => {
         <Card style={{ borderColor: 'var(--color-main)' }}>
           <Card.Body>
             <Row>
-              <Col>
-                <Card.Img style={{ minWidth: '250px' }} src={user.avatar} alt="profile pic" />
-              </Col>
               <Col>
                 <Card.Title>
                   {user && user.first_name} {user && user.last_name}
