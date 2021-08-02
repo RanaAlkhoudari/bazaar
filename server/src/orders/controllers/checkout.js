@@ -8,10 +8,10 @@ const checkout = async (req, res) => {
     const { id, user, amount, product, address } = req.body;
 
     const payment = await stripe.paymentIntents.create({
-      amount,
       confirm: true,
       currency: 'eur',
       payment_method: id,
+      amount: amount * 100,
       description: 'One time payment.',
     });
 
@@ -20,11 +20,10 @@ const checkout = async (req, res) => {
 
     const newOrder = new Order({ user, product, address });
     const saved = await newOrder.save();
-    // ?? should send status 400/500 (has nothing todo with the req, req body controlled in the client side!!)
-    if (!saved) throw new Error('Order was not saved!');
+    if (!saved) throw new Error('Cannot save order!');
 
     const added = await User.findByIdAndUpdate(user, { $push: { orders: saved._id } });
-    if (!added) throw new Error('Order was not added!');
+    if (!added) throw new Error('Cannot add order to user!');
 
     res.status(200).json({
       success: true,

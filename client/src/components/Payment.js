@@ -55,7 +55,7 @@ const PaymentForm = ({ product, shippingAddress }) => {
 
         if (response.data.success) {
           setSuccess(true);
-          document.getElementById('dropdown-basic').disabled = true;
+          document.getElementById('addresses_dropdown').disabled = true;
         }
       } catch (error) {
         console.error(`Error ${error}`);
@@ -73,9 +73,13 @@ const PaymentForm = ({ product, shippingAddress }) => {
         <Form onSubmit={handleSubmit}>
           <CardElement options={CARD_OPTIONS} />
           <Button
-            disabled={loading || !shippingAddress}
             type="submit"
-            style={{ marginTop: '10px', width: '100%', background: 'var(--color-main)' }}
+            disabled={loading || !shippingAddress}
+            style={{
+              width: '100%',
+              marginTop: '10px',
+              background: 'var(--color-main)',
+            }}
           >
             Pay now
           </Button>
