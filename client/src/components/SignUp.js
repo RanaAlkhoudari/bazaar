@@ -33,7 +33,7 @@ const SignUp = () => {
       setError('');
       setLoading(true);
       await axios.post(`http://localhost:3000/api/v1/users/signup`, user);
-      history.push('/');
+      history.push('/products/:keyword');
     } catch (e) {
       console.log(e);
       setError('Failed to create an account');
