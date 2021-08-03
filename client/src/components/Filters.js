@@ -3,71 +3,28 @@ import axios from 'axios';
 import { ButtonGroup, Dropdown, Row, Col, Form, Button } from 'react-bootstrap';
 import ProductList from './ProductList';
 
-const Filters = (props) => {
+const Filters = ({
+  handlePriceRange,
+  handleState,
+  oldNewProducts,
+  newOldProducts,
+  handleLocation,
+}) => {
   const [filtered, setFiltered] = useState([]);
   const [lowPrice, setLowPrice] = useState([]);
   const [highPrice, setHighPrice] = useState([]);
   const [location, setLocation] = useState([]);
-  const categorizedProducts = props.products;
-  console.log(categorizedProducts);
 
-  async function handlePriceRange(lowPrice, highPrice) {
-    try {
-      const priceRange = categorizedProducts.filter(
-        (item) => item.price >= Number(lowPrice) && item.price <= Number(highPrice),
-      );
-      setFiltered(priceRange);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  async function handleState(state) {
-    try {
-      const stateList = categorizedProducts.filter((item) => item.condition === state);
-      setFiltered(stateList);
-      console.log(state);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  async function oldNewProducts() {
-    try {
-      const sortedOldNew = categorizedProducts.sort(function sortProductsByDateDesc(a, b) {
-        const dateA = new Date(a.createdAt),
-          dateB = new Date(b.createdAt);
-        return dateA - dateB;
-      });
-      setFiltered(sortedOldNew);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  async function newOldProducts() {
-    try {
-      const sortedNewOld = categorizedProducts.sort(function sortProductsByDateDesc(a, b) {
-        const dateA = new Date(a.createdAt),
-          dateB = new Date(b.createdAt);
-        return dateB - dateA;
-      });
-      setFiltered(sortedNewOld);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  const handleChange = (location) => {
-    try {
-      const sortedLocation = categorizedProducts.filter(
-        (item) => item.city.toLowerCase() === location.toLowerCase(),
-      );
-      setFiltered(sortedLocation);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const handleLocation = (location) => {
+  //   try {
+  //     const sortedLocation = categorizedProducts.filter(
+  //       (item) => item.city.toLowerCase() === location.toLowerCase(),
+  //     );
+  //     setFiltered(sortedLocation);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <div>
@@ -185,7 +142,7 @@ const Filters = (props) => {
                   <Col>
                     <Button
                       onClick={() => {
-                        handleChange(location);
+                        handleLocation(location);
                       }}
                     >
                       Enter
@@ -193,19 +150,6 @@ const Filters = (props) => {
                   </Col>
                 </Row>
               </Form>
-              {/* <input
-                className="input"
-                type="text"
-                name="cityName"
-                placeholder="Enter City Name..."
-                value={searchTerm}
-                onChange={handleChange}
-                onSubmit={onSubmit}
-              /> */}
-              {/* <Dropdown.Item eventKey="amsterdam">Amsterdam</Dropdown.Item>
-              <Dropdown.Item eventKey="rotterdam">Rotterdam</Dropdown.Item>
-              <Dropdown.Item eventKey="assen">Assen</Dropdown.Item>
-              <Dropdown.Item eventKey="groningen">Groningen</Dropdown.Item> */}
             </Dropdown.Menu>
           </Dropdown>
         </div>
