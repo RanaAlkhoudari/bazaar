@@ -8,6 +8,7 @@ const productSchema = new Schema(
     description: { type: String, required: false },
     price: { type: Number, required: true },
     images: [{ type: String, required: false }],
+    city: { type: String, required: true },
     condition: { type: String, enum: ['new', 'like new', 'fairly used'], required: true },
     categories: [{ type: Schema.Types.ObjectId, ref: 'category' }],
     user: { type: Schema.Types.ObjectId, ref: 'user' },
