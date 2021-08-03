@@ -39,7 +39,7 @@ const Products = () => {
 
   return (
     <div>
-      <Filters />
+      {productsByCategory.length !== 0 && <Filters products={productsByCategory} />}
       <Container>
         <Row>
           <Col xs={12} md={4} lg={3}>

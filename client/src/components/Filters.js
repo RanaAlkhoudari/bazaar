@@ -3,15 +3,17 @@ import axios from 'axios';
 import { ButtonGroup, Dropdown, Row, Col, Form, Button } from 'react-bootstrap';
 import ProductList from './ProductList';
 
-const Filters = () => {
+const Filters = (props) => {
   const [filtered, setFiltered] = useState([]);
   const [lowPrice, setLowPrice] = useState([]);
   const [highPrice, setHighPrice] = useState([]);
+  const [location, setLocation] = useState([]);
+  const categorizedProducts = props.products;
+  console.log(categorizedProducts);
 
   async function handlePriceRange(lowPrice, highPrice) {
     try {
-      const response = await axios.get(`http://localhost:3000/api/v1/products`);
-      const priceRange = response.data.filter(
+      const priceRange = categorizedProducts.filter(
         (item) => item.price >= Number(lowPrice) && item.price <= Number(highPrice),
       );
       setFiltered(priceRange);
@@ -22,9 +24,7 @@ const Filters = () => {
 
   async function handleState(state) {
     try {
-      const response = await axios.get(`http://localhost:3000/api/v1/products`);
-      const stateList = response.data.filter((item) => item.condition === state);
-
+      const stateList = categorizedProducts.filter((item) => item.condition === state);
       setFiltered(stateList);
       console.log(state);
     } catch (error) {
@@ -34,8 +34,7 @@ const Filters = () => {
 
   async function oldNewProducts() {
     try {
-      const response = await axios.get(`http://localhost:3000/api/v1/products`);
-      const sortedOldNew = response.data.sort(function sortProductsByDateDesc(a, b) {
+      const sortedOldNew = categorizedProducts.sort(function sortProductsByDateDesc(a, b) {
         const dateA = new Date(a.createdAt),
           dateB = new Date(b.createdAt);
         return dateA - dateB;
@@ -45,10 +44,10 @@ const Filters = () => {
       console.log(error);
     }
   }
+
   async function newOldProducts() {
     try {
-      const response = await axios.get(`http://localhost:3000/api/v1/products`);
-      const sortedNewOld = response.data.sort(function sortProductsByDateDesc(a, b) {
+      const sortedNewOld = categorizedProducts.sort(function sortProductsByDateDesc(a, b) {
         const dateA = new Date(a.createdAt),
           dateB = new Date(b.createdAt);
         return dateB - dateA;
@@ -58,6 +57,17 @@ const Filters = () => {
       console.log(error);
     }
   }
+
+  const handleChange = (location) => {
+    try {
+      const sortedLocation = categorizedProducts.filter(
+        (item) => item.city.toLowerCase() === location.toLowerCase(),
+      );
+      setFiltered(sortedLocation);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div>
@@ -163,10 +173,39 @@ const Filters = () => {
               Location
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Dropdown.Item eventKey="amsterdam">Amsterdam</Dropdown.Item>
+              <Form>
+                <Row>
+                  <Col>
+                    {' '}
+                    <Form.Control
+                      placeholder="Enter City Name..."
+                      onChange={(e) => setLocation(e.target.value)}
+                    />
+                  </Col>
+                  <Col>
+                    <Button
+                      onClick={() => {
+                        handleChange(location);
+                      }}
+                    >
+                      Enter
+                    </Button>
+                  </Col>
+                </Row>
+              </Form>
+              {/* <input
+                className="input"
+                type="text"
+                name="cityName"
+                placeholder="Enter City Name..."
+                value={searchTerm}
+                onChange={handleChange}
+                onSubmit={onSubmit}
+              /> */}
+              {/* <Dropdown.Item eventKey="amsterdam">Amsterdam</Dropdown.Item>
               <Dropdown.Item eventKey="rotterdam">Rotterdam</Dropdown.Item>
               <Dropdown.Item eventKey="assen">Assen</Dropdown.Item>
-              <Dropdown.Item eventKey="groningen">Groningen</Dropdown.Item>
+              <Dropdown.Item eventKey="groningen">Groningen</Dropdown.Item> */}
             </Dropdown.Menu>
           </Dropdown>
         </div>
