@@ -58,6 +58,13 @@ const Profile = ({ user }) => {
                   {user && user.first_name} {user && user.last_name}
                 </Card.Title>
                 <Card.Text>
+                  <li>
+                    {user.expert ? (
+                      <span style={{ color: 'green' }}>Expert</span>
+                    ) : (
+                      <span style={{ color: 'red' }}>User</span>
+                    )}
+                  </li>
                   <li> Phone number: {user && user.phone}</li>
                   <li>Email: {user && user.email}</li>
                 </Card.Text>
