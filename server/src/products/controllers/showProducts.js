@@ -1,6 +1,6 @@
 const ProductModel = require('../productModel');
 
-function showProducts(req, res, next) {
+async function showProducts(req, res) {
   res.header('Access-Control-Allow-Origin', '*');
 
   try {

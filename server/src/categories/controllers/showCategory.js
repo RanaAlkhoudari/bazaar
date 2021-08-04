@@ -1,6 +1,6 @@
 const CategoryModel = require('../categoryModel');
 
-function showCategory(req, res) {
+async function showCategory(req, res) {
   res.header('Access-Control-Allow-Origin', '*');
 
   try {
