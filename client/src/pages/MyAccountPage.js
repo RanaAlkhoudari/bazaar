@@ -14,25 +14,25 @@ import { GrUserAdmin } from 'react-icons/gr';
 import { FiRefreshCcw } from 'react-icons/fi';
 import LoadingImage from '../images/Loading.gif';
 
-const myAccountPage = () => {
-  const styles = [
-    {
-      height: '25px',
-      width: '25px',
-      backgroundColor: 'red',
-      color: 'white',
-      borderRadius: '50%',
-      display: 'inline-block',
-      textAlign: 'center',
-      marginLeft: '0.5rem',
-    },
-    {
-      maxHeight: '30rem',
-      overflow: 'auto',
-      background: '#fff',
-    },
-  ];
+const styles = [
+  {
+    height: '25px',
+    width: '25px',
+    backgroundColor: 'red',
+    color: 'white',
+    borderRadius: '50%',
+    display: 'inline-block',
+    textAlign: 'center',
+    marginLeft: '0.5rem',
+  },
+  {
+    maxHeight: '30rem',
+    overflow: 'auto',
+    background: '#fff',
+  },
+];
 
+const MyAccountPage = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [err, setErr] = useState(false);
   const { user } = useContext(AuthContext);
@@ -179,4 +179,4 @@ const myAccountPage = () => {
   );
 };
 
-export default myAccountPage;
+export default MyAccountPage;

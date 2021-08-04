@@ -3,15 +3,20 @@ const ProductModel = require('../productModel');
 function GetProductByKeyword(req, res) {
   const name = req.params.keyword;
 
-  ProductModel.find({ title: { $regex: `.*${name}.*` } })
-    .limit(30)
+  try {
+    const product = await ProductModel.find({ title: { $regex: `.*${name}.*` } })
+      .limit(30)
+      .populate('categories');
 
-    .populate('categories')
-    .then((product) => {
-      res.status(200);
-      res.json(product);
-    })
-    .catch((err) => res.status(400).json(`Error :  ${err}`));
+    res.status(200);
+    res.json(product);
+  } catch (error) {
+    console.log('Error while getting product by keyword');
+    console.log('Request', req);
+    console.log('Error', error);
+
+    res.status(500).json(`Could not get product`);
+  }
 }
 
 module.exports = GetProductByKeyword;

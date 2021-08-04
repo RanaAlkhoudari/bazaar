@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Card, Button } from 'react-bootstrap';
 
-function UserDetail({ product }) {
+const UserDetail = ({ product }) => {
   const [user, setUser] = useState('');
 
   useEffect(() => {
@@ -30,6 +30,6 @@ function UserDetail({ product }) {
       </Card.Body>
     </Card>
   );
-}
+};
 
 export default UserDetail;

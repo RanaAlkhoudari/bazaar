@@ -5,7 +5,7 @@ import { AiFillStar } from 'react-icons/ai';
 import { AuthContext } from '../context/AuthContext';
 import NotifyIcon from './NotifyIcon';
 
-function ProductList(props) {
+const ProductList = (props) => {
   const sortedProducts = props.products;
   const { user, currentUser } = useContext(AuthContext);
 
@@ -43,6 +43,6 @@ function ProductList(props) {
       </div>
     </>
   );
-}
+};
 
 export default ProductList;
