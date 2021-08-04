@@ -7,6 +7,7 @@ import axios from 'axios';
 import GoogleButton from 'react-google-button';
 
 function GoogleSignIn() {
+  // console.log('google: ', process.env.GOOGLE_CLIENT_ID);
   const { dispatch } = useContext(AuthContext);
   const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
   const history = useHistory();

@@ -26,18 +26,6 @@ const myAccountPage = () => {
       console.log(error);
     }
   };
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  async function fetchData() {
-    try {
-      const response = await axios.get(`http://localhost:3000/api/v1/addresses/${user.address}`);
-      setAddress(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
 
   return (
     <>

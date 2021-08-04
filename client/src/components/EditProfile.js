@@ -11,24 +11,89 @@ const EditProfile = ({ user }) => {
     avatar: user.avatar,
     addresses: user.addresses,
   });
-  const [addressesData, setAddressesData] = useState(user.addresses);
-  console.log('addressesData: ', addressesData);
+
+  const [addressesData, setAddressesData] = useState(
+    user.addresses.map((address) => {
+      return {
+        _id: address._id,
+        first_name: address.first_name,
+        last_name: address.last_name,
+        country: address.country,
+        city: address.city,
+        street_name: address.street_name,
+        building_number: address.building_number,
+        extension: address.extension,
+        post_code: address.post_code,
+        comment: address.comment,
+      };
+    }),
+  );
+  const [isAddressChanged, setIsAddressChanged] = useState(false);
+  const [isUserDataChanged, setIsUserDataChanged] = useState(false);
+  console.log('isAddressChanged: ', isAddressChanged);
+  console.log('isUserDataChanged: ', isUserDataChanged);
   const onSubmit = async (e) => {
     try {
       e.preventDefault();
-      await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, userData);
+      if (isUserDataChanged) {
+        await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, userData);
+        setIsUserDataChanged(false);
+      }
+      if (isAddressChanged) {
+        await addressesData.forEach((address) => {
+          axios.patch(`http://localhost:3000/api/v1/addresses/update/${address._id}`, address);
+          setIsAddressChanged(false);
+        });
+      }
       alert('Successfully updated!');
     } catch (err) {
       console.log(err);
     }
   };
 
+  const [deleteId, setDeleteId] = useState('');
+  useEffect(() => {
+    if (deleteId.length > 0) {
+      (async () => {
+        try {
+          await axios.patch(
+            `http://localhost:3000/api/v1/addresses/delete/${deleteId}/${user._id}`,
+            { addresses: userData.addresses },
+          );
+          alert('Address is deleted!');
+        } catch (err) {
+          console.log(err);
+        }
+      })();
+    }
+  }, [deleteId]);
+
   let addresses = [];
   if (addressesData) {
     addresses = addressesData.map((address, index) => {
       return (
         <Card style={{ borderColor: 'var(--color-main)' }} key={address._id} className="m-3 p-3">
-          <h4>Address {index + 1}</h4>
+          <Row>
+            <Col>
+              <h4>Address {index + 1}</h4>
+            </Col>
+            <Col style={{ textAlign: 'right' }}>
+              <Button
+                variant="danger"
+                style={{ width: '10em' }}
+                onClick={() => {
+                  setUserData({
+                    ...userData,
+                    addresses: userData.addresses.filter((addr) => addr._id !== address._id),
+                  });
+                  setAddressesData((oldArr) => oldArr.filter((addr) => addr._id !== address._id));
+                  setDeleteId(address._id);
+                }}
+              >
+                Delete
+              </Button>
+            </Col>
+          </Row>
           <Form.Group>
             <Form.Label>Recipient (if the name is different from yours)</Form.Label>
             <br />
@@ -46,6 +111,7 @@ const EditProfile = ({ user }) => {
                   });
                   return newArr;
                 });
+                setIsAddressChanged(true);
               }}
             />
           </Form.Group>
@@ -64,6 +130,7 @@ const EditProfile = ({ user }) => {
                   });
                   return newArr;
                 });
+                setIsAddressChanged(true);
               }}
             />
           </Form.Group>
@@ -82,6 +149,7 @@ const EditProfile = ({ user }) => {
                   });
                   return newArr;
                 });
+                setIsAddressChanged(true);
               }}
             />
           </Form.Group>
@@ -100,6 +168,7 @@ const EditProfile = ({ user }) => {
                   });
                   return newArr;
                 });
+                setIsAddressChanged(true);
               }}
             />
           </Form.Group>
@@ -118,10 +187,10 @@ const EditProfile = ({ user }) => {
                   });
                   return newArr;
                 });
+                setIsAddressChanged(true);
               }}
             />
           </Form.Group>
-
           <Form.Group>
             <Form.Label>Building Number:</Form.Label>
             <Form.Control
@@ -137,10 +206,10 @@ const EditProfile = ({ user }) => {
                   });
                   return newArr;
                 });
+                setIsAddressChanged(true);
               }}
             />
           </Form.Group>
-
           <Form.Group>
             <Form.Label>Extension:</Form.Label>
             <Form.Control
@@ -156,6 +225,7 @@ const EditProfile = ({ user }) => {
                   });
                   return newArr;
                 });
+                setIsAddressChanged(true);
               }}
             />
           </Form.Group>
@@ -174,6 +244,7 @@ const EditProfile = ({ user }) => {
                   });
                   return newArr;
                 });
+                setIsAddressChanged(true);
               }}
             />
           </Form.Group>
@@ -192,6 +263,7 @@ const EditProfile = ({ user }) => {
                   });
                   return newArr;
                 });
+                setIsAddressChanged(true);
               }}
             />
           </Form.Group>
@@ -210,6 +282,7 @@ const EditProfile = ({ user }) => {
             value={userData.first_name}
             onChange={(e) => {
               setUserData({ ...userData, first_name: e.target.value });
+              setIsUserDataChanged(true);
             }}
           />
         </Form.Group>
@@ -220,6 +293,7 @@ const EditProfile = ({ user }) => {
             value={userData.last_name}
             onChange={(e) => {
               setUserData({ ...userData, last_name: e.target.value });
+              setIsUserDataChanged(true);
             }}
           />
         </Form.Group>
@@ -230,6 +304,7 @@ const EditProfile = ({ user }) => {
             value={userData.email}
             onChange={(e) => {
               setUserData({ ...userData, email: e.target.value });
+              setIsUserDataChanged(true);
             }}
           />
         </Form.Group>
@@ -240,6 +315,17 @@ const EditProfile = ({ user }) => {
             value={userData.phone}
             onChange={(e) => {
               setUserData({ ...userData, phone: e.target.value });
+              setIsUserDataChanged(true);
+            }}
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Password:</Form.Label>
+          <Form.Control
+            type="password"
+            onChange={(e) => {
+              setUserData({ ...userData, password: e.target.value });
+              setIsUserDataChanged(true);
             }}
           />
         </Form.Group>
