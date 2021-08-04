@@ -26,7 +26,7 @@ function AdminPanel() {
   }
 
   const pendingProducts = products.filter((product) => product.verified === null);
-  const CheckedProducts = products.filter(
+  const checkedProducts = products.filter(
     (product) => product.verified === true || product.verified === false,
   );
 
@@ -93,7 +93,7 @@ function AdminPanel() {
         <Tabs defaultActiveKey="Not Verified" justify>
           <Tab eventKey="Verified" title="Verified">
             <div style={{ paddingTop: '1em', paddingBottom: '1em' }}>
-              {CheckedProducts.map((product) => {
+              {checkedProducts.map((product) => {
                 return (
                   <CardRow key={product._id}>
                     <Col style={{ maxWidth: '100px', padding: '0' }}>

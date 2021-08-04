@@ -6,10 +6,12 @@ import Orders from '../components/Orders';
 import Favorites from '../components/Favorites';
 import Profile from '../components/Profile';
 import MyProducts from '../components/MyProducts';
+import Button from 'react-bootstrap/Button';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import { Container, Alert } from 'react-bootstrap';
 import { GrUserAdmin } from 'react-icons/gr';
+import { FiRefreshCcw } from 'react-icons/fi';
 import LoadingImage from '../images/Loading.gif';
 
 const myAccountPage = () => {
@@ -39,11 +41,6 @@ const myAccountPage = () => {
 
   useEffect(() => {
     fetchUser();
-    // console.log('Refreshed');
-    const intervalID = setTimeout(() => {
-      setToggle((toggle) => !toggle);
-    }, 2000);
-    return () => clearInterval(intervalID);
   }, [toggle]);
 
   const fetchUser = async () => {
@@ -77,14 +74,34 @@ const myAccountPage = () => {
     font-weight:bold;
 }
 .nav-link:hover {
-  background-color:var(--color-grey);
-  color: white;
+  color: var(--color-grey);
+  }
+.btn-outline-success span {
+    max-width: 0;
+    -webkit-transition: max-width 1s;
+    transition: max-width 1s;
+    display: inline-block;
+    vertical-align: top;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+.btn-outline-success:hover span {
+    max-width: 7rem;
   }
     `}
       </style>
       {isLoaded && !err ? (
         <Container>
-          <h1>My Account</h1>
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <h1>My Account</h1>
+            <Button
+              variant="outline-success"
+              style={{ borderRadius: '2.5em' }}
+              onClick={() => setToggle((toggle) => !toggle)}
+            >
+              <FiRefreshCcw /> <span> Refresh Content </span>
+            </Button>
+          </div>
           <Tabs justify defaultActiveKey="products" transition={false}>
             <Tab
               eventKey="Orders"
