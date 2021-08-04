@@ -95,16 +95,16 @@ const Products = () => {
 
   return (
     <div>
-      {productsByCategory.length !== 0 && (
-        <Filters
-          products={productsByCategory}
-          handlePriceRange={handlePriceRange}
-          handleState={handleState}
-          oldNewProducts={oldNewProducts}
-          newOldProducts={newOldProducts}
-          handleLocation={handleLocation}
-        />
-      )}
+      {/* {productsByCategory.length !== 0 && ( */}
+      <Filters
+        products={productsByCategory}
+        handlePriceRange={handlePriceRange}
+        handleState={handleState}
+        oldNewProducts={oldNewProducts}
+        newOldProducts={newOldProducts}
+        handleLocation={handleLocation}
+      />
+      {/* // )} */}
       <Container>
         <Row>
           <Col xs={12} md={4} lg={3}>
