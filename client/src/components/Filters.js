@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import { ButtonGroup, Dropdown, Row, Col, Form, Button } from 'react-bootstrap';
 import ProductList from './ProductList';
 
@@ -14,17 +13,6 @@ const Filters = ({
   const [lowPrice, setLowPrice] = useState([]);
   const [highPrice, setHighPrice] = useState([]);
   const [location, setLocation] = useState([]);
-
-  // const handleLocation = (location) => {
-  //   try {
-  //     const sortedLocation = categorizedProducts.filter(
-  //       (item) => item.city.toLowerCase() === location.toLowerCase(),
-  //     );
-  //     setFiltered(sortedLocation);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
   return (
     <div>
