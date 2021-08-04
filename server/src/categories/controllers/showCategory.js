@@ -6,7 +6,7 @@ function showCategory(req, res) {
   try {
     const findResult = await CategoryModel.find();
     const categories = await findResult.populate('categories');
-    res.json(categories);
+    res.status(200).json(categories);
   } catch (error) {
     console.log('Error while showing category');
     console.log('Request', req);
