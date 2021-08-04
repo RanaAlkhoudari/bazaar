@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <Router>
           <Header />
           <Switch>
-            <Route exact path="/products/:keyword" component={Homepage} />
+            <Route exact path="/" component={Homepage} />
             <Route exact path="/info" component={InfoPage} />
             <Route exact path="/ContactUsPage" component={ContactUsPage} />
             <Route exact path="/signin" component={SignInPage} />
@@ -36,9 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
             <Route path="/edit-profile" exact component={EditProfilePage} />
             <Route path="/products/add" exact component={AddProduct} />
             <Route path="/:id" exact component={ProductDetailPage} />
-            {/* <Route path="/products/:keyword" exact component={Products} /> */}
+            <Route path="/products/:keyword" exact component={Products} />
             <Route path="/orders/checkout" exact component={Checkout} />
-            {/* <Route exact path="/facebooklogin" component={SignInPage} /> */}
             <Route path="*" component={NotFoundPage} />
           </Switch>
         </Router>

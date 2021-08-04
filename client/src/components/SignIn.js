@@ -13,7 +13,7 @@ const SignIn = () => {
   const history = useHistory();
 
   if (user) {
-    history.push('/products/:keyword');
+    history.push('/');
   }
 
   async function handleLogin(e) {

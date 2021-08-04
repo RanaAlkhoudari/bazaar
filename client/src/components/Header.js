@@ -37,7 +37,7 @@ const Header = () => {
     <>
       <Navbar collapseOnSelect expand="lg" variant="light" bg="light">
         <Container>
-          <Navbar.Brand href="/products/:keyword">
+          <Navbar.Brand href="/">
             <img
               src="https://i.ibb.co/VB0vCY6/bazaar1.png"
               style={{ width: '140px' }}
@@ -91,11 +91,7 @@ const Header = () => {
                 </Nav.Link>
               )}
               {user ? (
-                <Nav.Link
-                  href="/products/:keyword"
-                  onClick={handleLogout}
-                  style={{ color: 'var(--color-main)' }}
-                >
+                <Nav.Link href="/" onClick={handleLogout} style={{ color: 'var(--color-main)' }}>
                   Sign Out
                 </Nav.Link>
               ) : (
