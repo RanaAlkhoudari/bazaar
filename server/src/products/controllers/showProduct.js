@@ -1,6 +1,6 @@
 const ProductModel = require('../productModel');
 
-function showProduct(req, res) {
+async function showProduct(req, res) {
   try {
     const product = await ProductModel.findById(req.params.id).populate('categories');
 

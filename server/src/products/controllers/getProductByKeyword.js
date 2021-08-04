@@ -1,6 +1,6 @@
 const ProductModel = require('../productModel');
 
-function GetProductByKeyword(req, res) {
+async function GetProductByKeyword(req, res) {
   const name = req.params.keyword;
 
   try {
