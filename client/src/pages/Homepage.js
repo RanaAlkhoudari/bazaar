@@ -27,7 +27,7 @@ function Homepage() {
               style={{
                 textShadow: '0px 0px 5px rgba(0, 0, 0, 1)',
                 width: '75%',
-                margin: '2 auto',
+                margin: '0 auto',
                 lineHeight: '23px',
               }}
             >
