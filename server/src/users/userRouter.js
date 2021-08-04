@@ -7,6 +7,7 @@ const updateUser = require('./controllers/updateUser');
 const deleteUser = require('./controllers/deleteUser');
 const signIn = require('./controllers/signIn');
 const googleLogin = require('./controllers/googleLogin');
+const facebookLogin = require('./controllers/facebookLogin');
 
 const router = express.Router();
 
@@ -21,6 +22,8 @@ router.patch('/update/:id', updateUser);
 router.delete('/:id', deleteUser);
 
 router.post('/signin', signIn);
+
+router.post('/facebookLogin', facebookLogin);
 
 router.post('/googleLogin', googleLogin);
 

@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { Container, Form, Button, Card, Alert } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
+import FacebookSignIn from './FacebookSignIn';
 import GoogleSignIn from './GoogleSignIn';
 
 const SignUp = () => {
@@ -90,6 +91,7 @@ const SignUp = () => {
             </Link>
           </div>
           <GoogleSignIn />
+          <FacebookSignIn />
         </div>
       </Container>
     </div>

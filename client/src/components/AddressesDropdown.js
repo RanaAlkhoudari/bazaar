@@ -10,28 +10,31 @@ const AddressesDropdown = ({ getShippingAddress }) => {
   const [addresses, setAddresses] = useState(null);
   const [shippingAddress, setShippingAddress] = useState(null);
 
-  useEffect(() => fetchAddresses(), []);
+  useEffect(() => fetchAddresses(), [shippingAddress]);
 
   const fetchAddresses = async () => {
     const response = await axios.get(`${process.env.REACT_APP_API_URL}/addresses/all/${user._id}`);
+
     setAddresses(response.data.addresses);
   };
 
   const handleClick = (e) => {
     const selectedAddress = addresses.find((address) => address._id === e.target.id);
+
     setShippingAddress(selectedAddress);
   };
 
   const getNewAddress = (address) => setShippingAddress(address);
 
-  // set it on the parent checkout page if the user choose one of the recent addresses
+  // set it on the parent component (checkoutPage) if the user choose one of the recent addresses
   getShippingAddress(shippingAddress);
 
   return (
-    <div>
+    <>
+      <br />
       <Dropdown>
         <Dropdown.Toggle
-          id="dropdown-basic"
+          id="addresses_dropdown"
           style={{ marginBlock: '1rem', background: 'var(--color-main)' }}
         >
           Choose an address
@@ -46,9 +49,10 @@ const AddressesDropdown = ({ getShippingAddress }) => {
               </Dropdown.Item>
             ))}
 
-          <Dropdown.Item id="new">Add new shipping address</Dropdown.Item>
+          {shippingAddress && <Dropdown.Item id="new">Add new shipping address</Dropdown.Item>}
         </Dropdown.Menu>
       </Dropdown>
+
       {shippingAddress ? (
         <Card style={cardStyles}>
           <Card.Header className="card-header">Shipping Address</Card.Header>
@@ -56,16 +60,18 @@ const AddressesDropdown = ({ getShippingAddress }) => {
             <Card.Body>
               <Card.Text>{`${shippingAddress.first_name || user.first_name} 
                 ${shippingAddress.last_name || user.last_name}`}</Card.Text>
+
               <Card.Text>{`${shippingAddress.street_name} ${shippingAddress.building_number} ${shippingAddress.extension},`}</Card.Text>
+
               <Card.Text>{`${shippingAddress.post_code} ${shippingAddress.city} - ${shippingAddress.country}`}</Card.Text>
             </Card.Body>
           )}
         </Card>
       ) : (
         // get it from the child component (addressForm) if the user choose to add new one
-        shippingAddress !== null && <AddressForm getNewAddress={getNewAddress} />
+        !shippingAddress && <AddressForm getNewAddress={getNewAddress} />
       )}
-    </div>
+    </>
   );
 };
 

@@ -43,8 +43,8 @@ const GoogleSignIn = () => {
             <GoogleButton
               onClick={renderProps.onClick}
               disabled={renderProps.disabled}
-              label="Log in with Google"
-              style={{ width: '300px' }}
+              label="LOGIN WITH GOOGLE"
+              style={{ width: '310px', paddingLeft: '30px' }}
             />
           )}
         />

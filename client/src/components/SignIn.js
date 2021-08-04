@@ -3,6 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { loginCall } from '../apiCalls';
 import { AuthContext } from '../context/AuthContext';
 import { Container, Form, Button, Card, Alert } from 'react-bootstrap';
+import FacebookSignIn from './FacebookSignIn';
 import GoogleSignIn from './GoogleSignIn';
 
 const SignIn = () => {
@@ -51,6 +52,7 @@ const SignIn = () => {
           </Link>
         </div>
         <GoogleSignIn />
+        <FacebookSignIn />
       </div>
     </Container>
   );
