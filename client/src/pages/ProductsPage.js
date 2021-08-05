@@ -13,42 +13,44 @@ const Products = () => {
   const { keyword } = useParams();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:3000/api/v1/products/searchedProduct/${keyword}`,
-        );
-        const { data } = response;
-
-        setProducts(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
     fetchData();
+    fetchDataKeyword();
   }, [keyword]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`http://localhost:3000/api/v1/products`);
-        const { data } = response;
-
-        setAllProducts(data);
-      } catch (error) {
-        console.log(error);
-      }
-
-      setProducts([]);
-    };
-
     fetchData();
-  }, [keyword]);
+  }, []);
+
+  const fetchDataKeyword = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3000/api/v1/products/searchedProduct/${keyword}`,
+      );
+      const { data } = response;
+
+      setProducts(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3000/api/v1/products`);
+      const { data } = response;
+
+      setAllProducts(data);
+    } catch (error) {
+      console.log(error);
+    }
+    setProducts([]);
+  };
 
   const productsByCategory = allProducts.filter(
     (product) => product.categories.length > 0 && product.categories[0].name === keyword,
   );
+  console.log(allProducts);
+
   async function handlePriceRange(lowPrice, highPrice) {
     try {
       const priceRange = productsByCategory.filter(
@@ -59,11 +61,11 @@ const Products = () => {
       console.log(error);
     }
   }
+
   async function handleState(state) {
     try {
       const stateList = productsByCategory.filter((item) => item.condition === state);
       setAllProducts(stateList);
-      console.log(state);
     } catch (error) {
       console.log(error);
     }
@@ -115,6 +117,7 @@ const Products = () => {
         oldNewProducts={oldNewProducts}
         newOldProducts={newOldProducts}
         handleLocation={handleLocation}
+        fetchData={fetchData}
       />
 
       <Container>
