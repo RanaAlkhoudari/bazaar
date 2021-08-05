@@ -63,8 +63,6 @@ const MyAccountPage = () => {
     );
   }
 
-  console.log(userFromDB)
-
   return (
     <>
       <style type="text/css">
