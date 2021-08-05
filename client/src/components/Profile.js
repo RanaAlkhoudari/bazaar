@@ -5,7 +5,6 @@ import noImage from '../images/noImage.png';
 const Profile = ({ user }) => {
   let addresses = [];
   if (user.addresses) {
-    console.log('user.addresses in profile: ', user.addresses);
     addresses = user.addresses.map((address) => {
       return (
         <Row key={address._id}>
