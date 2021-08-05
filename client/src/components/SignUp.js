@@ -4,6 +4,9 @@ import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import FacebookSignIn from './FacebookSignIn';
 import GoogleSignIn from './GoogleSignIn';
+import Filters from './Filters';
+import { FaBellSlash } from 'react-icons/fa';
+import { set } from 'mongoose';
 
 const SignUp = () => {
   const firstNameRef = useRef(false);
@@ -11,7 +14,7 @@ const SignUp = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
-
+  const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const history = useHistory();
@@ -20,6 +23,30 @@ const SignUp = () => {
     e.preventDefault();
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError('Passwords do not match');
+    }
+
+    if (passwordRef.current.value.length < 6) {
+      return setError('Passwords must consist of minimum 6 symbols');
+    }
+
+    let passwordWithNum = [];
+    Object.assign([], passwordRef.current.value).map((item) => {
+      function isNumeric(value) {
+        return /^-?\d+$/.test(value);
+      }
+      isNumeric(item) ? passwordWithNum.push(item) : null;
+    });
+    if (passwordWithNum.length === 0) {
+      return setError('Password must include at least one number');
+    }
+    try {
+      const response = await axios.get(`http://localhost:3000/api/v1/users`);
+      let validateEmail = response.data.find((item) => emailRef.current.value === item.email);
+      if (validateEmail !== undefined) {
+        return setError('An account with this email already exists');
+      }
+    } catch (e) {
+      setError('Failed to create an account');
     }
 
     const user = {
@@ -33,9 +60,13 @@ const SignUp = () => {
       setError('');
       setLoading(true);
       await axios.post(`http://localhost:3000/api/v1/users/signup`, user);
-      history.push('/');
+      const response = await axios.get(`http://localhost:3000/api/v1/users`);
+
+      setSuccess(true);
+      setTimeout(() => {
+        history.push('/signin');
+      }, 2500);
     } catch (e) {
-      console.log(e);
       setError('Failed to create an account');
     }
     setLoading(false);
@@ -52,6 +83,9 @@ const SignUp = () => {
             <Card.Body>
               <h2 className="text-center mb-4">Sign Up</h2>
               {error && <Alert variant="danger">{error}</Alert>}
+              {success && (
+                <Alert variant="success">Your account has been created successfully</Alert>
+              )}
               <Form onSubmit={handleSubmit}>
                 <Form.Group id="firstNameRef">
                   <Form.Label>First Name</Form.Label>

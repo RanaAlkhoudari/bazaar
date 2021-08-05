@@ -113,16 +113,17 @@ const Products = () => {
           </Col>
           <Col xs={12} md={8} lg={9}>
             <div>
+
               {products.length === 0 && productsByCategory.length !== 0 && !state && (
                 <ProductList products={productsByCategory} />
               )}
               {products.length !== 0 && productsByCategory.length !== 0 && (
                 <ProductList products={products} />
               )}
-              {console.log(products, productsByCategory)}
+              
               {products.length === 0 && state && (
                 <h1 className="text-center margin-t-3">No Items Available </h1>
-              )}
+
             </div>
           </Col>
         </Row>
