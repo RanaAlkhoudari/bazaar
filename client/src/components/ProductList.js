@@ -33,7 +33,7 @@ const ProductList = (props) => {
                       <NotifyIcon product={product.verified} />
                     </Card.Text>
                     {currentUser && currentUser.favorites.includes(product._id) ? (
-                      <AiFillStar style={{ color: 'red' }} />
+                      <AiFillStar style={{ color: 'red', float: 'right', marginTop: '-70px' }} />
                     ) : null}
                   </Card.Body>
                 </Link>

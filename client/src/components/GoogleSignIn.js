@@ -20,6 +20,7 @@ const GoogleSignIn = () => {
         email: response.profileObj.email,
       },
     });
+
     function loginCall(userCredential, dispatch) {
       dispatch({ type: 'LOGIN_START' });
       try {
