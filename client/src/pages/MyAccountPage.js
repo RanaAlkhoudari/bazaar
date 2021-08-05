@@ -3,6 +3,7 @@ import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
 import AdminPanel from '../components/AdminPanel';
 import Orders from '../components/Orders';
+import Notifications from '../components/Notifications';
 import Favorites from '../components/Favorites';
 import Profile from '../components/Profile';
 import MyProducts from '../components/MyProducts';
@@ -62,6 +63,8 @@ const MyAccountPage = () => {
     );
   }
 
+  console.log(userFromDB)
+
   return (
     <>
       <style type="text/css">
@@ -104,7 +107,7 @@ const MyAccountPage = () => {
           </div>
           <Tabs justify defaultActiveKey="products" transition={false}>
             <Tab
-              eventKey="Orders"
+              eventKey="orders"
               style={styles[1]}
               title={
                 <React.Fragment>
@@ -121,11 +124,13 @@ const MyAccountPage = () => {
               title={
                 <React.Fragment>
                   Notifications
-                  <span style={styles[0]}>4</span>
+                  <span style={styles[0]}>{userFromDB.notifications.length}</span>
                 </React.Fragment>
               }
             >
-              <></>
+              <>
+                <Notifications notifications={isLoaded ? userFromDB.notifications : <></>} />
+              </>
             </Tab>
             <Tab
               eventKey="products"
