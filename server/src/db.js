@@ -17,7 +17,7 @@ async function loadDb() {
     console.log('Db connected');
     return db;
   } catch (err) {
-    console.log('Db error');
+    console.log('Db error', err);
     throw new DbError(err.message);
   }
 }

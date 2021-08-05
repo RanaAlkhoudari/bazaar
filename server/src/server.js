@@ -23,7 +23,6 @@ async function run() {
   await loadDb();
 
   // Middlewares
-  // app.use(loadRepositories(db));
   app.use(express.json());
 
   // Route middlewares
@@ -32,6 +31,7 @@ async function run() {
   app.use('/api/v1/categories', categoryRouter);
   app.use('/api/v1/addresses', addressRouter);
   app.use('/api/v1/orders', orderRouter);
+
   // handleErrors must be the last middleware
   app.use(handleErrors);
 

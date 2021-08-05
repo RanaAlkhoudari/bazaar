@@ -8,7 +8,7 @@ import NotFoundPage from './NotFoundPage';
 import UserDetail from '../components/UserDetail';
 import Loading from '../components/Loading';
 
-function ProductDetailPage() {
+const ProductDetailPage = () => {
   const [product, setProduct] = useState('');
   const [error, setError] = useState(false);
 
@@ -47,6 +47,6 @@ function ProductDetailPage() {
     );
   if (error) return <NotFoundPage />;
   return <Loading />;
-}
+};
 
 export default ProductDetailPage;

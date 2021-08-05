@@ -1,18 +1,24 @@
 import React from 'react';
 import emailjs from 'emailjs-com';
 import { Form, Button, Container } from 'react-bootstrap';
-//const  {REACT_APP_SERVICE_ID, REACT_APP_TEMPLATE_ID, REACT_APP_USER_ID} = process.env
-//console.log(REACT_APP_SERVICE_ID);
+const { REACT_APP_SERVICE_ID, REACT_APP_TEMPLATE_ID, REACT_APP_USER_ID } = process.env;
+
 const ContactUsPage = () => {
-  function sendEmail(e) {
+  async function sendEmail(e) {
     e.preventDefault();
-    emailjs
-      //.sendForm(`${REACT_APP_SERVICE_ID}`, `${REACT_APP_TEMPLATE_ID}`, e.target, `${REACT_APP_USER_ID}`)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => console.log(err));
-    e.target.reset();
+
+    try {
+      await emailjs.sendForm(
+        `${REACT_APP_SERVICE_ID}`,
+        `${REACT_APP_TEMPLATE_ID}`,
+        e.target,
+        `${REACT_APP_USER_ID}`,
+      );
+
+      e.target.reset();
+    } catch (err) {
+      console.log(err);
+    }
   }
   return (
     <Container className="border" style={{ marginTop: '50px', marginBottom: '2%', width: '50%' }}>

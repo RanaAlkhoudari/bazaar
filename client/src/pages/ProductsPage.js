@@ -13,33 +13,110 @@ const Products = () => {
   const { keyword } = useParams();
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3000/api/v1/products/searchedProduct/${keyword}`)
-      .then((response) => response.data)
-      .then((data) => setProducts(data))
-      .catch((error) => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/api/v1/products/searchedProduct/${keyword}`,
+        );
+        const { data } = response;
+
+        setProducts(data);
+      } catch (error) {
         console.log(error);
-      });
+      }
+    };
+
+    fetchData();
   }, [keyword]);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3000/api/v1/products`)
-      .then((response) => response.data)
-      .then((data) => setAllProducts(data))
-      .catch((error) => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3000/api/v1/products`);
+        const { data } = response;
+
+        setAllProducts(data);
+      } catch (error) {
         console.log(error);
-      });
-    setProducts([]);
+      }
+
+      setProducts([]);
+    };
+
+    fetchData();
   }, [keyword]);
 
   const productsByCategory = allProducts.filter(
     (product) => product.categories.length > 0 && product.categories[0].name === keyword,
   );
+  async function handlePriceRange(lowPrice, highPrice) {
+    try {
+      const priceRange = productsByCategory.filter(
+        (item) => item.price >= Number(lowPrice) && item.price <= Number(highPrice),
+      );
+      setAllProducts(priceRange);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  async function handleState(state) {
+    try {
+      const stateList = productsByCategory.filter((item) => item.condition === state);
+      setAllProducts(stateList);
+      console.log(state);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function oldNewProducts() {
+    try {
+      const sortedOldNew = productsByCategory.sort(function sortProductsByDateDesc(a, b) {
+        const dateA = new Date(a.createdAt),
+          dateB = new Date(b.createdAt);
+        return dateA - dateB;
+      });
+      setAllProducts(sortedOldNew);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function newOldProducts() {
+    try {
+      const sortedNewOld = productsByCategory.sort(function sortProductsByDateDesc(a, b) {
+        const dateA = new Date(a.createdAt),
+          dateB = new Date(b.createdAt);
+        return dateB - dateA;
+      });
+      setAllProducts(sortedNewOld);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const handleLocation = (location) => {
+    try {
+      const sortedLocation = productsByCategory.filter(
+        (item) => item.city.toLowerCase() === location.toLowerCase(),
+      );
+      setAllProducts(sortedLocation);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div>
-      <Filters />
+      <Filters
+        products={productsByCategory}
+        handlePriceRange={handlePriceRange}
+        handleState={handleState}
+        oldNewProducts={oldNewProducts}
+        newOldProducts={newOldProducts}
+        handleLocation={handleLocation}
+      />
+
       <Container>
         <Row>
           <Col xs={12} md={4} lg={3}>

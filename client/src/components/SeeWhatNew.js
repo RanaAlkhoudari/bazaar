@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ProductList from './ProductList';
 import axios from 'axios';
 
-function SeeWhatNew() {
+const SeeWhatNew = () => {
   const [products, setProducts] = useState([]);
   products.sort(function sortProductsByDateDesc(a, b) {
     const dateA = new Date(a.createdAt),
@@ -27,5 +27,5 @@ function SeeWhatNew() {
       <ProductList products={sortedProductsByDate} />
     </div>
   );
-}
+};
 export default SeeWhatNew;

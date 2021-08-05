@@ -3,8 +3,9 @@ import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { AiFillStar } from 'react-icons/ai';
 import { AuthContext } from '../context/AuthContext';
+import NotifyIcon from './NotifyIcon';
 
-function ProductList(props) {
+const ProductList = (props) => {
   const sortedProducts = props.products;
   const { user, currentUser } = useContext(AuthContext);
 
@@ -28,8 +29,11 @@ function ProductList(props) {
                   <Card.Body style={{ color: 'var(--color-main)' }}>
                     <Card.Title>{product.title}</Card.Title>
                     <Card.Text>{product.price} €</Card.Text>
+                    <Card.Text>
+                      <NotifyIcon product={product.verified} />
+                    </Card.Text>
                     {currentUser && currentUser.favorites.includes(product._id) ? (
-                      <AiFillStar style={{ color: 'red' }} />
+                      <AiFillStar style={{ color: 'red', float: 'right', marginTop: '-70px' }} />
                     ) : null}
                   </Card.Body>
                 </Link>
@@ -39,6 +43,6 @@ function ProductList(props) {
       </div>
     </>
   );
-}
+};
 
 export default ProductList;

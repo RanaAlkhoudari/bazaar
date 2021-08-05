@@ -6,8 +6,7 @@ import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
 import GoogleButton from 'react-google-button';
 
-function GoogleSignIn() {
-  // console.log('google: ', process.env.GOOGLE_CLIENT_ID);
+const GoogleSignIn = () => {
   const { dispatch } = useContext(AuthContext);
   const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
   const history = useHistory();
@@ -21,6 +20,7 @@ function GoogleSignIn() {
         email: response.profileObj.email,
       },
     });
+
     function loginCall(userCredential, dispatch) {
       dispatch({ type: 'LOGIN_START' });
       try {
@@ -52,5 +52,6 @@ function GoogleSignIn() {
       </Card.Header>
     </Card>
   );
-}
+};
+
 export default GoogleSignIn;
