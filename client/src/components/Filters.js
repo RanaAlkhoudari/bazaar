@@ -9,12 +9,7 @@ const Filters = () => {
   return (
     <div>
       <div>
-        <div
-          className="d-flex flex-wrap justify-content-evenly p-4  m-5"
-          style={{
-            border: '1px solid var(--color-main)',
-          }}
-        >
+        <div className="d-flex flex-wrap justify-content-evenly p-4 m-5">
           <Dropdown as={ButtonGroup}>
             <Dropdown.Toggle
               style={{ backgroundColor: 'var(--color-main)', width: '260px' }}
