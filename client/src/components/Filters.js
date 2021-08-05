@@ -8,8 +8,8 @@ const Filters = ({
   oldNewProducts,
   newOldProducts,
   handleLocation,
+  fetchData,
 }) => {
-  const [filtered, setFiltered] = useState([]);
   const [lowPrice, setLowPrice] = useState([]);
   const [highPrice, setHighPrice] = useState([]);
   const [location, setLocation] = useState([]);
@@ -43,12 +43,13 @@ const Filters = ({
 
                   <Col>
                     <Button
+                      style={{ backgroundColor: 'var(--color-main)', color: 'white' }}
                       variant="info"
                       onClick={() => {
                         handlePriceRange(lowPrice, highPrice);
                       }}
                     >
-                      Refresh
+                      Enter
                     </Button>
                   </Col>
                 </Row>
@@ -118,12 +119,13 @@ const Filters = ({
                   <Col>
                     {' '}
                     <Form.Control
-                      placeholder="Enter City Name..."
+                      placeholder="City Name..."
                       onChange={(e) => setLocation(e.target.value)}
                     />
                   </Col>
                   <Col>
                     <Button
+                      style={{ backgroundColor: 'var(--color-main)', color: 'white' }}
                       onClick={() => {
                         handleLocation(location);
                       }}
@@ -137,7 +139,6 @@ const Filters = ({
           </Dropdown>
         </div>
       </div>
-      {filtered.length !== 0 && <ProductList products={filtered} />}
     </div>
   );
 };
