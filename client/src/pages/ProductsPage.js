@@ -10,7 +10,7 @@ import Category from '../components/Category';
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
-  const [test, setTest] = useState([]);
+  const [state, setState] = useState(false);
   const { keyword } = useParams();
 
   useEffect(() => {
@@ -39,73 +39,57 @@ const Products = () => {
     try {
       const response = await axios.get(`http://localhost:3000/api/v1/products`);
       const { data } = response;
-
+      setState(false);
       setAllProducts(data);
     } catch (error) {
       console.log(error);
     }
-    setProducts([]);
   };
 
   const productsByCategory = allProducts.filter(
     (product) => product.categories.length > 0 && product.categories[0].name === keyword,
   );
 
-  async function handlePriceRange(lowPrice, highPrice) {
-    try {
-      const priceRange = productsByCategory.filter(
-        (item) => item.price >= Number(lowPrice) && item.price <= Number(highPrice),
-      );
-      setProducts(priceRange);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  const handlePriceRange = (lowPrice, highPrice) => {
+    const priceRange = productsByCategory.filter(
+      (item) => item.price >= Number(lowPrice) && item.price <= Number(highPrice),
+    );
+    setState(true);
+    setProducts(priceRange);
+  };
 
-  async function handleState(state) {
-    try {
-      const stateList = productsByCategory.filter((item) => item.condition === state);
-      setProducts(stateList);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  const handleState = (state) => {
+    const stateList = productsByCategory.filter((item) => item.condition === state);
+    setState(true);
+    setProducts(stateList);
+  };
 
-  async function oldNewProducts() {
-    try {
-      const sortedOldNew = productsByCategory.sort(function sortProductsByDateDesc(a, b) {
-        const dateA = new Date(a.createdAt),
-          dateB = new Date(b.createdAt);
-        return dateA - dateB;
-      });
-      setProducts(sortedOldNew);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  const oldNewProducts = () => {
+    const sortedOldNew = productsByCategory.sort(function sortProductsByDateDesc(a, b) {
+      const dateA = new Date(a.createdAt),
+        dateB = new Date(b.createdAt);
+      return dateA - dateB;
+    });
+    setState(true);
+    setProducts(sortedOldNew);
+  };
 
-  async function newOldProducts() {
-    try {
-      const sortedNewOld = productsByCategory.sort(function sortProductsByDateDesc(a, b) {
-        const dateA = new Date(a.createdAt),
-          dateB = new Date(b.createdAt);
-        return dateB - dateA;
-      });
-      setProducts(sortedNewOld);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  const newOldProducts = () => {
+    const sortedNewOld = productsByCategory.sort(function sortProductsByDateDesc(a, b) {
+      const dateA = new Date(a.createdAt),
+        dateB = new Date(b.createdAt);
+      return dateB - dateA;
+    });
+    setState(true);
+    setProducts(sortedNewOld);
+  };
 
   const handleLocation = (location) => {
-    try {
-      const sortedLocation = productsByCategory.filter(
-        (item) => item.city.toLowerCase() === location.toLowerCase(),
-      );
-      setProducts(sortedLocation);
-    } catch (error) {
-      console.log(error);
-    }
+    const sortedLocation = productsByCategory.filter(
+      (item) => item.city.toLowerCase() === location.toLowerCase(),
+    );
+    setState(true);
+    setProducts(sortedLocation);
   };
 
   return (
@@ -129,19 +113,16 @@ const Products = () => {
           </Col>
           <Col xs={12} md={8} lg={9}>
             <div>
-              {products.length === 0 && productsByCategory.length === 0 && (
-                <h1
-                  style={{
-                    marginTop: '100px',
-                  }}
-                >
-                  This category is empty, choose another one please{' '}
-                </h1>
-              )}
-              {products.length === 0 && productsByCategory.length !== 0 && (
+              {products.length === 0 && productsByCategory.length !== 0 && !state && (
                 <ProductList products={productsByCategory} />
               )}
-              {products.length !== 0 && <ProductList products={products} />}
+              {products.length !== 0 && productsByCategory.length !== 0 && (
+                <ProductList products={products} />
+              )}
+              {console.log(products, productsByCategory)}
+              {products.length === 0 && state && (
+                <h1 className="text-center margin-t-3">No Items Available </h1>
+              )}
             </div>
           </Col>
         </Row>
