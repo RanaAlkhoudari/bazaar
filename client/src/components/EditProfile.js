@@ -28,22 +28,20 @@ const EditProfile = ({ user }) => {
       };
     }),
   );
-  const [isAddressChanged, setIsAddressChanged] = useState(false);
+  const [addressChanged, setAddressChanged] = useState('');
   const [isUserDataChanged, setIsUserDataChanged] = useState(false);
-  console.log('isAddressChanged: ', isAddressChanged);
-  console.log('isUserDataChanged: ', isUserDataChanged);
-  const onSubmit = async (e) => {
+
+  const editData = async (e) => {
     try {
       e.preventDefault();
       if (isUserDataChanged) {
         await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, userData);
         setIsUserDataChanged(false);
       }
-      if (isAddressChanged) {
-        await addressesData.forEach((address) => {
-          axios.patch(`http://localhost:3000/api/v1/addresses/update/${address._id}`, address);
-          setIsAddressChanged(false);
-        });
+      if (addressChanged.length > 0) {
+        const addr = addressesData.find((address) => address._id == addressChanged);
+        await axios.patch(`http://localhost:3000/api/v1/addresses/update/${addressChanged}`, addr);
+        setAddressChanged('');
       }
       alert('Successfully updated!');
     } catch (err) {
@@ -67,6 +65,62 @@ const EditProfile = ({ user }) => {
       })();
     }
   }, [deleteId]);
+
+  const [newAddress, setNewAddress] = useState({
+    user: user._id,
+    first_name: '',
+    last_name: '',
+    country: '',
+    city: '',
+    street_name: '',
+    building_number: '',
+    extension: '',
+    post_code: '',
+    comment: '',
+  });
+
+  const addAddress = async (e) => {
+    try {
+      e.preventDefault();
+      const response = await axios.post(
+        `http://localhost:3000/api/v1/addresses/create`,
+        newAddress,
+      );
+
+      const addressAdded = {
+        _id: response.data.address._id,
+        first_name: response.data.address.first_name,
+        last_name: response.data.address.last_name,
+        country: response.data.address.country,
+        city: response.data.address.city,
+        street_name: response.data.address.street_name,
+        building_number: response.data.address.building_number,
+        extension: response.data.address.extension,
+        post_code: response.data.address.post_code,
+        comment: response.data.address.comment,
+      };
+      setAddressesData((oldArr) => [...oldArr, addressAdded]);
+      setUserData({
+        ...userData,
+        addresses: [...userData.addresses, addressAdded],
+      });
+      setNewAddress({
+        user: user._id,
+        first_name: '',
+        last_name: '',
+        country: '',
+        city: '',
+        street_name: '',
+        building_number: '',
+        extension: '',
+        post_code: '',
+        comment: '',
+      });
+      alert('Address is added!');
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   let addresses = [];
   if (addressesData) {
@@ -111,7 +165,7 @@ const EditProfile = ({ user }) => {
                   });
                   return newArr;
                 });
-                setIsAddressChanged(true);
+                setAddressChanged(address._id);
               }}
             />
           </Form.Group>
@@ -130,7 +184,7 @@ const EditProfile = ({ user }) => {
                   });
                   return newArr;
                 });
-                setIsAddressChanged(true);
+                setAddressChanged(address._id);
               }}
             />
           </Form.Group>
@@ -149,7 +203,7 @@ const EditProfile = ({ user }) => {
                   });
                   return newArr;
                 });
-                setIsAddressChanged(true);
+                setAddressChanged(address._id);
               }}
             />
           </Form.Group>
@@ -168,7 +222,7 @@ const EditProfile = ({ user }) => {
                   });
                   return newArr;
                 });
-                setIsAddressChanged(true);
+                setAddressChanged(address._id);
               }}
             />
           </Form.Group>
@@ -187,7 +241,7 @@ const EditProfile = ({ user }) => {
                   });
                   return newArr;
                 });
-                setIsAddressChanged(true);
+                setAddressChanged(address._id);
               }}
             />
           </Form.Group>
@@ -206,7 +260,7 @@ const EditProfile = ({ user }) => {
                   });
                   return newArr;
                 });
-                setIsAddressChanged(true);
+                setAddressChanged(address._id);
               }}
             />
           </Form.Group>
@@ -225,7 +279,7 @@ const EditProfile = ({ user }) => {
                   });
                   return newArr;
                 });
-                setIsAddressChanged(true);
+                setAddressChanged(address._id);
               }}
             />
           </Form.Group>
@@ -244,7 +298,7 @@ const EditProfile = ({ user }) => {
                   });
                   return newArr;
                 });
-                setIsAddressChanged(true);
+                setAddressChanged(address._id);
               }}
             />
           </Form.Group>
@@ -263,7 +317,7 @@ const EditProfile = ({ user }) => {
                   });
                   return newArr;
                 });
-                setIsAddressChanged(true);
+                setAddressChanged(address._id);
               }}
             />
           </Form.Group>
@@ -274,7 +328,7 @@ const EditProfile = ({ user }) => {
 
   return (
     <Container>
-      <Form onSubmit={onSubmit}>
+      <Form onSubmit={editData}>
         <Form.Group>
           <Form.Label>First Name:</Form.Label>
           <Form.Control
@@ -329,11 +383,117 @@ const EditProfile = ({ user }) => {
             }}
           />
         </Form.Group>
-        <hr />
+
         {addresses}
 
         <Button className="w-100" type="submit" style={{ background: 'var(--color-main)' }}>
           Save
+        </Button>
+      </Form>
+      <hr />
+      <h4 className="mt-3">Add new address</h4>
+      <Form onSubmit={addAddress}>
+        <Card style={{ borderColor: 'var(--color-main)' }} className="m-3 p-3">
+          <Form.Group>
+            <Form.Label>Recipient (if the name is different from yours)</Form.Label>
+            <br />
+            <Form.Label>First Name:</Form.Label>
+            <Form.Control
+              type="text"
+              value={newAddress.first_name}
+              onChange={(e) => {
+                setNewAddress({ ...newAddress, first_name: e.target.value });
+              }}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Last Name:</Form.Label>
+            <Form.Control
+              type="text"
+              value={newAddress.last_name}
+              onChange={(e) => {
+                setNewAddress({ ...newAddress, last_name: e.target.value });
+              }}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Country: *</Form.Label>
+            <Form.Control
+              required
+              type="text"
+              value={newAddress.country}
+              onChange={(e) => {
+                setNewAddress({ ...newAddress, country: e.target.value });
+              }}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>City: *</Form.Label>
+            <Form.Control
+              required
+              type="text"
+              value={newAddress.city}
+              onChange={(e) => {
+                setNewAddress({ ...newAddress, city: e.target.value });
+              }}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Street: *</Form.Label>
+            <Form.Control
+              required
+              type="text"
+              value={newAddress.street_name}
+              onChange={(e) => {
+                setNewAddress({ ...newAddress, street_name: e.target.value });
+              }}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Building Number: *</Form.Label>
+            <Form.Control
+              required
+              type="text"
+              value={newAddress.building_number}
+              onChange={(e) => {
+                setNewAddress({ ...newAddress, building_number: e.target.value });
+              }}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Extension:</Form.Label>
+            <Form.Control
+              type="text"
+              value={newAddress.extension}
+              onChange={(e) => {
+                setNewAddress({ ...newAddress, extension: e.target.value });
+              }}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Postal code: *</Form.Label>
+            <Form.Control
+              required
+              type="text"
+              value={newAddress.post_code}
+              onChange={(e) => {
+                setNewAddress({ ...newAddress, post_code: e.target.value });
+              }}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Comment:</Form.Label>
+            <Form.Control
+              type="text"
+              value={newAddress.comment}
+              onChange={(e) => {
+                setNewAddress({ ...newAddress, comment: e.target.value });
+              }}
+            />
+          </Form.Group>
+        </Card>
+        <Button className="w-100" type="submit" style={{ background: 'var(--color-main)' }}>
+          Add
         </Button>
       </Form>
     </Container>

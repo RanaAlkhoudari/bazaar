@@ -3,11 +3,19 @@ const User = require('../../users/userModel');
 
 async function deleteAddress(req, res) {
   try {
-    console.log('in controller', req.body);
-    await Address.findByIdAndDelete(req.params.addressId);
+    const deletedFromAddresses = await Address.findByIdAndDelete(req.params.addressId);
+    if (!deletedFromAddresses)
+      return res
+        .status(400)
+        .json({ success: false, message: 'Failed to delete address from addresses!' });
+
     const user = await User.findById(req.params.userId);
     Object.assign(user, req.body);
-    await user.save();
+    const deletedFromUser = await user.save();
+    if (!deletedFromUser)
+      return res
+        .status(400)
+        .json({ success: false, message: 'Failed to delete address from user!' });
     res
       .status(200)
       .send(`Address with the id ${req.params.addressId} was deleted from the database`);
