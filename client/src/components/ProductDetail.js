@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import axios from 'axios';
 import { Card, Button, Row, Col } from 'react-bootstrap';
 import NotifyIcon from './NotifyIcon';
 import { AiFillStar } from 'react-icons/ai';
@@ -10,11 +11,22 @@ const ProductDetail = ({ product }) => {
   const { addFavorite, deleteFavorite } = useContext(AuthContext);
   const { user, currentUser } = useContext(AuthContext);
 
-  const goToCheckout = () =>
+  const goToCheckout = async () => {
+    try {
+      await axios.post(`http://localhost:3000/api/v1/notifications/add`, {
+        user: product.user,
+        type: 'order',
+        text: `the user ${user.first_name} ${user.last_name} is trying to order your product ${product.title}`,
+        seen: false,
+      });
+    } catch (error) {
+      console.error(`Error ${error}`);
+    }
     history.push({
       pathname: '/orders/checkout',
       state: product,
     });
+  };
 
   return (
     <div key={product._id}>

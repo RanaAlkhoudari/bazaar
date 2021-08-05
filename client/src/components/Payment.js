@@ -66,9 +66,24 @@ const PaymentForm = ({ product, shippingAddress }) => {
 
     setLoading(false);
   };
+  const sendNotification = async () => {
+    try {
+      await axios.post(`http://localhost:3000/api/v1/notifications/add`, {
+        user: product.user,
+        type: 'payment',
+        text: `the user ${user.first_name} ${user.last_name} has successfully paid for your product ${product.title}`,
+        seen: false,
+      });
+    } catch (error) {
+      console.error(`Error ${error}`);
+    }
+  };
 
   return (
     <>
+      <Button variant="success" onClick={() => sendNotification()}>
+        Send Notification
+      </Button>
       {!success ? (
         <Form onSubmit={handleSubmit}>
           <CardElement options={CARD_OPTIONS} />
