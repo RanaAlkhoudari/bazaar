@@ -1,18 +1,19 @@
 const express = require('express');
-const ShowProducts = require('./controllers/showProducts');
-const ShowProduct = require('./controllers/showProduct');
-const CreateProduct = require('./controllers/createProduct');
-const GetProductByKeyword = require('./controllers/getProductByKeyword');
-const UpdateProduct = require('./controllers/updateProduct');
-const DeleteProduct = require('./controllers/deleteProduct');
+
+const showProducts = require('./controllers/showProducts');
+const showProduct = require('./controllers/showProduct');
+const createProduct = require('./controllers/createProduct');
+const getProductByKeyword = require('./controllers/getProductByKeyword');
+const updateProduct = require('./controllers/updateProduct');
+const deleteProduct = require('./controllers/deleteProduct');
 
 const router = express.Router();
 
-router.get('/', ShowProducts);
-router.post('/create', CreateProduct);
-router.get('/:id', ShowProduct);
-router.get('/searchedProduct/:keyword', GetProductByKeyword);
-router.patch('/:id', UpdateProduct);
-router.delete('/:id', DeleteProduct);
+router.get('/', showProducts);
+router.post('/create', createProduct);
+router.get('/:id', showProduct);
+router.get('/searchedProduct/:keyword', getProductByKeyword);
+router.patch('/:id', updateProduct);
+router.delete('/:id', deleteProduct);
 
 module.exports = router;

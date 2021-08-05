@@ -130,5 +130,5 @@ function Homepage() {
       <Products />
     </>
   );
-}
+};
 export default Homepage;

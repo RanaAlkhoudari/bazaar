@@ -21,7 +21,7 @@ const userSchema = new Schema(
     role: { type: String, enum: ['admin', 'user'], default: 'user' },
     active: { type: Boolean },
     expert: { type: Boolean, default: false },
-    avatar: { type: String, required: false },
+    avatar: { type: String, required: false, default: null },
     orders: [{ type: Schema.Types.ObjectId, ref: 'order' }],
     addresses: [{ type: Schema.Types.ObjectId, ref: 'address' }],
     favorites: [{ type: Schema.Types.ObjectId, ref: 'product' }],

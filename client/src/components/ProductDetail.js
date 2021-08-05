@@ -5,7 +5,7 @@ import { AiFillStar } from 'react-icons/ai';
 import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
-function ProductDetail({ product }) {
+const ProductDetail = ({ product }) => {
   const history = useHistory();
   const { addFavorite, deleteFavorite } = useContext(AuthContext);
   const { user, currentUser } = useContext(AuthContext);
@@ -75,6 +75,6 @@ function ProductDetail({ product }) {
       </Card>
     </div>
   );
-}
+};
 
 export default ProductDetail;
