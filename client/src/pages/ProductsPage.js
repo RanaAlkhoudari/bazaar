@@ -10,6 +10,7 @@ import Category from '../components/Category';
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
+  const [test, setTest] = useState([]);
   const { keyword } = useParams();
 
   useEffect(() => {
@@ -49,14 +50,13 @@ const Products = () => {
   const productsByCategory = allProducts.filter(
     (product) => product.categories.length > 0 && product.categories[0].name === keyword,
   );
-  console.log(allProducts);
 
   async function handlePriceRange(lowPrice, highPrice) {
     try {
       const priceRange = productsByCategory.filter(
         (item) => item.price >= Number(lowPrice) && item.price <= Number(highPrice),
       );
-      setAllProducts(priceRange);
+      setProducts(priceRange);
     } catch (error) {
       console.log(error);
     }
@@ -65,7 +65,7 @@ const Products = () => {
   async function handleState(state) {
     try {
       const stateList = productsByCategory.filter((item) => item.condition === state);
-      setAllProducts(stateList);
+      setProducts(stateList);
     } catch (error) {
       console.log(error);
     }
@@ -78,7 +78,7 @@ const Products = () => {
           dateB = new Date(b.createdAt);
         return dateA - dateB;
       });
-      setAllProducts(sortedOldNew);
+      setProducts(sortedOldNew);
     } catch (error) {
       console.log(error);
     }
@@ -91,7 +91,7 @@ const Products = () => {
           dateB = new Date(b.createdAt);
         return dateB - dateA;
       });
-      setAllProducts(sortedNewOld);
+      setProducts(sortedNewOld);
     } catch (error) {
       console.log(error);
     }
@@ -102,7 +102,7 @@ const Products = () => {
       const sortedLocation = productsByCategory.filter(
         (item) => item.city.toLowerCase() === location.toLowerCase(),
       );
-      setAllProducts(sortedLocation);
+      setProducts(sortedLocation);
     } catch (error) {
       console.log(error);
     }
@@ -138,7 +138,9 @@ const Products = () => {
                   This category is empty, choose another one please{' '}
                 </h1>
               )}
-              {productsByCategory.length !== 0 && <ProductList products={productsByCategory} />}
+              {products.length === 0 && productsByCategory.length !== 0 && (
+                <ProductList products={productsByCategory} />
+              )}
               {products.length !== 0 && <ProductList products={products} />}
             </div>
           </Col>
