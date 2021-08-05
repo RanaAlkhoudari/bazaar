@@ -7,6 +7,7 @@ import ProductDetail from '../components/ProductDetail';
 import NotFoundPage from './NotFoundPage';
 import UserDetail from '../components/UserDetail';
 import Loading from '../components/Loading';
+import SeeWhatNew from '../components/SeeWhatNew';
 
 const ProductDetailPage = () => {
   const [product, setProduct] = useState('');
@@ -43,6 +44,7 @@ const ProductDetailPage = () => {
 
         <h2 style={{ textAlign: 'center', marginTop: '70px' }}>See Similar Products</h2>
         {product.categories && <SimilarProducts product={product} />}
+        {<SeeWhatNew />}
       </>
     );
   if (error) return <NotFoundPage />;

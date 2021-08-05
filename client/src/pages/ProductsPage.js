@@ -127,6 +127,9 @@ const Products = () => {
           <Col xs={12} md={8} lg={9}>
             <div>
               {products.length === 0 && productsByCategory.length === 0 && (
+                <ProductList products={allProducts} />
+              )}
+              {/* {products.length === 0 && productsByCategory.length === 0 && (
                 <h1
                   style={{
                     marginTop: '100px',
@@ -134,7 +137,8 @@ const Products = () => {
                 >
                   This category is empty, choose another one please{' '}
                 </h1>
-              )}
+              )} */}
+
               {productsByCategory.length !== 0 && <ProductList products={productsByCategory} />}
               {products.length !== 0 && <ProductList products={products} />}
             </div>
