@@ -1,10 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { Card, Button, Row, Col } from 'react-bootstrap';
+import NotifyIcon from './NotifyIcon';
 import { AiFillStar } from 'react-icons/ai';
 import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
-function ProductDetail({ product }) {
+const ProductDetail = ({ product }) => {
   const history = useHistory();
   const { addFavorite, deleteFavorite } = useContext(AuthContext);
   const { user, currentUser } = useContext(AuthContext);
@@ -29,7 +30,8 @@ function ProductDetail({ product }) {
             </Col>
             <Col>
               <Card.Title>{product.title}</Card.Title>
-              <Card.Text>{product.price} €</Card.Text>
+              <NotifyIcon product={product.verified} />
+              <Card.Text>{product.price} € </Card.Text>
               <Card.Text style={{ textAlign: 'left' }}>{product.description}</Card.Text>
               <Row>
                 {' '}
@@ -73,6 +75,6 @@ function ProductDetail({ product }) {
       </Card>
     </div>
   );
-}
+};
 
 export default ProductDetail;

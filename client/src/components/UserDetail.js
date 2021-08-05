@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Card, Button } from 'react-bootstrap';
+import noImage from '../images/noImage.png';
 
-function UserDetail({ product }) {
+const UserDetail = ({ product }) => {
   const [user, setUser] = useState('');
 
   useEffect(() => {
@@ -17,9 +18,14 @@ function UserDetail({ product }) {
       console.log(error);
     }
   }
+  console.log(user);
   return (
     <Card style={{ width: '12rem', margin: '0 auto' }}>
-      <Card.Img style={{ height: '200px' }} variant="top" src={user.avatar} />
+      {user.avatar === null ? (
+        <Card.Img style={{ height: '200px' }} variant="top" src={noImage} />
+      ) : (
+        <Card.Img style={{ height: '200px' }} variant="top" src={user.avatar} />
+      )}
       <Card.Body>
         <Card.Title>
           {user.first_name} {user.last_name}
@@ -30,6 +36,6 @@ function UserDetail({ product }) {
       </Card.Body>
     </Card>
   );
-}
+};
 
 export default UserDetail;

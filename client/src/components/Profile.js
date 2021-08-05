@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
+import noImage from '../images/noImage.png';
 
 const Profile = ({ user }) => {
   let addresses = [];
@@ -51,13 +52,24 @@ const Profile = ({ user }) => {
           <Card.Body>
             <Row>
               <Col>
-                <Card.Img style={{ minWidth: '250px' }} src={user.avatar} alt="profile pic" />
+                {user.avatar === null ? (
+                  <Card.Img style={{ maxWidth: '200px' }} variant="top" src={noImage} />
+                ) : (
+                  <Card.Img style={{ maxWidth: '200px' }} variant="top" src={user.avatar} />
+                )}
               </Col>
               <Col>
                 <Card.Title>
                   {user && user.first_name} {user && user.last_name}
                 </Card.Title>
                 <Card.Text>
+                  <li>
+                    {user.expert ? (
+                      <span style={{ color: 'green' }}>Expert</span>
+                    ) : (
+                      <span style={{ color: 'red' }}>User</span>
+                    )}
+                  </li>
                   <li> Phone number: {user && user.phone}</li>
                   <li>Email: {user && user.email}</li>
                 </Card.Text>

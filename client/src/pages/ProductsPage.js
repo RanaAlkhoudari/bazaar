@@ -13,24 +13,37 @@ const Products = () => {
   const { keyword } = useParams();
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3000/api/v1/products/searchedProduct/${keyword}`)
-      .then((response) => response.data)
-      .then((data) => setProducts(data))
-      .catch((error) => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/api/v1/products/searchedProduct/${keyword}`,
+        );
+        const { data } = response;
+
+        setProducts(data);
+      } catch (error) {
         console.log(error);
-      });
+      }
+    };
+
+    fetchData();
   }, [keyword]);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3000/api/v1/products`)
-      .then((response) => response.data)
-      .then((data) => setAllProducts(data))
-      .catch((error) => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3000/api/v1/products`);
+        const { data } = response;
+
+        setAllProducts(data);
+      } catch (error) {
         console.log(error);
-      });
-    setProducts([]);
+      }
+
+      setProducts([]);
+    };
+
+    fetchData();
   }, [keyword]);
 
   const productsByCategory = allProducts.filter(
