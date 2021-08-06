@@ -34,11 +34,7 @@ const ProductDetail = ({ product }) => {
         <Card.Body>
           <Row>
             <Col>
-              <Card.Img
-                style={{ minWidth: '250px', height: '300px' }}
-                src={product.images}
-                alt={product.title}
-              />
+              <Card.Img style={{ minWidth: '250px' }} src={product.images} alt={product.title} />
             </Col>
             <Col>
               <Card.Title>{product.title}</Card.Title>
