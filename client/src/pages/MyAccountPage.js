@@ -5,6 +5,7 @@ import { AuthContext } from '../context/AuthContext';
 import Orders from '../components/Orders';
 import Favorites from '../components/Favorites';
 import Notifications from '../components/Notifications';
+import MyAds from '../components/MyAds';
 import { Tabs, Tab } from 'react-bootstrap-tabs';
 import { Container, Alert } from 'react-bootstrap';
 
@@ -58,6 +59,9 @@ const myAccountPage = () => {
             </Tab>
             <Tab label="favorites">
               <Favorites />
+            </Tab>
+            <Tab label="my Ads">
+              <MyAds />
             </Tab>
           </Tabs>
           <hr />
