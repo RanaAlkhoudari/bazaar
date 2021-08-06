@@ -86,7 +86,7 @@ const AddressForm = ({ getNewAddress }) => {
                 type="text"
                 style={inputStyles}
                 ref={streetNameRef}
-                placeholder="Street Name"
+                placeholder="Street Name *"
               />
             </Col>
 
@@ -95,7 +95,7 @@ const AddressForm = ({ getNewAddress }) => {
                 type="text"
                 style={inputStyles}
                 ref={buildingNumberRef}
-                placeholder="Building Number"
+                placeholder="Building Number *"
               />
             </Col>
 
@@ -115,12 +115,12 @@ const AddressForm = ({ getNewAddress }) => {
                 type="text"
                 ref={postCodeRef}
                 style={inputStyles}
-                placeholder="Post Code"
+                placeholder="Post Code *"
               />
             </Col>
 
             <Col md={4}>
-              <Form.Control type="text" ref={cityRef} placeholder="City" style={inputStyles} />
+              <Form.Control type="text" ref={cityRef} placeholder="City *" style={inputStyles} />
             </Col>
 
             <Col md={4}>
@@ -128,7 +128,7 @@ const AddressForm = ({ getNewAddress }) => {
                 type="text"
                 ref={countryRef}
                 style={inputStyles}
-                placeholder="Country"
+                placeholder="Country *"
               />
             </Col>
           </Row>
