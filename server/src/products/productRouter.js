@@ -1,18 +1,21 @@
 const express = require('express');
-const ShowProducts = require('./controllers/showProducts');
-const ShowProduct = require('./controllers/showProduct');
-const CreateProduct = require('./controllers/createProduct');
-const GetProductByKeyword = require('./controllers/getProductByKeyword');
-const DeleteProduct = require('./controllers/deleteProduct');
-const UpdateProduct = require('./controllers/updateProduct');
+
+const showProducts = require('./controllers/showProducts');
+const showProduct = require('./controllers/showProduct');
+const createProduct = require('./controllers/createProduct');
+const getProductByKeyword = require('./controllers/getProductByKeyword');
+const updateProduct = require('./controllers/updateProduct');
+const deleteProduct = require('./controllers/deleteProduct');
+const editProduct = require('./controllers/editProduct');
 
 const router = express.Router();
 
-router.get('/', ShowProducts);
-router.post('/create', CreateProduct);
-router.get('/:id', ShowProduct);
-router.get('/searchedProduct/:keyword', GetProductByKeyword);
-router.delete('/:id', DeleteProduct);
-router.patch('/update/:id', UpdateProduct);
+router.get('/', showProducts);
+router.post('/create', createProduct);
+router.get('/:id', showProduct);
+router.get('/searchedProduct/:keyword', getProductByKeyword);
+router.patch('/:id', updateProduct);
+router.delete('/:id', deleteProduct);
+router.patch('/update/:id', editProduct);
 
 module.exports = router;

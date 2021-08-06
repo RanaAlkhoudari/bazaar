@@ -1,71 +1,192 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import Profile from '../components/Profile';
 import { AuthContext } from '../context/AuthContext';
+import AdminPanel from '../components/AdminPanel';
 import Orders from '../components/Orders';
 import Favorites from '../components/Favorites';
-import Notifications from '../components/Notifications';
+// import Notifications from '../components/Notifications';
 import MyAds from '../components/MyAds';
-import { Tabs, Tab } from 'react-bootstrap-tabs';
+// import { Tabs, Tab } from 'react-bootstrap-tabs';
+import Profile from '../components/Profile';
+import MyProducts from '../components/MyProducts';
+import Button from 'react-bootstrap/Button';
+import Tabs from 'react-bootstrap/Tabs';
+import Tab from 'react-bootstrap/Tab';
 import { Container, Alert } from 'react-bootstrap';
+import { GrUserAdmin } from 'react-icons/gr';
+import { FiRefreshCcw } from 'react-icons/fi';
+import LoadingImage from '../images/Loading.gif';
 
-const myAccountPage = () => {
+const styles = [
+  {
+    height: '25px',
+    width: '25px',
+    backgroundColor: 'red',
+    color: 'white',
+    borderRadius: '50%',
+    display: 'inline-block',
+    textAlign: 'center',
+    marginLeft: '0.5rem',
+  },
+  {
+    maxHeight: '30rem',
+    overflow: 'auto',
+    background: '#fff',
+  },
+];
+
+const MyAccountPage = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [err, setErr] = useState(false);
   const { user } = useContext(AuthContext);
   const [userFromDB, setUserFromDB] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
+  const [toggle, setToggle] = useState(null);
 
   useEffect(() => {
     fetchUser();
-  }, []);
+  }, [toggle]);
 
   const fetchUser = async () => {
     try {
       const response = await axios.get(`http://localhost:3000/api/v1/users/${user._id}`);
       setUserFromDB(response.data);
-      setIsLoading(false);
+      setIsLoaded(true);
+      setErr(false);
     } catch (error) {
       console.log(error);
+      setIsLoaded(false);
+      setErr(true);
     }
   };
-  useEffect(() => {
-    fetchData();
-  }, []);
 
-  async function fetchData() {
-    try {
-      const response = await axios.get(`http://localhost:3000/api/v1/addresses/${user.address}`);
-      setAddress(response.data);
-    } catch (error) {
-      console.log(error);
-    }
+  if (!isLoaded && !err) {
+    return (
+      <img src={LoadingImage} style={{ margin: '0 auto', display: 'block', height: '65vh' }} />
+    );
   }
 
   return (
     <>
-      {user ? (
+      <style type="text/css">
+        {`
+.nav-link {
+  color: var(--color-grey);
+    cursor: default;
+}
+.nav-link.active {
+    font-weight:bold;
+}
+.nav-link:hover {
+  color: var(--color-grey);
+  }
+.btn-outline-success span {
+    max-width: 0;
+    -webkit-transition: max-width 1s;
+    transition: max-width 1s;
+    display: inline-block;
+    vertical-align: top;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+.btn-outline-success:hover span {
+    max-width: 7rem;
+  }
+    `}
+      </style>
+      {isLoaded && !err ? (
         <Container>
-          <h1>My Account</h1>
-          <Tabs
-            headerStyle={{ color: 'var(--color-grey)', cursor: 'default' }}
-            activeHeaderStyle={{ fontWeight: 'bold', color: 'black' }}
-            contentStyle={{}}
-            selected="orders"
-          >
-            <Tab label="orders">
-              {isLoading ? <div>Loading...</div> : <Orders orders={userFromDB.orders} />}
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <h1>My Account</h1>
+            <Button
+              variant="outline-success"
+              style={{ borderRadius: '2.5em' }}
+              onClick={() => setToggle((toggle) => !toggle)}
+            >
+              <FiRefreshCcw /> <span> Refresh Content </span>
+            </Button>
+          </div>
+          <Tabs justify defaultActiveKey="products" transition={false}>
+            <Tab
+              eventKey="Orders"
+              style={styles[1]}
+              title={
+                <React.Fragment>
+                  Orders
+                  <span style={styles[0]}>{userFromDB.orders.length}</span>
+                </React.Fragment>
+              }
+            >
+              <Orders orders={isLoaded ? userFromDB.orders : <></>} />
             </Tab>
-            <Tab label="notifications">
-              <Notifications />
+            <Tab
+              eventKey="notification"
+              style={styles[1]}
+              title={
+                <React.Fragment>
+                  Notifications
+                  <span style={styles[0]}>4</span>
+                </React.Fragment>
+              }
+            >
+              <></>
             </Tab>
-            <Tab label="favorites">
+            {/* <Tab
+              eventKey="products"
+              style={styles[1]}
+              title={
+                <React.Fragment>
+                  My Products
+                  <span style={styles[0]}>{userFromDB.products.length}</span>
+                </React.Fragment>
+              }
+            >
+              <MyProducts data={isLoaded ? userFromDB.products : <></>} />
+            </Tab> */}
+            <Tab
+              eventKey="favorites"
+              style={styles[1]}
+              title={
+                <React.Fragment>
+                  Favorites
+                  <span style={styles[0]}>{userFromDB.favorites.length}</span>
+                </React.Fragment>
+              }
+            >
               <Favorites />
             </Tab>
-            <Tab label="my Ads">
+            {/* <Tab label="my Ads">
+              <MyAds />
+            </Tab> */}
+            <Tab
+              eventKey="myAds"
+              style={styles[1]}
+              title={
+                <React.Fragment>
+                  MyAds
+                  {/* <span style={styles[0]}>{userFromDB.favorites.length}</span> */}
+                </React.Fragment>
+              }
+            >
               <MyAds />
             </Tab>
+            {user.expert ? (
+              <Tab
+                eventKey="admin"
+                style={styles[1]}
+                title={
+                  <React.Fragment>
+                    <GrUserAdmin style={{ marginLeft: '6px' }} /> Admin Panel
+                  </React.Fragment>
+                }
+              >
+                <AdminPanel />
+              </Tab>
+            ) : (
+              <></>
+            )}
           </Tabs>
           <hr />
-          {isLoading ? <div>Loading...</div> : <Profile user={userFromDB} />}
+          <Profile user={isLoaded ? userFromDB : <></>} />
         </Container>
       ) : (
         <Container>
@@ -76,4 +197,4 @@ const myAccountPage = () => {
   );
 };
 
-export default myAccountPage;
+export default MyAccountPage;

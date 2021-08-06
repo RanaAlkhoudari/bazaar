@@ -138,7 +138,6 @@ const UpdateProduct = () => {
                 name="condition"
                 checked={values.condition === 'like new'}
                 onChange={(e) => {
-                  console.log(e.target.value);
                   setValues({ ...values, condition: 'like new' });
                 }}
               />

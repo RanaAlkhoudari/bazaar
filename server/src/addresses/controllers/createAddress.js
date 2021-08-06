@@ -4,7 +4,6 @@ const User = require('../../users/userModel');
 const createAddress = async (req, res) => {
   try {
     const { user } = req.body;
-
     const newAddress = new Address(req.body);
     const saved = await newAddress.save();
     if (!saved)

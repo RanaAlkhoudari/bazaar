@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
+
 const InfoPage = () => {
   return (
     <Container className="border" style={{ color: 'teal' }}>
@@ -115,4 +116,5 @@ const InfoPage = () => {
     </Container>
   );
 };
+
 export default InfoPage;
