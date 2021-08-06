@@ -4,8 +4,8 @@ import { AuthContext } from '../context/AuthContext';
 import AdminPanel from '../components/AdminPanel';
 import Orders from '../components/Orders';
 import Favorites from '../components/Favorites';
-import Profile from '../components/Profile';
 import MyProducts from '../components/MyProducts';
+import Profile from '../components/Profile';
 import Button from 'react-bootstrap/Button';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
@@ -128,18 +128,6 @@ const MyAccountPage = () => {
               <></>
             </Tab>
             <Tab
-              eventKey="products"
-              style={styles[1]}
-              title={
-                <React.Fragment>
-                  My Products
-                  <span style={styles[0]}>{userFromDB.products.length}</span>
-                </React.Fragment>
-              }
-            >
-              <MyProducts data={isLoaded ? userFromDB.products : <></>} />
-            </Tab>
-            <Tab
               eventKey="favorites"
               style={styles[1]}
               title={
@@ -150,6 +138,18 @@ const MyAccountPage = () => {
               }
             >
               <Favorites />
+            </Tab>
+            <Tab
+              eventKey="myProducts"
+              style={styles[1]}
+              title={
+                <React.Fragment>
+                  My Products
+                  <span style={styles[0]}>{userFromDB.products.length}</span>
+                </React.Fragment>
+              }
+            >
+              <MyProducts />
             </Tab>
             {user.expert ? (
               <Tab

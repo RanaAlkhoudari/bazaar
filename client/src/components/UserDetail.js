@@ -18,7 +18,6 @@ const UserDetail = ({ product }) => {
       console.log(error);
     }
   }
-  console.log(user);
   return (
     <Card style={{ width: '12rem', margin: '0 auto' }}>
       {user.avatar === null ? (
