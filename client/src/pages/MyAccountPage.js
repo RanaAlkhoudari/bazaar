@@ -38,11 +38,14 @@ const MyAccountPage = () => {
   const [err, setErr] = useState(false);
   const { user } = useContext(AuthContext);
   const [userFromDB, setUserFromDB] = useState({});
-  const [toggle, setToggle] = useState(null);
 
   useEffect(() => {
     fetchUser();
-  }, [toggle]);
+  }, []);
+
+  const refreshMyAccount = () => {
+    fetchUser();
+  };
 
   const fetchUser = async () => {
     try {
@@ -98,7 +101,7 @@ const MyAccountPage = () => {
             <Button
               variant="outline-success"
               style={{ borderRadius: '2.5em' }}
-              onClick={() => setToggle((toggle) => !toggle)}
+              onClick={() => refreshMyAccount()}
             >
               <FiRefreshCcw /> <span> Refresh Content </span>
             </Button>
@@ -127,7 +130,10 @@ const MyAccountPage = () => {
               }
             >
               <>
-                <Notifications notifications={isLoaded ? userFromDB.notifications : <></>} />
+                <Notifications
+                  refreshMyAccount={() => refreshMyAccount()}
+                  notifications={isLoaded ? userFromDB.notifications : <></>}
+                />
               </>
             </Tab>
             <Tab

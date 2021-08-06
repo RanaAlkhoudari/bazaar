@@ -3,7 +3,7 @@ import axios from 'axios';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 
-const Notifications = ({ notifications }) => {
+const Notifications = ({ refreshMyAccount, notifications }) => {
   const monthNames = [
     'January',
     'February',
@@ -22,6 +22,7 @@ const Notifications = ({ notifications }) => {
     const notificationId = e.target.id;
     try {
       await axios.delete(`http://localhost:3000/api/v1/notifications/${notificationId}`);
+      refreshMyAccount();
     } catch (error) {
       console.error(`Error ${error}`);
     }
@@ -30,6 +31,7 @@ const Notifications = ({ notifications }) => {
     const notificationId = e.target.id;
     try {
       await axios.patch(`http://localhost:3000/api/v1/notifications/${notificationId}`);
+      refreshMyAccount();
     } catch (error) {
       console.error(`Error ${error}`);
     }
