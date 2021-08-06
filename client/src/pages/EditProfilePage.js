@@ -28,7 +28,7 @@ const EditProfilePage = () => {
       {user ? (
         <Container>
           <h1>Edit My Profile Data</h1>
-            {isLoading ? <div>Loading...</div> : <EditProfile user={userFromDB} />}
+          {isLoading ? <div>Loading...</div> : <EditProfile user={userFromDB} />}
         </Container>
       ) : (
         <Container>

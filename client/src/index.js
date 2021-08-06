@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <Router>
           <Header />
           <Switch>
-            <Route path="/" exact component={Homepage} />
+            <Route exact path="/" component={Homepage} />
             <Route exact path="/info" component={InfoPage} />
             <Route exact path="/ContactUsPage" component={ContactUsPage} />
             <Route exact path="/signin" component={SignInPage} />
