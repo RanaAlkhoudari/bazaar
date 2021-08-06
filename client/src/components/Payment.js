@@ -55,6 +55,7 @@ const PaymentForm = ({ product, shippingAddress }) => {
 
         if (response.data.success) {
           setSuccess(true);
+          sendNotification();
           document.getElementById('addresses_dropdown').disabled = true;
         }
       } catch (error) {
@@ -81,9 +82,6 @@ const PaymentForm = ({ product, shippingAddress }) => {
 
   return (
     <>
-      <Button variant="success" onClick={() => sendNotification()}>
-        Send Notification
-      </Button>
       {!success ? (
         <Form onSubmit={handleSubmit}>
           <CardElement options={CARD_OPTIONS} />

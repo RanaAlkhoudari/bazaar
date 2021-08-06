@@ -96,7 +96,7 @@ const MyAccountPage = () => {
       </style>
       {isLoaded && !err ? (
         <Container>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1em' }}>
             <h1>My Account</h1>
             <Button
               variant="outline-success"
@@ -106,14 +106,18 @@ const MyAccountPage = () => {
               <FiRefreshCcw /> <span> Refresh Content </span>
             </Button>
           </div>
-          <Tabs justify defaultActiveKey="products" transition={false}>
+          <Tabs justify defaultActiveKey="myProducts" transition={false}>
             <Tab
               eventKey="orders"
               style={styles[1]}
               title={
                 <React.Fragment>
                   Orders
-                  <span style={styles[0]}>{userFromDB.orders.length}</span>
+                  {userFromDB.orders.length > 0 ? (
+                    <span style={styles[0]}>{userFromDB.orders.length}</span>
+                  ) : (
+                    <></>
+                  )}
                 </React.Fragment>
               }
             >
@@ -125,14 +129,18 @@ const MyAccountPage = () => {
               title={
                 <React.Fragment>
                   Notifications
-                  <span style={styles[0]}>{userFromDB.notifications.length}</span>
+                  {userFromDB.notifications.length > 0 ? (
+                    <span style={styles[0]}>{userFromDB.notifications.length}</span>
+                  ) : (
+                    <></>
+                  )}
                 </React.Fragment>
               }
             >
               <>
                 <Notifications
                   refreshMyAccount={() => refreshMyAccount()}
-                  notifications={isLoaded ? userFromDB.notifications : <></>}
+                  notifications={isLoaded ? userFromDB.notifications.reverse() : <></>}
                 />
               </>
             </Tab>
@@ -142,7 +150,11 @@ const MyAccountPage = () => {
               title={
                 <React.Fragment>
                   Favorites
-                  <span style={styles[0]}>{userFromDB.favorites.length}</span>
+                  {userFromDB.favorites.length > 0 ? (
+                    <span style={styles[0]}>{userFromDB.favorites.length}</span>
+                  ) : (
+                    <></>
+                  )}
                 </React.Fragment>
               }
             >
@@ -154,7 +166,11 @@ const MyAccountPage = () => {
               title={
                 <React.Fragment>
                   My Products
-                  <span style={styles[0]}>{userFromDB.products.length}</span>
+                  {userFromDB.products.length > 0 ? (
+                    <span style={styles[0]}>{userFromDB.products.length}</span>
+                  ) : (
+                    <></>
+                  )}
                 </React.Fragment>
               }
             >

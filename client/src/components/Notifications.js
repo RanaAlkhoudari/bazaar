@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
+import { FaRegEye } from 'react-icons/fa';
 
 const Notifications = ({ refreshMyAccount, notifications }) => {
   const monthNames = [
@@ -32,6 +33,7 @@ const Notifications = ({ refreshMyAccount, notifications }) => {
     try {
       await axios.patch(`http://localhost:3000/api/v1/notifications/${notificationId}`);
       refreshMyAccount();
+      e.target.hidden = true;
     } catch (error) {
       console.error(`Error ${error}`);
     }
@@ -51,13 +53,24 @@ const Notifications = ({ refreshMyAccount, notifications }) => {
             </p>
             <hr />
             <div className="d-flex justify-content-end">
-              <Button
-                id={notification._id}
-                onClick={(e) => readNotifyButton(e)}
-                variant="outline-success"
-              >
-                Read!
-              </Button>
+              {!notification.seen ? (
+                <Button
+                  id={notification._id}
+                  onClick={(e) => readNotifyButton(e)}
+                  variant="outline-success"
+                >
+                  Set as Seen!
+                </Button>
+              ) : (
+                <>
+                  <FaRegEye
+                    size="1.5em"
+                    color="green"
+                    style={{ marginRight: '2rem', marginTop: '0.5rem' }}
+                  />
+                </>
+              )}
+
               <span>&nbsp;</span>
               <Button
                 id={notification._id}
