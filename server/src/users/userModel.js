@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const Joi = require('joi');
 
 const { Schema } = mongoose;
 
@@ -34,4 +35,13 @@ const userSchema = new Schema(
 
 const User = mongoose.model('user', userSchema);
 
-module.exports = User;
+const validate = (user) => {
+  const schema = Joi.object({
+    name: Joi.string().required(),
+    email: Joi.string().email().required(),
+    password: Joi.string().required(),
+  });
+  return schema.validate(user);
+};
+
+module.exports = { User, validate };

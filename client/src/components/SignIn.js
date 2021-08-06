@@ -46,7 +46,12 @@ const SignIn = () => {
           </Card.Body>
         </Card>
         <div className="w-100 text-center mt-2">
-          Need an account?{' '}
+          <Link to={`/reset-password`} style={{ color: 'var(--color-main)' }}>
+            Forget Password?
+          </Link>
+        </div>
+        <div className="w-100 text-center mt-2">
+          Need an account?
           <Link to="/signup" style={{ color: 'var(--color-main)' }}>
             Sign Up
           </Link>

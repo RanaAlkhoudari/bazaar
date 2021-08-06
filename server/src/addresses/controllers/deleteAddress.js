@@ -1,5 +1,5 @@
 const Address = require('../addressModel');
-const User = require('../../users/userModel');
+const { User } = require('../../users/userModel');
 
 async function deleteAddress(req, res) {
   try {

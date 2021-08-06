@@ -19,7 +19,7 @@ import { AuthContextProvider } from './context/AuthContext';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Checkout from './pages/Checkout';
 import UpdateProduct from './components/UpdateProduct';
-
+import ResetPasswordPage from './pages/ResetPasswordPage';
 document.addEventListener('DOMContentLoaded', () => {
   const el = document.getElementById('root');
   if (el) {
@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <Route exact path="/ContactUsPage" component={ContactUsPage} />
             <Route exact path="/signin" component={SignInPage} />
             <Route exact path="/signup" component={SignUpPage} />
+            <Route exact path="/reset-password" component={ResetPasswordPage} />
             <Route path="/account" exact component={MyAccountPage} />
             <Route path="/edit-profile" exact component={EditProfilePage} />
             <Route path="/products/add" exact component={AddProduct} />
