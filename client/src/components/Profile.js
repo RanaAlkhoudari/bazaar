@@ -7,8 +7,8 @@ const Profile = ({ user }) => {
   if (user.addresses) {
     addresses = user.addresses.map((address) => {
       return (
-        <Row key={address.street_name + address.building_number + address.first_name}>
-          <Card style={{ borderColor: 'var(--color-main)' }}>
+        <Row key={address._id}>
+          <Card style={{ borderColor: 'var(--color-main)' }} className="mt-3">
             <Card.Body>
               <Row>
                 <Col>
@@ -22,6 +22,7 @@ const Profile = ({ user }) => {
                     {address.street_name} {address.building_number} {address.extension}
                   </Card.Text>
                   <Card.Text>Postal code: {address.post_code}</Card.Text>
+                  <Card.Text>{address.comment}</Card.Text>
                 </Col>
               </Row>
             </Card.Body>
@@ -31,10 +32,10 @@ const Profile = ({ user }) => {
     });
   }
   return (
-    <Container>
+    <Container className="mt-3">
       <Row>
         <Col>
-          <h4>My profile data</h4>
+          <h4 className="mb-3">My profile data</h4>
         </Col>
         <Col>
           <a
@@ -81,7 +82,7 @@ const Profile = ({ user }) => {
       <Row>
         <Col>
           {user.addresses && user.addresses.length > 0 ? (
-            <h4>My addresses</h4>
+            <h4 className="mt-5">My addresses</h4>
           ) : (
             <h4>You don&apos;t have addresses yet.</h4>
           )}
