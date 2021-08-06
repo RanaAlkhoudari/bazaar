@@ -64,6 +64,7 @@ const AddressesDropdown = ({ getShippingAddress }) => {
               <Card.Text>{`${shippingAddress.street_name} ${shippingAddress.building_number} ${shippingAddress.extension},`}</Card.Text>
 
               <Card.Text>{`${shippingAddress.post_code} ${shippingAddress.city} - ${shippingAddress.country}`}</Card.Text>
+              {shippingAddress.comment && <Card.Text>{`${shippingAddress.comment}`}</Card.Text>}
             </Card.Body>
           )}
         </Card>

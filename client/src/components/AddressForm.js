@@ -7,6 +7,7 @@ const AddressForm = ({ getNewAddress }) => {
   const { user } = useContext(AuthContext);
 
   const cityRef = useRef();
+  const commentRef = useRef();
   const countryRef = useRef();
   const lastNameRef = useRef();
   const postCodeRef = useRef();
@@ -32,6 +33,7 @@ const AddressForm = ({ getNewAddress }) => {
       last_name: lastNameRef.current.value,
       extension: extensionRef.current.value,
       first_name: firstNameRef.current.value,
+      comment: commentRef.current.value || '',
       country: countryRef.current.value || null,
       post_code: postCodeRef.current.value || null,
       street_name: streetNameRef.current.value || null,
@@ -129,6 +131,17 @@ const AddressForm = ({ getNewAddress }) => {
                 ref={countryRef}
                 style={inputStyles}
                 placeholder="Country"
+              />
+            </Col>
+          </Row>
+
+          <Row>
+            <Col>
+              <Form.Control
+                type="text"
+                ref={commentRef}
+                style={inputStyles}
+                placeholder="Comment (Optional)"
               />
             </Col>
           </Row>
