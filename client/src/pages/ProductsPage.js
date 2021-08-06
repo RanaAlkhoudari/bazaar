@@ -126,7 +126,10 @@ const Products = () => {
               {products.length === 0 && state && (
                 <h1 className="text-center margin-t-3">No Items Available </h1>
               )}
-              {productsByCategory.length === 0 && products.length === 0 && (
+              {products.length === 0 && productsByCategory.length === 0 && (
+                <ProductList products={allProducts} />
+              )}
+              {productsByCategory.length === 0 && products.length === 0 && !state && (
                 <h1 className="text-center margin-t-3">No Items Available </h1>
               )}
             </div>

@@ -486,5 +486,19 @@
     "city": "Maastricht ",
     "user": "60ec89b6c11d83d518e123c0",
     "videos": ["aaa.avi", "ggg.avi"]
+  },
+  {
+    "_id": "610cd739799ebc3db80cf49d",
+    "title": "Telephone",
+    "description": "Perfect old style home phone",
+    "price": "8.50",
+    "images": [
+      "https://www.staffordhomeservice.com/application/files/3714/8795/1254/Stafford_HomeEntertainment_Telecommunications_Tunnel.jpg"
+    ],
+    "condition": "fairly used",
+    "categories": ["60ed787b32db8b0c87019bb8"],
+    "city": "Maastricht",
+    "user": "60ec89b6c11d83d518e123c0",
+    "videos": ["aaa.avi", "ggg.avi"]
   }
 ]
