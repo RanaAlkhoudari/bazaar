@@ -127,7 +127,7 @@ const UpdateProduct = () => {
                 type="radio"
                 name="condition"
                 checked={values.condition === 'new'}
-                onChange={(e) => {
+                onChange={() => {
                   setValues({ ...values, condition: 'new' });
                 }}
               />
@@ -137,7 +137,7 @@ const UpdateProduct = () => {
                 label="Like new"
                 name="condition"
                 checked={values.condition === 'like new'}
-                onChange={(e) => {
+                onChange={() => {
                   setValues({ ...values, condition: 'like new' });
                 }}
               />
@@ -147,8 +147,7 @@ const UpdateProduct = () => {
                 name="condition"
                 label="Fairly used"
                 checked={values.condition === 'fairly used'}
-                onChange={(e) => {
-                  console.log(e.target.value);
+                onChange={() => {
                   setValues({ ...values, condition: 'fairly used' });
                 }}
               />

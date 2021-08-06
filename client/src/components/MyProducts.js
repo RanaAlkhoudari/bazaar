@@ -1,41 +1,74 @@
-import React from 'react';
-import { Col } from 'react-bootstrap';
+import React, { useState, useContext, useEffect } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
-import NotifyIcon from './NotifyIcon';
-import CardRow from './CardRow';
-import { Button } from 'react-bootstrap';
+import { AuthContext } from '../context/AuthContext';
+import { Card, Button } from 'react-bootstrap';
 
-const MyProducts = ({ data }) => {
-  const productsItems = data.map((product) => {
-    return (
-      <CardRow key={product._id}>
-        <Col style={{ maxWidth: '100px', padding: '0' }}>
-          <Link to={`/${product._id}`} style={{ textDecoration: 'none' }}>
-            <img src={product.images[0]} alt={product.title} style={{ width: '100px' }} />
-          </Link>
-        </Col>
-        <Col>
-          <span style={{ height: '3em', fontWeight: 'bold' }}> {product.title}</span>
-        </Col>
-        <Col style={{ textAlign: 'left' }}>
-          <span style={{ height: '3em', fontWeight: 'bold' }}>Price : {product.price} €</span>
-        </Col>
-        <Col style={{ textAlign: 'right' }}>
-          <NotifyIcon product={product.verified} />
-        </Col>
-        <Col style={{ textAlign: 'right' }}>
-          <Button
-            id={product.product_id}
-            onClick={() => console.log('delete this product', product._id)}
-            style={{ backgroundColor: 'red', color: 'white', margin: '0 10px' }}
-          >
-            delete
-          </Button>
-        </Col>
-      </CardRow>
-    );
-  });
-  return <div style={{ paddingTop: '1em', paddingBottom: '1em' }}>{productsItems}</div>;
+const MyProducts = () => {
+  const [userData, setUserData] = useState([]);
+  const { user } = useContext(AuthContext);
+
+  async function fetchUser() {
+    try {
+      const response = await axios.get(`http://localhost:3000/api/v1/users/${user._id}`);
+      setUserData(response.data.products);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  async function deleteProduct(id) {
+    try {
+      const response = await axios.delete(`http://localhost:3000/api/v1/products/${id}`);
+      const filteredProducts = userData.filter((filteredProduct) => {
+        return filteredProduct._id !== id;
+      });
+      setUserData(filteredProducts);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  useEffect(() => {
+    fetchUser();
+  }, []);
+
+  return (
+    <div className="d-flex flex-wrap justify-content-center">
+      {userData.length !== 0 ? (
+        userData.map((product) => {
+          return (
+            <Card className="m-3" style={{ width: '15rem' }} key={product._id}>
+              <Card.Img
+                variant="top"
+                src={product.images}
+                alt={product.title}
+                style={{
+                  height: '200px',
+                  objectFit: 'cover',
+                  objectPosition: 'center',
+                }}
+              />
+              <Card.Body style={{ color: 'var(--color-main)' }}>
+                <Card.Title>{product.title}</Card.Title>
+                <Card.Text>{product.price} €</Card.Text>
+                <Button onClick={() => deleteProduct(product._id)} variant="danger">
+                  Delete
+                </Button>
+                <Link to={`/update/${product._id}`}>
+                  <Button
+                    style={{ background: 'var(--color-main)', color: 'white', marginLeft: '5px' }}
+                  >
+                    Edit
+                  </Button>
+                </Link>
+              </Card.Body>
+            </Card>
+          );
+        })
+      ) : (
+        <h1>No Products Yet</h1>
+      )}
+    </div>
+  );
 };
 
 export default MyProducts;
