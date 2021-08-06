@@ -121,7 +121,6 @@ const Products = () => {
                 <ProductList products={products} />
               )}
 
-              {console.log(products, productsByCategory)}
               {products.length !== 0 && !state && <ProductList products={products} />}
 
               {products.length === 0 && state && (

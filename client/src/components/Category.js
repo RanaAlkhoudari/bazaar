@@ -36,7 +36,7 @@ const Category = () => {
           categories.map((category) => {
             return (
               <div key={category._id} className=" p-3 text-center">
-                <Link to={`${category.name}`}>
+                <Link to={`/products/${category.name}`}>
                   <Button
                     onClick={() => handleCategory(category)}
                     style={{
