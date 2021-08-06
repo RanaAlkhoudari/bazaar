@@ -58,8 +58,20 @@ const AddressesDropdown = ({ getShippingAddress }) => {
           <Card.Header className="card-header">Shipping Address</Card.Header>
           {shippingAddress && (
             <Card.Body>
-              <Card.Text>{`${shippingAddress.first_name || user.first_name} 
-                ${shippingAddress.last_name || user.last_name}`}</Card.Text>
+              <Card.Text>{`${
+                shippingAddress.first_name
+                  ? shippingAddress.first_name
+                  : shippingAddress.last_name
+                  ? ''
+                  : user.first_name
+              } 
+                ${
+                  shippingAddress.last_name
+                    ? shippingAddress.last_name
+                    : shippingAddress.first_name
+                    ? ''
+                    : user.last_name
+                }`}</Card.Text>
 
               <Card.Text>{`${shippingAddress.street_name} ${shippingAddress.building_number} ${shippingAddress.extension},`}</Card.Text>
 
