@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Container, Col, Row } from 'react-bootstrap';
+import SeeWhatNew from '../components/SeeWhatNew';
 
 import axios from 'axios';
 import ProductList from '../components/ProductList';
@@ -124,13 +125,10 @@ const Products = () => {
               {products.length !== 0 && !state && <ProductList products={products} />}
 
               {products.length === 0 && state && (
-                <h1 className="text-center margin-t-3">No Items Available </h1>
+                <h1 className="text-center margin-t-3">No Items Available</h1>
               )}
               {products.length === 0 && productsByCategory.length === 0 && (
-                <ProductList products={allProducts} />
-              )}
-              {productsByCategory.length === 0 && products.length === 0 && !state && (
-                <h1 className="text-center margin-t-3">No Items Available </h1>
+                <SeeWhatNew products={products} />
               )}
             </div>
           </Col>
