@@ -391,6 +391,7 @@ const EditProfile = ({ user }) => {
         </Button>
       </Form>
       <hr />
+
       <h4 className="mt-3">Add new address</h4>
       <Form onSubmit={addAddress}>
         <Card style={{ borderColor: 'var(--color-main)' }} className="m-3 p-3">
