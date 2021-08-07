@@ -3,6 +3,7 @@ import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
 import AdminPanel from '../components/AdminPanel';
 import Orders from '../components/Orders';
+import Notifications from '../components/Notifications';
 import Favorites from '../components/Favorites';
 import MyProducts from '../components/MyProducts';
 import Profile from '../components/Profile';
@@ -37,11 +38,14 @@ const MyAccountPage = () => {
   const [err, setErr] = useState(false);
   const { user } = useContext(AuthContext);
   const [userFromDB, setUserFromDB] = useState({});
-  const [toggle, setToggle] = useState(null);
 
   useEffect(() => {
     fetchUser();
-  }, [toggle]);
+  }, []);
+
+  const refreshMyAccount = () => {
+    fetchUser();
+  };
 
   const fetchUser = async () => {
     try {
@@ -92,24 +96,28 @@ const MyAccountPage = () => {
       </style>
       {isLoaded && !err ? (
         <Container>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1em' }}>
             <h1>My Account</h1>
             <Button
               variant="outline-success"
               style={{ borderRadius: '2.5em' }}
-              onClick={() => setToggle((toggle) => !toggle)}
+              onClick={() => refreshMyAccount()}
             >
               <FiRefreshCcw /> <span> Refresh Content </span>
             </Button>
           </div>
-          <Tabs justify defaultActiveKey="products" transition={false}>
+          <Tabs justify defaultActiveKey="myProducts" transition={false}>
             <Tab
-              eventKey="Orders"
+              eventKey="orders"
               style={styles[1]}
               title={
                 <React.Fragment>
                   Orders
-                  <span style={styles[0]}>{userFromDB.orders.length}</span>
+                  {userFromDB.orders.length > 0 ? (
+                    <span style={styles[0]}>{userFromDB.orders.length}</span>
+                  ) : (
+                    <></>
+                  )}
                 </React.Fragment>
               }
             >
@@ -121,11 +129,20 @@ const MyAccountPage = () => {
               title={
                 <React.Fragment>
                   Notifications
-                  <span style={styles[0]}>4</span>
+                  {userFromDB.notifications.length > 0 ? (
+                    <span style={styles[0]}>{userFromDB.notifications.length}</span>
+                  ) : (
+                    <></>
+                  )}
                 </React.Fragment>
               }
             >
-              <></>
+              <>
+                <Notifications
+                  refreshMyAccount={() => refreshMyAccount()}
+                  notifications={isLoaded ? userFromDB.notifications.reverse() : <></>}
+                />
+              </>
             </Tab>
             <Tab
               eventKey="favorites"
@@ -133,7 +150,11 @@ const MyAccountPage = () => {
               title={
                 <React.Fragment>
                   Favorites
-                  <span style={styles[0]}>{userFromDB.favorites.length}</span>
+                  {userFromDB.favorites.length > 0 ? (
+                    <span style={styles[0]}>{userFromDB.favorites.length}</span>
+                  ) : (
+                    <></>
+                  )}
                 </React.Fragment>
               }
             >
@@ -145,7 +166,11 @@ const MyAccountPage = () => {
               title={
                 <React.Fragment>
                   My Products
-                  <span style={styles[0]}>{userFromDB.products.length}</span>
+                  {userFromDB.products.length > 0 ? (
+                    <span style={styles[0]}>{userFromDB.products.length}</span>
+                  ) : (
+                    <></>
+                  )}
                 </React.Fragment>
               }
             >

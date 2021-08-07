@@ -5,7 +5,8 @@ async function showUsers(req, res) {
     .populate('orders')
     .populate('products')
     .populate('favorites')
-    .populate('address');
+    .populate('address')
+    .populate('notifications');
   res.status(200).send(users);
 }
 module.exports = showUsers;
