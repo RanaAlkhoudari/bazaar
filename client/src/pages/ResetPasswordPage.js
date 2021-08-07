@@ -43,7 +43,7 @@ const ResetPasswordPage = () => {
               </Form.Group>
               <br />
 
-              {success === null && (
+              {!success && (
                 <Button
                   type="submit"
                   id="btn-reset"
@@ -55,7 +55,11 @@ const ResetPasswordPage = () => {
               )}
 
               {success && <Alert variant="success">Reset password email sent.</Alert>}
-              {success === false && <Alert variant="danger">Email does not exist!</Alert>}
+              {success === false && (
+                <Alert variant="danger" className="mt-3">
+                  Email does not exist!
+                </Alert>
+              )}
             </Form>
           </Card.Body>
         </Card>
