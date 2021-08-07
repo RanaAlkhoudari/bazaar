@@ -11,7 +11,8 @@ async function showUser(req, res) {
       })
       .populate('products')
       .populate('favorites')
-      .populate('addresses');
+      .populate('addresses')
+      .populate('notifications');
     res.status(200).send(user);
   } catch {
     res.status(404).json(`User with the id ${req.params.id} does not exist in the database`);

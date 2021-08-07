@@ -28,6 +28,7 @@ const userSchema = new Schema(
     addresses: [{ type: Schema.Types.ObjectId, ref: 'address' }],
     favorites: [{ type: Schema.Types.ObjectId, ref: 'product' }],
     products: [{ type: Schema.Types.ObjectId, ref: 'product' }],
+    notifications: [{ type: Schema.Types.ObjectId, ref: 'notification' }],
   },
 
   { timestamps: true },

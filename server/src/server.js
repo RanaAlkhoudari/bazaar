@@ -9,6 +9,7 @@ const categoryRouter = require('./categories/categoryRouter');
 const addressRouter = require('./addresses/addressRouter');
 const orderRouter = require('./orders/orderRouter');
 const resetPassword = require('./reset-password/resetPassword');
+const notificationRouter = require('./notifications/notificationRouter');
 
 require('dotenv').config();
 
@@ -33,6 +34,8 @@ async function run() {
   app.use('/api/v1/addresses', addressRouter);
   app.use('/api/v1/orders', orderRouter);
   app.use('/api/v1/reset-password', resetPassword);
+  app.use('/api/v1/notifications', notificationRouter);
+
   // handleErrors must be the last middleware
   app.use(handleErrors);
 
