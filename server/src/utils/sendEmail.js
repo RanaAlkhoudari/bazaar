@@ -3,21 +3,21 @@ const nodemailer = require('nodemailer');
 const sendEmail = async (email, subject, text) => {
   try {
     const transporter = nodemailer.createTransport({
-      host: process.env.HOST,
-      service: process.env.SERVICE,
-      port: 587,
+      host: 'smpt.fastmail.com',
+      service: 'fastmail',
+      port: 456,
       secure: true,
       auth: {
-        user: process.env.USER,
-        pass: process.env.PASS,
+        user: 'bazzar@fastmail.nl',
+        pass: 'dw35wzujutmkr595',
       },
     });
 
     await transporter.sendMail({
-      from: process.env.USER,
+      from: 'bazzar@fastmail.nl',
       to: email,
       subject,
-      text,
+      text: `Please click on the following link below to reset your password:\n\n${text}`,
     });
 
     console.log('Reset email is sent successfully.');

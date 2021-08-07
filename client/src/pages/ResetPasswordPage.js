@@ -11,6 +11,8 @@ const ResetPasswordPage = () => {
   const handleResetPassword = async (e) => {
     e.preventDefault();
 
+    document.getElementById('btn-reset').disabled = true;
+
     try {
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/reset-password`, {
         email: emailRef.current.value,
@@ -21,6 +23,7 @@ const ResetPasswordPage = () => {
     } catch (error) {
       setSuccess(false);
       console.error(error);
+      document.getElementById('btn-reset').disabled = false;
     }
   };
 
@@ -42,8 +45,9 @@ const ResetPasswordPage = () => {
 
               {success === null && (
                 <Button
-                  className="w-100"
                   type="submit"
+                  id="btn-reset"
+                  className="w-100"
                   style={{ background: 'var(--color-main)' }}
                 >
                   Reset
@@ -58,6 +62,7 @@ const ResetPasswordPage = () => {
         <div className="w-100 text-center mt-2">
           Need an account?
           <Link to="/signup" style={{ color: 'var(--color-main)' }}>
+            {' '}
             Sign Up
           </Link>
         </div>
