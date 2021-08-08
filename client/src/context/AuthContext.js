@@ -27,6 +27,13 @@ const AuthContextProvider = ({ children }) => {
   }, [user]);
 
   useEffect(() => {
+    if (user) {
+      setAddedFave(user.favorites);
+      setCurrentUser(user);
+    }
+  }, [user]);
+
+  useEffect(() => {
     localStorage.setItem(`user`, JSON.stringify(state.user));
   }, [state.user]);
   useEffect(() => {

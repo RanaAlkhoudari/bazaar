@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react';
 import axios from 'axios';
+
 import { Card, Button, Row, Col, Alert } from 'react-bootstrap';
+
 import NotifyIcon from './NotifyIcon';
 import { AiFillStar } from 'react-icons/ai';
 import { useHistory } from 'react-router-dom';
@@ -15,7 +17,9 @@ const ProductDetail = ({ product }) => {
 
   const goToCheckout = async () => {
     try {
+
       setSearchBar(true);
+
       await axios.post(`http://localhost:3000/api/v1/notifications/add`, {
         user: product.user,
         type: 'order',
@@ -30,9 +34,11 @@ const ProductDetail = ({ product }) => {
       state: product,
     });
   };
+
   setTimeout(() => {
     setSignedIn(false);
   }, 3000);
+
 
   return (
     <div key={product._id}>
