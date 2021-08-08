@@ -9,7 +9,7 @@ import logo from '../images/bzar1.png';
 
 const Header = () => {
   const [categories, setCategories] = useState([]);
-  const { user } = useContext(AuthContext);
+  const { user, searchBar } = useContext(AuthContext);
   const history = useHistory();
 
   useEffect(() => {
@@ -104,7 +104,7 @@ const Header = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <Route render={({ history }) => <Search history={history} />} />
+      {searchBar && <Route render={({ history }) => <Search history={history} />} />}
     </>
   );
 };

@@ -18,6 +18,7 @@ import SignUpPage from './pages/SignUpPage';
 import { AuthContextProvider } from './context/AuthContext';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Checkout from './pages/Checkout';
+import UpdateProduct from './components/UpdateProduct';
 
 document.addEventListener('DOMContentLoaded', () => {
   const el = document.getElementById('root');
@@ -38,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <Route path="/:id" exact component={ProductDetailPage} />
             <Route path="/products/:keyword" exact component={Products} />
             <Route path="/orders/checkout" exact component={Checkout} />
-            <Route exact path="/facebooklogin" component={SignInPage} />
+            <Route path="/update/:id" exact component={UpdateProduct} />
             <Route path="*" component={NotFoundPage} />
           </Switch>
         </Router>

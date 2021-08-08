@@ -55,6 +55,7 @@ const PaymentForm = ({ product, shippingAddress }) => {
 
         if (response.data.success) {
           setSuccess(true);
+          sendNotification();
           document.getElementById('addresses_dropdown').disabled = true;
         }
       } catch (error) {
@@ -65,6 +66,18 @@ const PaymentForm = ({ product, shippingAddress }) => {
     }
 
     setLoading(false);
+  };
+  const sendNotification = async () => {
+    try {
+      await axios.post(`http://localhost:3000/api/v1/notifications/add`, {
+        user: product.user,
+        type: 'payment',
+        text: `the user ${user.first_name} ${user.last_name} has successfully paid for your product ${product.title}`,
+        seen: false,
+      });
+    } catch (error) {
+      console.error(`Error ${error}`);
+    }
   };
 
   return (

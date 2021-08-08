@@ -1,32 +1,47 @@
 import React, { useContext, useState } from 'react';
-import { Card, Button, Row, Col } from 'react-bootstrap';
+import axios from 'axios';
+import { Card, Button, Row, Col, Alert } from 'react-bootstrap';
 import NotifyIcon from './NotifyIcon';
 import { AiFillStar } from 'react-icons/ai';
 import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import { set } from 'mongoose';
 
 const ProductDetail = ({ product }) => {
   const history = useHistory();
   const { addFavorite, deleteFavorite } = useContext(AuthContext);
-  const { user, currentUser } = useContext(AuthContext);
+  const { user, currentUser, setSearchBar } = useContext(AuthContext);
+  const [signedIn, setSignedIn] = useState(false);
 
-  const goToCheckout = () =>
+  const goToCheckout = async () => {
+    try {
+      setSearchBar(true);
+      await axios.post(`http://localhost:3000/api/v1/notifications/add`, {
+        user: product.user,
+        type: 'order',
+        text: `the user ${user.first_name} ${user.last_name} is trying to order your product ${product.title}`,
+        seen: false,
+      });
+    } catch (error) {
+      console.error(`Error ${error}`);
+    }
     history.push({
       pathname: '/orders/checkout',
       state: product,
     });
+  };
+  setTimeout(() => {
+    setSignedIn(false);
+  }, 3000);
 
   return (
     <div key={product._id}>
       <Card style={{ borderColor: 'var(--color-main)' }}>
         <Card.Body>
+          {signedIn && <Alert variant="danger">Please Sing In</Alert>}
           <Row>
             <Col>
-              <Card.Img
-                style={{ minWidth: '250px', height: '300px' }}
-                src={product.images}
-                alt={product.title}
-              />
+              <Card.Img style={{ minWidth: '250px' }} src={product.images} alt={product.title} />
             </Col>
             <Col>
               <Card.Title>{product.title}</Card.Title>
@@ -36,7 +51,17 @@ const ProductDetail = ({ product }) => {
               <Row>
                 {' '}
                 <Col>
-                  {currentUser && currentUser.favorites.includes(product._id) ? (
+                  {!user ? (
+                    <Button
+                      className="w-100"
+                      style={{ backgroundColor: 'var(--color-main)' }}
+                      onClick={() => {
+                        setSignedIn(true);
+                      }}
+                    >
+                      <AiFillStar style={{ color: 'yellow' }} />
+                    </Button>
+                  ) : currentUser && currentUser.favorites.includes(product._id) ? (
                     <Button
                       className="w-100"
                       style={{ backgroundColor: 'var(--color-main)' }}

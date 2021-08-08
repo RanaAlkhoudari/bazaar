@@ -6,15 +6,25 @@ const INITIAL_STATE = {
   isFetching: false,
   error: false,
 };
-
 const AuthContext = createContext(INITIAL_STATE);
 
 const AuthContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AuthReducer, INITIAL_STATE);
 
-  const { user } = useContext(AuthContext);
+  const { user } = state;
+
   const [addedFave, setAddedFave] = useState(user ? user.favorites : []);
+
   const [currentUser, setCurrentUser] = useState(user);
+
+  const [searchBar, setSearchBar] = useState(true);
+
+  useEffect(() => {
+    if (user) {
+      setAddedFave(user.favorites);
+      setCurrentUser(user);
+    }
+  }, [user]);
 
   useEffect(() => {
     localStorage.setItem(`user`, JSON.stringify(state.user));
@@ -67,6 +77,8 @@ const AuthContextProvider = ({ children }) => {
         deleteFavorite,
         currentUser,
         setCurrentUser,
+        searchBar,
+        setSearchBar,
       }}
     >
       {!state.isFetching && children}

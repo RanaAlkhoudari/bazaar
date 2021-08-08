@@ -2,18 +2,11 @@ const ProductModel = require('../productModel');
 
 async function GetProductByKeyword(req, res) {
   const name = req.params.keyword.toLowerCase();
-  if (name) {
-    console.log(name);
-  }
-  // const lowerCaseName = req.params.keyword.
 
   try {
     const product = await ProductModel.find({ title: { $regex: `.*${name}.*` } })
       .limit(30)
       .populate('categories');
-    // if (product) {
-    //   console.log(product[0].title.toLowerCase());
-    // }
 
     res.status(200);
     res.json(product);

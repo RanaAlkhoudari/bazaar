@@ -6,7 +6,7 @@ import { Multiselect } from 'multiselect-react-dropdown';
 import React, { useState, useEffect, useContext } from 'react';
 
 const AddProduct = () => {
-  const { user } = useContext(AuthContext);
+  const { user, setSearchBar } = useContext(AuthContext);
 
   const [categories, setCategories] = useState([]);
   const [values, setValues] = useState({
@@ -21,6 +21,7 @@ const AddProduct = () => {
 
   useEffect(() => {
     fetchCategories();
+    setSearchBar(false);
     document.getElementById('add-product-link').style.display = 'none';
   }, []);
 

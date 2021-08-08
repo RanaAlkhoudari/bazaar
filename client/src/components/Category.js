@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-const Category = () => {
+const Category = ({ setFiltersPanel }) => {
   const [categories, setCategories] = useState([]);
   const [categoryName, setCategoryName] = useState('');
 
@@ -38,7 +38,7 @@ const Category = () => {
               <div key={category._id} className=" p-3 text-center">
                 <Link to={`/products/${category.name}`}>
                   <Button
-                    onClick={() => handleCategory(category)}
+                    onClick={() => handleCategory(category, setFiltersPanel)}
                     style={{
                       color: 'var(--color-main)',
                       background: 'var(--color-light-grey)',
