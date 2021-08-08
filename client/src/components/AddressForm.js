@@ -7,6 +7,7 @@ const AddressForm = ({ getNewAddress }) => {
   const { user } = useContext(AuthContext);
 
   const cityRef = useRef();
+  const commentRef = useRef();
   const countryRef = useRef();
   const lastNameRef = useRef();
   const postCodeRef = useRef();
@@ -32,6 +33,7 @@ const AddressForm = ({ getNewAddress }) => {
       last_name: lastNameRef.current.value,
       extension: extensionRef.current.value,
       first_name: firstNameRef.current.value,
+      comment: commentRef.current.value || '',
       country: countryRef.current.value || null,
       post_code: postCodeRef.current.value || null,
       street_name: streetNameRef.current.value || null,
@@ -86,7 +88,7 @@ const AddressForm = ({ getNewAddress }) => {
                 type="text"
                 style={inputStyles}
                 ref={streetNameRef}
-                placeholder="Street Name"
+                placeholder="Street Name *"
               />
             </Col>
 
@@ -95,7 +97,7 @@ const AddressForm = ({ getNewAddress }) => {
                 type="text"
                 style={inputStyles}
                 ref={buildingNumberRef}
-                placeholder="Building Number"
+                placeholder="Building Number *"
               />
             </Col>
 
@@ -115,12 +117,12 @@ const AddressForm = ({ getNewAddress }) => {
                 type="text"
                 ref={postCodeRef}
                 style={inputStyles}
-                placeholder="Post Code"
+                placeholder="Post Code *"
               />
             </Col>
 
             <Col md={4}>
-              <Form.Control type="text" ref={cityRef} placeholder="City" style={inputStyles} />
+              <Form.Control type="text" ref={cityRef} placeholder="City *" style={inputStyles} />
             </Col>
 
             <Col md={4}>
@@ -128,7 +130,18 @@ const AddressForm = ({ getNewAddress }) => {
                 type="text"
                 ref={countryRef}
                 style={inputStyles}
-                placeholder="Country"
+                placeholder="Country *"
+              />
+            </Col>
+          </Row>
+
+          <Row>
+            <Col>
+              <Form.Control
+                type="text"
+                ref={commentRef}
+                style={inputStyles}
+                placeholder="Comment (Optional)"
               />
             </Col>
           </Row>
