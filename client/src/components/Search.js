@@ -2,13 +2,11 @@ import React, { useState } from 'react';
 import { Form, Button, InputGroup, FormControl } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 
-const Search = () => {
+const Search = ({ setTest }) => {
   const [keyword, setKeyword] = useState('');
   const history = useHistory();
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(keyword);
 
     if (keyword.trim().toLowerCase()) {
       history.push(`/products/${keyword}`);

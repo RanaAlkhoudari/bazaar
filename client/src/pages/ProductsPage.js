@@ -95,15 +95,17 @@ const Products = () => {
 
   return (
     <div>
-      <Filters
-        products={productsByCategory}
-        handlePriceRange={handlePriceRange}
-        handleState={handleState}
-        oldNewProducts={oldNewProducts}
-        newOldProducts={newOldProducts}
-        handleLocation={handleLocation}
-        fetchData={fetchData}
-      />
+      {productsByCategory.length !== 0 && (
+        <Filters
+          products={productsByCategory}
+          handlePriceRange={handlePriceRange}
+          handleState={handleState}
+          oldNewProducts={oldNewProducts}
+          newOldProducts={newOldProducts}
+          handleLocation={handleLocation}
+          fetchData={fetchData}
+        />
+      )}
 
       <Container>
         <Row>
@@ -128,7 +130,7 @@ const Products = () => {
                 <h1 className="text-center margin-t-3">No Items Available</h1>
               )}
               {products.length === 0 && productsByCategory.length === 0 && (
-                <SeeWhatNew products={products} />
+                <ProductList products={allProducts} />
               )}
             </div>
           </Col>

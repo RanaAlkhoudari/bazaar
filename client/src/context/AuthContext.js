@@ -17,6 +17,15 @@ const AuthContextProvider = ({ children }) => {
 
   const [currentUser, setCurrentUser] = useState(user);
 
+  const [searchBar, setSearchBar] = useState(true);
+
+  useEffect(() => {
+    if (user) {
+      setAddedFave(user.favorites);
+      setCurrentUser(user);
+    }
+  }, [user]);
+
   useEffect(() => {
     if (user) {
       setAddedFave(user.favorites);
@@ -75,6 +84,8 @@ const AuthContextProvider = ({ children }) => {
         deleteFavorite,
         currentUser,
         setCurrentUser,
+        searchBar,
+        setSearchBar,
       }}
     >
       {!state.isFetching && children}
