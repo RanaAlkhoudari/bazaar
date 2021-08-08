@@ -27,7 +27,9 @@ const ProductList = (props) => {
                     }}
                   />
                   <Card.Body style={{ color: 'var(--color-main)' }}>
-                    <Card.Title>{product.title}</Card.Title>
+                    <Card.Title>
+                      {product.title[0].toUpperCase() + product.title.substring(1)}
+                    </Card.Title>
                     <Card.Text>{product.price} €</Card.Text>
                     <Card.Text>
                       <NotifyIcon product={product.verified} />
