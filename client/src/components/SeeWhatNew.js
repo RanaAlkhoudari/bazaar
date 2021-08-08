@@ -9,7 +9,7 @@ const SeeWhatNew = () => {
       dateB = new Date(b.createdAt);
     return dateB - dateA;
   });
-  const sortedProductsByDate = products.slice(0, 10);
+  const sortedProductsByDate = products.slice(0, 9);
   useEffect(() => {
     fetchData();
   }, []);

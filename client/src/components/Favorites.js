@@ -18,7 +18,7 @@ const Favorites = () => {
 
 const FaveList = (favorite) => {
   const [fave, setFave] = useState();
-  const { user, currentUser } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
   const { deleteFavorite } = useContext(AuthContext);
 
   useEffect(() => {

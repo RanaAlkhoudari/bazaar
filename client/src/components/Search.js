@@ -8,8 +8,9 @@ const Search = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // console.log(keyword);
 
-    if (keyword.trim()) {
+    if (keyword.trim().toLowerCase()) {
       history.push(`/products/${keyword}`);
     } else {
       history.push('/');
