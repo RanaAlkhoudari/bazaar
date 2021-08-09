@@ -4,7 +4,6 @@ import axios from 'axios';
 
 const EditProfile = ({ user }) => {
   const passwordRef = useRef();
-  const emailRef = useRef();
   const firstNameRef = useRef();
   const lastNameRef = useRef();
   const [error, setError] = useState(false);
@@ -66,12 +65,7 @@ const EditProfile = ({ user }) => {
       if (passwordWithNum.length === 0) {
         return setError('Password must include at least one number'), setSuccess(false);
       }
-      const response = await axios.get(`http://localhost:3000/api/v1/users`);
-      let validateEmail = response.data.find((item) => emailRef.current.value === item.email);
-      console.log(validateEmail.email);
-      // if (validateEmail.length !== 0) {
-      //   return setError('An account with this email already exists'), setSuccess(false);
-      // }
+
       setSuccess('Successfully updated!');
       setError(false);
     } catch (err) {
@@ -346,7 +340,6 @@ const EditProfile = ({ user }) => {
                 <Button
                   variant="danger"
                   className="w-100"
-                  // style={{ width: '10em' }}
                   onClick={() => {
                     setUserData({
                       ...userData,
@@ -361,7 +354,6 @@ const EditProfile = ({ user }) => {
                   Delete
                 </Button>
               </Card>
-              {/* </div> */}
             </Container>
           </div>
         </div>
@@ -370,7 +362,6 @@ const EditProfile = ({ user }) => {
   }
 
   return (
-    // <Container>
     <Container style={{ minHeight: '40vh' }} className="d-flex flex-wrap">
       <Card style={{ width: '22rem', height: '795px' }} className="m-3 p-3">
         {error && !success && <Alert variant="danger ">{error}</Alert>}
@@ -403,7 +394,6 @@ const EditProfile = ({ user }) => {
           <Form.Group>
             <Form.Label>Email:</Form.Label>
             <Form.Control
-              ref={emailRef}
               type="email"
               value={userData.email}
               onChange={(e) => {
