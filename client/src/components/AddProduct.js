@@ -15,7 +15,7 @@ const AddProduct = () => {
     title: '',
     condition: '',
     user: user._id,
-    categories: [],
+    categories: '',
     description: '',
   });
 
