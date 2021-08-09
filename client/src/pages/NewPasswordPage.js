@@ -13,10 +13,9 @@ const NewPasswordPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    document.getElementById('btn-submit').disabled = true;
-
-    if (confirmPasswordRef.current.value !== passwordRef.current.value)
-      return confirmPassword.current.setCustomValidity(`Passwords doesn't match!`);
+    const hasNum = /\d/.test(passwordRef.current.value);
+    const match = confirmPasswordRef.current.value === passwordRef.current.value;
+    if (!match || !hasNum) return setSuccess(false);
 
     try {
       const response = await axios.patch(`${process.env.REACT_APP_API_URL}/users/update/${id}`, {
@@ -25,11 +24,12 @@ const NewPasswordPage = () => {
 
       if (!response.statusText) return setSuccess(false);
 
+      document.getElementById('btn-submit').disabled = true;
+
       setSuccess(true);
     } catch (error) {
       setSuccess(false);
       console.error(error);
-      document.getElementById('btn-submit').disabled = false;
     }
   };
 
@@ -54,16 +54,14 @@ const NewPasswordPage = () => {
               </Form.Group>
               <br />
 
-              {success === null && (
-                <Button
-                  type="submit"
-                  id="btn-submit"
-                  className="w-100"
-                  style={{ background: 'var(--color-main)' }}
-                >
-                  Submit
-                </Button>
-              )}
+              <Button
+                type="submit"
+                id="btn-submit"
+                className="w-100 mb-3"
+                style={{ background: 'var(--color-main)' }}
+              >
+                Submit
+              </Button>
 
               {success && (
                 <div className="w-100 text-center mt-2">
@@ -76,7 +74,11 @@ const NewPasswordPage = () => {
                   </Alert>
                 </div>
               )}
-              {success === false && <Alert variant="danger">Cannot change password</Alert>}
+              {success === false && (
+                <Alert variant="danger">
+                  Passwords should match and have at least one number!
+                </Alert>
+              )}
             </Form>
           </Card.Body>
         </Card>

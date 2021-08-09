@@ -47,7 +47,7 @@ const SignIn = () => {
         </Card>
         <div className="w-100 text-center mt-2">
           <Link to={`/reset-password`} style={{ color: 'var(--color-main)' }}>
-            Forget Password?
+            Forgot Password?
           </Link>
         </div>
         <div className="w-100 text-center mt-2">
