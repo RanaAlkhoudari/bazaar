@@ -2,7 +2,7 @@ import axios from 'axios';
 import Uploader from './Uploader';
 import { AuthContext } from '../context/AuthContext';
 import { Form, Card, Container } from 'react-bootstrap';
-import { Multiselect } from 'multiselect-react-dropdown';
+import Multiselect from 'multiselect-react-dropdown';
 import React, { useState, useEffect, useContext } from 'react';
 
 const AddProduct = () => {
@@ -128,20 +128,23 @@ const AddProduct = () => {
                 />
               </Form.Group>
               <br />
+              <Form.Group>
+                <Multiselect
+                  required={true}
+                  isObject={false}
+                  options={categories}
+                  placeholder="Categories"
+                  avoidHighlightFirstOption={true}
+                  onSelect={(selected) => (values.categories = selected)}
+                  style={{
+                    chips: { background: 'var(--color-main)' },
+                    optionContainer: {
+                      borderRadius: '.5rem',
+                    },
+                  }}
+                />
+              </Form.Group>
 
-              <Multiselect
-                isObject={false}
-                options={categories}
-                placeholder="Categories"
-                avoidHighlightFirstOption={true}
-                onSelect={(selected) => (values.categories = selected)}
-                style={{
-                  chips: { background: 'var(--color-main)' },
-                  optionContainer: {
-                    borderRadius: '.5rem',
-                  },
-                }}
-              />
               <br />
 
               <Uploader data={values} />

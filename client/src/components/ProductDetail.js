@@ -17,7 +17,6 @@ const ProductDetail = ({ product }) => {
 
   const goToCheckout = async () => {
     try {
-
       setSearchBar(true);
 
       await axios.post(`http://localhost:3000/api/v1/notifications/add`, {
@@ -38,7 +37,6 @@ const ProductDetail = ({ product }) => {
   setTimeout(() => {
     setSignedIn(false);
   }, 3000);
-
 
   return (
     <div key={product._id}>
