@@ -1,8 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
+import React, { useState, useEffect, useRef } from 'react';
+import { Container, Row, Col, Card, Form, Button, Alert } from 'react-bootstrap';
 import axios from 'axios';
 
 const EditProfile = ({ user }) => {
+  const passwordRef = useRef();
+  const firstNameRef = useRef();
+  const lastNameRef = useRef();
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
   const [userData, setUserData] = useState({
     first_name: user.first_name,
     last_name: user.last_name,
@@ -34,6 +39,10 @@ const EditProfile = ({ user }) => {
   const editData = async (e) => {
     try {
       e.preventDefault();
+      if (firstNameRef.current.value.length === 0 || lastNameRef.current.value.length === 0) {
+        return setError('Please inter your first and last name'), setSuccess(false);
+      }
+
       if (isUserDataChanged) {
         await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, userData);
         setIsUserDataChanged(false);
@@ -43,7 +52,22 @@ const EditProfile = ({ user }) => {
         await axios.patch(`http://localhost:3000/api/v1/addresses/update/${addressChanged}`, addr);
         setAddressChanged('');
       }
-      alert('Successfully updated!');
+      if (passwordRef.current.value < 6) {
+        return setError('Password must include at least six symbols'), setSuccess(false);
+      }
+      let passwordWithNum = [];
+      Object.assign([], passwordRef.current.value).map((item) => {
+        function isNumeric(value) {
+          return /^-?\d+$/.test(value);
+        }
+        isNumeric(item) ? passwordWithNum.push(item) : null;
+      });
+      if (passwordWithNum.length === 0) {
+        return setError('Password must include at least one number'), setSuccess(false);
+      }
+
+      setSuccess('Successfully updated!');
+      setError(false);
     } catch (err) {
       console.log(err);
     }
@@ -126,46 +150,232 @@ const EditProfile = ({ user }) => {
   if (addressesData) {
     addresses = addressesData.map((address, index) => {
       return (
-        <Card style={{ borderColor: 'var(--color-main)' }} key={address._id} className="m-3 p-3">
-          <Row>
-            <Col>
-              <h4>Address {index + 1}</h4>
-            </Col>
-            <Col style={{ textAlign: 'right' }}>
-              <Button
-                variant="danger"
-                style={{ width: '10em' }}
-                onClick={() => {
-                  setUserData({
-                    ...userData,
-                    addresses: userData.addresses.filter((addr) => addr._id !== address._id),
-                  });
-                  setAddressesData((oldArr) => oldArr.filter((addr) => addr._id !== address._id));
-                  setDeleteId(address._id);
-                }}
-              >
-                Delete
-              </Button>
-            </Col>
-          </Row>
+        <div key={address._id}>
+          <div>
+            <Container
+              // key={address._id}
+              className="d-flex "
+              style={{ maxHeight: '75vh' }}
+            >
+              <Card className="m-3 p-3 " style={{ width: '22rem' }}>
+                <Row>
+                  <Col>
+                    <h4>Address {index + 1}</h4>
+                  </Col>
+                  <Col style={{ textAlign: 'right' }}></Col>
+                </Row>
+                <Form.Group>
+                  <Form.Label>Recipient (if the name is different from yours)</Form.Label>
+                  <br />
+                  <Form.Label>First Name:</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={address.first_name}
+                    onChange={(e) => {
+                      setAddressesData((oldArr) => {
+                        const newArr = oldArr.map((item) => {
+                          if (item._id == address._id) {
+                            item.first_name = e.target.value;
+                          }
+                          return item;
+                        });
+                        return newArr;
+                      });
+                      setAddressChanged(address._id);
+                    }}
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>Last Name:</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={address.last_name}
+                    onChange={(e) => {
+                      setAddressesData((oldArr) => {
+                        const newArr = oldArr.map((item) => {
+                          if (item._id == address._id) {
+                            item.last_name = e.target.value;
+                          }
+                          return item;
+                        });
+                        return newArr;
+                      });
+                      setAddressChanged(address._id);
+                    }}
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>Country:</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={address.country}
+                    onChange={(e) => {
+                      setAddressesData((oldArr) => {
+                        const newArr = oldArr.map((item) => {
+                          if (item._id == address._id) {
+                            item.country = e.target.value;
+                          }
+                          return item;
+                        });
+                        return newArr;
+                      });
+                      setAddressChanged(address._id);
+                    }}
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>City:</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={address.city}
+                    onChange={(e) => {
+                      setAddressesData((oldArr) => {
+                        const newArr = oldArr.map((item) => {
+                          if (item._id == address._id) {
+                            item.city = e.target.value;
+                          }
+                          return item;
+                        });
+                        return newArr;
+                      });
+                      setAddressChanged(address._id);
+                    }}
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>Street:</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={address.street_name}
+                    onChange={(e) => {
+                      setAddressesData((oldArr) => {
+                        const newArr = oldArr.map((item) => {
+                          if (item._id == address._id) {
+                            item.street_name = e.target.value;
+                          }
+                          return item;
+                        });
+                        return newArr;
+                      });
+                      setAddressChanged(address._id);
+                    }}
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>Building Number:</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={address.building_number}
+                    onChange={(e) => {
+                      setAddressesData((oldArr) => {
+                        const newArr = oldArr.map((item) => {
+                          if (item._id == address._id) {
+                            item.building_number = e.target.value;
+                          }
+                          return item;
+                        });
+                        return newArr;
+                      });
+                      setAddressChanged(address._id);
+                    }}
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>Extension:</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={address.extension}
+                    onChange={(e) => {
+                      setAddressesData((oldArr) => {
+                        const newArr = oldArr.map((item) => {
+                          if (item._id == address._id) {
+                            item.extension = e.target.value;
+                          }
+                          return item;
+                        });
+                        return newArr;
+                      });
+                      setAddressChanged(address._id);
+                    }}
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>Postal code:</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={address.post_code}
+                    onChange={(e) => {
+                      setAddressesData((oldArr) => {
+                        const newArr = oldArr.map((item) => {
+                          if (item._id == address._id) {
+                            item.post_code = e.target.value;
+                          }
+                          return item;
+                        });
+                        return newArr;
+                      });
+                      setAddressChanged(address._id);
+                    }}
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>Comment:</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={address.comment}
+                    onChange={(e) => {
+                      setAddressesData((oldArr) => {
+                        const newArr = oldArr.map((item) => {
+                          if (item._id == address._id) {
+                            item.comment = e.target.value;
+                          }
+                          return item;
+                        });
+                        return newArr;
+                      });
+                      setAddressChanged(address._id);
+                    }}
+                  />
+                </Form.Group>
+                <Button
+                  variant="danger"
+                  className="w-100"
+                  onClick={() => {
+                    setUserData({
+                      ...userData,
+                      addresses: userData.addresses.filter((addr) => addr._id !== address._id),
+                    });
+                    setAddressesData((oldArr) =>
+                      oldArr.filter((addr) => addr._id !== address._id),
+                    );
+                    setDeleteId(address._id);
+                  }}
+                >
+                  Delete
+                </Button>
+              </Card>
+            </Container>
+          </div>
+        </div>
+      );
+    });
+  }
+
+  return (
+    <Container style={{ minHeight: '40vh' }} className="d-flex flex-wrap">
+      <Card style={{ width: '22rem', height: '795px' }} className="m-3 p-3">
+        {error && !success && <Alert variant="danger ">{error}</Alert>}
+        {success && !error && <Alert variant="success">{success}</Alert>}
+        <Form onSubmit={editData}>
           <Form.Group>
-            <Form.Label>Recipient (if the name is different from yours)</Form.Label>
-            <br />
             <Form.Label>First Name:</Form.Label>
             <Form.Control
               type="text"
-              value={address.first_name}
+              value={userData.first_name}
+              ref={firstNameRef}
               onChange={(e) => {
-                setAddressesData((oldArr) => {
-                  const newArr = oldArr.map((item) => {
-                    if (item._id == address._id) {
-                      item.first_name = e.target.value;
-                    }
-                    return item;
-                  });
-                  return newArr;
-                });
-                setAddressChanged(address._id);
+                setUserData({ ...userData, first_name: e.target.value });
+                setIsUserDataChanged(true);
               }}
             />
           </Form.Group>
@@ -173,228 +383,63 @@ const EditProfile = ({ user }) => {
             <Form.Label>Last Name:</Form.Label>
             <Form.Control
               type="text"
-              value={address.last_name}
+              value={userData.last_name}
+              ref={lastNameRef}
               onChange={(e) => {
-                setAddressesData((oldArr) => {
-                  const newArr = oldArr.map((item) => {
-                    if (item._id == address._id) {
-                      item.last_name = e.target.value;
-                    }
-                    return item;
-                  });
-                  return newArr;
-                });
-                setAddressChanged(address._id);
+                setUserData({ ...userData, last_name: e.target.value });
+                setIsUserDataChanged(true);
               }}
             />
           </Form.Group>
           <Form.Group>
-            <Form.Label>Country:</Form.Label>
+            <Form.Label>Email:</Form.Label>
             <Form.Control
-              type="text"
-              value={address.country}
+              type="email"
+              value={userData.email}
               onChange={(e) => {
-                setAddressesData((oldArr) => {
-                  const newArr = oldArr.map((item) => {
-                    if (item._id == address._id) {
-                      item.country = e.target.value;
-                    }
-                    return item;
-                  });
-                  return newArr;
-                });
-                setAddressChanged(address._id);
+                setUserData({ ...userData, email: e.target.value });
+                setIsUserDataChanged(true);
               }}
             />
           </Form.Group>
           <Form.Group>
-            <Form.Label>City:</Form.Label>
+            <Form.Label>Phone Number:</Form.Label>
             <Form.Control
               type="text"
-              value={address.city}
+              value={userData.phone}
               onChange={(e) => {
-                setAddressesData((oldArr) => {
-                  const newArr = oldArr.map((item) => {
-                    if (item._id == address._id) {
-                      item.city = e.target.value;
-                    }
-                    return item;
-                  });
-                  return newArr;
-                });
-                setAddressChanged(address._id);
+                setUserData({ ...userData, phone: e.target.value });
+                setIsUserDataChanged(true);
               }}
             />
           </Form.Group>
           <Form.Group>
-            <Form.Label>Street:</Form.Label>
+            <Form.Label>Password:</Form.Label>
             <Form.Control
-              type="text"
-              value={address.street_name}
+              type="password"
+              ref={passwordRef}
               onChange={(e) => {
-                setAddressesData((oldArr) => {
-                  const newArr = oldArr.map((item) => {
-                    if (item._id == address._id) {
-                      item.street_name = e.target.value;
-                    }
-                    return item;
-                  });
-                  return newArr;
-                });
-                setAddressChanged(address._id);
+                setUserData({ ...userData, password: e.target.value });
+                setIsUserDataChanged(true);
               }}
             />
           </Form.Group>
-          <Form.Group>
-            <Form.Label>Building Number:</Form.Label>
-            <Form.Control
-              type="text"
-              value={address.building_number}
-              onChange={(e) => {
-                setAddressesData((oldArr) => {
-                  const newArr = oldArr.map((item) => {
-                    if (item._id == address._id) {
-                      item.building_number = e.target.value;
-                    }
-                    return item;
-                  });
-                  return newArr;
-                });
-                setAddressChanged(address._id);
-              }}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Extension:</Form.Label>
-            <Form.Control
-              type="text"
-              value={address.extension}
-              onChange={(e) => {
-                setAddressesData((oldArr) => {
-                  const newArr = oldArr.map((item) => {
-                    if (item._id == address._id) {
-                      item.extension = e.target.value;
-                    }
-                    return item;
-                  });
-                  return newArr;
-                });
-                setAddressChanged(address._id);
-              }}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Postal code:</Form.Label>
-            <Form.Control
-              type="text"
-              value={address.post_code}
-              onChange={(e) => {
-                setAddressesData((oldArr) => {
-                  const newArr = oldArr.map((item) => {
-                    if (item._id == address._id) {
-                      item.post_code = e.target.value;
-                    }
-                    return item;
-                  });
-                  return newArr;
-                });
-                setAddressChanged(address._id);
-              }}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Comment:</Form.Label>
-            <Form.Control
-              type="text"
-              value={address.comment}
-              onChange={(e) => {
-                setAddressesData((oldArr) => {
-                  const newArr = oldArr.map((item) => {
-                    if (item._id == address._id) {
-                      item.comment = e.target.value;
-                    }
-                    return item;
-                  });
-                  return newArr;
-                });
-                setAddressChanged(address._id);
-              }}
-            />
-          </Form.Group>
-        </Card>
-      );
-    });
-  }
+          <Button
+            className="w-100"
+            type="submit"
+            style={{ background: 'var(--color-main)', marginBottom: '-100px' }}
+          >
+            Save
+          </Button>
+        </Form>
+      </Card>
+      {addresses}
 
-  return (
-    <Container>
-      <Form onSubmit={editData}>
-        <Form.Group>
-          <Form.Label>First Name:</Form.Label>
-          <Form.Control
-            type="text"
-            value={userData.first_name}
-            onChange={(e) => {
-              setUserData({ ...userData, first_name: e.target.value });
-              setIsUserDataChanged(true);
-            }}
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Last Name:</Form.Label>
-          <Form.Control
-            type="text"
-            value={userData.last_name}
-            onChange={(e) => {
-              setUserData({ ...userData, last_name: e.target.value });
-              setIsUserDataChanged(true);
-            }}
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Email:</Form.Label>
-          <Form.Control
-            type="text"
-            value={userData.email}
-            onChange={(e) => {
-              setUserData({ ...userData, email: e.target.value });
-              setIsUserDataChanged(true);
-            }}
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Phone Number:</Form.Label>
-          <Form.Control
-            type="text"
-            value={userData.phone}
-            onChange={(e) => {
-              setUserData({ ...userData, phone: e.target.value });
-              setIsUserDataChanged(true);
-            }}
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Password:</Form.Label>
-          <Form.Control
-            type="password"
-            onChange={(e) => {
-              setUserData({ ...userData, password: e.target.value });
-              setIsUserDataChanged(true);
-            }}
-          />
-        </Form.Group>
+      {/* <hr /> */}
 
-        {addresses}
-
-        <Button className="w-100" type="submit" style={{ background: 'var(--color-main)' }}>
-          Save
-        </Button>
-      </Form>
-      <hr />
-
-      <h4 className="mt-3">Add new address</h4>
       <Form onSubmit={addAddress}>
-        <Card style={{ borderColor: 'var(--color-main)' }} className="m-3 p-3">
+        <Card className="m-3 p-3" style={{ width: '22rem' }}>
+          <h4>Add new address</h4>
           <Form.Group>
             <Form.Label>Recipient (if the name is different from yours)</Form.Label>
             <br />
@@ -492,10 +537,10 @@ const EditProfile = ({ user }) => {
               }}
             />
           </Form.Group>
+          <Button className="w-100" type="submit" style={{ background: 'var(--color-main)' }}>
+            Add
+          </Button>
         </Card>
-        <Button className="w-100" type="submit" style={{ background: 'var(--color-main)' }}>
-          Add
-        </Button>
       </Form>
     </Container>
   );

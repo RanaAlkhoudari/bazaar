@@ -27,8 +27,15 @@ const EditProfilePage = () => {
     <>
       {user ? (
         <Container>
-          <h1>Edit My Profile Data</h1>
-          {isLoading ? <div>Loading...</div> : <EditProfile user={userFromDB} />}
+          <h1 className="text-center p-3">Edit My Profile Data</h1>
+
+          {isLoading ? (
+            <div>Loading...</div>
+          ) : (
+            <div>
+              <EditProfile user={userFromDB} />
+            </div>
+          )}
         </Container>
       ) : (
         <Container>

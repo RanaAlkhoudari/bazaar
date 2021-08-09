@@ -8,7 +8,7 @@ const UserDetail = ({ product }) => {
 
   useEffect(() => {
     fetchUser();
-  }, []);
+  }, [user]);
 
   async function fetchUser() {
     try {
