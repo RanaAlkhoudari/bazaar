@@ -8,12 +8,12 @@ import GoogleButton from 'react-google-button';
 
 const GoogleSignIn = () => {
   const { dispatch } = useContext(AuthContext);
-  const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+  const GOOGLE_CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID;
   const history = useHistory();
   async function responseGoogle(response) {
     const res = await axios({
       method: 'POST',
-      url: 'http://localhost:3000/api/v1/users/googleLogin',
+      url: `${process.env.REACT_APP_API_URL}/users/googleLogin`,
       data: {
         accessToken: response.accessToken,
         userID: response.Zb.id_token,
