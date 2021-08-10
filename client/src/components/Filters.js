@@ -8,11 +8,23 @@ const Filters = ({
   oldNewProducts,
   newOldProducts,
   handleLocation,
-  fetchData,
 }) => {
   const [lowPrice, setLowPrice] = useState([]);
   const [highPrice, setHighPrice] = useState([]);
   const [location, setLocation] = useState([]);
+
+  const handleLocationEnterKey = (e) => {
+    if (e.key === 'Enter') {
+      handleLocation(e.target.value);
+      e.preventDefault();
+    }
+  };
+  const handlePriceEnterKey = (e) => {
+    if (e.key === 'Enter') {
+      handlePriceRange(lowPrice, highPrice);
+      e.preventDefault();
+    }
+  };
 
   return (
     <div>
@@ -26,7 +38,7 @@ const Filters = ({
               Price
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Form>
+              <Form onKeyPress={handlePriceEnterKey}>
                 <Row>
                   <Col>
                     <Form.Control
@@ -44,7 +56,6 @@ const Filters = ({
                   <Col>
                     <Button
                       style={{ backgroundColor: 'var(--color-main)', color: 'white' }}
-                      variant="info"
                       onClick={() => {
                         handlePriceRange(lowPrice, highPrice);
                       }}
@@ -114,12 +125,15 @@ const Filters = ({
               Location
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Form>
+              <Form onKeyPress={handleLocationEnterKey}>
                 <Row>
                   <Col>
                     {' '}
                     <Form.Control
                       placeholder="City Name..."
+                      // onKeyPress={(e) => {
+                      //   e.key === 'Enter' && e.preventDefault();
+                      // }}
                       onChange={(e) => setLocation(e.target.value)}
                     />
                   </Col>
