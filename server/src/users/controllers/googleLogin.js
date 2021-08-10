@@ -1,6 +1,6 @@
 const pkg = require('google-auth-library');
 const { v4: uuidv4 } = require('uuid');
-const User = require('../userModel');
+const { User } = require('../userModel');
 
 const { OAuth2Client } = pkg;
 

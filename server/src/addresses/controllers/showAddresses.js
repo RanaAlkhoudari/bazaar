@@ -1,4 +1,4 @@
-const User = require('../../users/userModel');
+const { User } = require('../../users/userModel');
 const Address = require('../addressModel');
 
 const showAddresses = (req, res) => {
