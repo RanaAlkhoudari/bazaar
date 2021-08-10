@@ -4,7 +4,7 @@ import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import { FaRegEye } from 'react-icons/fa';
 
-const Notifications = ({ refreshMyAccount, notifications }) => {
+const Notifications = ({ notifications }) => {
   const monthNames = [
     'January',
     'February',
@@ -23,7 +23,6 @@ const Notifications = ({ refreshMyAccount, notifications }) => {
     const notificationId = e.target.id;
     try {
       await axios.delete(`http://localhost:3000/api/v1/notifications/${notificationId}`);
-      refreshMyAccount();
     } catch (error) {
       console.error(`Error ${error}`);
     }
@@ -32,7 +31,6 @@ const Notifications = ({ refreshMyAccount, notifications }) => {
     const notificationId = e.target.id;
     try {
       await axios.patch(`http://localhost:3000/api/v1/notifications/${notificationId}`);
-      refreshMyAccount();
       e.target.hidden = true;
     } catch (error) {
       console.error(`Error ${error}`);
