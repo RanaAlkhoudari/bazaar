@@ -7,12 +7,10 @@ import Notifications from '../components/Notifications';
 import Favorites from '../components/Favorites';
 import MyProducts from '../components/MyProducts';
 import Profile from '../components/Profile';
-import Button from 'react-bootstrap/Button';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import { Container, Alert } from 'react-bootstrap';
 import { GrUserAdmin } from 'react-icons/gr';
-import { FiRefreshCcw } from 'react-icons/fi';
 import LoadingImage from '../images/Loading.gif';
 
 const styles = [
@@ -38,14 +36,15 @@ const MyAccountPage = () => {
   const [err, setErr] = useState(false);
   const { user } = useContext(AuthContext);
   const [userFromDB, setUserFromDB] = useState({});
+  const [toggle, setToggle] = useState(false);
 
   useEffect(() => {
     fetchUser();
-  }, []);
-
-  const refreshMyAccount = () => {
-    fetchUser();
-  };
+    const timer = setTimeout(() => {
+      setToggle((toggle) => !toggle);
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, [toggle]);
 
   const fetchUser = async () => {
     try {
@@ -80,31 +79,12 @@ const MyAccountPage = () => {
 .nav-link:hover {
   color: var(--color-grey);
   }
-.btn-outline-success span {
-    max-width: 0;
-    -webkit-transition: max-width 1s;
-    transition: max-width 1s;
-    display: inline-block;
-    vertical-align: top;
-    white-space: nowrap;
-    overflow: hidden;
-  }
-.btn-outline-success:hover span {
-    max-width: 7rem;
-  }
     `}
       </style>
       {isLoaded && !err ? (
         <Container>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1em' }}>
             <h1>My Account</h1>
-            <Button
-              variant="outline-success"
-              style={{ borderRadius: '2.5em' }}
-              onClick={() => refreshMyAccount()}
-            >
-              <FiRefreshCcw /> <span> Refresh Content </span>
-            </Button>
           </div>
           <Tabs justify defaultActiveKey="myProducts" transition={false}>
             <Tab
@@ -139,7 +119,6 @@ const MyAccountPage = () => {
             >
               <>
                 <Notifications
-                  refreshMyAccount={() => refreshMyAccount()}
                   notifications={isLoaded ? userFromDB.notifications.reverse() : <></>}
                 />
               </>
