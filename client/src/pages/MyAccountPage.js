@@ -46,10 +46,6 @@ const MyAccountPage = () => {
     return () => clearTimeout(timer);
   }, [toggle]);
 
-  const refreshMyAccount = () => {
-    fetchUser();
-  };
-
   const fetchUser = async () => {
     try {
       const response = await axios.get(`http://localhost:3000/api/v1/users/${user._id}`);
