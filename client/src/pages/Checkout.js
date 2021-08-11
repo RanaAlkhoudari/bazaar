@@ -12,11 +12,11 @@ const Checkout = (prop) => {
 
   const getShippingAddress = (address) => setShippingAddress(address);
 
-  useEffect(() => fetchSellerData(), []);
+  useEffect(() => fetchSellerData());
 
   const fetchSellerData = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/v1/users/${product.user}`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/users/${product.user}`);
 
       setSeller(response.data);
     } catch (error) {
@@ -63,10 +63,7 @@ const Checkout = (prop) => {
         <Image
           thumbnail
           alt="User image"
-          src={
-            seller.avatar ||
-            'https://static.zooniverse.org/www.zooniverse.org/assets/simple-avatar.png'
-          }
+          src={seller.avatar || '../images/noImage.png'}
           style={{
             padding: '5px',
             width: '10rem',

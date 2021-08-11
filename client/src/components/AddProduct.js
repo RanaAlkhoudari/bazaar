@@ -1,12 +1,12 @@
 import axios from 'axios';
 import Uploader from './Uploader';
 import { AuthContext } from '../context/AuthContext';
-import { Form, Card, Container } from 'react-bootstrap';
 import Multiselect from 'multiselect-react-dropdown';
-import React, { useState, useEffect, useContext } from 'react';
+import { Form, Card, Container } from 'react-bootstrap';
+import { useState, useEffect, useContext } from 'react';
 
 const AddProduct = () => {
-  const { user, setSearchBar } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   const [categories, setCategories] = useState([]);
   const [values, setValues] = useState({
@@ -15,13 +15,13 @@ const AddProduct = () => {
     title: '',
     condition: '',
     user: user._id,
-    categories: '',
+    categories: null,
     description: '',
   });
 
   useEffect(() => {
     fetchCategories();
-    setSearchBar(false);
+
     document.getElementById('add-product-link').style.display = 'none';
   }, []);
 
@@ -126,11 +126,11 @@ const AddProduct = () => {
                   style={{ height: '100px' }}
                   onChange={handleDescriptionChange}
                 />
+
               </Form.Group>
               <br />
               <Form.Group>
                 <Multiselect
-                  required={true}
                   isObject={false}
                   options={categories}
                   placeholder="Categories"
@@ -144,7 +144,6 @@ const AddProduct = () => {
                   }}
                 />
               </Form.Group>
-
               <br />
 
               <Uploader data={values} />

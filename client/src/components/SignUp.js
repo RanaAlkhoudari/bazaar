@@ -1,68 +1,70 @@
-import React, { useRef, useState } from 'react';
-import { Container, Form, Button, Card, Alert } from 'react-bootstrap';
-import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
-import FacebookSignIn from './FacebookSignIn';
 import GoogleSignIn from './GoogleSignIn';
-import Filters from './Filters';
-import { FaBellSlash } from 'react-icons/fa';
-import { set } from 'mongoose';
+import FacebookSignIn from './FacebookSignIn';
+import React, { useRef, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { Container, Form, Button, Card, Alert } from 'react-bootstrap';
 
 const SignUp = () => {
-  const firstNameRef = useRef(false);
-  const lastNameRef = useRef();
+  const history = useHistory();
+
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const emailRef = useRef();
   const passwordRef = useRef();
+  const lastNameRef = useRef();
   const passwordConfirmRef = useRef();
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
-  const history = useHistory();
+  const firstNameRef = useRef(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
-    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-      return setError('Passwords do not match');
-    }
 
-    if (passwordRef.current.value.length < 6) {
+    if (passwordRef.current.value !== passwordConfirmRef.current.value)
+      return setError('Passwords do not match');
+
+
+    if (passwordRef.current.value.length < 6)
       return setError('Passwords must consist of minimum 6 symbols');
-    }
+
 
     let passwordWithNum = [];
-    Object.assign([], passwordRef.current.value).map((item) => {
-      function isNumeric(value) {
-        return /^-?\d+$/.test(value);
-      }
-      isNumeric(item) ? passwordWithNum.push(item) : null;
+    Object.assign([], passwordRef.current.value).forEach((item) => {
+      const isNumeric = /^-?\d+$/.test(item);
+      isNumeric && passwordWithNum.push(item);
     });
-    if (passwordWithNum.length === 0) {
+
+    if (passwordWithNum.length === 0)
       return setError('Password must include at least one number');
-    }
+
     try {
-      const response = await axios.get(`http://localhost:3000/api/v1/users`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/users`);
+
       let validateEmail = response.data.find((item) => emailRef.current.value === item.email);
-      if (validateEmail !== undefined) {
+
+      if (validateEmail !== undefined)
         return setError('An account with this email already exists');
-      }
+
     } catch (e) {
       setError('Failed to create an account');
     }
 
     const user = {
-      first_name: firstNameRef.current.value,
-      last_name: lastNameRef.current.value,
       email: emailRef.current.value,
       password: passwordRef.current.value,
+      last_name: lastNameRef.current.value,
+      first_name: firstNameRef.current.value,
     };
 
     try {
       setError('');
       setLoading(true);
-      await axios.post(`http://localhost:3000/api/v1/users/signup`, user);
-      const response = await axios.get(`http://localhost:3000/api/v1/users`);
+      await axios.post(`${process.env.REACT_APP_API_URL}/users/signup`, user);
+      await axios.get(`${process.env.REACT_APP_API_URL}/users`);
 
       setSuccess(true);
+
       setTimeout(() => {
         history.push('/signin');
       }, 2500);

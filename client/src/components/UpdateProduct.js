@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
 import axios from 'axios';
-import { Form, Card, Container, Button } from 'react-bootstrap';
+import { useState, useEffect } from 'react';
 import { Multiselect } from 'multiselect-react-dropdown';
+import { useParams, useHistory } from 'react-router-dom';
+import { Form, Card, Container, Button } from 'react-bootstrap';
 
 const UpdateProduct = () => {
+  const { id } = useParams();
+
   const history = useHistory();
+
+  const [error, setError] = useState(false);
   const [categoriesList, setCategoriesList] = useState([]);
   const [selectedFiles, setSelectedFiles] = useState(null);
-  const [error, setError] = useState(false);
-  const { id } = useParams();
+
   const [values, setValues] = useState({
     price: '',
     title: '',
@@ -21,11 +24,12 @@ const UpdateProduct = () => {
   useEffect(() => {
     fetchData();
     fetchCategories();
-  }, []);
+  }, [id]);
 
   async function fetchData() {
     try {
-      const response = await axios.get(`http://localhost:3000/api/v1/products/${id}`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/products/${id}`);
+
       setValues(response.data);
     } catch (error) {
       setError(true);
@@ -35,7 +39,7 @@ const UpdateProduct = () => {
 
   async function fetchCategories() {
     try {
-      const res = await axios.get(`http://localhost:3000/api/v1/categories`);
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/categories`);
 
       const categoryList = res.data.map((category) => category.name);
 
@@ -46,6 +50,7 @@ const UpdateProduct = () => {
   }
   async function onSubmit(e) {
     e.preventDefault();
+
     try {
       const videoRequests = [];
       const imageRequests = [];
@@ -72,12 +77,11 @@ const UpdateProduct = () => {
         values.images = imageResponses.map((response) => response.data.secure_url);
       }
       const response = await axios.patch(
-        `http://localhost:3000/api/v1/products/update/${values._id}`,
+        `${process.env.REACT_APP_API_URL}/products/update/${values._id}`,
         values,
       );
 
       if (response.status === 200) {
-        alert('Product Updated');
         history.push('/account');
       }
     } catch (error) {
@@ -94,7 +98,7 @@ const UpdateProduct = () => {
         <Card style={{ width: '22rem' }}>
           <Card.Body>
             <Card.Title className="text-center mb-4">Update Product</Card.Title>
-            <Form onSubmit={(e) => preventDefault(e)}>
+            <Form onSubmit={(e) => e.preventDefault()}>
               <Form.Group>
                 <Form.Control
                   type="text"
