@@ -1,6 +1,6 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-
 const { loadDb } = require('./db');
 const { handleErrors } = require('./middlewares/errors');
 const userRouter = require('./users/userRouter');
@@ -11,15 +11,9 @@ const orderRouter = require('./orders/orderRouter');
 const resetPassword = require('./reset-password/resetPassword');
 const notificationRouter = require('./notifications/notificationRouter');
 
-require('dotenv').config();
-
 const app = express();
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
-
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config();
-}
 
 async function run() {
   await loadDb();

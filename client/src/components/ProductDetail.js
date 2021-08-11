@@ -1,25 +1,24 @@
-import React, { useContext, useState } from 'react';
 import axios from 'axios';
-
-import { Card, Button, Row, Col, Alert } from 'react-bootstrap';
-
 import NotifyIcon from './NotifyIcon';
 import { AiFillStar } from 'react-icons/ai';
 import { useHistory } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
-import { set } from 'mongoose';
+import { Card, Button, Row, Col, Alert } from 'react-bootstrap';
 
 const ProductDetail = ({ product }) => {
   const history = useHistory();
+
+  const [signedIn, setSignedIn] = useState(false);
+
   const { addFavorite, deleteFavorite } = useContext(AuthContext);
   const { user, currentUser, setSearchBar } = useContext(AuthContext);
-  const [signedIn, setSignedIn] = useState(false);
 
   const goToCheckout = async () => {
     try {
       setSearchBar(true);
 
-      await axios.post(`http://localhost:3000/api/v1/notifications/add`, {
+      await axios.post(`${process.env.REACT_APP_API_URL}/notifications/add`, {
         user: product.user,
         type: 'order',
         text: `the user ${user.first_name} ${user.last_name} is trying to order your product ${product.title}`,

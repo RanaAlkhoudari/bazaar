@@ -1,15 +1,16 @@
-import React, { useContext } from 'react';
-import { Card } from 'react-bootstrap';
-import { useHistory } from 'react-router-dom';
-import GoogleLogin from 'react-google-login';
-import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
+import { useContext } from 'react';
+import { Card } from 'react-bootstrap';
+import GoogleLogin from 'react-google-login';
+import { useHistory } from 'react-router-dom';
 import GoogleButton from 'react-google-button';
+import { AuthContext } from '../context/AuthContext';
 
 const GoogleSignIn = () => {
-  const { dispatch } = useContext(AuthContext);
-  const GOOGLE_CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID;
   const history = useHistory();
+
+  const { dispatch } = useContext(AuthContext);
+
   async function responseGoogle(response) {
     const res = await axios({
       method: 'POST',
@@ -36,7 +37,7 @@ const GoogleSignIn = () => {
     <Card style={{ width: '350px' }}>
       <Card.Header style={{ margin: '0 auto' }}>
         <GoogleLogin
-          clientId={GOOGLE_CLIENT_ID}
+          clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
           cookiePolicy={'single_host_origin'}

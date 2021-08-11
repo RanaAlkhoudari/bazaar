@@ -3,8 +3,9 @@ import CardRow from './CardRow';
 import { Col } from 'react-bootstrap';
 
 const Orders = ({ orders }) => {
+  let ordersItems;
   if (orders) {
-    const ordersItems = orders.map((order) => {
+    ordersItems = orders.map((order) => {
       const date = new Date(order.createdAt);
 
       return (

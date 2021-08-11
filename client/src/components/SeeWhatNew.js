@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import ProductList from './ProductList';
 import axios from 'axios';
+import ProductList from './ProductList';
+import { useState, useEffect } from 'react';
 
 const SeeWhatNew = () => {
   const [products, setProducts] = useState([]);
@@ -15,7 +15,8 @@ const SeeWhatNew = () => {
   }, []);
   async function fetchData() {
     try {
-      const response = await axios.get(`http://localhost:3000/api/v1/products`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/products`);
+
       setProducts(response.data);
     } catch (error) {
       console.log(error);

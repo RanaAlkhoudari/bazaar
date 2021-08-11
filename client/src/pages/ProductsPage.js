@@ -1,18 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { Container, Col, Row } from 'react-bootstrap';
-import SeeWhatNew from '../components/SeeWhatNew';
-
 import axios from 'axios';
-import ProductList from '../components/ProductList';
+import { useState, useEffect } from 'react';
 import Filters from '../components/Filters';
+import { useParams } from 'react-router-dom';
 import Category from '../components/Category';
+import ProductList from '../components/ProductList';
+import { Container, Col, Row } from 'react-bootstrap';
 
 const Products = () => {
+  const { keyword } = useParams();
+
+  const [state, setState] = useState(false);
   const [products, setProducts] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
-  const [state, setState] = useState(false);
-  const { keyword } = useParams();
 
   useEffect(() => {
     fetchData();
@@ -26,8 +25,9 @@ const Products = () => {
   const fetchDataKeyword = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/v1/products/searchedProduct/${keyword}`,
+        `${process.env.REACT_APP_API_URL}/products/searchedProduct/${keyword}`,
       );
+
       const { data } = response;
 
       setProducts(data);
@@ -38,9 +38,12 @@ const Products = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/v1/products`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/products`);
+
       const { data } = response;
+
       setState(false);
+
       setAllProducts(data);
     } catch (error) {
       console.log(error);

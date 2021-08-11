@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Card, Form, Alert, Button, Container } from 'react-bootstrap';
 
 const ResetPasswordPage = () => {

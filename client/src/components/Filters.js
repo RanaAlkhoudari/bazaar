@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ButtonGroup, Dropdown, Row, Col, Form, Button } from 'react-bootstrap';
-import ProductList from './ProductList';
 
 const Filters = ({
   handlePriceRange,
@@ -131,9 +130,6 @@ const Filters = ({
                     {' '}
                     <Form.Control
                       placeholder="City Name..."
-                      // onKeyPress={(e) => {
-                      //   e.key === 'Enter' && e.preventDefault();
-                      // }}
                       onChange={(e) => setLocation(e.target.value)}
                     />
                   </Col>
