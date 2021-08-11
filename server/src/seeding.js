@@ -5,10 +5,7 @@ const dummyOrders = require('./dummy-files/orders.json');
 const dummyAddress = require('./dummy-files/addresses.json');
 const dummyProducts = require('./dummy-files/products.json');
 const dummyCategories = require('./dummy-files/categories.json');
-
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
-}
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 
 seeder.connect(process.env.DB_URL, { useUnifiedTopology: true }, () => {
   seeder.loadModels([
@@ -21,12 +18,8 @@ seeder.connect(process.env.DB_URL, { useUnifiedTopology: true }, () => {
 
   seeder.clearModels(['address', 'user', 'product', 'category', 'order'], () => {
     seeder.populateModels(data, (err, done) => {
-      if (err) {
-        return console.log('seed error', err);
-      }
-      if (done) {
-        return console.log('seed done', done);
-      }
+      if (err) return console.log('seed error', err);
+      if (done) return console.log('seed done', done);
       return seeder.disconnect();
     });
   });
