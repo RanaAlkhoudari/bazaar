@@ -1,11 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Container, Row, Col, Card, Form, Button, Alert } from 'react-bootstrap';
 import axios from 'axios';
+import { useState, useEffect, useRef } from 'react';
+import { Container, Row, Col, Card, Form, Button, Alert } from 'react-bootstrap';
 
 const EditProfile = ({ user }) => {
   const passwordRef = useRef();
-  const firstNameRef = useRef();
   const lastNameRef = useRef();
+  const firstNameRef = useRef();
+
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
   const [userData, setUserData] = useState({
@@ -39,38 +40,47 @@ const EditProfile = ({ user }) => {
   const editData = async (e) => {
     try {
       e.preventDefault();
+
       if (firstNameRef.current.value.length === 0 || lastNameRef.current.value.length === 0) {
-        return setError('Please inter your first and last name'), setSuccess(false);
-      }
+        setError('Please inter your first and last name');
+        setSuccess(false);
+        return;
+      };
 
       if (isUserDataChanged) {
-        await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, userData);
+        await axios.patch(`${process.env.REACT_APP_API_URL}/users/update/${user._id}`, userData);
         setIsUserDataChanged(false);
-      }
+      };
+
       if (addressChanged.length > 0) {
-        const addr = addressesData.find((address) => address._id == addressChanged);
-        await axios.patch(`http://localhost:3000/api/v1/addresses/update/${addressChanged}`, addr);
+        const addr = addressesData.find((address) => address._id === addressChanged);
+        await axios.patch(`${process.env.REACT_APP_API_URL}/addresses/update/${addressChanged}`, addr);
         setAddressChanged('');
-      }
+      };
+
       if (passwordRef.current.value < 6) {
-        return setError('Password must include at least six symbols'), setSuccess(false);
-      }
+        setError('Password must include at least six symbols');
+        setSuccess(false);
+        return;
+      };
+
       let passwordWithNum = [];
-      Object.assign([], passwordRef.current.value).map((item) => {
-        function isNumeric(value) {
-          return /^-?\d+$/.test(value);
-        }
-        isNumeric(item) ? passwordWithNum.push(item) : null;
+      Object.assign([], passwordRef.current.value).forEach((item) => {
+        const isNumeric = /^-?\d+$/.test(item);
+        if (isNumeric) passwordWithNum.push(item);
       });
+
       if (passwordWithNum.length === 0) {
-        return setError('Password must include at least one number'), setSuccess(false);
-      }
+        setError('Password must include at least one number');
+        setSuccess(false);
+        return;
+      };
 
       setSuccess('Successfully updated!');
       setError(false);
     } catch (err) {
       console.log(err);
-    }
+    };
   };
 
   const [deleteId, setDeleteId] = useState('');
@@ -79,7 +89,7 @@ const EditProfile = ({ user }) => {
       (async () => {
         try {
           await axios.patch(
-            `http://localhost:3000/api/v1/addresses/delete/${deleteId}/${user._id}`,
+            `${process.env.REACT_APP_API_URL}/addresses/delete/${deleteId}/${user._id}`,
             { addresses: userData.addresses },
           );
           alert('Address is deleted!');
@@ -88,7 +98,7 @@ const EditProfile = ({ user }) => {
         }
       })();
     }
-  }, [deleteId]);
+  }, [deleteId, user._id, userData.addresses]);
 
   const [newAddress, setNewAddress] = useState({
     user: user._id,
@@ -107,7 +117,7 @@ const EditProfile = ({ user }) => {
     try {
       e.preventDefault();
       const response = await axios.post(
-        `http://localhost:3000/api/v1/addresses/create`,
+        `${process.env.REACT_APP_API_URL}/addresses/create`,
         newAddress,
       );
 
@@ -153,7 +163,6 @@ const EditProfile = ({ user }) => {
         <div key={address._id}>
           <div>
             <Container
-              // key={address._id}
               className="d-flex "
               style={{ maxHeight: '75vh' }}
             >
@@ -174,7 +183,7 @@ const EditProfile = ({ user }) => {
                     onChange={(e) => {
                       setAddressesData((oldArr) => {
                         const newArr = oldArr.map((item) => {
-                          if (item._id == address._id) {
+                          if (item._id === address._id) {
                             item.first_name = e.target.value;
                           }
                           return item;
@@ -193,7 +202,7 @@ const EditProfile = ({ user }) => {
                     onChange={(e) => {
                       setAddressesData((oldArr) => {
                         const newArr = oldArr.map((item) => {
-                          if (item._id == address._id) {
+                          if (item._id === address._id) {
                             item.last_name = e.target.value;
                           }
                           return item;
@@ -212,7 +221,7 @@ const EditProfile = ({ user }) => {
                     onChange={(e) => {
                       setAddressesData((oldArr) => {
                         const newArr = oldArr.map((item) => {
-                          if (item._id == address._id) {
+                          if (item._id === address._id) {
                             item.country = e.target.value;
                           }
                           return item;
@@ -231,7 +240,7 @@ const EditProfile = ({ user }) => {
                     onChange={(e) => {
                       setAddressesData((oldArr) => {
                         const newArr = oldArr.map((item) => {
-                          if (item._id == address._id) {
+                          if (item._id === address._id) {
                             item.city = e.target.value;
                           }
                           return item;
@@ -250,7 +259,7 @@ const EditProfile = ({ user }) => {
                     onChange={(e) => {
                       setAddressesData((oldArr) => {
                         const newArr = oldArr.map((item) => {
-                          if (item._id == address._id) {
+                          if (item._id === address._id) {
                             item.street_name = e.target.value;
                           }
                           return item;
@@ -269,7 +278,7 @@ const EditProfile = ({ user }) => {
                     onChange={(e) => {
                       setAddressesData((oldArr) => {
                         const newArr = oldArr.map((item) => {
-                          if (item._id == address._id) {
+                          if (item._id === address._id) {
                             item.building_number = e.target.value;
                           }
                           return item;
@@ -288,7 +297,7 @@ const EditProfile = ({ user }) => {
                     onChange={(e) => {
                       setAddressesData((oldArr) => {
                         const newArr = oldArr.map((item) => {
-                          if (item._id == address._id) {
+                          if (item._id === address._id) {
                             item.extension = e.target.value;
                           }
                           return item;
@@ -307,7 +316,7 @@ const EditProfile = ({ user }) => {
                     onChange={(e) => {
                       setAddressesData((oldArr) => {
                         const newArr = oldArr.map((item) => {
-                          if (item._id == address._id) {
+                          if (item._id === address._id) {
                             item.post_code = e.target.value;
                           }
                           return item;
@@ -326,7 +335,7 @@ const EditProfile = ({ user }) => {
                     onChange={(e) => {
                       setAddressesData((oldArr) => {
                         const newArr = oldArr.map((item) => {
-                          if (item._id == address._id) {
+                          if (item._id === address._id) {
                             item.comment = e.target.value;
                           }
                           return item;
@@ -434,8 +443,6 @@ const EditProfile = ({ user }) => {
         </Form>
       </Card>
       {addresses}
-
-      {/* <hr /> */}
 
       <Form onSubmit={addAddress}>
         <Card className="m-3 p-3" style={{ width: '22rem' }}>

@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Container, Row, Col } from 'react-bootstrap';
+import Loading from '../components/Loading';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import SimilarProducts from '../components/SimilarProducts';
-import ProductDetail from '../components/ProductDetail';
 import NotFoundPage from './NotFoundPage';
 import UserDetail from '../components/UserDetail';
-import Loading from '../components/Loading';
 import SeeWhatNew from '../components/SeeWhatNew';
+import { Container, Row, Col } from 'react-bootstrap';
+import ProductDetail from '../components/ProductDetail';
+// import SimilarProducts from '../components/SimilarProducts';
 
 const ProductDetailPage = () => {
-  const [product, setProduct] = useState('');
-  const [error, setError] = useState(false);
-
   const { id } = useParams();
+
+  const [error, setError] = useState(false);
+  const [product, setProduct] = useState('');
 
   useEffect(() => {
     fetchData();
@@ -21,7 +21,8 @@ const ProductDetailPage = () => {
 
   async function fetchData() {
     try {
-      const response = await axios.get(`http://localhost:3000/api/v1/products/${id}`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/products/${id}`);
+
       setProduct(response.data);
     } catch (error) {
       setError(true);
@@ -41,9 +42,10 @@ const ProductDetailPage = () => {
             </Col>
           </Row>
         </Container>
+        <br />
 
-        <h2 style={{ textAlign: 'center', marginTop: '70px' }}>See Similar Products</h2>
-        {product.categories && <SimilarProducts product={product} />}
+        {/*<h2 style={{ textAlign: 'center', marginTop: '70px' }}>See Similar Products</h2>*/}
+        {/*{product.categories && <SimilarProducts product={product} />}*/}
         {<SeeWhatNew />}
       </>
     );

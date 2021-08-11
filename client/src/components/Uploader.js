@@ -1,7 +1,7 @@
 import axios from 'axios';
-import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { Form, Button } from 'react-bootstrap';
 
 const Uploader = ({ data }) => {
   const history = useHistory();
@@ -15,6 +15,7 @@ const Uploader = ({ data }) => {
 
   const handleClick = async () => {
     const isFilled = Object.keys(data).every((key) => data[key]);
+
     try {
       if (!selectedFiles || !isFilled) return;
 

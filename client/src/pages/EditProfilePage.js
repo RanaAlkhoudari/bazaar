@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import EditProfile from '../components/EditProfile';
 import { AuthContext } from '../context/AuthContext';
@@ -11,12 +11,14 @@ const EditProfilePage = () => {
 
   useEffect(() => {
     fetchUser();
-  }, []);
+  }, [user._id]);
 
   const fetchUser = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/v1/users/${user._id}`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/users/${user._id}`);
+
       setUserFromDB(response.data);
+
       setIsLoading(false);
     } catch (error) {
       console.log(error);

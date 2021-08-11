@@ -1,12 +1,13 @@
-import React, { useContext } from 'react';
+import NotifyIcon from './NotifyIcon';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
 import { AiFillStar } from 'react-icons/ai';
 import { AuthContext } from '../context/AuthContext';
-import NotifyIcon from './NotifyIcon';
 
 const ProductList = (props) => {
   const sortedProducts = props.products;
+
   const { user, currentUser } = useContext(AuthContext);
 
   return (

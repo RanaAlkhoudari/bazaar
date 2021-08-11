@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
+import { FaRegEye } from 'react-icons/fa';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
-import { FaRegEye } from 'react-icons/fa';
 
 const Notifications = ({ notifications }) => {
   const monthNames = [
@@ -19,10 +19,11 @@ const Notifications = ({ notifications }) => {
     'November',
     'December',
   ];
+
   const deleteNotifyButton = async (e) => {
     const notificationId = e.target.id;
     try {
-      await axios.delete(`http://localhost:3000/api/v1/notifications/${notificationId}`);
+      await axios.delete(`${process.env.REACT_APP_API_URL}/notifications/${notificationId}`);
     } catch (error) {
       console.error(`Error ${error}`);
     }
@@ -30,14 +31,16 @@ const Notifications = ({ notifications }) => {
   const readNotifyButton = async (e) => {
     const notificationId = e.target.id;
     try {
-      await axios.patch(`http://localhost:3000/api/v1/notifications/${notificationId}`);
+      await axios.patch(`${process.env.REACT_APP_API_URL}/notifications/${notificationId}`);
       e.target.hidden = true;
     } catch (error) {
       console.error(`Error ${error}`);
     }
   };
+
+  let notificationsItems;
   if (notifications) {
-    const notificationsItems = notifications.map((notification) => {
+    notificationsItems = notifications.map((notification) => {
       const date = new Date(notification.createdAt);
       const variant = notification.seen ? 'success' : 'warning';
 

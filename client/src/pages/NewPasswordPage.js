@@ -1,7 +1,8 @@
 import axios from 'axios';
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Card, Form, Alert, Button, Container } from 'react-bootstrap';
+
 const NewPasswordPage = () => {
   const { id } = useParams();
 

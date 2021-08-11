@@ -1,25 +1,27 @@
-import React, { useContext, useRef } from 'react';
-import { Link, useHistory } from 'react-router-dom';
 import { loginCall } from '../apiCalls';
+import GoogleSignIn from './GoogleSignIn';
+import { useContext, useRef } from 'react';
+import FacebookSignIn from './FacebookSignIn';
+import { Link, useHistory } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import { Container, Form, Button, Card, Alert } from 'react-bootstrap';
-import FacebookSignIn from './FacebookSignIn';
-import GoogleSignIn from './GoogleSignIn';
 
 const SignIn = () => {
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  const { error, dispatch, user } = useContext(AuthContext);
   const history = useHistory();
 
-  if (user) {
-    history.push('/');
-  }
+  const emailRef = useRef();
+  const passwordRef = useRef();
+
+  const { error, dispatch, user } = useContext(AuthContext);
+
+  if (user) history.push('/');
 
   async function handleLogin(e) {
     e.preventDefault();
+
     loginCall({ email: emailRef.current.value, password: passwordRef.current.value }, dispatch);
-  }
+  };
+
   return (
     <Container
       className="d-flex align-items-center justify-content-center "

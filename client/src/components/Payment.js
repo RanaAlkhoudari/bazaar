@@ -55,7 +55,7 @@ const PaymentForm = ({ product, shippingAddress }) => {
 
         if (response.data.success) {
           setSuccess(true);
-          sendNotification();
+          await sendNotification();
           document.getElementById('addresses_dropdown').disabled = true;
         }
       } catch (error) {
@@ -69,7 +69,7 @@ const PaymentForm = ({ product, shippingAddress }) => {
   };
   const sendNotification = async () => {
     try {
-      await axios.post(`http://localhost:3000/api/v1/notifications/add`, {
+      await axios.post(`${process.env.REACT_APP_API_URL}/notifications/add`, {
         user: product.user,
         type: 'payment',
         text: `the user ${user.first_name} ${user.last_name} has successfully paid for your product ${product.title}`,

@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import emailjs from 'emailjs-com';
-import { Form, Button, Container } from 'react-bootstrap';
-const { REACT_APP_SERVICE_ID, REACT_APP_TEMPLATE_ID, REACT_APP_USER_ID } = process.env;
+import {Form, Button, Container, Alert} from 'react-bootstrap';
+
 
 const ContactUsPage = () => {
+  const [success, setSuccess] = useState(false)
+
+  const { REACT_APP_SERVICE_ID, REACT_APP_TEMPLATE_ID, REACT_APP_USER_ID } = process.env;
+
   async function sendEmail(e) {
     e.preventDefault();
 
@@ -16,6 +20,8 @@ const ContactUsPage = () => {
       );
 
       e.target.reset();
+
+      setSuccess(true);
     } catch (err) {
       console.log(err);
     }
@@ -53,6 +59,8 @@ const ContactUsPage = () => {
           Submit
         </Button>
       </Form>
+
+      {success && <Alert variant="success">Your email has been sent successfully.</Alert>}
     </Container>
   );
 };

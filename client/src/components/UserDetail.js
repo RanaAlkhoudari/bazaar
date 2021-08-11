@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Card, Button } from 'react-bootstrap';
 import noImage from '../images/noImage.png';
+import { useState, useEffect } from 'react';
+import { Card, Button } from 'react-bootstrap';
 
 const UserDetail = ({ product }) => {
   const [user, setUser] = useState('');
 
   useEffect(() => {
     fetchUser();
-  }, [user]);
+  }, [product.user]);
 
   async function fetchUser() {
     try {
-      const response = await axios.get(`http://localhost:3000/api/v1/users/${product.user}`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/users/${product.user}`);
+
       setUser(response.data);
     } catch (error) {
       console.log(error);
