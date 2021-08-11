@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Container, Col, Row } from 'react-bootstrap';
-import SeeWhatNew from '../components/SeeWhatNew';
 
 import axios from 'axios';
 import ProductList from '../components/ProductList';
@@ -12,12 +11,13 @@ const Products = () => {
   const [products, setProducts] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
   const [state, setState] = useState(false);
-  const { keyword } = useParams();
+  const [sameCategory, setSameCategory] = useState(null);
+  let { keyword } = useParams();
 
   useEffect(() => {
     fetchData();
     fetchDataKeyword();
-  }, [keyword]);
+  }, [keyword, sameCategory]);
 
   useEffect(() => {
     fetchData();
@@ -111,7 +111,7 @@ const Products = () => {
         <Row>
           <Col xs={12} md={4} lg={3}>
             <div>
-              <Category />
+              <Category setSameCategory={setSameCategory} />
             </div>
           </Col>
           <Col xs={12} md={8} lg={9}>
