@@ -1,6 +1,6 @@
-import axios from 'axios';
-import ProductList from './ProductList';
-import { useState, useEffect } from 'react';
+import axios from "axios";
+import ProductList from "./ProductList";
+import { useState, useEffect } from "react";
 
 const SeeWhatNew = () => {
   const [products, setProducts] = useState([]);
@@ -15,7 +15,9 @@ const SeeWhatNew = () => {
   }, []);
   async function fetchData() {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/products`);
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/products`
+      );
 
       setProducts(response.data);
     } catch (error) {
@@ -24,7 +26,7 @@ const SeeWhatNew = () => {
   }
   return (
     <div>
-      <h2 style={{ textAlign: 'center' }}>See Whats New</h2>
+      <h2 style={{ textAlign: "center" }}>See What's New</h2>
       <ProductList products={sortedProductsByDate} />
     </div>
   );
