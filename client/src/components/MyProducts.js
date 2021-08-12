@@ -10,26 +10,29 @@ const MyProducts = () => {
 
   async function fetchUser() {
     try {
-      const response = await axios.get(`http://localhost:3000/api/v1/users/${user._id}`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/users/${user._id}`);
+
       setUserData(response.data.products);
     } catch (error) {
       console.log(error);
     }
-  }
+  };
+
   async function deleteProduct(id) {
     try {
-      const response = await axios.delete(`http://localhost:3000/api/v1/products/${id}`);
-      const filteredProducts = userData.filter((filteredProduct) => {
-        return filteredProduct._id !== id;
-      });
+      await axios.delete(`${process.env.REACT_APP_API_URL}/products/${id}`);
+
+      const filteredProducts = userData.filter((filteredProduct) => filteredProduct._id !== id);
+
       setUserData(filteredProducts);
     } catch (error) {
       console.log(error);
     }
-  }
+  };
+
   useEffect(() => {
     fetchUser();
-  }, []);
+  }, [user]);
 
   return (
     <div className="d-flex flex-wrap justify-content-center">

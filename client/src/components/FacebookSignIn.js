@@ -1,19 +1,20 @@
-import React, { useContext } from 'react';
 import axios from 'axios';
+import { useContext } from 'react';
+import { Card } from 'react-bootstrap';
 import { FaFacebookF } from 'react-icons/fa';
 import { useHistory } from 'react-router-dom';
-import { Card } from 'react-bootstrap';
 import FacebookLogin from 'react-facebook-login';
 import { AuthContext } from '../context/AuthContext';
 
 function FacebookSignIn() {
-  const { dispatch } = useContext(AuthContext);
   const history = useHistory();
+
+  const { dispatch } = useContext(AuthContext);
 
   async function responseFacebook(response) {
     const res = await axios({
       method: 'POST',
-      url: 'http://localhost:3000/api/v1/users/facebookLogin',
+      url: `${process.env.REACT_APP_API_URL}/users/facebookLogin`,
       data: {
         accessToken: response.accessToken,
         userID: response.userID,

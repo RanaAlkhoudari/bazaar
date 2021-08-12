@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import { Col } from 'react-bootstrap';
 import CardRow from './CardRow';
-import { Button } from 'react-bootstrap';
-import Tabs from 'react-bootstrap/Tabs';
+import { Col } from 'react-bootstrap';
 import Tab from 'react-bootstrap/Tab';
+import { Link } from 'react-router-dom';
+import Tabs from 'react-bootstrap/Tabs';
+import { Button } from 'react-bootstrap';
+import { useState, useEffect } from 'react';
 
 function AdminPanel() {
   const [products, setProducts] = useState([]);
-  const [verifiedProduct, setVerifiedProduct] = useState({});
   const [checkVerified, setCheckVerified] = useState(null);
+  const [verifiedProduct, setVerifiedProduct] = useState({});
 
   useEffect(() => {
     fetchData();
@@ -18,7 +18,8 @@ function AdminPanel() {
 
   async function fetchData() {
     try {
-      const response = await axios.get(`http://localhost:3000/api/v1/products`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/products`);
+
       setProducts(response.data);
     } catch (error) {
       console.log(error);
@@ -32,9 +33,12 @@ function AdminPanel() {
 
   const acceptProduct = async (e) => {
     const productID = e.target.id;
+
     try {
-      await axios.patch(`http://localhost:3000/api/v1/products/${productID}`).then((response) => {
+      await axios.patch(`${process.env.REACT_APP_API_URL}/products/${productID}`).then((response) => {
+
         setVerifiedProduct(response.data);
+
         setCheckVerified(verifiedProduct.verified);
       });
     } catch (error) {
@@ -72,7 +76,7 @@ function AdminPanel() {
             </Button>
           </div>
         );
-      case null:
+      default:
         return (
           <div>
             <Button

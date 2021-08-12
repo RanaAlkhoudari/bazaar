@@ -40,17 +40,22 @@ const MyAccountPage = () => {
 
   useEffect(() => {
     fetchUser();
+
     const timer = setTimeout(() => {
       setToggle((toggle) => !toggle);
     }, 5000);
+
     return () => clearTimeout(timer);
-  }, [toggle]);
+  }, [toggle, user._id]);
 
   const fetchUser = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/v1/users/${user._id}`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/users/${user._id}`);
+
       setUserFromDB(response.data);
+
       setIsLoaded(true);
+
       setErr(false);
     } catch (error) {
       console.log(error);
@@ -61,7 +66,7 @@ const MyAccountPage = () => {
 
   if (!isLoaded && !err) {
     return (
-      <img src={LoadingImage} style={{ margin: '0 auto', display: 'block', height: '65vh' }} />
+      <img src={LoadingImage} alt="" style={{ margin: '0 auto', display: 'block', height: '65vh' }} />
     );
   }
 

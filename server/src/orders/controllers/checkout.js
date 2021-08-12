@@ -1,7 +1,7 @@
 require('dotenv').config();
 const stripe = require('stripe')(process.env.STRIPE_SECRET_TEST);
 const Order = require('../orderModel');
-const User = require('../../users/userModel');
+const { User } = require('../../users/userModel');
 
 const checkout = async (req, res) => {
   try {

@@ -10,7 +10,7 @@ const AddressesDropdown = ({ getShippingAddress }) => {
   const [addresses, setAddresses] = useState(null);
   const [shippingAddress, setShippingAddress] = useState(null);
 
-  useEffect(() => fetchAddresses(), [shippingAddress]);
+  useEffect(() => fetchAddresses(), [shippingAddress, user._id]);
 
   const fetchAddresses = async () => {
     const response = await axios.get(`${process.env.REACT_APP_API_URL}/addresses/all/${user._id}`);

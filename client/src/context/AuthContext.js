@@ -1,11 +1,13 @@
-import React, { createContext, useEffect, useReducer, useState, useContext } from 'react';
-import AuthReducer from './AuthReducer';
 import axios from 'axios';
+import AuthReducer from './AuthReducer';
+import { createContext, useEffect, useReducer, useState } from 'react';
+
 const INITIAL_STATE = {
   user: JSON.parse(localStorage.getItem(`user`)) || null,
   isFetching: false,
   error: false,
 };
+
 const AuthContext = createContext(INITIAL_STATE);
 
 const AuthContextProvider = ({ children }) => {
@@ -22,6 +24,7 @@ const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     if (user) {
       setAddedFave(user.favorites);
+
       setCurrentUser(user);
     }
   }, [user]);
@@ -36,6 +39,7 @@ const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     localStorage.setItem(`user`, JSON.stringify(state.user));
   }, [state.user]);
+
   useEffect(() => {
     localStorage.setItem(`user`, JSON.stringify(currentUser));
   }, [currentUser]);
@@ -46,7 +50,7 @@ const AuthContextProvider = ({ children }) => {
     try {
       newF = addedFave.filter((item) => item !== _id);
       const newFavorites = [...newF, _id];
-      const response = await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, {
+      const response = await axios.patch(`${process.env.REACT_APP_API_URL}/users/update/${user._id}`, {
         favorites: newFavorites,
       });
       setAddedFave(newFavorites);
@@ -63,7 +67,7 @@ const AuthContextProvider = ({ children }) => {
     const newList = currentUser.favorites.filter((item) => item !== _id);
 
     try {
-      const response = await axios.patch(`http://localhost:3000/api/v1/users/update/${user._id}`, {
+      const response = await axios.patch(`${process.env.REACT_APP_API_URL}/users/update/${user._id}`, {
         favorites: newList,
       });
 

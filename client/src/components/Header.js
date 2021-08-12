@@ -1,16 +1,17 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
-import { AuthContext } from '../context/AuthContext';
-import { useHistory } from 'react-router-dom';
-import Search from './Search';
 import axios from 'axios';
-import { Route } from 'react-router-dom';
+import Search from './Search';
 import logo from '../images/bzar1.png';
+import { Route } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
+import { useState, useEffect, useContext } from 'react';
+import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 
 const Header = () => {
-  const [categories, setCategories] = useState([]);
-  const { user, searchBar } = useContext(AuthContext);
   const history = useHistory();
+
+  const { user, searchBar } = useContext(AuthContext);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     fetchCategories();
@@ -18,7 +19,8 @@ const Header = () => {
 
   async function fetchCategories() {
     try {
-      const res = await axios.get(`http://localhost:3000/api/v1/categories`);
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/categories`);
+
       setCategories(res.data);
     } catch (error) {
       console.log(error);

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const createUserModel = require('./users/userModel');
+const { User } = require('./users/userModel');
 
 class DbError extends Error {}
 
@@ -23,7 +23,7 @@ async function loadDb() {
 }
 
 function loadModels(db) {
-  createUserModel(db);
+  User(db);
 }
 
 exports.loadDb = loadDb;

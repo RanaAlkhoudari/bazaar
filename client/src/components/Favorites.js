@@ -1,8 +1,8 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { AuthContext } from '../context/AuthContext';
-import { Card, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { Card, Button } from 'react-bootstrap';
+import { AuthContext } from '../context/AuthContext';
+import React, { useContext, useState, useEffect } from 'react';
 
 const Favorites = () => {
   const { currentUser } = useContext(AuthContext);
@@ -27,7 +27,8 @@ const FaveList = (favorite) => {
 
   async function fetchFave(favorite) {
     try {
-      const response = await axios.get(`http://localhost:3000/api/v1/products/${favorite}`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/products/${favorite}`);
+
       setFave(response.data);
     } catch (error) {
       console.log(error);

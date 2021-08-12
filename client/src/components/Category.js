@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+import { useState, useEffect } from 'react';
 
 const Category = ({ setFiltersPanel }) => {
   const [categories, setCategories] = useState([]);
@@ -13,7 +13,8 @@ const Category = ({ setFiltersPanel }) => {
 
   async function fetchCategories() {
     try {
-      const res = await axios.get(`http://localhost:3000/api/v1/categories`);
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/categories`);
+
       setCategories(res.data);
     } catch (error) {
       console.log(error);

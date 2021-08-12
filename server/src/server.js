@@ -1,6 +1,6 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-
 const { loadDb } = require('./db');
 const { handleErrors } = require('./middlewares/errors');
 const userRouter = require('./users/userRouter');
@@ -8,17 +8,12 @@ const productRouter = require('./products/productRouter');
 const categoryRouter = require('./categories/categoryRouter');
 const addressRouter = require('./addresses/addressRouter');
 const orderRouter = require('./orders/orderRouter');
+const resetPassword = require('./reset-password/resetPassword');
 const notificationRouter = require('./notifications/notificationRouter');
-
-require('dotenv').config();
 
 const app = express();
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
-
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config();
-}
 
 async function run() {
   await loadDb();
@@ -32,6 +27,7 @@ async function run() {
   app.use('/api/v1/categories', categoryRouter);
   app.use('/api/v1/addresses', addressRouter);
   app.use('/api/v1/orders', orderRouter);
+  app.use('/api/v1/reset-password', resetPassword);
   app.use('/api/v1/notifications', notificationRouter);
 
   // handleErrors must be the last middleware
