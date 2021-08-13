@@ -17,7 +17,7 @@ const GoogleSignIn = () => {
       url: `${process.env.REACT_APP_API_URL}/users/googleLogin`,
       data: {
         accessToken: response.accessToken,
-        userID: response.Zb.id_token,
+        userID: response.tokenId,
         email: response.profileObj.email,
       },
     });
