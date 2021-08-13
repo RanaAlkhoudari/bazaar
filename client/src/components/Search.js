@@ -14,6 +14,8 @@ const Search = ({ setTest }) => {
     } else {
       history.push('/');
     }
+
+    setKeyword('');
   };
 
   return (
@@ -25,6 +27,7 @@ const Search = ({ setTest }) => {
       <InputGroup className="mb-3" style={{ width: '50%', margin: '0 auto' }}>
         <FormControl
           aria-describedby="basic-addon2"
+          value={keyword}
           placeholder="search products"
           onChange={(e) => setKeyword(e.target.value)}
         />
