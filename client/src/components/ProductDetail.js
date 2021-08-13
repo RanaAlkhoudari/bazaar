@@ -8,9 +8,7 @@ import { Card, Button, Row, Col, Alert } from 'react-bootstrap';
 
 const ProductDetail = ({ product }) => {
   const history = useHistory();
-
   const [signedIn, setSignedIn] = useState(false);
-
   const { addFavorite, deleteFavorite } = useContext(AuthContext);
   const { user, currentUser, setSearchBar } = useContext(AuthContext);
 
@@ -44,13 +42,19 @@ const ProductDetail = ({ product }) => {
           {signedIn && <Alert variant="danger">Please Sing In</Alert>}
           <Row>
             <Col>
-              <Card.Img style={{ minWidth: '250px' }} src={product.images} alt={product.title} />
+              <Card.Img
+                style={{ minWidth: '250px' }}
+                src={product.images}
+                alt={product.title}
+              />
             </Col>
             <Col>
               <Card.Title>{product.title}</Card.Title>
               <NotifyIcon product={product.verified} />
               <Card.Text>{product.price} € </Card.Text>
-              <Card.Text style={{ textAlign: 'left' }}>{product.description}</Card.Text>
+              <Card.Text style={{ textAlign: 'left' }}>
+                {product.description}
+              </Card.Text>
               <Row>
                 {' '}
                 <Col>
@@ -64,7 +68,8 @@ const ProductDetail = ({ product }) => {
                     >
                       <AiFillStar style={{ color: 'yellow' }} />
                     </Button>
-                  ) : currentUser && currentUser.favorites.includes(product._id) ? (
+                  ) : currentUser &&
+                    currentUser.favorites.includes(product._id) ? (
                     <Button
                       className="w-100"
                       style={{ backgroundColor: 'var(--color-main)' }}
@@ -91,7 +96,12 @@ const ProductDetail = ({ product }) => {
                   <Button
                     className="w-100"
                     style={{ backgroundColor: 'var(--color-main)' }}
-                    onClick={goToCheckout}
+                    onClick={
+                      (goToCheckout,
+                      () => {
+                        setSignedIn(true);
+                      })
+                    }
                   >
                     Buy
                   </Button>
