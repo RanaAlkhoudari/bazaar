@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 
-const Category = ({ setFiltersPanel }) => {
+const Category = ({ setSameCategory }) => {
   const [categories, setCategories] = useState([]);
   const [categoryName, setCategoryName] = useState('');
 
@@ -13,7 +13,9 @@ const Category = ({ setFiltersPanel }) => {
 
   async function fetchCategories() {
     try {
-      const res = await axios.get(`${process.env.REACT_APP_API_URL}/categories`);
+      const res = await axios.get(
+        `${process.env.REACT_APP_API_URL}/categories`,
+      );
 
       setCategories(res.data);
     } catch (error) {
@@ -23,6 +25,7 @@ const Category = ({ setFiltersPanel }) => {
 
   const handleCategory = (category) => {
     setCategoryName(category);
+    setSameCategory((prev) => prev + 1);
   };
 
   return (
@@ -39,7 +42,7 @@ const Category = ({ setFiltersPanel }) => {
               <div key={category._id} className=" p-3 text-center">
                 <Link to={`/products/${category.name}`}>
                   <Button
-                    onClick={() => handleCategory(category, setFiltersPanel)}
+                    onClick={() => handleCategory(category)}
                     style={{
                       color: 'var(--color-main)',
                       background: 'var(--color-light-grey)',

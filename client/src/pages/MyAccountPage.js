@@ -50,7 +50,9 @@ const MyAccountPage = () => {
 
   const fetchUser = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/users/${user._id}`);
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/users/${user._id}`,
+      );
 
       setUserFromDB(response.data);
 
@@ -66,7 +68,11 @@ const MyAccountPage = () => {
 
   if (!isLoaded && !err) {
     return (
-      <img src={LoadingImage} alt="" style={{ margin: '0 auto', display: 'block', height: '65vh' }} />
+      <img
+        src={LoadingImage}
+        alt=""
+        style={{ margin: '0 auto', display: 'block', height: '15vh' }}
+      />
     );
   }
 
@@ -88,7 +94,13 @@ const MyAccountPage = () => {
       </style>
       {isLoaded && !err ? (
         <Container>
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1em' }}>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              marginBottom: '1em',
+            }}
+          >
             <h1>My Account</h1>
           </div>
           <Tabs justify defaultActiveKey="myProducts" transition={false}>
@@ -115,7 +127,9 @@ const MyAccountPage = () => {
                 <React.Fragment>
                   Notifications
                   {userFromDB.notifications.length > 0 ? (
-                    <span style={styles[0]}>{userFromDB.notifications.length}</span>
+                    <span style={styles[0]}>
+                      {userFromDB.notifications.length}
+                    </span>
                   ) : (
                     <></>
                   )}
@@ -124,7 +138,9 @@ const MyAccountPage = () => {
             >
               <>
                 <Notifications
-                  notifications={isLoaded ? userFromDB.notifications.reverse() : <></>}
+                  notifications={
+                    isLoaded ? userFromDB.notifications.reverse() : <></>
+                  }
                 />
               </>
             </Tab>

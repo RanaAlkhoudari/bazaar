@@ -8,7 +8,7 @@ import { AuthContext } from '../context/AuthContext';
 const ProductList = (props) => {
   const sortedProducts = props.products;
 
-  const { user, currentUser } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
 
   return (
     <>
@@ -16,7 +16,11 @@ const ProductList = (props) => {
         {sortedProducts.length !== 0 &&
           sortedProducts.map((product) => {
             return (
-              <Card className="m-3" style={{ width: '15rem' }} key={product._id}>
+              <Card
+                className="m-3"
+                style={{ width: '15rem' }}
+                key={product._id}
+              >
                 <Link to={`/${product._id}`} style={{ textDecoration: 'none' }}>
                   <Card.Img
                     variant="top"
@@ -29,14 +33,22 @@ const ProductList = (props) => {
                   />
                   <Card.Body style={{ color: 'var(--color-main)' }}>
                     <Card.Title>
-                      {product.title[0].toUpperCase() + product.title.substring(1)}
+                      {product.title[0].toUpperCase() +
+                        product.title.substring(1)}
                     </Card.Title>
                     <Card.Text>{product.price} €</Card.Text>
                     <Card.Text>
                       <NotifyIcon product={product.verified} />
                     </Card.Text>
-                    {currentUser && currentUser.favorites.includes(product._id) ? (
-                      <AiFillStar style={{ color: 'red', float: 'right', marginTop: '-70px' }} />
+                    {currentUser &&
+                    currentUser.favorites.includes(product._id) ? (
+                      <AiFillStar
+                        style={{
+                          color: 'red',
+                          float: 'right',
+                          marginTop: '-70px',
+                        }}
+                      />
                     ) : null}
                   </Card.Body>
                 </Link>
