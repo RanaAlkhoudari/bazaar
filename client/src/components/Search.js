@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 const Search = ({ setTest }) => {
   const [keyword, setKeyword] = useState('');
   const history = useHistory();
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -13,13 +14,20 @@ const Search = ({ setTest }) => {
     } else {
       history.push('/');
     }
+
+    setKeyword('');
   };
 
   return (
-    <Form onSubmit={handleSubmit} style={{ margin: '5px auto' }}>
+    <Form
+      onSubmit={handleSubmit}
+      style={{ margin: '5px auto' }}
+      id="search-bar"
+    >
       <InputGroup className="mb-3" style={{ width: '50%', margin: '0 auto' }}>
         <FormControl
           aria-describedby="basic-addon2"
+          value={keyword}
           placeholder="search products"
           onChange={(e) => setKeyword(e.target.value)}
         />

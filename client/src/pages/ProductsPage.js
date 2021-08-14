@@ -18,9 +18,9 @@ const Products = () => {
     fetchDataKeyword();
   }, [keyword]);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
   const fetchDataKeyword = async () => {
     try {
@@ -38,7 +38,9 @@ const Products = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/products`);
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/products`,
+      );
 
       const { data } = response;
 
@@ -51,39 +53,47 @@ const Products = () => {
   };
 
   const productsByCategory = allProducts.filter(
-    (product) => product.categories.length > 0 && product.categories[0].name === keyword,
+    (product) =>
+      product.categories.length > 0 && product.categories[0].name === keyword,
   );
 
   const handlePriceRange = (lowPrice, highPrice) => {
     const priceRange = productsByCategory.filter(
-      (item) => item.price >= Number(lowPrice) && item.price <= Number(highPrice),
+      (item) =>
+        item.price >= Number(lowPrice) && item.price <= Number(highPrice),
     );
     setState(true);
     setProducts(priceRange);
   };
 
   const handleState = (state) => {
-    const stateList = productsByCategory.filter((item) => item.condition === state);
+    const stateList = productsByCategory.filter(
+      (item) => item.condition === state,
+    );
     setState(true);
     setProducts(stateList);
   };
 
   const oldNewProducts = () => {
-    const sortedOldNew = productsByCategory.sort(function sortProductsByDateDesc(a, b) {
-      const dateA = new Date(a.createdAt),
-        dateB = new Date(b.createdAt);
-      return dateA - dateB;
-    });
+    const sortedOldNew = productsByCategory.sort(
+      function sortProductsByDateDesc(a, b) {
+        const dateA = new Date(a.createdAt),
+          dateB = new Date(b.createdAt);
+        return dateA - dateB;
+      },
+    );
     setState(true);
     setProducts(sortedOldNew);
   };
 
   const newOldProducts = () => {
-    const sortedNewOld = productsByCategory.sort(function sortProductsByDateDesc(a, b) {
-      const dateA = new Date(a.createdAt),
-        dateB = new Date(b.createdAt);
-      return dateB - dateA;
-    });
+    const sortedNewOld = productsByCategory.sort(
+      function sortProductsByDateDesc(a, b) {
+        const dateA = new Date(a.createdAt),
+          dateB = new Date(b.createdAt);
+        return dateB - dateA;
+      },
+    );
     setState(true);
     setProducts(sortedNewOld);
   };
@@ -119,15 +129,17 @@ const Products = () => {
           </Col>
           <Col xs={12} md={8} lg={9}>
             <div>
-              {products.length === 0 && productsByCategory.length !== 0 && !state && (
-                <ProductList products={productsByCategory} />
-              )}
+              {products.length === 0 &&
+                productsByCategory.length !== 0 &&
+                !state && <ProductList products={productsByCategory} />}
 
               {products.length !== 0 && productsByCategory.length !== 0 && (
                 <ProductList products={products} />
               )}
 
-              {products.length !== 0 && !state && <ProductList products={products} />}
+              {products.length !== 0 && !state && (
+                <ProductList products={products} />
+              )}
 
               {products.length === 0 && state && (
                 <h1 className="text-center margin-t-3">No Items Available</h1>

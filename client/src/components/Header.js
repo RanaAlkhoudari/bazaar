@@ -19,7 +19,9 @@ const Header = () => {
 
   async function fetchCategories() {
     try {
-      const res = await axios.get(`${process.env.REACT_APP_API_URL}/categories`);
+      const res = await axios.get(
+        `${process.env.REACT_APP_API_URL}/categories`,
+      );
 
       setCategories(res.data);
     } catch (error) {
@@ -38,7 +40,12 @@ const Header = () => {
 
   return (
     <>
-      <Navbar collapseOnSelect expand="lg" variant="light" style={{ background: 'teal' }}>
+      <Navbar
+        collapseOnSelect
+        expand="lg"
+        variant="light"
+        style={{ background: 'teal' }}
+      >
         <Container>
           <Navbar.Brand href="/">
             <img
@@ -51,7 +58,11 @@ const Header = () => {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto" style={{ color: 'var(--color-main)' }}>
               <NavDropdown
-                title={<span style={{ color: 'var(--color-light)' }}>Categories</span>}
+                title={
+                  <span style={{ color: 'var(--color-light)' }}>
+                    Categories
+                  </span>
+                }
                 id="nav-dropdown"
               >
                 {categories.map((category) => {
@@ -85,20 +96,33 @@ const Header = () => {
 
             <Nav>
               {user ? (
-                <Nav.Link href={`/account`} style={{ color: 'var(--color-light)' }}>
+                <Nav.Link
+                  href={`/account`}
+                  style={{ color: 'var(--color-light)' }}
+                >
                   My Account
                 </Nav.Link>
               ) : (
-                <Nav.Link href="/signup" style={{ color: 'var(--color-light)' }}>
+                <Nav.Link
+                  href="/signup"
+                  style={{ color: 'var(--color-light)' }}
+                >
                   Sign Up
                 </Nav.Link>
               )}
               {user ? (
-                <Nav.Link href="/" onClick={handleLogout} style={{ color: 'var(--color-light)' }}>
+                <Nav.Link
+                  href="/"
+                  onClick={handleLogout}
+                  style={{ color: 'var(--color-light)' }}
+                >
                   Sign Out
                 </Nav.Link>
               ) : (
-                <Nav.Link href="/signin" style={{ color: 'var(--color-light)' }}>
+                <Nav.Link
+                  href="/signin"
+                  style={{ color: 'var(--color-light)' }}
+                >
                   Sign In
                 </Nav.Link>
               )}
@@ -106,7 +130,9 @@ const Header = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      {searchBar && <Route render={({ history }) => <Search history={history} />} />}
+      {searchBar && (
+        <Route render={({ history }) => <Search history={history} />} />
+      )}
     </>
   );
 };
