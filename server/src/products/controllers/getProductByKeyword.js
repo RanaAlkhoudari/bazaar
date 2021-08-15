@@ -4,7 +4,9 @@ async function GetProductByKeyword(req, res) {
   const name = req.params.keyword.toLowerCase();
 
   try {
-    const product = await ProductModel.find({ title: { $regex: `.*${name}.*` } })
+    const product = await ProductModel.find({
+      title: { $regex: `.*${name}.*` },
+    })
       .limit(30)
       .populate('categories');
 

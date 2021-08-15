@@ -18,6 +18,7 @@
     "axios": "^0.21.1",
     "bootstrap": "^5.1.0",
     "emailjs-com": "^3.2.0",
+    "eslint-plugin-react-hooks": "^4.2.1-alpha-e4e8226c6-20210812",
     "google-auth-library": "^7.5.0",
     "mongoose": "^5.13.6",
     "multiselect-react-dropdown": "^2.0.5",
@@ -46,7 +47,9 @@
     "extends": [
       "react-app",
       "react-app/jest"
+     
     ]
+
   },
   "browserslist": {
     "production": [

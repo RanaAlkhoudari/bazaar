@@ -5,32 +5,39 @@ import { useParams } from 'react-router-dom';
 import Category from '../components/Category';
 import ProductList from '../components/ProductList';
 import { Container, Col, Row } from 'react-bootstrap';
+import LoadingImage from '../images/Loading.gif';
 
 const Products = () => {
   const { keyword } = useParams();
-
+  const [sameCategory, setSameCategory] = useState(null);
   const [state, setState] = useState(false);
   const [products, setProducts] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
+  const [noResult, setNoResult] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    fetchDataKeyword(keyword);
+  }, [keyword, sameCategory]);
 
   useEffect(() => {
     fetchData();
-    fetchDataKeyword();
-  }, [keyword]);
+  }, [sameCategory]);
 
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
-
-  const fetchDataKeyword = async () => {
+  const fetchDataKeyword = async (keyword) => {
     try {
+      setLoading(true);
       const response = await axios.get(
         `${process.env.REACT_APP_API_URL}/products/searchedProduct/${keyword}`,
       );
-
       const { data } = response;
+      console.log('data from keyword', data);
 
+      if (data[0] !== undefined) {
+        setNoResult(true);
+      }
       setProducts(data);
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -38,14 +45,14 @@ const Products = () => {
 
   const fetchData = async () => {
     try {
+      setLoading(true);
+
       const response = await axios.get(
         `${process.env.REACT_APP_API_URL}/products`,
       );
-
       const { data } = response;
-
       setState(false);
-
+      setLoading(false);
       setAllProducts(data);
     } catch (error) {
       console.log(error);
@@ -120,37 +127,51 @@ const Products = () => {
         />
       )}
 
-      <Container>
-        <Row>
-          <Col xs={12} md={4} lg={3}>
-            <div>
-              <Category />
-            </div>
-          </Col>
-          <Col xs={12} md={8} lg={9}>
-            <div>
-              {products.length === 0 &&
-                productsByCategory.length !== 0 &&
-                !state && <ProductList products={productsByCategory} />}
-
-              {products.length !== 0 && productsByCategory.length !== 0 && (
-                <ProductList products={products} />
-              )}
-
-              {products.length !== 0 && !state && (
-                <ProductList products={products} />
-              )}
-
-              {products.length === 0 && state && (
-                <h1 className="text-center margin-t-3">No Items Available</h1>
-              )}
-              {products.length === 0 && productsByCategory.length === 0 && (
-                <ProductList products={allProducts} />
-              )}
-            </div>
-          </Col>
-        </Row>
-      </Container>
+      {loading ? (
+        <img
+          src={LoadingImage}
+          alt=""
+          style={{ margin: '0 auto', display: 'block', height: '15vh' }}
+        />
+      ) : (
+        <Container>
+          <Row>
+            <Col xs={12} md={4} lg={3}>
+              <div>
+                <Category setSameCategory={setSameCategory} />
+              </div>
+            </Col>
+            <Col xs={12} md={8} lg={9}>
+              <div>
+                {noResult &&
+                  products.length === 0 &&
+                  productsByCategory.length === 0 && (
+                    <h1 className="text-center margin-t-3">
+                      No Items Available
+                    </h1>
+                  )}
+                {products.length === 0 &&
+                  productsByCategory.length !== 0 &&
+                  !state && <ProductList products={productsByCategory} />}
+                {products.length !== 0 && productsByCategory.length !== 0 && (
+                  <ProductList products={products} />
+                )}
+                {products.length !== 0 && !state && (
+                  <ProductList products={products} />
+                )}
+                {products.length === 0 && state && (
+                  <h1 className="text-center margin-t-3">No Items Available</h1>
+                )}
+                {!noResult &&
+                  products.length === 0 &&
+                  productsByCategory.length === 0 && (
+                    <ProductList products={allProducts} />
+                  )}
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      )}
     </div>
   );
 };
