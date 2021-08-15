@@ -93,18 +93,26 @@ const ProductDetail = ({ product }) => {
                 </Col>
                 <Col>
                   {' '}
-                  <Button
-                    className="w-100"
-                    style={{ backgroundColor: 'var(--color-main)' }}
-                    onClick={
-                      (goToCheckout,
-                      () => {
+                  {user ? (
+                    <Button
+                      className="w-100"
+                      style={{ backgroundColor: 'var(--color-main)' }}
+                      onClick={goToCheckout}
+                    >
+                      Buy
+                    </Button>
+                  ) : (
+                    <Button
+                      className="w-100"
+                      style={{ backgroundColor: 'var(--color-main)' }}
+                      onClick={() => {
                         setSignedIn(true);
-                      })
-                    }
-                  >
-                    Buy
-                  </Button>
+                      }}
+                    >
+                      {' '}
+                      Buy
+                    </Button>
+                  )}
                 </Col>
               </Row>
             </Col>
