@@ -17,13 +17,12 @@ const Products = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetchData();
     fetchDataKeyword(keyword);
   }, [keyword, sameCategory]);
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [sameCategory]);
 
   const fetchDataKeyword = async (keyword) => {
     try {
@@ -32,13 +31,12 @@ const Products = () => {
         `${process.env.REACT_APP_API_URL}/products/searchedProduct/${keyword}`,
       );
       const { data } = response;
+      console.log('data from keyword', data);
 
-      if (data.length === 0) {
+      if (data[0] !== undefined) {
         setNoResult(true);
       }
-
       setProducts(data);
-
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -51,11 +49,7 @@ const Products = () => {
       const response = await axios.get(
         `${process.env.REACT_APP_API_URL}/products`,
       );
-
       const { data } = response;
-
-      setNoResult(false);
-
       setState(false);
       setLoading(false);
       setAllProducts(data);
@@ -148,6 +142,13 @@ const Products = () => {
             </Col>
             <Col xs={12} md={8} lg={9}>
               <div>
+                {noResult &&
+                  products.length === 0 &&
+                  productsByCategory.length === 0 && (
+                    <h1 className="text-center margin-t-3">
+                      No Items Available
+                    </h1>
+                  )}
                 {products.length === 0 &&
                   productsByCategory.length !== 0 &&
                   !state && <ProductList products={productsByCategory} />}
@@ -164,13 +165,6 @@ const Products = () => {
                   products.length === 0 &&
                   productsByCategory.length === 0 && (
                     <ProductList products={allProducts} />
-                  )}{' '}
-                {noResult &&
-                  products.length === 0 &&
-                  productsByCategory.length === 0 && (
-                    <h1 className="text-center margin-t-3">
-                      No Items Available
-                    </h1>
                   )}
               </div>
             </Col>
