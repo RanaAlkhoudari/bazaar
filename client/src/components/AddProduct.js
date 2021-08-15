@@ -23,11 +23,14 @@ const AddProduct = () => {
     fetchCategories();
 
     document.getElementById('add-product-link').style.display = 'none';
+    document.getElementById('search-bar').style.display = 'none';
   }, []);
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/categories`);
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/categories`,
+      );
       const categoryList = response.data.map((category) => category.name);
 
       setCategories(categoryList);
@@ -36,11 +39,16 @@ const AddProduct = () => {
     }
   };
 
-  const handleCityChange = (e) => setValues({ ...values, city: e.target.value });
-  const handleTitleChange = (e) => setValues({ ...values, title: e.target.value });
-  const handlePriceChange = (e) => setValues({ ...values, price: Number(e.target.value) });
-  const handleConditionChange = (e) => setValues({ ...values, condition: e.target.value });
-  const handleDescriptionChange = (e) => setValues({ ...values, description: e.target.value });
+  const handleCityChange = (e) =>
+    setValues({ ...values, city: e.target.value });
+  const handleTitleChange = (e) =>
+    setValues({ ...values, title: e.target.value });
+  const handlePriceChange = (e) =>
+    setValues({ ...values, price: Number(e.target.value) });
+  const handleConditionChange = (e) =>
+    setValues({ ...values, condition: e.target.value });
+  const handleDescriptionChange = (e) =>
+    setValues({ ...values, description: e.target.value });
 
   return (
     <Container
@@ -126,7 +134,6 @@ const AddProduct = () => {
                   style={{ height: '100px' }}
                   onChange={handleDescriptionChange}
                 />
-
               </Form.Group>
               <br />
               <Form.Group>

@@ -13,7 +13,9 @@ const ProductList = (props) => {
   return (
     <>
       <div className="d-flex flex-wrap justify-content-center">
-        {sortedProducts.length !== 0 &&
+        {sortedProducts.length === 0 ? (
+          <h3>Sorry, no results found</h3>
+        ) : (
           sortedProducts.map((product) => {
             return (
               <Card
@@ -54,7 +56,8 @@ const ProductList = (props) => {
                 </Link>
               </Card>
             );
-          })}
+          })
+        )}
       </div>
     </>
   );
