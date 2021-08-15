@@ -21,9 +21,9 @@ const Products = () => {
     fetchDataKeyword(keyword);
   }, [keyword, sameCategory]);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
   const fetchDataKeyword = async (keyword) => {
     try {
@@ -48,6 +48,7 @@ const Products = () => {
   const fetchData = async () => {
     try {
       setLoading(true);
+
       const response = await axios.get(
         `${process.env.REACT_APP_API_URL}/products`,
       );
@@ -132,6 +133,7 @@ const Products = () => {
         />
       )}
 
+
       {loading ? (
         <img
           src={LoadingImage}
@@ -177,6 +179,7 @@ const Products = () => {
           </Row>
         </Container>
       )}
+
     </div>
   );
 };

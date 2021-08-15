@@ -12,7 +12,9 @@ const UserDetail = ({ product }) => {
 
   async function fetchUser() {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/users/${product.user}`);
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/users/${product.user}`,
+      );
 
       setUser(response.data);
     } catch (error) {
@@ -31,9 +33,6 @@ const UserDetail = ({ product }) => {
         <Card.Title>
           {user.first_name} {user.last_name}
         </Card.Title>
-        <Button className="w-100" style={{ backgroundColor: 'var(--color-main)' }}>
-          Send a message
-        </Button>
       </Card.Body>
     </Card>
   );

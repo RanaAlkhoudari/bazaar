@@ -1,6 +1,14 @@
 import axios from 'axios';
 import { useState, useEffect, useRef } from 'react';
-import { Container, Row, Col, Card, Form, Button, Alert } from 'react-bootstrap';
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  Form,
+  Button,
+  Alert,
+} from 'react-bootstrap';
 
 const EditProfile = ({ user }) => {
   const passwordRef = useRef();
@@ -41,28 +49,39 @@ const EditProfile = ({ user }) => {
     try {
       e.preventDefault();
 
-      if (firstNameRef.current.value.length === 0 || lastNameRef.current.value.length === 0) {
+      if (
+        firstNameRef.current.value.length === 0 ||
+        lastNameRef.current.value.length === 0
+      ) {
         setError('Please inter your first and last name');
         setSuccess(false);
         return;
-      };
+      }
 
       if (isUserDataChanged) {
-        await axios.patch(`${process.env.REACT_APP_API_URL}/users/update/${user._id}`, userData);
+        await axios.patch(
+          `${process.env.REACT_APP_API_URL}/users/update/${user._id}`,
+          userData,
+        );
         setIsUserDataChanged(false);
-      };
+      }
 
       if (addressChanged.length > 0) {
-        const addr = addressesData.find((address) => address._id === addressChanged);
-        await axios.patch(`${process.env.REACT_APP_API_URL}/addresses/update/${addressChanged}`, addr);
+        const addr = addressesData.find(
+          (address) => address._id === addressChanged,
+        );
+        await axios.patch(
+          `${process.env.REACT_APP_API_URL}/addresses/update/${addressChanged}`,
+          addr,
+        );
         setAddressChanged('');
-      };
+      }
 
-      if (passwordRef.current.value < 6) {
+      if (passwordRef.current.value.length < 6) {
         setError('Password must include at least six symbols');
         setSuccess(false);
         return;
-      };
+      }
 
       let passwordWithNum = [];
       Object.assign([], passwordRef.current.value).forEach((item) => {
@@ -74,13 +93,13 @@ const EditProfile = ({ user }) => {
         setError('Password must include at least one number');
         setSuccess(false);
         return;
-      };
+      }
 
       setSuccess('Successfully updated!');
       setError(false);
     } catch (err) {
       console.log(err);
-    };
+    }
   };
 
   const [deleteId, setDeleteId] = useState('');
@@ -162,10 +181,7 @@ const EditProfile = ({ user }) => {
       return (
         <div key={address._id}>
           <div>
-            <Container
-              className="d-flex "
-              style={{ maxHeight: '75vh' }}
-            >
+            <Container className="d-flex " style={{ maxHeight: '75vh' }}>
               <Card className="m-3 p-3 " style={{ width: '22rem' }}>
                 <Row>
                   <Col>
@@ -174,7 +190,9 @@ const EditProfile = ({ user }) => {
                   <Col style={{ textAlign: 'right' }}></Col>
                 </Row>
                 <Form.Group>
-                  <Form.Label>Recipient (if the name is different from yours)</Form.Label>
+                  <Form.Label>
+                    Recipient (if the name is different from yours)
+                  </Form.Label>
                   <br />
                   <Form.Label>First Name:</Form.Label>
                   <Form.Control
@@ -352,7 +370,9 @@ const EditProfile = ({ user }) => {
                   onClick={() => {
                     setUserData({
                       ...userData,
-                      addresses: userData.addresses.filter((addr) => addr._id !== address._id),
+                      addresses: userData.addresses.filter(
+                        (addr) => addr._id !== address._id,
+                      ),
                     });
                     setAddressesData((oldArr) =>
                       oldArr.filter((addr) => addr._id !== address._id),
@@ -448,7 +468,9 @@ const EditProfile = ({ user }) => {
         <Card className="m-3 p-3" style={{ width: '22rem' }}>
           <h4>Add new address</h4>
           <Form.Group>
-            <Form.Label>Recipient (if the name is different from yours)</Form.Label>
+            <Form.Label>
+              Recipient (if the name is different from yours)
+            </Form.Label>
             <br />
             <Form.Label>First Name:</Form.Label>
             <Form.Control
@@ -509,7 +531,10 @@ const EditProfile = ({ user }) => {
               type="text"
               value={newAddress.building_number}
               onChange={(e) => {
-                setNewAddress({ ...newAddress, building_number: e.target.value });
+                setNewAddress({
+                  ...newAddress,
+                  building_number: e.target.value,
+                });
               }}
             />
           </Form.Group>
@@ -544,7 +569,11 @@ const EditProfile = ({ user }) => {
               }}
             />
           </Form.Group>
-          <Button className="w-100" type="submit" style={{ background: 'var(--color-main)' }}>
+          <Button
+            className="w-100"
+            type="submit"
+            style={{ background: 'var(--color-main)' }}
+          >
             Add
           </Button>
         </Card>
