@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Form, Button, InputGroup, FormControl } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
-import axios from 'axios';
 
 const Search = () => {
   const [keyword, setKeyword] = useState('');
@@ -15,34 +14,6 @@ const Search = () => {
     } else {
       history.push('/');
     }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async (keyword) => {
-    try {
-      // setLoading(true);
-      const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/products/searchedProduct/${keyword}`,
-      );
-      const { data } = response;
-      console.log('data from keyword', data);
-
-      if (data[0] !== undefined) {
-        // setNoResult(true);
-        console.log('no data');
-        // setTest(false);
-      }
-
-      // setProducts(data);
-      // setLoading(false);
-    } catch (error) {
-      console.log(error);
-    }
-
-    setKeyword('');
   };
 
   return (
