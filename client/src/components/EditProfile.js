@@ -446,6 +446,7 @@ const EditProfile = ({ user }) => {
             <Form.Label>Password:</Form.Label>
             <Form.Control
               type="password"
+              value={userData.password}
               ref={passwordRef}
               onChange={(e) => {
                 setUserData({ ...userData, password: e.target.value });

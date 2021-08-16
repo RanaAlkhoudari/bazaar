@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react';
 
 const Category = ({ setSameCategory }) => {
   const [categories, setCategories] = useState([]);
-  const [categoryName, setCategoryName] = useState('');
 
   useEffect(() => {
     fetchCategories();
@@ -23,8 +22,7 @@ const Category = ({ setSameCategory }) => {
     }
   }
 
-  const handleCategory = (category) => {
-    setCategoryName(category);
+  const handleCategory = (y) => {
     setSameCategory((prev) => prev + 1);
   };
 
@@ -42,7 +40,7 @@ const Category = ({ setSameCategory }) => {
               <div key={category._id} className=" p-3 text-center">
                 <Link to={`/products/${category.name}`}>
                   <Button
-                    onClick={() => handleCategory(category)}
+                    onClick={() => handleCategory()}
                     style={{
                       color: 'var(--color-main)',
                       background: 'var(--color-light-grey)',

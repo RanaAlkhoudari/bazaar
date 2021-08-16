@@ -31,7 +31,6 @@ const Products = () => {
         `${process.env.REACT_APP_API_URL}/products/searchedProduct/${keyword}`,
       );
       const { data } = response;
-      console.log('data from keyword', data);
 
       if (data[0] !== undefined) {
         setNoResult(true);
