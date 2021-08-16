@@ -24,7 +24,7 @@ router.post('/', async (req, res) => {
       }).save();
     }
 
-    const link = `http://localhost:3001/reset-password/${user._id}/${token.token}`;
+    const link = `https://bazaar-client.herokuapp.com/reset-password/${user._id}/${token.token}`;
     await sendEmail(user.email, 'Password reset', link);
 
     res.send('password reset link sent to your email account');
