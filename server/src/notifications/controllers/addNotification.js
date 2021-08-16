@@ -1,5 +1,5 @@
 const Notification = require('../notificationModel');
-const User = require('../../users/userModel');
+const { User } = require('../../users/userModel');
 
 const addNotification = async (req, res) => {
   try {
@@ -7,6 +7,11 @@ const addNotification = async (req, res) => {
 
     const newNotification = new Notification(req.body);
     const saved = await newNotification.save();
+
+    if (!saved)
+    return res
+      .status(400)
+      .json({ success: false, message: 'Unable to add the notification !!!' });
 
     await User.findByIdAndUpdate(user, { $push: { notifications: saved._id } });
 
