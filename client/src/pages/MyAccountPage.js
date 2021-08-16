@@ -1,33 +1,33 @@
-import React, { useState, useEffect, useContext } from 'react';
-import axios from 'axios';
-import { AuthContext } from '../context/AuthContext';
-import AdminPanel from '../components/AdminPanel';
-import Orders from '../components/Orders';
-import Notifications from '../components/Notifications';
-import Favorites from '../components/Favorites';
-import MyProducts from '../components/MyProducts';
-import Profile from '../components/Profile';
-import Tabs from 'react-bootstrap/Tabs';
-import Tab from 'react-bootstrap/Tab';
-import { Container, Alert } from 'react-bootstrap';
-import { GrUserAdmin } from 'react-icons/gr';
-import LoadingImage from '../images/Loading.gif';
+import React, { useState, useEffect, useContext } from "react";
+import axios from "axios";
+import { AuthContext } from "../context/AuthContext";
+import AdminPanel from "../components/AdminPanel";
+import Orders from "../components/Orders";
+import Notifications from "../components/Notifications";
+import Favorites from "../components/Favorites";
+import MyProducts from "../components/MyProducts";
+import Profile from "../components/Profile";
+import Tabs from "react-bootstrap/Tabs";
+import Tab from "react-bootstrap/Tab";
+import { Container, Alert } from "react-bootstrap";
+import { GrUserAdmin } from "react-icons/gr";
+import LoadingImage from "../images/Loading.gif";
 
 const styles = [
   {
-    height: '25px',
-    width: '25px',
-    backgroundColor: 'red',
-    color: 'white',
-    borderRadius: '50%',
-    display: 'inline-block',
-    textAlign: 'center',
-    marginLeft: '0.5rem',
+    height: "25px",
+    width: "25px",
+    backgroundColor: "red",
+    color: "white",
+    borderRadius: "50%",
+    display: "inline-block",
+    textAlign: "center",
+    marginLeft: "0.5rem",
   },
   {
-    maxHeight: '30rem',
-    overflow: 'auto',
-    background: '#fff',
+    maxHeight: "30rem",
+    overflow: "auto",
+    background: "#fff",
   },
 ];
 
@@ -51,7 +51,7 @@ const MyAccountPage = () => {
   const fetchUser = async () => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/users/${user._id}`,
+        `${process.env.REACT_APP_API_URL}/users/${user._id}`
       );
 
       setUserFromDB(response.data);
@@ -71,12 +71,15 @@ const MyAccountPage = () => {
       <img
         src={LoadingImage}
         alt=""
-        style={{ margin: '0 auto', display: 'block', height: '15vh' }}
+        style={{ margin: "0 auto", display: "block", height: "15vh" }}
       />
     );
   }
 
-  const UnseenNotification = userFromDB.notifications.filter ((item) => item.seen === false)
+  const UnseenNotification =
+    userFromDB.notifications
+      ? userFromDB.notifications.filter((item) => item.seen === false)
+      : null;
 
   return (
     <>
@@ -98,9 +101,9 @@ const MyAccountPage = () => {
         <Container>
           <div
             style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              marginBottom: '1em',
+              display: "flex",
+              justifyContent: "space-between",
+              marginBottom: "1em",
             }}
           >
             <h1>My Account</h1>
@@ -129,11 +132,9 @@ const MyAccountPage = () => {
                 <React.Fragment>
                   Notifications
                   {UnseenNotification.length > 0 ? (
-                    <span style={styles[0]}>
-                      {UnseenNotification.length}
-                    </span>
+                    <span style={styles[0]}>{UnseenNotification.length}</span>
                   ) : (
-                    <></> 
+                    <></>
                   )}
                 </React.Fragment>
               }
@@ -184,7 +185,7 @@ const MyAccountPage = () => {
                 style={styles[1]}
                 title={
                   <React.Fragment>
-                    <GrUserAdmin style={{ marginLeft: '6px' }} /> Admin Panel
+                    <GrUserAdmin style={{ marginLeft: "6px" }} /> Admin Panel
                   </React.Fragment>
                 }
               >
