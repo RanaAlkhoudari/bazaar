@@ -76,6 +76,8 @@ const MyAccountPage = () => {
     );
   }
 
+  const UnseenNotification = userFromDB.notifications.filter ((item) => item.seen === false)
+
   return (
     <>
       <style type="text/css">
@@ -126,12 +128,12 @@ const MyAccountPage = () => {
               title={
                 <React.Fragment>
                   Notifications
-                  {userFromDB.notifications.length > 0 ? (
+                  {UnseenNotification.length > 0 ? (
                     <span style={styles[0]}>
-                      {userFromDB.notifications.length}
+                      {UnseenNotification.length}
                     </span>
                   ) : (
-                    <></>
+                    <></> 
                   )}
                 </React.Fragment>
               }
