@@ -38,7 +38,7 @@ function FacebookSignIn() {
     <Card style={{ width: '350px', margin: '0 auto' }}>
       <Card.Header style={{ width: '350px' }}>
         <FacebookLogin
-          appId={process.env.FACEBOOK_APP_ID}
+          appId={process.env.REACT_APP_FACEBOOK_APP_ID}
           autoLoad={false}
           buttonStyle={{ width: '310px', fontSize: '14px', padding: '3px 0px' }}
           fields="name,email,picture"
