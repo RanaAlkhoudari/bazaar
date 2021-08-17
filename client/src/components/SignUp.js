@@ -1,6 +1,6 @@
 import axios from 'axios';
 import GoogleSignIn from './GoogleSignIn';
-import FacebookSignIn from './FacebookSignIn';
+// import FacebookSignIn from './FacebookSignIn';
 import React, { useRef, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Container, Form, Button, Card, Alert } from 'react-bootstrap';
@@ -127,7 +127,7 @@ const SignUp = () => {
             </Link>
           </div>
           <GoogleSignIn />
-          <FacebookSignIn />
+          {/*<FacebookSignIn />*/}
         </div>
       </Container>
     </div>
