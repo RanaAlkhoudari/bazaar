@@ -1,7 +1,7 @@
 import { loginCall } from '../apiCalls';
 import GoogleSignIn from './GoogleSignIn';
 import { useContext, useRef } from 'react';
-import FacebookSignIn from './FacebookSignIn';
+// import FacebookSignIn from './FacebookSignIn';
 import { Link, useHistory } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import { Container, Form, Button, Card, Alert } from 'react-bootstrap';
@@ -60,7 +60,7 @@ const SignIn = () => {
           </Link>
         </div>
         <GoogleSignIn />
-        <FacebookSignIn />
+        {/*<FacebookSignIn />*/}
       </div>
     </Container>
   );
