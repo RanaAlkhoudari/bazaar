@@ -14,10 +14,11 @@ const Uploader = ({ data }) => {
   };
 
   const handleClick = async () => {
+    const {categories} = data;
     const isFilled = Object.keys(data).every((key) => data[key]);
 
     try {
-      if (!selectedFiles || !isFilled) return;
+      if (!categories.length || !selectedFiles || !isFilled) return;
 
       const videoRequests = [];
       const imageRequests = [];
