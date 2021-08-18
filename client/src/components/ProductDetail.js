@@ -39,7 +39,7 @@ const ProductDetail = ({ product }) => {
     <div key={product._id}>
       <Card style={{ borderColor: 'var(--color-main)' }}>
         <Card.Body>
-          {signedIn && <Alert variant="danger">Please Sing In</Alert>}
+          {signedIn && <Alert variant="danger">Please Sign In</Alert>}
           <Row>
             <Col>
               <Card.Img
