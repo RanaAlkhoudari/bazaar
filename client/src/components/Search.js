@@ -19,10 +19,10 @@ const Search = () => {
   return (
     <Form
       onSubmit={handleSubmit}
-      style={{ margin: '5px auto' }}
+      style={{ margin: '5px', width: '600px' }}
       id="search-bar"
     >
-      <InputGroup className="mb-3" style={{ width: '50%', margin: '0 auto' }}>
+      <InputGroup className="mb-3" style={{ width: '100%', marginTop: '15px' }}>
         <FormControl
           aria-describedby="basic-addon2"
           value={keyword}
