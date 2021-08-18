@@ -28,11 +28,11 @@ const GoogleSignIn = () => {
         dispatch({ type: "LOGIN_START" });
         try {
           dispatch({ type: `LOGIN_SUCCESS`, payload: res.data });
-          history.push("/");
         } catch (err) {
           dispatch({ type: `LOGIN_FAILURE`, payload: err.response.data });
         }
       }
+      history.push("/");
       loginCall(
         { email: res.data.email, password: res.data.password },
         dispatch
