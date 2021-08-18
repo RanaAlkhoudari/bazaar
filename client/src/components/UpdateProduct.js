@@ -28,7 +28,9 @@ const UpdateProduct = () => {
 
   async function fetchData() {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/products/${id}`);
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/products/${id}`,
+      );
 
       setValues(response.data);
     } catch (error) {
@@ -39,7 +41,9 @@ const UpdateProduct = () => {
 
   async function fetchCategories() {
     try {
-      const res = await axios.get(`${process.env.REACT_APP_API_URL}/categories`);
+      const res = await axios.get(
+        `${process.env.REACT_APP_API_URL}/categories`,
+      );
 
       const categoryList = res.data.map((category) => category.name);
 
@@ -66,15 +70,21 @@ const UpdateProduct = () => {
           const [type] = file.type.split('/');
           const url = `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}`;
 
-          if (type === 'video') videoRequests.push(axios.post(`${url}/video/upload`, formData));
-          if (type === 'image') imageRequests.push(axios.post(`${url}/image/upload`, formData));
+          if (type === 'video')
+            videoRequests.push(axios.post(`${url}/video/upload`, formData));
+          if (type === 'image')
+            imageRequests.push(axios.post(`${url}/image/upload`, formData));
         }
 
         const videoResponses = await axios.all(videoRequests);
         const imageResponses = await axios.all(imageRequests);
 
-        values.videos = videoResponses.map((response) => response.data.secure_url);
-        values.images = imageResponses.map((response) => response.data.secure_url);
+        values.videos = videoResponses.map(
+          (response) => response.data.secure_url,
+        );
+        values.images = imageResponses.map(
+          (response) => response.data.secure_url,
+        );
       }
       const response = await axios.patch(
         `${process.env.REACT_APP_API_URL}/products/update/${values._id}`,
@@ -156,6 +166,16 @@ const UpdateProduct = () => {
                 }}
               />
               <br />
+              <Form.Group>
+                <Form.Control
+                  type="text"
+                  name="city"
+                  value={values.city}
+                  onChange={(e) => {
+                    setValues({ ...values, city: e.target.value });
+                  }}
+                />
+              </Form.Group>
 
               <Form.Group>
                 <Form.Control
@@ -175,7 +195,9 @@ const UpdateProduct = () => {
                   options={categoriesList}
                   placeholder="Categories"
                   avoidHighlightFirstOption={true}
-                  selectedValues={values.categories.map((category) => category.name)}
+                  selectedValues={values.categories.map(
+                    (category) => category.name,
+                  )}
                   onSelect={(selected) => {
                     values.categories = selected;
                   }}
