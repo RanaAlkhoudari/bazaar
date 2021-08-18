@@ -4,6 +4,7 @@ import { AuthContext } from '../context/AuthContext';
 import Multiselect from 'multiselect-react-dropdown';
 import { Form, Card, Container } from 'react-bootstrap';
 import { useState, useEffect, useContext } from 'react';
+import {loginCall} from '../apiCalls';
 
 const AddProduct = () => {
   const { user } = useContext(AuthContext);
@@ -31,7 +32,7 @@ const AddProduct = () => {
       const response = await axios.get(
         `${process.env.REACT_APP_API_URL}/categories`,
       );
-      const categoryList = response.data.map((category) => category.name);
+      const categoryList = response.data.map((category) => category);
 
       setCategories(categoryList);
     } catch (error) {
@@ -138,11 +139,12 @@ const AddProduct = () => {
               <br />
               <Form.Group>
                 <Multiselect
-                  isObject={false}
+                  isObject={true}
+                  displayValue='name'
                   options={categories}
                   placeholder="Categories"
                   avoidHighlightFirstOption={true}
-                  onSelect={(selected) => (values.categories = selected)}
+                  onSelect={(selected) => {selected.forEach((category) => {values.categories.push(category._id)})}}
                   style={{
                     chips: { background: 'var(--color-main)' },
                     optionContainer: {
