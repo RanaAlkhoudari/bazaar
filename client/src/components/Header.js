@@ -83,7 +83,9 @@ const Header = () => {
                 Info
               </Nav.Link>
             </Nav>
-
+            {searchBar && (
+              <Route render={({ history }) => <Search history={history} />} />
+            )}
             {user && (
               <Nav.Link
                 href="/products/add"
@@ -130,9 +132,6 @@ const Header = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      {searchBar && (
-        <Route render={({ history }) => <Search history={history} />} />
-      )}
     </>
   );
 };
