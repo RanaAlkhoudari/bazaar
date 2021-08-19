@@ -140,11 +140,12 @@ const AddProduct = () => {
               <Form.Group>
                 <Multiselect
                   isObject={true}
+                  singleSelect={true}
                   displayValue='name'
                   options={categories}
                   placeholder="Categories"
                   avoidHighlightFirstOption={true}
-                  onSelect={(selected) => {selected.forEach((category) => {values.categories.push(category._id)})}}
+                  onSelect={(selected) => {selected.forEach((category) => {values.categories = [category._id]})}}
                   style={{
                     chips: { background: 'var(--color-main)' },
                     optionContainer: {
