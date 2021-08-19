@@ -54,7 +54,10 @@ const Filters = ({
 
                   <Col>
                     <Button
-                      style={{ backgroundColor: 'var(--color-main)', color: 'white' }}
+                      style={{
+                        backgroundColor: 'var(--color-main)',
+                        color: 'white',
+                      }}
                       onClick={() => {
                         handlePriceRange(lowPrice, highPrice);
                       }}
@@ -135,7 +138,10 @@ const Filters = ({
                   </Col>
                   <Col>
                     <Button
-                      style={{ backgroundColor: 'var(--color-main)', color: 'white' }}
+                      style={{
+                        backgroundColor: 'var(--color-main)',
+                        color: 'white',
+                      }}
                       onClick={() => {
                         handleLocation(location);
                       }}

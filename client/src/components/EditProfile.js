@@ -24,6 +24,7 @@ const EditProfile = ({ user }) => {
     phone: user.phone,
     avatar: user.avatar,
     addresses: user.addresses,
+    password: user.password,
   });
 
   const [addressesData, setAddressesData] = useState(
@@ -181,8 +182,11 @@ const EditProfile = ({ user }) => {
       return (
         <div key={address._id}>
           <div>
-            <Container className="d-flex " style={{ maxHeight: '75vh' }}>
-              <Card className="m-3 p-3 " style={{ width: '22rem' }}>
+            <Container
+              style={{ minHeight: '40vh' }}
+              className="d-flex flex-wrap"
+            >
+              <Card className="m-3 p-3" style={{ width: '22rem' }}>
                 <Row>
                   <Col>
                     <h4>Address {index + 1}</h4>
@@ -446,7 +450,6 @@ const EditProfile = ({ user }) => {
             <Form.Label>Password:</Form.Label>
             <Form.Control
               type="password"
-              value={userData.password}
               ref={passwordRef}
               onChange={(e) => {
                 setUserData({ ...userData, password: e.target.value });
