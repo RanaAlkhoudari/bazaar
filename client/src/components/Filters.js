@@ -9,7 +9,7 @@ const Filters = ({
   handleLocation,
 }) => {
   const [lowPrice, setLowPrice] = useState([]);
-  const [highPrice, setHighPrice] = useState([]);
+  const [highPrice, setHighPrice] = useState('1000000');
   const [location, setLocation] = useState([]);
 
   const handleLocationEnterKey = (e) => {
