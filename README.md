@@ -1,5 +1,5 @@
 # class31-project
-Bazzar!
+
 
 Bazaar  app made with React + MongoDB + Nodejs + Expressjs
 
